@@ -1,0 +1,33 @@
+{
+  "home": {
+    "credits1": "Réalisé avec 💜🤍 par",
+    "credits2": "pour l'ensemble de la communauté du QSMP.!"
+  },
+
+  "index": {
+    "noStreamers": "Il semble que vous n'ayez pas encore choisi de streamer.",
+    "instructionsPc": "Cliquez sur le bouton à droite et commencez à regarder !",
+    "instructionsMobile": "Cliquez sur le bouton ci-dessous et commencez à regarder !",
+    "changeStreamers": "Modifier la liste des streamers"
+  },
+  "modal": {
+    "streamers": {
+      "title": "Choisissez vos streamers!",
+      "watch": "Regarder",
+      "avatar": "Avatar de",
+      "noPlaying": "Ce streamer ne joue peut-être pas sur QSMP.",
+      "streamOnYoutube": "Ce streamer diffuse sur Youtube.",
+      "groups": "Groupes",
+      "createGroup": "Créer un groupe",
+      "chooseGroupName": "Choisir un nom de groupe:",
+      "newParticipant": "Nouveau participant!",
+      "newParticipants": "Nouveaux participants!"
+    },
+    "organize": {
+      "title": "Réorganisez vos lives ou vos chats.",
+      "watch": "Regarder",
+      "noChat": "Aucun chat sélectionné.",
+      "noStreamer": "Aucun streamer sélectionné."
+    }
+  }
+}
