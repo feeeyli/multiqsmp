@@ -41,9 +41,10 @@ export default function Home() {
           <Button
             variant="ghost"
             asChild
-            className="flex h-fit flex-col items-center p-4"
+            className="pointer-events-none flex h-fit flex-col items-center p-4 opacity-30"
+            disabled
           >
-            <Link href="/es" className="bg-transparent text-center">
+            <Link href="" className="bg-transparent text-center">
               <div className="relative">
                 <Image
                   src="/mx.svg"
@@ -66,9 +67,10 @@ export default function Home() {
           <Button
             variant="ghost"
             asChild
-            className="flex h-fit flex-col items-center p-4"
+            className="pointer-events-none flex h-fit flex-col items-center p-4 opacity-30"
+            disabled
           >
-            <Link href="/en" className="bg-transparent text-center">
+            <Link href="" className="bg-transparent text-center">
               <Image
                 src="/us.svg"
                 alt="Bandeira dos Estados Unidos"
@@ -82,9 +84,10 @@ export default function Home() {
           <Button
             variant="ghost"
             asChild
-            className="flex h-fit flex-col items-center p-4"
+            className="pointer-events-none flex h-fit flex-col items-center p-4 opacity-30"
+            disabled
           >
-            <Link href="/fr" className="bg-transparent text-center">
+            <Link href="" className="bg-transparent text-center">
               <Image
                 src="/fr.svg"
                 alt="Bandeira da França"
