@@ -12,6 +12,7 @@ import {
   MessageSquare,
   MessageSquareDashed,
   Minimize,
+  RefreshCcw,
   Volume2,
   VolumeX,
 } from 'lucide-react';
@@ -28,6 +29,7 @@ interface StreamPlayerHeaderProps {
 
 export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
   const [opened, setOpened] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const streamPlayerControls = useContext(StreamPlayerControlsContext);
   const searchParams = useSearchParams();
 
@@ -55,7 +57,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
   return (
     <header
       data-opened={opened}
-      className="group/header absolute left-1 top-1 flex w-8 items-center overflow-hidden rounded-md bg-card/30 transition-all data-[opened=true]:w-[calc(4*2rem)]"
+      className="group/header absolute left-1 top-1 flex w-8 items-center overflow-hidden rounded-md bg-card/30 transition-all data-[opened=true]:w-[calc(5*2rem)]"
     >
       <Button
         variant="stream-header"
@@ -151,28 +153,29 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
               className="h-4 w-4 opacity-50 data-[opened=true]:opacity-100"
             />
           </button>
-        )}
-        <button
+        )} */}
+        <Button
           onClick={() => {
-            if (refreshing) return
+            if (refreshing) return;
 
-            embedRef.current?.refresh()
+            streamPlayerControls.refresh.run();
 
-            setRefreshing(true)
+            setRefreshing(true);
 
             setTimeout(() => {
-              setRefreshing(false)
-            }, 400)
+              setRefreshing(false);
+            }, 400);
           }}
-          tabIndex={headerMenuOpened ? 0 : -1}
-          className="inline-block h-full px-2 py-1 hover:bg-[#302a3963]"
+          tabIndex={opened ? 0 : -1}
+          size="stream-header"
+          variant="stream-header"
         >
-          <UpdateIcon
+          <RefreshCcw
             color="#fff"
             data-refreshing={refreshing}
             className="data-[refreshing=true]:animate-wow h-4 w-4"
           />
-        </button> */}
+        </Button>
       </div>
     </header>
   );

@@ -4,13 +4,22 @@
     "credits2": "para toda comunidade do QSMP!"
   },
   "streamers-dialog": {
-    "title": "Escolha seus streamers!",
+    "title": "Escolha seus streamers ou grupos!",
     "group-tab-title": "Grupos",
     "profile-image-alt": "Avatar de",
     "watch": "Assistir"
   },
   "streams-list": {
     "no-streams": "Parece que você ainda não escolheu nenhum Streamer. Clique no botão á direita e comece a assistir!"
+  },
+  "organize-dialog": {
+    "title": "Reorganize suas lives ou chats.",
+    "profile-image-alt": "Avatar de",
+    "watch": "Assistir",
+    "streams-subtitle": "Lives",
+    "chats-subtitle": "Chats",
+    "no-streams": "Nenhuma live selecionada.",
+    "no-chats": "Nenhum chat selecionado."
   },
 
   "index": {

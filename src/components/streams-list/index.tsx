@@ -13,7 +13,11 @@ import { getStreamersFromGroups } from '@/utils/getStreamersFromGroups';
 // Components Imports
 import { StreamPlayer } from './stream-player';
 
-export const StreamsList = () => {
+interface StreamsListProps {
+  resizing: boolean;
+}
+
+export const StreamsList = (props: StreamsListProps) => {
   const searchParams = useSearchParams();
   const t = useTranslations('streams-list');
 
@@ -27,7 +31,10 @@ export const StreamsList = () => {
   ];
 
   return (
-    <div className="flex h-full max-h-screen flex-1 flex-wrap">
+    <div
+      data-resizing={props.resizing}
+      className="flex h-full max-h-screen flex-1 flex-wrap data-[resizing=true]:pointer-events-none"
+    >
       {mergedStreams.map((channel) => (
         <StreamPlayerControlsProvider key={channel}>
           <StreamPlayer channel={channel} />

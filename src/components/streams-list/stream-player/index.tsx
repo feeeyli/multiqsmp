@@ -14,6 +14,7 @@ import { StreamPlayerControlsContext } from './stream-player-controls-context';
 
 // Scripts Imports
 import { getStreamUrl } from '@/utils/getStreamUrl';
+import { useSearchParamsStates } from '@/utils/useSearchParamsState';
 
 // Components Imports
 import { StreamPlayerHeader } from './stream-player-header';
@@ -25,17 +26,14 @@ interface Props {
 
 export const StreamPlayer = ({ channel }: Props) => {
   const streamPlayerControls = useContext(StreamPlayerControlsContext);
-  const actualStreams = useSearchParams().get('streamers')?.split('/') || [];
+  const { streams } = useSearchParamsStates();
   const isDesktop = useMediaQuery('(min-width: 640px)');
 
   const playerStyleVariants = cva('flex-grow inset-0', {
     variants: {
       fullScreen: {
-        true: 'w-auto absolute z-20',
-        false: [
-          'relative z-0',
-          `w-[${100 / getColumns(actualStreams.length, isDesktop)}%]`,
-        ],
+        true: 'absolute z-20',
+        false: 'relative z-0',
       },
     },
     defaultVariants: {
@@ -48,6 +46,11 @@ export const StreamPlayer = ({ channel }: Props) => {
       className={playerStyleVariants({
         fullScreen: streamPlayerControls.fullScreen.value,
       })}
+      style={{
+        width: streamPlayerControls.fullScreen.value
+          ? 'auto'
+          : `${100 / getColumns(streams.length, isDesktop)}%`,
+      }}
     >
       <StreamPlayerHeader channel={channel} />
       <ReactPlayer

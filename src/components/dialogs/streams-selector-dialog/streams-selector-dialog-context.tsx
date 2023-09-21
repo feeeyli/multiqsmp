@@ -1,7 +1,7 @@
 'use client';
 
 // React Imports
-import React, { createContext } from 'react';
+import React, { createContext, useContext } from 'react';
 
 // Scripts Imports
 import { ListReturnProps, useList } from '@/utils/useList';
@@ -62,3 +62,6 @@ export const StreamsSelectorDialogProvider = ({
     </StreamsSelectorDialogContext.Provider>
   );
 };
+
+export const useStreamsSelectorDialogContext = () =>
+  useContext(StreamsSelectorDialogContext);
