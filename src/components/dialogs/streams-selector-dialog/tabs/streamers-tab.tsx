@@ -1,26 +1,28 @@
 // React Imports
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+// Types Imports
+import { StreamResponseType } from '@/@types/StreamResponseType';
 
 // Data Imports
 import { STREAMERS } from '@/data/streamers';
 
-// Libs Imports
-import { useReadLocalStorage } from 'usehooks-ts';
-
 // Components Imports
 import { TabsContent } from '@/components/ui/tabs';
 import { Streamer } from '../streamer';
+import { Separator } from '@/components/ui/separator';
 
 // Contexts Import
-import { StreamsSelectorDialogContext } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
+import { useStreamsSelectorDialogContext } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
 import { useFavoriteListsContext } from './favorite-lists-context';
-import { Separator } from '@/components/ui/separator';
-import { StreamResponseType } from '@/@types/StreamResponseType';
+
+// Scripts Imports
+import { sortStreamers } from '@/utils/sort';
 
 type OnlineStreamerType = { twitchName: string; isPlayingQsmp: boolean };
 
 export const StreamersTab = () => {
-  const { selectedStreamers } = useContext(StreamsSelectorDialogContext);
+  const { selectedStreamers } = useStreamsSelectorDialogContext();
   const { streamers: favoritesList } = useFavoriteListsContext();
   const [onlineStreamers, setOnlineStreamers] = useState<OnlineStreamerType[]>(
     [],
@@ -57,8 +59,8 @@ export const StreamersTab = () => {
     })();
   }, []);
 
-  const favoriteStreamers = STREAMERS.filter((item) =>
-    favoritesList.value.includes(item.twitchName),
+  const favoriteStreamers = sortStreamers(
+    STREAMERS.filter((item) => favoritesList.value.includes(item.twitchName)),
   );
   const nonFavoriteStreamers = STREAMERS.filter(
     (item) => !favoritesList.value.includes(item.twitchName),
@@ -67,9 +69,9 @@ export const StreamersTab = () => {
   return (
     <TabsContent
       value="streamers"
-      className="scrollbar flex max-h-80 flex-col gap-2 overflow-y-auto"
+      className="scrollbar flex max-h-80 flex-col gap-3 overflow-y-auto pt-2 data-[state=inactive]:hidden"
     >
-      <div className="flex w-full flex-wrap justify-center gap-2">
+      <div className="flex w-full flex-wrap justify-center gap-3">
         {favoriteStreamers.map((streamer) => {
           const stream = onlineStreamers.find(
             (online) =>
@@ -92,7 +94,7 @@ export const StreamersTab = () => {
       {favoriteStreamers.length > 0 && nonFavoriteStreamers.length > 0 && (
         <Separator />
       )}
-      <div className="flex w-full flex-wrap justify-center gap-2">
+      <div className="flex w-full flex-wrap justify-center gap-3">
         {nonFavoriteStreamers.map((streamer) => {
           const stream = onlineStreamers.find(
             (online) =>

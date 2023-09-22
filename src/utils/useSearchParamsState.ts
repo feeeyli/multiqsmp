@@ -3,6 +3,7 @@
 
 import { useSearchParams } from 'next/navigation';
 import { getStreamersFromGroups } from './getStreamersFromGroups';
+import { useCustomGroupsContext } from '@/components/contexts/custom-groups-context';
 
 // type valuesProps = {
 //   streamers?: string[];
@@ -18,11 +19,15 @@ import { getStreamersFromGroups } from './getStreamersFromGroups';
 
 export function useSearchParamsStates() {
   const searchParams = useSearchParams();
+  const [customGroups] = useCustomGroupsContext();
 
   const streamersOnQuery = searchParams.get('streamers')?.split('/') || [];
   const groupsOnQuery = searchParams.get('groups')?.split('/') || [];
 
-  const streamersFromGroups = getStreamersFromGroups(groupsOnQuery);
+  const streamersFromGroups = getStreamersFromGroups(
+    groupsOnQuery,
+    customGroups,
+  );
 
   const actualStreams = [
     ...new Set([...streamersOnQuery, ...streamersFromGroups]),

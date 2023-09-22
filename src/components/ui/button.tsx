@@ -20,6 +20,8 @@ const buttonVariants = cva(
         link: 'text-primary underline-offset-4 hover:underline',
         'stream-header':
           'hover:bg-primary/20 focus-visible:bg-primary/50 focus-visible:ring-0 focus-visible:ring-offset-0',
+        favorite:
+          'group absolute -left-1 -top-1 z-10 bg-[#3C324E] text-muted-foreground hover:bg-[#453A5A] data-[favorite=true]:bg-rose-700 data-[favorite=true]:text-rose-400 data-[favorite=true]:hover:bg-rose-600',
       },
       size: {
         default: 'h-10 px-4 py-2',
@@ -27,6 +29,7 @@ const buttonVariants = cva(
         lg: 'h-11 rounded-md px-8',
         icon: 'h-10 w-10',
         'stream-header': 'h-7 px-2',
+        favorite: 'h-auto p-1.5',
       },
     },
     defaultVariants: {

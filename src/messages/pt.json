@@ -7,7 +7,9 @@
     "title": "Escolha seus streamers ou grupos!",
     "group-tab-title": "Grupos",
     "profile-image-alt": "Avatar de",
-    "watch": "Assistir"
+    "watch": "Assistir",
+    "selected-streamers-or-groups": "Streamers ou grupos selecionados:",
+    "no-selected-streamers-or-groups": "Nenhum streamer ou grupo selecionado."
   },
   "streams-list": {
     "no-streams": "Parece que você ainda não escolheu nenhum Streamer. Clique no botão á direita e comece a assistir!"
@@ -20,6 +22,24 @@
     "chats-subtitle": "Chats",
     "no-streams": "Nenhuma live selecionada.",
     "no-chats": "Nenhum chat selecionado."
+  },
+  "create-group-dialog": {
+    "title": "Novo Grupo",
+    "profile-image-alt": "Avatar de",
+    "search-streamer-label": "Buscar Streamer",
+    "name-subtitle": "Escolha um nome",
+    "choose-subtitle": "Selecione os streamers",
+    "selected-streamers": "Streamers selecionados:",
+    "no-selected-streamers": "Nenhum streamer selecionado.",
+    "group-name-label": "Escolha um nome para o grupo",
+    "submit": "Criar grupo",
+    "name-error": "Um grupo com esse nome já exite. Tente Outro!"
+  },
+  "delete-group-dialog": {
+    "title": "Deletar o grupo",
+    "description": "Você está prestes a deletar o grupo ((group)), está certo disso? Essa ação não pode ser desfeita.",
+    "confirm": "Sim, deletar",
+    "cancel": "Cancelar"
   },
 
   "index": {

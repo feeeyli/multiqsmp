@@ -6,9 +6,11 @@ import { useSearchParams } from 'next/navigation';
 
 // Context Imports
 import { StreamPlayerControlsProvider } from './stream-player/stream-player-controls-context';
+import { useCustomGroupsContext } from '../contexts/custom-groups-context';
 
 // Scripts Imports
 import { getStreamersFromGroups } from '@/utils/getStreamersFromGroups';
+import { useHasMounted } from '@/utils/useHasMounted';
 
 // Components Imports
 import { StreamPlayer } from './stream-player';
@@ -20,11 +22,18 @@ interface StreamsListProps {
 export const StreamsList = (props: StreamsListProps) => {
   const searchParams = useSearchParams();
   const t = useTranslations('streams-list');
+  const [customGroups] = useCustomGroupsContext();
+  const hasMounted = useHasMounted();
+
+  if (!hasMounted) return null;
 
   const streamersOnQuery = searchParams.get('streamers')?.split('/') || [];
   const groupsOnQuery = searchParams.get('groups')?.split('/') || [];
 
-  const streamersFromGroups = getStreamersFromGroups(groupsOnQuery);
+  const streamersFromGroups = getStreamersFromGroups(
+    groupsOnQuery,
+    customGroups,
+  );
 
   const mergedStreams = [
     ...new Set([...streamersOnQuery, ...streamersFromGroups]),

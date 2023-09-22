@@ -1,8 +1,14 @@
 // Data Imports
+import { GroupType } from '@/@types/data';
 import { GROUPS } from '@/data/groups';
 
-export function getStreamersFromGroups(groupsNames: string[]) {
-  const groups = GROUPS.filter((group) =>
+export function getStreamersFromGroups(
+  groupsNames: string[],
+  customGroups: GroupType[],
+) {
+  const mergedGroups = [...new Set([...GROUPS, ...customGroups])];
+
+  const groups = mergedGroups.filter((group) =>
     groupsNames.includes(group.simpleGroupName),
   );
 

@@ -173,7 +173,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
           <RefreshCcw
             color="#fff"
             data-refreshing={refreshing}
-            className="data-[refreshing=true]:animate-wow h-4 w-4"
+            className="h-4 w-4 data-[refreshing=true]:animate-wow"
           />
         </Button>
       </div>

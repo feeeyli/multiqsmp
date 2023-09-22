@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 
 // Libs Imports
 import { NextIntlClientProvider } from 'next-intl';
+import { CustomGroupsProvider } from '@/components/contexts/custom-groups-context';
 
 // Components Imports
 export const metadata: Metadata = {
@@ -37,7 +38,7 @@ export default async function RootLayout({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      {children}
+      <CustomGroupsProvider>{children}</CustomGroupsProvider>
     </NextIntlClientProvider>
   );
 }

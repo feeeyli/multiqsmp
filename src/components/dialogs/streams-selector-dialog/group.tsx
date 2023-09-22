@@ -10,31 +10,35 @@ import { useTranslations } from 'next-intl';
 // Types Imports
 import { GroupType } from '@/@types/data';
 
+// Icons Imports
+import { Heart } from 'lucide-react';
+
 // Components Imports
 import { Toggle } from '@/components/ui/toggle';
+import { DeleteGroupDialog } from '../delete-group-dialog';
+import { Button } from '@/components/ui/button';
 
 // Contexts Import
-import { StreamsSelectorDialogContext } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
+import { useStreamsSelectorDialogContext } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
 import { useFavoriteListsContext } from './tabs/favorite-lists-context';
 
 // Scripts Imports
 import { getSkinHead } from '@/utils/getSkinHead';
-import { Button } from '@/components/ui/button';
-import { Heart } from 'lucide-react';
 
 interface GroupProps {
   group: GroupType;
   selected: boolean;
   favorite?: boolean;
+  custom?: boolean;
 }
 
 export const Group = (props: GroupProps) => {
-  const { selectedGroups } = useContext(StreamsSelectorDialogContext);
+  const { selectedGroups } = useStreamsSelectorDialogContext();
   const { groups: favoritesList } = useFavoriteListsContext();
 
   const t = useTranslations('streamers-dialog');
 
-  const cols = [3, 4].includes(props.group.avatars.length)
+  const cols = [2, 3, 4].includes(props.group.avatars.length)
     ? 2
     : [5, 6, 8, 9].includes(props.group.avatars.length)
     ? 3
@@ -44,8 +48,8 @@ export const Group = (props: GroupProps) => {
     /* TODO: ADD ARIA-LABEL (view doc)*/
     <div className="relative">
       <Button
-        size="sm"
-        variant="ghost"
+        size="favorite"
+        variant="favorite"
         data-favorite={!!props.favorite}
         onClick={() => {
           if (favoritesList.value.includes(props.group.simpleGroupName)) {
@@ -56,13 +60,13 @@ export const Group = (props: GroupProps) => {
             favoritesList.set((old) => [...old, props.group.simpleGroupName]);
           }
         }}
-        className="group absolute left-3 top-3 z-10 h-auto border border-border bg-muted/30 p-1.5 text-border transition-all hover:border-rose-900 hover:bg-rose-800/50 hover:text-rose-900 data-[favorite=true]:border-rose-900 data-[favorite=true]:bg-rose-700 data-[favorite=true]:text-rose-400"
       >
         <Heart
           size="1rem"
           className="group-data-[favorite=true]:fill-rose-400"
         />
       </Button>
+      {props.custom && <DeleteGroupDialog group={props.group} />}
       <Toggle
         pressed={props.selected}
         onPressedChange={() =>

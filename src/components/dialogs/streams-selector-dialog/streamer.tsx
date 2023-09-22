@@ -7,14 +7,16 @@ import { useTranslations } from 'next-intl';
 // Types Imports
 import { StreamerType } from '@/@types/data';
 
+/// Icons Imports
+import { Heart, Info } from 'lucide-react';
+
 // Components Imports
 import { Toggle } from '@/components/ui/toggle';
+import { Button } from '@/components/ui/button';
 
 // Contexts Import
 import { useStreamsSelectorDialogContext } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
 import { useFavoriteListsContext } from './tabs/favorite-lists-context';
-import { Heart, Info } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 interface StreamerProps {
   streamer: StreamerType;
@@ -34,8 +36,8 @@ export const Streamer = (props: StreamerProps) => {
     /* TODO: ADD ARIA-LABEL (view doc)*/
     <div className="relative">
       <Button
-        size="sm"
-        variant="ghost"
+        size="favorite"
+        variant="favorite"
         data-favorite={!!props.favorite}
         onClick={() => {
           if (favoritesList.value.includes(props.streamer.twitchName)) {
@@ -46,7 +48,6 @@ export const Streamer = (props: StreamerProps) => {
             favoritesList.set((old) => [...old, props.streamer.twitchName]);
           }
         }}
-        className="group absolute left-3 top-3 z-10 h-auto border border-border bg-muted/30 p-1.5 text-border transition-all hover:border-rose-900 hover:bg-rose-800/50 hover:text-rose-900 data-[favorite=true]:border-rose-900 data-[favorite=true]:bg-rose-700 data-[favorite=true]:text-rose-400"
       >
         <Heart
           size="1rem"

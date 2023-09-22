@@ -7,6 +7,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+// Datas Imports
+import { STREAMERS } from '@/data/streamers';
+import { GROUPS } from '@/data/groups';
+
 // Libs Imports
 import { useTranslations } from 'next-intl';
 
@@ -35,9 +39,11 @@ import { GroupsTab } from './tabs/groups-tab';
 
 // Contexts Import
 import { useStreamsSelectorDialogContext } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
-import { STREAMERS } from '@/data/streamers';
-import { GROUPS } from '@/data/groups';
 import { FavoriteListsProvider } from './tabs/favorite-lists-context';
+import { useCustomGroupsContext } from '@/components/contexts/custom-groups-context';
+
+// Scripts Imports
+import { getDisplayName } from '@/utils/getDisplayName';
 
 export const StreamsSelectorDialog = () => {
   const t = useTranslations('streamers-dialog');
@@ -45,6 +51,7 @@ export const StreamsSelectorDialog = () => {
     useStreamsSelectorDialogContext();
   const searchParams = useSearchParams();
   const [tab, setTab] = useState<string>('streamers');
+  const [customGroups] = useCustomGroupsContext();
 
   const getWatchUrl = () => {
     const newUrl = new URLSearchParams();
@@ -82,7 +89,7 @@ export const StreamsSelectorDialog = () => {
           className="w-full"
           onValueChange={setTab}
         >
-          <TabsList className="flex h-auto w-full bg-transparent px-0 pb-3 pt-0">
+          <TabsList className="flex h-auto w-full bg-transparent px-0 pb-1 pt-0">
             <TabsTrigger
               value="streamers"
               className="flex-1 rounded-none border-b-2 border-b-transparent data-[state=active]:border-b-primary/50"
@@ -101,46 +108,66 @@ export const StreamsSelectorDialog = () => {
             <GroupsTab />
           </FavoriteListsProvider>
         </Tabs>
-        <DialogFooter className="flex w-full items-center !justify-between">
-          <div>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="px-2.5"
-              onClick={() => {
-                if (tab === 'streamers')
-                  selectedStreamers.actions.updateList(
-                    STREAMERS.map((streamer) => streamer.twitchName),
-                  );
-                if (tab === 'groups')
-                  selectedGroups.actions.updateList(
-                    GROUPS.map((group) => group.simpleGroupName),
-                  );
-              }}
-            >
-              <CheckSquare size="1rem" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="px-2.5"
-              onClick={() => {
-                if (tab === 'streamers')
-                  selectedStreamers.actions.updateList([]);
-                if (tab === 'groups') selectedGroups.actions.updateList([]);
-              }}
-            >
-              <BoxSelect size="1rem" />
-            </Button>
+        <DialogFooter className="flex flex-col gap-2 sm:flex-col">
+          <p className="text-sm">
+            <span className="text-muted-foreground">
+              {(selectedStreamers.value.length > 0 ||
+                selectedGroups.value.length > 0) &&
+                t('selected-streamers-or-groups')}
+              {selectedStreamers.value.length === 0 &&
+                selectedGroups.value.length === 0 &&
+                t('no-selected-streamers-or-groups')}
+            </span>{' '}
+            {[...selectedStreamers.value, ...selectedGroups.value].map((s) =>
+              getDisplayName(s, customGroups),
+            ).length > 0 &&
+              [...selectedStreamers.value, ...selectedGroups.value]
+                .map((s) => getDisplayName(s, customGroups))
+                .join(', ')}
+          </p>
+          <div className="flex w-full items-center !justify-between">
+            <div>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="px-2.5"
+                onClick={() => {
+                  if (tab === 'streamers')
+                    selectedStreamers.actions.updateList(
+                      STREAMERS.map((streamer) => streamer.twitchName),
+                    );
+                  if (tab === 'groups')
+                    selectedGroups.actions.updateList(
+                      [...GROUPS, ...customGroups].map(
+                        (group) => group.simpleGroupName,
+                      ),
+                    );
+                }}
+              >
+                <CheckSquare size="1rem" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="px-2.5"
+                onClick={() => {
+                  if (tab === 'streamers')
+                    selectedStreamers.actions.updateList([]);
+                  if (tab === 'groups') selectedGroups.actions.updateList([]);
+                }}
+              >
+                <BoxSelect size="1rem" />
+              </Button>
+            </div>
+            <DialogClose asChild>
+              <Button variant="ghost" asChild className="gap-2">
+                <Link href={getWatchUrl()}>
+                  {t('watch')}
+                  <ArrowRight size="1rem" />
+                </Link>
+              </Button>
+            </DialogClose>
           </div>
-          <DialogClose asChild>
-            <Button variant="ghost" asChild className="gap-2">
-              <Link href={getWatchUrl()}>
-                {t('watch')}
-                <ArrowRight size="1rem" />
-              </Link>
-            </Button>
-          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>

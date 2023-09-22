@@ -14,6 +14,9 @@ import { Reorder } from 'framer-motion';
 // Icons Imports
 import { ArrowRight, ListOrdered } from 'lucide-react';
 
+// Contexts Imports
+import { useCustomGroupsContext } from '@/components/contexts/custom-groups-context';
+
 // Components Imports
 import { Button } from '@/components/ui/button';
 import {
@@ -26,16 +29,22 @@ import {
 } from '@/components/ui/dialog';
 import { DialogClose } from '@radix-ui/react-dialog';
 import { OrganizeListItem } from './organize-list-item';
+
+// Scripts Imports
 import { getStreamersFromGroups } from '@/utils/getStreamersFromGroups';
 
 export const OrganizeStreamsDialog = () => {
   const t = useTranslations('organize-dialog');
   const searchParams = useSearchParams();
+  const [customGroups] = useCustomGroupsContext();
 
   const streamersOnQuery = searchParams.get('streamers')?.split('/') || [];
   const groupsOnQuery = searchParams.get('groups')?.split('/') || [];
 
-  const streamersFromGroups = getStreamersFromGroups(groupsOnQuery);
+  const streamersFromGroups = getStreamersFromGroups(
+    groupsOnQuery,
+    customGroups,
+  );
 
   const actualStreams = [
     ...new Set([...streamersOnQuery, ...streamersFromGroups]),
