@@ -192,6 +192,12 @@ export const STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/50942827-74fa-407b-9edc-bc3827e47f9f-profile_image-300x300.png',
   },
   {
+    twitchName: 'peqitw',
+    displayName: 'Pac (Tazercraft)',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/267d5dd6-5710-4687-8464-858348cc1255-profile_image-300x300.png',
+  },
+  {
     twitchName: 'tazercraft',
     displayName: 'Tazercraft',
     avatarUrl:
