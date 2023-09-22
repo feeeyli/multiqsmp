@@ -85,7 +85,7 @@ export const OrganizeStreamsDialog = () => {
         <DialogHeader>
           <DialogTitle>{t('title')}</DialogTitle>
         </DialogHeader>
-        <div className="flex w-full flex-wrap gap-3">
+        <div className="flex w-full flex-col flex-wrap gap-3 sm:flex-row">
           <div className="flex flex-1 flex-col items-center gap-2">
             <h3>{t('streams-subtitle')}</h3>
             {newStreamsOrder.length > 0 && (

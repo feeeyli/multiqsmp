@@ -8,7 +8,6 @@ import { useTranslations } from 'next-intl';
 import { StreamerType } from '@/@types/data';
 
 // Components Imports
-import { Toggle } from '@/components/ui/toggle';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 
 // Contexts Imports
@@ -26,10 +25,6 @@ export const StreamerItem = (props: StreamerItemProps) => {
   return (
     <ToggleGroup.Item
       value={props.streamer.twitchName}
-      // pressed={selectedGroupStreamers.includes(props.streamer.twitchName)}
-      // onPressedChange={() =>
-      //   toggleSelectedGroupStreamers(props.streamer.twitchName, -1)
-      // }
       asChild
       className="flex h-auto min-w-[40%] flex-1 items-center justify-start gap-4 border-2 bg-secondary/50 p-2 data-[state=on]:border-primary/50 data-[state=on]:bg-secondary/50"
     >
