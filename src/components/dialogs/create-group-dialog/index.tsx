@@ -36,6 +36,7 @@ import { useCustomGroupsContext } from '@/components/contexts/custom-groups-cont
 
 // Scripts Imports
 import { getDisplayName } from '@/utils/getDisplayName';
+import { getAvatarsList } from '@/utils/getAvatarsList';
 
 export const CreateGroupDialog = () => {
   const t = useTranslations('create-group-dialog');
@@ -46,6 +47,13 @@ export const CreateGroupDialog = () => {
   const [customGroups, setCustomGroups] = useCustomGroupsContext();
 
   const mergedGroups = [...new Set([...GROUPS, ...customGroups])];
+
+  const avatars = getAvatarsList(selectedGroupStreamers);
+
+  const filteredAvatars =
+    avatars.includes('peqitw') && avatars.includes('pactw')
+      ? avatars.filter((a) => a !== 'peqitw')
+      : avatars;
 
   return (
     <Dialog
@@ -151,7 +159,10 @@ export const CreateGroupDialog = () => {
                     members: selectedGroupStreamers.map((s) =>
                       getDisplayName(s),
                     ),
-                    avatars: selectedGroupStreamers,
+                    avatars:
+                      avatars.includes('peqitw') && avatars.includes('pactw')
+                        ? avatars.filter((a) => a !== 'peqitw')
+                        : avatars,
                     twitchNames: selectedGroupStreamers,
                   },
                 ])

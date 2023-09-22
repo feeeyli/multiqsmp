@@ -53,6 +53,7 @@ export const SKIN_HEADS = {
   mikethelink:
     'https://s.namemc.com/2d/skin/face.png?id=6bc1332059bb2e3c&scale=32',
   pactw: 'https://s.namemc.com/2d/skin/face.png?id=06b352d72c7f7adf&scale=32',
+  peqitw: 'https://s.namemc.com/2d/skin/face.png?id=06b352d72c7f7adf&scale=32',
   antoinedaniel:
     'https://s.namemc.com/2d/skin/face.png?id=9a5dc83f41384a35&scale=32',
   aypierre:

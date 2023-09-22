@@ -38,11 +38,14 @@ export const Group = (props: GroupProps) => {
 
   const t = useTranslations('streamers-dialog');
 
-  const cols = [2, 3, 4].includes(props.group.avatars.length)
-    ? 2
-    : [5, 6, 8, 9].includes(props.group.avatars.length)
-    ? 3
-    : 4;
+  const cols =
+    props.group.avatars.length === 1
+      ? 1
+      : [2, 3, 4].includes(props.group.avatars.length)
+      ? 2
+      : [5, 6, 8, 9].includes(props.group.avatars.length)
+      ? 3
+      : 4;
 
   return (
     /* TODO: ADD ARIA-LABEL (view doc)*/
