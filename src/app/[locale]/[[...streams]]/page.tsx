@@ -3,9 +3,6 @@
 // Next Imports
 import { useRouter } from 'next/navigation';
 
-// Types Imports
-import { GroupType } from '@/@types/data';
-
 // Libs Imports
 import { PanelGroup, Panel, PanelResizeHandle } from 'react-resizable-panels';
 import { useMediaQuery } from 'usehooks-ts';
@@ -20,11 +17,10 @@ import { StreamsList } from '@/components/streams-list';
 
 // Script Imports
 import { useSearchParamsStates } from '@/utils/useSearchParamsState';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ChatsList } from '@/components/chats-list';
 import { parseChannels } from '@/utils/parseChannels';
 import { SettingsDialog } from '@/components/dialogs/settings-dialog';
-import { useSettingsContext } from '@/contexts/settings-context';
 
 interface StreamsPageProps {
   params: {
@@ -38,7 +34,6 @@ export default function Streams(props: StreamsPageProps) {
   const { streams, chats } = useSearchParamsStates();
   const [resizing, setResizing] = useState(false);
   const router = useRouter();
-  const [settings, setSettings] = useSettingsContext();
 
   if (props.params.streams) {
     const [selectedChannels, , selectedGroups] = parseChannels(
@@ -56,29 +51,6 @@ export default function Streams(props: StreamsPageProps) {
       }`,
     );
   }
-
-  useEffect(() => {
-    if (
-      settings.appearance.theme.includes('default') ||
-      !settings.streams.headerItems
-    ) {
-      setSettings((old) => {
-        const newSettings = old;
-
-        newSettings.appearance.theme = 'dark';
-        newSettings.streams.headerItems = [
-          'mute',
-          'fullscreen',
-          'chat',
-          'reload',
-        ];
-
-        return newSettings;
-      });
-
-      window.location.reload();
-    }
-  }, []);
 
   return (
     <main

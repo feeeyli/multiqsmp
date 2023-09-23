@@ -1,9 +1,36 @@
 // Next Imports
 import { Button } from '@/components/ui/button';
+import { useSettingsContext } from '@/contexts/settings-context';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 export default function Home() {
+  const [settings, setSettings] = useSettingsContext();
+
+  useEffect(() => {
+    if (
+      settings.appearance.theme.includes('default') ||
+      !settings.streams.headerItems
+    ) {
+      setSettings((old) => {
+        const newSettings = old;
+
+        newSettings.appearance.theme = 'dark';
+        newSettings.streams.headerItems = [
+          'mute',
+          'fullscreen',
+          'chat',
+          'reload',
+        ];
+
+        return newSettings;
+      });
+
+      window.location.reload();
+    }
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col items-center py-24">
       <header>
