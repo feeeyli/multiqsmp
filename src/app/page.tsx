@@ -1,3 +1,5 @@
+'use client';
+
 // Next Imports
 import { Button } from '@/components/ui/button';
 import { useSettingsContext } from '@/contexts/settings-context';
