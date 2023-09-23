@@ -24,6 +24,7 @@ import { useFavoriteListsContext } from './tabs/favorite-lists-context';
 
 // Scripts Imports
 import { getSkinHead } from '@/utils/getSkinHead';
+import { EditGroupDialog } from '../edit-group-dialog';
 
 interface GroupProps {
   group: GroupType;
@@ -69,7 +70,11 @@ export const Group = (props: GroupProps) => {
           className="group-data-[favorite=true]:fill-rose-400"
         />
       </Button>
-      {props.custom && <DeleteGroupDialog group={props.group} />}
+      {props.custom && (
+        <>
+          <EditGroupDialog group={props.group} />
+        </>
+      )}
       <Toggle
         pressed={props.selected}
         onPressedChange={() =>

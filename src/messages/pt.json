@@ -37,9 +37,22 @@
   },
   "delete-group-dialog": {
     "title": "Deletar o grupo",
-    "description": "Você está prestes a deletar o grupo ((group)), está certo disso? Essa ação não pode ser desfeita.",
+    "description": "Você está prestes a deletar o grupo \"((group))\", está certo disso? Essa ação não pode ser desfeita.",
     "confirm": "Sim, deletar",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "trigger": "Deletar"
+  },
+  "edit-group-dialog": {
+    "title": "Editar Grupo",
+    "profile-image-alt": "Avatar de",
+    "search-streamer-label": "Buscar Streamer",
+    "name-subtitle": "Escolha o novo nome",
+    "choose-subtitle": "Selecione os streamers",
+    "selected-streamers": "Streamers selecionados:",
+    "no-selected-streamers": "Nenhum streamer selecionado.",
+    "group-name-label": "Escolha um novo nome para o grupo",
+    "submit": "Salvar grupo",
+    "name-error": "Um grupo com esse nome já exite. Tente Outro!"
   },
 
   "index": {

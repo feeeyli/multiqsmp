@@ -37,11 +37,11 @@ export const DeleteGroupDialog = (props: DeleteGroupDialogProps) => {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
-          size="sm"
-          variant="destructive"
-          className="group absolute -right-1 -top-1 z-10 h-auto p-1.5"
+          variant="outline"
+          className="gap-2 border-destructive hover:bg-destructive"
         >
           <Trash size="1rem" />
+          {t('trigger')}
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

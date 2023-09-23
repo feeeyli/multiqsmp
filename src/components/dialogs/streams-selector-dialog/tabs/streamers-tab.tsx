@@ -69,7 +69,7 @@ export const StreamersTab = () => {
   return (
     <TabsContent
       value="streamers"
-      className="scrollbar flex max-h-80 flex-col gap-3 overflow-y-auto pt-2 data-[state=inactive]:hidden"
+      className="scrollbar flex max-h-80 flex-col gap-3 overflow-y-auto pb-3 pt-2 data-[state=inactive]:hidden"
     >
       <div className="flex w-full flex-wrap justify-center gap-3">
         {favoriteStreamers.map((streamer) => {

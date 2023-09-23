@@ -21,61 +21,63 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { StreamerItem } from './streamer-item';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { DialogClose } from '@radix-ui/react-dialog';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
+import { StreamerItem } from '../create-group-dialog/streamer-item';
 
 // Icons Imports
-import { Plus } from 'lucide-react';
+import { Pencil, Save } from 'lucide-react';
 
 // Contexts Imports
-import { useCreateGroupDialogContext } from './create-group-dialog-context';
 import { useCustomGroupsContext } from '@/components/contexts/custom-groups-context';
 
 // Scripts Imports
 import { getDisplayName } from '@/utils/getDisplayName';
 import { getAvatarsList } from '@/utils/getAvatarsList';
+import { DeleteGroupDialog } from '../delete-group-dialog';
+import { useFavoriteListsContext } from '../streams-selector-dialog/tabs/favorite-lists-context';
 
-export const CreateGroupDialog = () => {
-  const t = useTranslations('create-group-dialog');
-  const [selectedGroupStreamers, { updateList: setSelectedGroupStreamers }] =
-    useCreateGroupDialogContext();
-  const [search, setSearch] = useState('');
-  const [groupName, setGroupName] = useState('');
+interface EditGroupDialog {
+  group: GroupType;
+}
+
+export const EditGroupDialog = (props: EditGroupDialog) => {
+  const t = useTranslations('edit-group-dialog');
   const [customGroups, setCustomGroups] = useCustomGroupsContext();
+  const { groups: favoriteGroups } = useFavoriteListsContext();
+  const [selectedGroupStreamers, setSelectedGroupStreamers] = useState(
+    props.group.twitchNames,
+  );
+  const [search, setSearch] = useState('');
+  const [groupName, setGroupName] = useState(props.group.groupName);
 
   const mergedGroups = [...new Set([...GROUPS, ...customGroups])];
 
   const avatars = getAvatarsList(selectedGroupStreamers);
 
-  const filteredAvatars =
-    avatars.includes('peqitw') && avatars.includes('pactw')
-      ? avatars.filter((a) => a !== 'peqitw')
-      : avatars;
+  const isGroupNameUnique = mergedGroups
+    .map((cg) => cg.simpleGroupName)
+    .filter((cg) => cg !== props.group.simpleGroupName)
+    .includes(groupName.toLocaleLowerCase().replaceAll(' ', '-'));
 
   return (
     <Dialog
       onOpenChange={(open) => {
         if (!open) {
           setSearch('');
-          setGroupName('');
-          setSelectedGroupStreamers([]);
+          setGroupName(props.group.groupName);
+          setSelectedGroupStreamers(props.group.twitchNames);
         }
       }}
     >
       <DialogTrigger asChild>
         <Button
-          variant="ghost"
-          className="flex h-auto max-w-[6.25rem] flex-col items-center gap-2 border-2 bg-secondary/50 p-2 data-[state=on]:border-primary/50 data-[state=on]:bg-secondary/50 sm:max-w-[8.25rem]"
+          size="sm"
+          className="absolute -right-1 -top-1 z-10 h-auto p-1.5"
         >
-          <div className="flex h-20 w-20 items-center overflow-hidden rounded-xl sm:h-28 sm:w-28">
-            <div className="flex max-h-24 w-full flex-wrap items-center justify-center sm:max-h-32">
-              <Plus />
-            </div>
-          </div>
-          <span>{t('title')}</span>
+          <Pencil size="1rem" />
         </Button>
       </DialogTrigger>
       <DialogContent>
@@ -95,9 +97,7 @@ export const CreateGroupDialog = () => {
               onChange={(e) => setGroupName(e.target.value)}
               value={groupName}
             />
-            {mergedGroups
-              .map((cg) => cg.simpleGroupName)
-              .includes(groupName.toLocaleLowerCase().replaceAll(' ', '-')) && (
+            {isGroupNameUnique && (
               <span className="text-xs text-red-500">{t('name-error')}</span>
             )}
           </section>
@@ -119,6 +119,7 @@ export const CreateGroupDialog = () => {
               type="multiple"
               className="scrollbar flex max-h-96 flex-wrap gap-2 overflow-y-auto p-1 pr-2"
               onValueChange={setSelectedGroupStreamers}
+              defaultValue={selectedGroupStreamers}
             >
               {STREAMERS.filter((streamer) =>
                 streamer.displayName
@@ -144,15 +145,21 @@ export const CreateGroupDialog = () => {
             </p>
           </section>
         </div>
-        <DialogFooter>
+        <DialogFooter className="sm:justify-between">
+          <DeleteGroupDialog group={props.group} />
           <DialogClose asChild>
             <Button
               variant="ghost"
               className="gap-2"
-              onClick={() =>
-                setCustomGroups((old) => [
-                  ...old,
-                  {
+              onClick={() => {
+                setCustomGroups((old) => {
+                  const groupId = old.findIndex(
+                    (g) => g.simpleGroupName === props.group.simpleGroupName,
+                  );
+
+                  let editedCustomGroups = [...old];
+
+                  editedCustomGroups[groupId] = {
                     groupName,
                     simpleGroupName: groupName
                       .toLocaleLowerCase()
@@ -165,21 +172,32 @@ export const CreateGroupDialog = () => {
                         ? avatars.filter((a) => a !== 'peqitw')
                         : avatars,
                     twitchNames: selectedGroupStreamers,
-                  },
-                ])
-              }
+                  };
+
+                  return editedCustomGroups;
+                });
+
+                if (favoriteGroups.value.includes(props.group.simpleGroupName))
+                  favoriteGroups.set((old) => {
+                    let newFavoriteGroups = old.filter(
+                      (fg) => fg !== props.group.simpleGroupName,
+                    );
+
+                    newFavoriteGroups.push(
+                      groupName.toLocaleLowerCase().replaceAll(' ', '-'),
+                    );
+
+                    return newFavoriteGroups;
+                  });
+              }}
               disabled={
-                mergedGroups
-                  .map((cg) => cg.simpleGroupName)
-                  .includes(
-                    groupName.toLocaleLowerCase().replaceAll(' ', '-'),
-                  ) ||
+                isGroupNameUnique ||
                 groupName.trim() === '' ||
                 selectedGroupStreamers.length === 0
               }
             >
               {t('submit')}
-              <Plus size="1rem" />
+              <Save size="1rem" />
             </Button>
           </DialogClose>
         </DialogFooter>
