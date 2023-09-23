@@ -18,10 +18,12 @@ import { useFavoriteListsContext } from './favorite-lists-context';
 
 // Scripts Imports
 import { sortStreamers } from '@/utils/sort';
+import { useTranslations } from 'next-intl';
 
 type OnlineStreamerType = { twitchName: string; isPlayingQsmp: boolean };
 
 export const StreamersTab = () => {
+  const t = useTranslations('streamers-dialog');
   const { selectedStreamers } = useStreamsSelectorDialogContext();
   const { streamers: favoritesList } = useFavoriteListsContext();
   const [onlineStreamers, setOnlineStreamers] = useState<OnlineStreamerType[]>(
@@ -59,11 +61,23 @@ export const StreamersTab = () => {
     })();
   }, []);
 
+  const newParticipants =
+    process.env.NEXT_PUBLIC_NEW_PARTICIPANTS?.split('/') || [];
+
+  const newParticipantsStreamers = STREAMERS.filter((item) =>
+    newParticipants.includes(item.twitchName),
+  );
   const favoriteStreamers = sortStreamers(
-    STREAMERS.filter((item) => favoritesList.value.includes(item.twitchName)),
+    STREAMERS.filter(
+      (item) =>
+        favoritesList.value.includes(item.twitchName) &&
+        !newParticipants.includes(item.twitchName),
+    ),
   );
   const nonFavoriteStreamers = STREAMERS.filter(
-    (item) => !favoritesList.value.includes(item.twitchName),
+    (item) =>
+      !favoritesList.value.includes(item.twitchName) &&
+      !newParticipants.includes(item.twitchName),
   );
 
   return (
@@ -72,6 +86,42 @@ export const StreamersTab = () => {
       className="scrollbar flex max-h-80 flex-col gap-3 overflow-y-auto pb-3 pt-2 data-[state=inactive]:hidden"
     >
       <div className="flex w-full flex-wrap justify-center gap-4">
+        {newParticipantsStreamers.length > 0 && (
+          <div className="flex w-full flex-col items-center gap-4">
+            <span className="font-bold text-primary">
+              {t(
+                newParticipantsStreamers.length === 1
+                  ? 'new-participant'
+                  : 'new-participants',
+              )}
+            </span>
+            <div className="flex flex-wrap gap-4">
+              {newParticipantsStreamers.map((streamer) => {
+                const stream = onlineStreamers.find(
+                  (online) =>
+                    online.twitchName.toLocaleLowerCase() ===
+                    streamer.twitchName.toLocaleLowerCase(),
+                );
+                return (
+                  <Streamer
+                    key={streamer.twitchName}
+                    streamer={streamer}
+                    selected={selectedStreamers.value.includes(
+                      streamer.twitchName,
+                    )}
+                    isOnline={!!stream}
+                    isPlayingQsmp={!!stream?.isPlayingQsmp}
+                    isYoutubeStream={['willyrex', 'vegetta777'].includes(
+                      streamer.twitchName,
+                    )}
+                    favorite={favoritesList.value.includes(streamer.twitchName)}
+                  />
+                );
+              })}
+            </div>
+            <Separator />
+          </div>
+        )}
         {favoriteStreamers.map((streamer) => {
           const stream = onlineStreamers.find(
             (online) =>

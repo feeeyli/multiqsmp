@@ -90,6 +90,12 @@ export const STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/96a94fcc-65e6-46f7-af5c-dc308155a63b-profile_image-300x300.png',
   },
   {
+    twitchName: 'carreraaa',
+    displayName: 'Carreraaa',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/0fc464e5-810f-4995-8319-a3f48599f2f4-profile_image-300x300.png',
+  },
+  {
     twitchName: 'elmariana',
     displayName: 'ElMariana',
     avatarUrl:

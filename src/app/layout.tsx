@@ -23,8 +23,8 @@ export default function RootLayout({
       <body className="min-h-screen w-full">
         <ThemeProvider
           attribute="class"
-          defaultTheme="default-dark"
-          themes={['default-dark', 'default-light', 'gray-dark', 'gray-light']}
+          defaultTheme="dark"
+          themes={['dark', 'light', 'gray-dark', 'gray-light']}
           enableSystem
         >
           <SettingsProvider>{children}</SettingsProvider>

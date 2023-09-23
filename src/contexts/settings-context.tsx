@@ -17,7 +17,7 @@ import { useTheme } from 'next-themes';
 
 const INITIAL_VALUE: SettingsType = {
   appearance: {
-    theme: 'default-dark',
+    theme: 'dark',
     streamersAvatar: 'twitch',
     streamStatus: {
       offline: true,
@@ -27,6 +27,7 @@ const INITIAL_VALUE: SettingsType = {
   streams: {
     alwaysShowHeader: false,
     startMuted: true,
+    headerItems: ['mute', 'fullscreen', 'chat', 'reload'],
   },
 };
 
@@ -40,6 +41,7 @@ export const SettingsProvider = ({
   children: React.ReactNode;
 }) => {
   const settings = useLocalStorage<SettingsType>('settings', INITIAL_VALUE);
+
   const { setTheme } = useTheme();
 
   const theme = settings[0].appearance.theme;

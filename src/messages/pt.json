@@ -9,7 +9,9 @@
     "profile-image-alt": "Avatar de",
     "watch": "Assistir",
     "selected-streamers-or-groups": "Streamers ou grupos selecionados:",
-    "no-selected-streamers-or-groups": "Nenhum streamer ou grupo selecionado."
+    "no-selected-streamers-or-groups": "Nenhum streamer ou grupo selecionado.",
+    "new-participant": "Novo participante!",
+    "new-participants": "Novos participantes!"
   },
   "streams-list": {
     "no-streams": "Parece que você ainda não escolheu nenhum Streamer. Clique no botão á direita e comece a assistir!"
@@ -62,10 +64,11 @@
         "title": "Aparência",
         "theme": {
           "label": "Tema",
-          "default-dark": "Cores padrões (Escuro)",
-          "default-light": "Cores padrões (Claro)",
+          "dark": "Cores padrões (Escuro)",
+          "light": "Cores padrões (Claro)",
           "gray-dark": "Preto e branco (Escuro)",
-          "gray-light": "Preto e branco (Claro)"
+          "gray-light": "Preto e branco (Claro)",
+          "system": "Seguir tema do sistema"
         },
         "streams-avatar": {
           "label": "Avatar dos Streamers",
@@ -81,9 +84,26 @@
       },
       "streams": {
         "title": "Lives",
+        "headers": {
+          "label": "Menus das Lives",
+          "always-show": "Manter menu sempre aberto.",
+          "actions-order": {
+            "label": "Botões de Ação",
+            "actions-labels": {
+              "enabled": "Ativos",
+              "mute": "Ativar/desativar som",
+              "fullscreen": "Ativar/desativar tela cheia",
+              "chat": "Ativar/desativar chat",
+              "disabled": "Desativados",
+              "reload": "Recarregar live",
+              "remove-stream": "Remover live",
+              "move-left": "Mover live para esquerda",
+              "move-right": "Mover live para direita"
+            }
+          }
+        },
         "general": {
           "label": "Geral",
-          "always-show-header": "Manter menu sempre aberto.",
           "start-muted": "Começar lives mutadas."
         }
       }

@@ -2,12 +2,14 @@
 import { useContext, useState } from 'react';
 
 // Next Imports
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
 // Icons Imports
 import {
   ChevronLeft,
+  ChevronsLeft,
+  ChevronsRight,
   Maximize,
   MessageSquare,
   MessageSquareDashed,
@@ -15,6 +17,7 @@ import {
   RefreshCcw,
   Volume2,
   VolumeX,
+  X,
 } from 'lucide-react';
 
 // Contexts Imports
@@ -23,6 +26,7 @@ import { StreamPlayerControlsContext } from './stream-player-controls-context';
 // Components Imports
 import { Button } from '@/components/ui/button';
 import { useSettingsContext } from '@/contexts/settings-context';
+import { useSearchParamsStates } from '@/utils/useSearchParamsState';
 
 interface StreamPlayerHeaderProps {
   channel: string;
@@ -36,11 +40,12 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
   const searchParams = useSearchParams();
   const [
     {
-      streams: { alwaysShowHeader },
+      streams: { alwaysShowHeader, headerItems },
     },
   ] = useSettingsContext();
 
-  const activesChats = searchParams.get('chats')?.split('/') || [];
+  const { chats: activesChats, streams: activesStreams } =
+    useSearchParamsStates();
   const isChatActive = activesChats.includes(props.channel);
 
   function getChatUrl() {
@@ -61,11 +66,192 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
     return ('?' + newSearchParams).replaceAll('%2F', '/');
   }
 
+  function getRemoveUrl() {
+    const newSearchParams = new URLSearchParams(window.location.search);
+
+    const newActivesStreams = activesStreams.filter(
+      (stream) => stream !== props.channel,
+    );
+
+    newActivesStreams.length === 0
+      ? newSearchParams.delete('streamers')
+      : newSearchParams.set('streamers', newActivesStreams.join('/'));
+
+    return ('?' + newSearchParams).replaceAll('%2F', '/');
+  }
+
+  function getMoveUrl(dir: 'up' | 'down') {
+    const newSearchParams = new URLSearchParams(window.location.search);
+
+    let newActivesStreams = [...activesStreams];
+
+    const index = newActivesStreams.findIndex((s) => s === props.channel);
+
+    if (
+      (index <= 0 && dir === 'down') ||
+      (index >= newActivesStreams.length - 1 && dir === 'up')
+    )
+      return newActivesStreams.join('/');
+
+    if (dir === 'down') {
+      const itemOnIndex = newActivesStreams[index];
+
+      const itemBefore = newActivesStreams[index - 1];
+
+      newActivesStreams[index] = itemBefore;
+
+      newActivesStreams[index - 1] = itemOnIndex;
+    }
+
+    if (dir === 'up') {
+      const itemOnIndex = newActivesStreams[index];
+
+      const itemAfter = newActivesStreams[index + 1];
+
+      newActivesStreams[index] = itemAfter;
+
+      newActivesStreams[index + 1] = itemOnIndex;
+    }
+
+    newSearchParams.set('streamers', newActivesStreams.join('/'));
+
+    return ('?' + newSearchParams).replaceAll('%2F', '/');
+  }
+
+  const headerActions = {
+    mute: (
+      <Button
+        tabIndex={opened ? 0 : -1}
+        onClick={() => streamPlayerControls.muted.set((old) => !old)}
+        variant="stream-header"
+        size="stream-header"
+      >
+        {streamPlayerControls.muted.value && (
+          <VolumeX size="1rem" className="text-foreground" />
+        )}
+        {!streamPlayerControls.muted.value && (
+          <Volume2 size="1rem" className="text-foreground" />
+        )}
+      </Button>
+    ),
+    fullscreen: (
+      <Button
+        tabIndex={opened ? 0 : -1}
+        onClick={() => streamPlayerControls.fullScreen.set((old) => !old)}
+        variant="stream-header"
+        size="stream-header"
+      >
+        {streamPlayerControls.fullScreen.value && (
+          <Minimize size="1rem" className="text-foreground" />
+        )}
+        {!streamPlayerControls.fullScreen.value && (
+          <Maximize size="1rem" className="text-foreground" />
+        )}
+      </Button>
+    ),
+    chat: (
+      <Button
+        tabIndex={opened ? 0 : -1}
+        // onClick={() => router.replace(pathname + )}
+        variant="stream-header"
+        size="stream-header"
+        asChild
+        data-disabled={props.isYoutubeStream}
+        className="data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
+      >
+        <Link href={getChatUrl()}>
+          {isChatActive && (
+            <MessageSquare size="1rem" className="text-foreground" />
+          )}
+          {!isChatActive && (
+            <MessageSquareDashed size="1rem" className="text-foreground" />
+          )}
+        </Link>
+      </Button>
+    ),
+    reload: (
+      <Button
+        onClick={() => {
+          if (refreshing) return;
+
+          streamPlayerControls.refresh.run();
+
+          setRefreshing(true);
+
+          setTimeout(() => {
+            setRefreshing(false);
+          }, 400);
+        }}
+        tabIndex={opened ? 0 : -1}
+        size="stream-header"
+        variant="stream-header"
+      >
+        <RefreshCcw
+          data-refreshing={refreshing}
+          className="h-4 w-4 text-foreground data-[refreshing=true]:animate-wow"
+        />
+      </Button>
+    ),
+    'remove-stream': (
+      <Button
+        tabIndex={opened ? 0 : -1}
+        variant="stream-header"
+        size="stream-header"
+        asChild
+      >
+        <Link href={getRemoveUrl()}>
+          <X size="1rem" className="text-foreground" />
+        </Link>
+      </Button>
+    ),
+    'move-left': (
+      <Button
+        tabIndex={opened ? 0 : -1}
+        variant="stream-header"
+        size="stream-header"
+        asChild
+      >
+        <Link href={getMoveUrl('down')}>
+          <ChevronsLeft size="1rem" className="text-foreground" />
+        </Link>
+      </Button>
+    ),
+    'move-right': (
+      <Button
+        tabIndex={opened ? 0 : -1}
+        variant="stream-header"
+        size="stream-header"
+        asChild
+      >
+        <Link href={getMoveUrl('up')}>
+          <ChevronsRight size="1rem" className="text-foreground" />
+        </Link>
+      </Button>
+    ),
+  };
+
+  const headerItemsSorted = (
+    [
+      'mute',
+      'fullscreen',
+      'chat',
+      'reload',
+      'remove-stream',
+      'move-left',
+      'move-right',
+    ] as typeof headerItems
+  ).filter((i) => (headerItems || []).includes(i));
+
+  const style = {
+    '--items': headerItemsSorted.length + (alwaysShowHeader ? 0 : 1),
+  } as React.CSSProperties;
+
   return (
     <header
       data-opened={alwaysShowHeader || opened}
       data-always-show-header={alwaysShowHeader}
-      className="default-dark group/header absolute left-1 top-1 flex w-8 items-center overflow-hidden rounded-md bg-card/30 transition-all data-[always-show-header=true]:data-[opened=true]:w-[calc(4*2rem)] data-[opened=true]:w-[calc(5*2rem)]"
+      style={style}
+      className="group/header dark absolute left-1 top-1 flex w-8 items-center overflow-hidden rounded-md bg-card/30 transition-all data-[opened=true]:w-[calc(var(--items)*2rem)]"
     >
       {!alwaysShowHeader && (
         <Button
@@ -80,50 +266,8 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         </Button>
       )}
       <div className="h-7">
-        <Button
-          tabIndex={opened ? 0 : -1}
-          onClick={() => streamPlayerControls.muted.set((old) => !old)}
-          variant="stream-header"
-          size="stream-header"
-        >
-          {streamPlayerControls.muted.value && (
-            <VolumeX size="1rem" className="text-foreground" />
-          )}
-          {!streamPlayerControls.muted.value && (
-            <Volume2 size="1rem" className="text-foreground" />
-          )}
-        </Button>
-        <Button
-          tabIndex={opened ? 0 : -1}
-          onClick={() => streamPlayerControls.fullScreen.set((old) => !old)}
-          variant="stream-header"
-          size="stream-header"
-        >
-          {streamPlayerControls.fullScreen.value && (
-            <Minimize size="1rem" className="text-foreground" />
-          )}
-          {!streamPlayerControls.fullScreen.value && (
-            <Maximize size="1rem" className="text-foreground" />
-          )}
-        </Button>
-        <Button
-          tabIndex={opened ? 0 : -1}
-          // onClick={() => router.replace(pathname + )}
-          variant="stream-header"
-          size="stream-header"
-          asChild
-          data-disabled={props.isYoutubeStream}
-          className="data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
-        >
-          <Link href={getChatUrl()}>
-            {isChatActive && (
-              <MessageSquare size="1rem" className="text-foreground" />
-            )}
-            {!isChatActive && (
-              <MessageSquareDashed size="1rem" className="text-foreground" />
-            )}
-          </Link>
-        </Button>
+        {headerItemsSorted.map((item) => headerActions[item])}
+
         {/*  
         {!isYoutubeStream && (
           <button
@@ -166,27 +310,6 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
             />
           </button>
         )} */}
-        <Button
-          onClick={() => {
-            if (refreshing) return;
-
-            streamPlayerControls.refresh.run();
-
-            setRefreshing(true);
-
-            setTimeout(() => {
-              setRefreshing(false);
-            }, 400);
-          }}
-          tabIndex={opened ? 0 : -1}
-          size="stream-header"
-          variant="stream-header"
-        >
-          <RefreshCcw
-            data-refreshing={refreshing}
-            className="h-4 w-4 text-foreground data-[refreshing=true]:animate-wow"
-          />
-        </Button>
       </div>
     </header>
   );
