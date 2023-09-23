@@ -67,8 +67,8 @@ export const CreateGroupDialog = () => {
     >
       <DialogTrigger asChild>
         <Button
-          variant="ghost"
-          className="flex h-auto max-w-[6.25rem] flex-col items-center gap-2 border-2 bg-secondary/50 p-2 data-[state=on]:border-primary/50 data-[state=on]:bg-secondary/50 sm:max-w-[8.25rem]"
+          variant="outline"
+          className="group flex h-auto max-w-[6.25rem] flex-col items-center gap-2 p-2 hover:bg-secondary/30 data-[state=on]:border-primary data-[state=on]:bg-secondary/50 sm:max-w-[8.25rem]"
         >
           <div className="flex h-20 w-20 items-center overflow-hidden rounded-xl sm:h-28 sm:w-28">
             <div className="flex max-h-24 w-full flex-wrap items-center justify-center sm:max-h-32">

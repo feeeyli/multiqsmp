@@ -41,7 +41,7 @@ export const GroupsTab = () => {
       value="groups"
       className="scrollbar flex max-h-80 flex-wrap justify-center gap-3 overflow-y-auto pb-3 pt-2 data-[state=inactive]:hidden"
     >
-      <div className="flex w-full flex-wrap justify-center gap-3">
+      <div className="flex w-full flex-wrap justify-center gap-4">
         {favoriteGroups.map((group) => (
           <Group
             key={group.groupName}
@@ -57,7 +57,7 @@ export const GroupsTab = () => {
       {favoriteGroups.length > 0 && nonFavoriteGroups.length > 0 && (
         <Separator />
       )}
-      <div className="flex w-full flex-wrap justify-center gap-3">
+      <div className="flex w-full flex-wrap justify-center gap-4">
         {nonFavoriteGroups.map((group) => (
           <Group
             key={group.groupName}
@@ -67,7 +67,7 @@ export const GroupsTab = () => {
         ))}
       </div>
       <Separator />
-      <div className="flex w-full flex-wrap justify-center gap-3">
+      <div className="flex w-full flex-wrap justify-center gap-4">
         {nonFavoriteCustomGroups.map((group) => (
           <Group
             key={group.groupName}

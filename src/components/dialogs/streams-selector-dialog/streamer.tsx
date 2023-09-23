@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 import { StreamerType } from '@/@types/data';
 
 /// Icons Imports
-import { Heart, Info } from 'lucide-react';
+import { Heart, Info, Youtube } from 'lucide-react';
 
 // Components Imports
 import { Toggle } from '@/components/ui/toggle';
@@ -24,6 +24,7 @@ interface StreamerProps {
   favorite?: boolean;
   isOnline: boolean;
   isPlayingQsmp: boolean;
+  isYoutubeStream: boolean;
 }
 
 export const Streamer = (props: StreamerProps) => {
@@ -54,9 +55,14 @@ export const Streamer = (props: StreamerProps) => {
           className="group-data-[favorite=true]:fill-rose-400"
         />
       </Button>
-      {!props.isPlayingQsmp && props.isOnline && (
-        <span className="absolute right-3 top-3 z-10 h-auto rounded-md border border-border border-yellow-800 bg-muted/30 bg-yellow-600 p-1.5 text-border text-yellow-300 transition-all">
+      {!props.isPlayingQsmp && props.isOnline && !props.isYoutubeStream && (
+        <span className="absolute right-3 top-3 z-10 h-auto rounded-md bg-yellow-500 p-1.5 text-yellow-50 transition-all">
           <Info size="1rem" />
+        </span>
+      )}
+      {props.isYoutubeStream && (
+        <span className="absolute right-3 top-3 z-10 h-auto rounded-md bg-red-500 p-1.5 text-red-50 transition-all">
+          <Youtube size="1rem" />
         </span>
       )}
       <Toggle
@@ -64,19 +70,24 @@ export const Streamer = (props: StreamerProps) => {
         onPressedChange={() =>
           selectedStreamers.actions.toggleItem(props.streamer.twitchName, -1)
         }
-        data-online={props.isOnline}
-        className="group flex h-auto max-w-[6.25rem] flex-col items-center gap-2 border-2 bg-secondary/50 p-2 data-[state=on]:border-primary/50 data-[state=on]:bg-secondary/50 sm:max-w-[8.25rem]"
+        data-online={props.isYoutubeStream || props.isOnline}
+        asChild
       >
-        <Image
-          src={props.streamer.avatarUrl}
-          alt={`${t('profile-image-alt')} ${props.streamer.displayName}`}
-          width={96}
-          height={96}
-          className="h-20 w-20 rounded-md group-data-[online=false]:grayscale sm:h-28 sm:w-28"
-        />
-        <span className="group-data-[online=false]:text-muted-foreground">
-          {props.streamer.displayName}
-        </span>
+        <Button
+          variant="outline"
+          className="group flex h-auto max-w-[6.25rem] flex-col items-center gap-2 p-2 hover:bg-secondary/30 data-[state=on]:border-primary data-[state=on]:bg-secondary/50 sm:max-w-[8.25rem]"
+        >
+          <Image
+            src={props.streamer.avatarUrl}
+            alt={`${t('profile-image-alt')} ${props.streamer.displayName}`}
+            width={96}
+            height={96}
+            className="h-20 w-20 rounded-md group-data-[online=false]:grayscale sm:h-28 sm:w-28"
+          />
+          <span className="group-data-[online=false]:text-muted-foreground">
+            {props.streamer.displayName}
+          </span>
+        </Button>
       </Toggle>
     </div>
   );

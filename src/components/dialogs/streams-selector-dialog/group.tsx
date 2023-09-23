@@ -80,29 +80,34 @@ export const Group = (props: GroupProps) => {
         onPressedChange={() =>
           selectedGroups.actions.toggleItem(props.group.simpleGroupName, -1)
         }
-        className="flex h-auto max-w-[6.25rem] flex-col items-center gap-2 border-2 bg-secondary/50 p-2 data-[state=on]:border-primary/50 data-[state=on]:bg-secondary/50 sm:max-w-[8.25rem]"
+        asChild
       >
-        <div className="flex h-20 w-20 items-center overflow-hidden rounded-xl sm:h-28 sm:w-28">
-          <div className="flex max-h-24 w-full flex-wrap justify-center sm:max-h-32">
-            {props.group.avatars.map((avatar) => (
-              <picture
-                key={avatar}
-                style={{
-                  width: `${100 / cols}%`,
-                }}
-              >
-                <Image
-                  src={getSkinHead(avatar)[0]}
-                  alt={`${t('profile-image-alt')} ${avatar}`}
-                  width={128}
-                  height={128}
-                  className="pointer-events-none aspect-square group-data-[online=false]:grayscale"
-                />
-              </picture>
-            ))}
+        <Button
+          variant="outline"
+          className="group flex h-auto max-w-[6.25rem] flex-col items-center gap-2 p-2 hover:bg-secondary/30 data-[state=on]:border-primary data-[state=on]:bg-secondary/50 sm:max-w-[8.25rem]"
+        >
+          <div className="flex h-20 w-20 items-center overflow-hidden rounded-xl sm:h-28 sm:w-28">
+            <div className="flex max-h-24 w-full flex-wrap justify-center sm:max-h-32">
+              {props.group.avatars.map((avatar) => (
+                <picture
+                  key={avatar}
+                  style={{
+                    width: `${100 / cols}%`,
+                  }}
+                >
+                  <Image
+                    src={getSkinHead(avatar)[0]}
+                    alt={`${t('profile-image-alt')} ${avatar}`}
+                    width={128}
+                    height={128}
+                    className="pointer-events-none aspect-square group-data-[online=false]:grayscale"
+                  />
+                </picture>
+              ))}
+            </div>
           </div>
-        </div>
-        <span>{props.group.groupName}</span>
+          <span>{props.group.groupName}</span>
+        </Button>
       </Toggle>
     </div>
   );

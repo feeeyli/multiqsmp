@@ -71,7 +71,7 @@ export const StreamersTab = () => {
       value="streamers"
       className="scrollbar flex max-h-80 flex-col gap-3 overflow-y-auto pb-3 pt-2 data-[state=inactive]:hidden"
     >
-      <div className="flex w-full flex-wrap justify-center gap-3">
+      <div className="flex w-full flex-wrap justify-center gap-4">
         {favoriteStreamers.map((streamer) => {
           const stream = onlineStreamers.find(
             (online) =>
@@ -86,6 +86,9 @@ export const StreamersTab = () => {
               selected={selectedStreamers.value.includes(streamer.twitchName)}
               isOnline={!!stream}
               isPlayingQsmp={!!stream?.isPlayingQsmp}
+              isYoutubeStream={['willyrex', 'vegetta777'].includes(
+                streamer.twitchName,
+              )}
               favorite
             />
           );
@@ -94,7 +97,7 @@ export const StreamersTab = () => {
       {favoriteStreamers.length > 0 && nonFavoriteStreamers.length > 0 && (
         <Separator />
       )}
-      <div className="flex w-full flex-wrap justify-center gap-3">
+      <div className="flex w-full flex-wrap justify-center gap-4">
         {nonFavoriteStreamers.map((streamer) => {
           const stream = onlineStreamers.find(
             (online) =>
@@ -108,6 +111,9 @@ export const StreamersTab = () => {
               selected={selectedStreamers.value.includes(streamer.twitchName)}
               isOnline={!!stream}
               isPlayingQsmp={!!stream?.isPlayingQsmp}
+              isYoutubeStream={['willyrex', 'vegetta777'].includes(
+                streamer.twitchName,
+              )}
             />
           );
         })}

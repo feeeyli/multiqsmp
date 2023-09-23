@@ -21,7 +21,7 @@ const buttonVariants = cva(
         'stream-header':
           'hover:bg-primary/20 focus-visible:bg-primary/50 focus-visible:ring-0 focus-visible:ring-offset-0',
         favorite:
-          'group absolute -left-1 -top-1 z-10 bg-[#3C324E] text-muted-foreground hover:bg-[#453A5A] data-[favorite=true]:bg-rose-700 data-[favorite=true]:text-rose-400 data-[favorite=true]:hover:bg-rose-600',
+          'group absolute -left-1 -top-1 z-10 bg-secondary text-secondary-foreground hover:bg-secondary/80 data-[favorite=true]:bg-rose-700 data-[favorite=true]:text-rose-400 data-[favorite=true]:hover:bg-rose-600',
       },
       size: {
         default: 'h-10 px-4 py-2',

@@ -52,7 +52,10 @@ export const StreamPlayer = ({ channel }: Props) => {
           : `${100 / getColumns(streams.length, isDesktop)}%`,
       }}
     >
-      <StreamPlayerHeader channel={channel} />
+      <StreamPlayerHeader
+        channel={channel}
+        isYoutubeStream={getStreamUrl(channel).includes('youtube')}
+      />
       <ReactPlayer
         className="!h-full !w-full"
         url={getStreamUrl(channel)}

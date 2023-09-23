@@ -25,6 +25,7 @@ import { Button } from '@/components/ui/button';
 
 interface StreamPlayerHeaderProps {
   channel: string;
+  isYoutubeStream: boolean;
 }
 
 export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
@@ -57,7 +58,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
   return (
     <header
       data-opened={opened}
-      className="group/header absolute left-1 top-1 flex w-8 items-center overflow-hidden rounded-md bg-card/30 transition-all data-[opened=true]:w-[calc(5*2rem)]"
+      className="default-dark group/header absolute left-1 top-1 flex w-8 items-center overflow-hidden rounded-md bg-card/30 transition-all data-[opened=true]:w-[calc(5*2rem)]"
     >
       <Button
         variant="stream-header"
@@ -102,6 +103,8 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
           variant="stream-header"
           size="stream-header"
           asChild
+          data-disabled={props.isYoutubeStream}
+          className="data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
         >
           <Link href={getChatUrl()}>
             {isChatActive && (
@@ -171,9 +174,8 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
           variant="stream-header"
         >
           <RefreshCcw
-            color="#fff"
             data-refreshing={refreshing}
-            className="h-4 w-4 data-[refreshing=true]:animate-wow"
+            className="h-4 w-4 text-foreground data-[refreshing=true]:animate-wow"
           />
         </Button>
       </div>

@@ -38,7 +38,7 @@ export const DeleteGroupDialog = (props: DeleteGroupDialogProps) => {
       <AlertDialogTrigger asChild>
         <Button
           variant="outline"
-          className="gap-2 border-destructive hover:bg-destructive"
+          className="gap-2 border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
         >
           <Trash size="1rem" />
           {t('trigger')}
