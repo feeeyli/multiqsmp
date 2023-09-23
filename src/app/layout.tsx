@@ -20,7 +20,11 @@ export default function RootLayout({
     <html suppressHydrationWarning>
       <head />
       <body className="min-h-screen w-full">
-        <ThemeProvider attribute="class" defaultTheme="gray-light" enableSystem>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="default-dark"
+          enableSystem
+        >
           {children}
         </ThemeProvider>
       </body>
