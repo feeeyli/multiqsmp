@@ -23,6 +23,7 @@ import { useSearchParamsStates } from '@/utils/useSearchParamsState';
 import { useState } from 'react';
 import { ChatsList } from '@/components/chats-list';
 import { parseChannels } from '@/utils/parseChannels';
+import { SettingsDialog } from '@/components/dialogs/settings-dialog';
 
 interface StreamsPageProps {
   params: {
@@ -64,6 +65,7 @@ export default function Streams(props: StreamsPageProps) {
           <StreamsSelectorDialog />
         </StreamsSelectorDialogProvider>
         <OrganizeStreamsDialog />
+        <SettingsDialog />
       </aside>
       <PanelGroup direction={isDesktop ? 'horizontal' : 'vertical'}>
         <Panel

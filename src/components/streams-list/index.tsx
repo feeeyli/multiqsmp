@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 
 // Context Imports
 import { StreamPlayerControlsProvider } from './stream-player/stream-player-controls-context';
-import { useCustomGroupsContext } from '../contexts/custom-groups-context';
+import { useCustomGroupsContext } from '../../contexts/custom-groups-context';
 
 // Scripts Imports
 import { getStreamersFromGroups } from '@/utils/getStreamersFromGroups';

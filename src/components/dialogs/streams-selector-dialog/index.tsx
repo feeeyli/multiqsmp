@@ -40,7 +40,7 @@ import { GroupsTab } from './tabs/groups-tab';
 // Contexts Import
 import { useStreamsSelectorDialogContext } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
 import { FavoriteListsProvider } from './tabs/favorite-lists-context';
-import { useCustomGroupsContext } from '@/components/contexts/custom-groups-context';
+import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 
 // Scripts Imports
 import { getDisplayName } from '@/utils/getDisplayName';

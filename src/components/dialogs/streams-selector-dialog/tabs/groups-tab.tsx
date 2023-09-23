@@ -7,7 +7,7 @@ import { GROUPS } from '@/data/groups';
 // Contexts Imports
 import { StreamsSelectorDialogContext } from '../streams-selector-dialog-context';
 import { useFavoriteListsContext } from './favorite-lists-context';
-import { useCustomGroupsContext } from '@/components/contexts/custom-groups-context';
+import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 import { CreateGroupDialogProvider } from '../../create-group-dialog/create-group-dialog-context';
 
 // Components Imports

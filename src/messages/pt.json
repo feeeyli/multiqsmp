@@ -54,6 +54,41 @@
     "submit": "Salvar grupo",
     "name-error": "Um grupo com esse nome já exite. Tente Outro!"
   },
+  "settings-dialog": {
+    "title": "Configurações",
+    "save": "Salvar",
+    "form": {
+      "appearance": {
+        "title": "Aparência",
+        "theme": {
+          "label": "Tema",
+          "default-dark": "Cores padrões (Escuro)",
+          "default-light": "Cores padrões (Claro)",
+          "gray-dark": "Preto e branco (Escuro)",
+          "gray-light": "Preto e branco (Claro)"
+        },
+        "streams-avatar": {
+          "label": "Avatar dos Streamers",
+          "twitch": "Perfil da Twitch",
+          "skin": "Skin do Minecraft",
+          "both": "Ambas"
+        },
+        "streams-status": {
+          "label": "Status das Lives",
+          "offline": "Mostrar se está offline.",
+          "noPlaying": "Mostrar se está jogando QSMP."
+        }
+      },
+      "streams": {
+        "title": "Lives",
+        "general": {
+          "label": "Geral",
+          "always-show-header": "Manter menu sempre aberto.",
+          "start-muted": "Começar lives mutadas."
+        }
+      }
+    }
+  },
 
   "index": {
     "instructionsMobile": "Clique no botão abaixo e comece a assistir!!!",

@@ -22,7 +22,7 @@ import {
 import { Button } from '@/components/ui/button';
 
 // Contexts Imports
-import { useCustomGroupsContext } from '@/components/contexts/custom-groups-context';
+import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 import { group } from 'console';
 
 interface DeleteGroupDialogProps {

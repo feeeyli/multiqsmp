@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 
 // Libs Imports
 import { NextIntlClientProvider } from 'next-intl';
-import { CustomGroupsProvider } from '@/components/contexts/custom-groups-context';
+import { CustomGroupsProvider } from '@/contexts/custom-groups-context';
 
 // Components Imports
 export const metadata: Metadata = {

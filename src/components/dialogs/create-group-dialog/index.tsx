@@ -32,7 +32,7 @@ import { Plus } from 'lucide-react';
 
 // Contexts Imports
 import { useCreateGroupDialogContext } from './create-group-dialog-context';
-import { useCustomGroupsContext } from '@/components/contexts/custom-groups-context';
+import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 
 // Scripts Imports
 import { getDisplayName } from '@/utils/getDisplayName';

@@ -3,8 +3,9 @@ import './globals.css';
 // Next Imports
 import type { Metadata } from 'next';
 
-// Components Imports
+// Contexts Imports
 import { ThemeProvider } from '@/components/theme-provider';
+import { SettingsProvider } from '@/contexts/settings-context';
 
 export const metadata: Metadata = {
   title: 'MultiQSMP',
@@ -23,9 +24,10 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="default-dark"
+          themes={['default-dark', 'default-light', 'gray-dark', 'gray-light']}
           enableSystem
         >
-          {children}
+          <SettingsProvider>{children}</SettingsProvider>
         </ThemeProvider>
       </body>
     </html>

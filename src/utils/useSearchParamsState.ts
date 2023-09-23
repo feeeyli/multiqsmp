@@ -3,7 +3,7 @@
 
 import { useSearchParams } from 'next/navigation';
 import { getStreamersFromGroups } from './getStreamersFromGroups';
-import { useCustomGroupsContext } from '@/components/contexts/custom-groups-context';
+import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 
 // type valuesProps = {
 //   streamers?: string[];

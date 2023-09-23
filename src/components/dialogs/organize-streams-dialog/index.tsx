@@ -15,7 +15,7 @@ import { Reorder } from 'framer-motion';
 import { ArrowRight, ListOrdered } from 'lucide-react';
 
 // Contexts Imports
-import { useCustomGroupsContext } from '@/components/contexts/custom-groups-context';
+import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 
 // Components Imports
 import { Button } from '@/components/ui/button';

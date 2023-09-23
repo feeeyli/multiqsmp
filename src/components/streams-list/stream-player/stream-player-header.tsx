@@ -22,6 +22,7 @@ import { StreamPlayerControlsContext } from './stream-player-controls-context';
 
 // Components Imports
 import { Button } from '@/components/ui/button';
+import { useSettingsContext } from '@/contexts/settings-context';
 
 interface StreamPlayerHeaderProps {
   channel: string;
@@ -33,6 +34,11 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
   const [refreshing, setRefreshing] = useState(false);
   const streamPlayerControls = useContext(StreamPlayerControlsContext);
   const searchParams = useSearchParams();
+  const [
+    {
+      streams: { alwaysShowHeader },
+    },
+  ] = useSettingsContext();
 
   const activesChats = searchParams.get('chats')?.split('/') || [];
   const isChatActive = activesChats.includes(props.channel);
@@ -57,19 +63,22 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
 
   return (
     <header
-      data-opened={opened}
-      className="default-dark group/header absolute left-1 top-1 flex w-8 items-center overflow-hidden rounded-md bg-card/30 transition-all data-[opened=true]:w-[calc(5*2rem)]"
+      data-opened={alwaysShowHeader || opened}
+      data-always-show-header={alwaysShowHeader}
+      className="default-dark group/header absolute left-1 top-1 flex w-8 items-center overflow-hidden rounded-md bg-card/30 transition-all data-[always-show-header=true]:data-[opened=true]:w-[calc(4*2rem)] data-[opened=true]:w-[calc(5*2rem)]"
     >
-      <Button
-        variant="stream-header"
-        size="stream-header"
-        onClick={() => setOpened((old) => !old)}
-      >
-        <ChevronLeft
-          size="1rem"
-          className="text-foreground transition-all group-data-[opened=true]/header:rotate-180"
-        />
-      </Button>
+      {!alwaysShowHeader && (
+        <Button
+          variant="stream-header"
+          size="stream-header"
+          onClick={() => setOpened((old) => !old)}
+        >
+          <ChevronLeft
+            size="1rem"
+            className="text-foreground transition-all group-data-[opened=true]/header:rotate-180"
+          />
+        </Button>
+      )}
       <div className="h-7">
         <Button
           tabIndex={opened ? 0 : -1}

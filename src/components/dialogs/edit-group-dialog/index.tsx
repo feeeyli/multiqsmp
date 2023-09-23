@@ -31,7 +31,7 @@ import { StreamerItem } from '../create-group-dialog/streamer-item';
 import { Pencil, Save } from 'lucide-react';
 
 // Contexts Imports
-import { useCustomGroupsContext } from '@/components/contexts/custom-groups-context';
+import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 
 // Scripts Imports
 import { getDisplayName } from '@/utils/getDisplayName';
