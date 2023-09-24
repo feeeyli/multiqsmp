@@ -22,7 +22,7 @@ export default function RootLayout({
       <head>
         <meta
           property="og:image"
-          content="https://og-examples.vercel.sh/api/static"
+          content="https://multiqsmp-beta.vercel.app/api/og"
         />
       </head>
       <body className="min-h-screen w-full">
