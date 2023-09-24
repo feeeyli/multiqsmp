@@ -19,7 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning>
-      <head />
+      <head>
+        <meta
+          property="og:image"
+          content="https://og-examples.vercel.sh/api/static"
+        />
+      </head>
       <body className="min-h-screen w-full">
         <ThemeProvider
           attribute="class"
