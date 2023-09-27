@@ -1,33 +1,106 @@
 {
-  "home": {
-    "credits1": "Hecho con 💜🤍 por",
-    "credits2": "para toda la comunidad de QSMP!"
+  "streamers-dialog": {
+    "title": "Choose your streamers or groups!",
+    "group-tab-title": "Groups",
+    "profile-image-alt": "Avatar of",
+    "watch": "Watch",
+    "selected-streamers-or-groups": "Selected streamers or groups:",
+    "no-selected-streamers-or-groups": "No selected streamers or groups.",
+    "new-participant": "New participant!",
+    "new-participants": "New participants!"
   },
-
-  "index": {
-    "noStreamers": "Parece que aún no has elegido un streamer.",
-    "instructionsPc": "Haz clic en el botón de la derecha y empieza a verlo!!!",
-    "instructionsMobile": "Haz clic en el botón de abajo y empieza a verlo!!!",
-    "changeStreamers": "Cambiar streamers"
+  "streams-list": {
+    "no-streams": "It looks like you haven't chosen a streamer yet. Click on the button on the right and start watching!"
   },
-  "modal": {
-    "streamers": {
-      "title": "¡¡¡Elige tus streamers!!!",
-      "watch": "Reloj",
-      "avatar": "Avatar de",
-      "noPlaying": "Puede que este streamer no esté jugando a QSMP.",
-      "streamOnYoutube": "Este streamer hace directo en Youtube.",
-      "groups": "Grupos",
-      "createGroup": "Crear grupo",
-      "chooseGroupName": "Elija un nombre para el grupo:",
-      "newParticipant": "Nueva participante!",
-      "newParticipants": "Nuevos participantes!"
-    },
-    "organize": {
-      "title": "Reordenar tus directos o chats.",
-      "watch": "Reloj",
-      "noChat": "Ningún chat seleccionado.",
-      "noStreamer": "Ningún streamer seleccionado."
+  "organize-dialog": {
+    "title": "Reorder your streams or chats.",
+    "profile-image-alt": "Avatar of",
+    "watch": "Watch",
+    "streams-subtitle": "Streams",
+    "chats-subtitle": "Chats",
+    "no-streams": "No stream selected.",
+    "no-chats": "No chat selected."
+  },
+  "create-group-dialog": {
+    "title": "New group",
+    "profile-image-alt": "Avatar of",
+    "search-streamer-label": "Search streamer",
+    "name-subtitle": "Choose a name",
+    "choose-subtitle": "Choose streamers",
+    "selected-streamers": "Selected streamers:",
+    "no-selected-streamers": "No selected streamers.",
+    "group-name-label": "Choose a name for group",
+    "submit": "Create group",
+    "name-error": "A group with this name already exits. Try another one!"
+  },
+  "delete-group-dialog": {
+    "title": "Delete group",
+    "description": "You're about to delete \"((group))\" group, are you sure? You can't undo this action.",
+    "confirm": "Yes, delete",
+    "cancel": "Cancel",
+    "trigger": "Delete"
+  },
+  "edit-group-dialog": {
+    "title": "Edit group",
+    "profile-image-alt": "Avatar of",
+    "search-streamer-label": "Search streamer",
+    "name-subtitle": "Choose a new name",
+    "choose-subtitle": "Choose streamers",
+    "selected-streamers": "Selected streamers:",
+    "no-selected-streamers": "No selected streamers.",
+    "group-name-label": "Choose a new name for group",
+    "submit": "Save group",
+    "name-error": "A group with this name already exits. Try another one!"
+  },
+  "settings-dialog": {
+    "title": "Settings",
+    "save": "Save",
+    "form": {
+      "appearance": {
+        "title": "Appearance",
+        "theme": {
+          "label": "Theme",
+          "dark": "Default colors (Dark)",
+          "light": "Default colors (Light)",
+          "gray-dark": "Black and white (Dark)",
+          "gray-light": "Black and white (Light)",
+          "system": "Follow the system theme"
+        },
+        "streams-avatar": {
+          "label": "Streamers avatars",
+          "twitch": "Twitch avatar",
+          "skin": "Minecraft skin",
+          "both": "Both"
+        },
+        "streams-status": {
+          "label": "Streams status",
+          "offline": "Show if is offline.",
+          "noPlaying": "Show if is playing QSMP."
+        }
+      },
+      "streams": {
+        "title": "Streams",
+        "headers": {
+          "label": "Streams menu",
+          "always-show": "Keep menu always opened.",
+          "actions-order": {
+            "label": "Action buttons",
+            "actions-labels": {
+              "mute": "Mute/unmute",
+              "fullscreen": "Toggle full screen",
+              "chat": "Toggle chat",
+              "reload": "Reload stream",
+              "remove-stream": "Remove stream",
+              "move-left": "Move stream to left",
+              "move-right": "Move stream to right"
+            }
+          }
+        },
+        "general": {
+          "label": "General",
+          "start-muted": "Start streams muted."
+        }
+      }
     }
   }
 }

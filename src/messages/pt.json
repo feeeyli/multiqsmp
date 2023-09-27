@@ -1,8 +1,4 @@
 {
-  "home": {
-    "credits1": "Feito com 💜🤍 por",
-    "credits2": "para toda comunidade do QSMP!"
-  },
   "streamers-dialog": {
     "title": "Escolha seus streamers ou grupos!",
     "group-tab-title": "Grupos",
@@ -14,7 +10,7 @@
     "new-participants": "Novos participantes!"
   },
   "streams-list": {
-    "no-streams": "Parece que você ainda não escolheu nenhum Streamer. Clique no botão á direita e comece a assistir!"
+    "no-streams": "Parece que você ainda não escolheu nenhuma live. Clique no botão á direita e comece a assistir!"
   },
   "organize-dialog": {
     "title": "Reorganize suas lives ou chats.",
@@ -26,9 +22,9 @@
     "no-chats": "Nenhum chat selecionado."
   },
   "create-group-dialog": {
-    "title": "Novo Grupo",
+    "title": "Novo grupo",
     "profile-image-alt": "Avatar de",
-    "search-streamer-label": "Buscar Streamer",
+    "search-streamer-label": "Buscar streamer",
     "name-subtitle": "Escolha um nome",
     "choose-subtitle": "Selecione os streamers",
     "selected-streamers": "Streamers selecionados:",
@@ -45,9 +41,9 @@
     "trigger": "Deletar"
   },
   "edit-group-dialog": {
-    "title": "Editar Grupo",
+    "title": "Editar grupo",
     "profile-image-alt": "Avatar de",
-    "search-streamer-label": "Buscar Streamer",
+    "search-streamer-label": "Buscar streamer",
     "name-subtitle": "Escolha o novo nome",
     "choose-subtitle": "Selecione os streamers",
     "selected-streamers": "Streamers selecionados:",
@@ -71,13 +67,13 @@
           "system": "Seguir tema do sistema"
         },
         "streams-avatar": {
-          "label": "Avatar dos Streamers",
+          "label": "Avatar dos streamers",
           "twitch": "Perfil da Twitch",
           "skin": "Skin do Minecraft",
           "both": "Ambas"
         },
         "streams-status": {
-          "label": "Status das Lives",
+          "label": "Status das lives",
           "offline": "Mostrar se está offline.",
           "noPlaying": "Mostrar se está jogando QSMP."
         }
@@ -85,16 +81,14 @@
       "streams": {
         "title": "Lives",
         "headers": {
-          "label": "Menus das Lives",
+          "label": "Menus das lives",
           "always-show": "Manter menu sempre aberto.",
           "actions-order": {
-            "label": "Botões de Ação",
+            "label": "Botões de ação",
             "actions-labels": {
-              "enabled": "Ativos",
               "mute": "Ativar/desativar som",
               "fullscreen": "Ativar/desativar tela cheia",
               "chat": "Ativar/desativar chat",
-              "disabled": "Desativados",
               "reload": "Recarregar live",
               "remove-stream": "Remover live",
               "move-left": "Mover live para esquerda",
@@ -104,34 +98,9 @@
         },
         "general": {
           "label": "Geral",
-          "start-muted": "Começar lives mutadas."
+          "start-muted": "Começar lives sem som."
         }
       }
-    }
-  },
-
-  "index": {
-    "instructionsMobile": "Clique no botão abaixo e comece a assistir!!!",
-    "changeStreamers": "Trocar Streamers"
-  },
-  "modal": {
-    "streamers": {
-      "title": "Escolha seus streamers!!!",
-      "watch": "Assistir",
-      "avatar": "Avatar de",
-      "noPlaying": "Esse streamer pode não estar jogando QSMP.",
-      "streamOnYoutube": "Esse streamer faz live pelo Youtube.",
-      "groups": "Grupos",
-      "createGroup": "Criar grupo",
-      "chooseGroupName": "Escolha um nome para o grupo:",
-      "newParticipant": "Nova participante!",
-      "newParticipants": "Novos participantes!"
-    },
-    "organize": {
-      "title": "Reorganize suas lives ou chats.",
-      "watch": "Assistir",
-      "noChat": "Nenhum chat selecionado.",
-      "noStreamer": "Nenhum streamer selecionado."
     }
   }
 }
