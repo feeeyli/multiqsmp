@@ -27,6 +27,7 @@ import { StreamPlayerControlsContext } from './stream-player-controls-context';
 import { Button } from '@/components/ui/button';
 import { useSettingsContext } from '@/contexts/settings-context';
 import { useSearchParamsStates } from '@/utils/useSearchParamsState';
+import { motion } from 'framer-motion';
 
 interface StreamPlayerHeaderProps {
   channel: string;
@@ -246,12 +247,26 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
     '--items': headerItemsSorted.length + (alwaysShowHeader ? 0 : 1),
   } as React.CSSProperties;
 
+  // const y = useTransform(x, [0, 1], [0, 2])
+
+  const headerVariants = {
+    opened: {
+      width: 'auto',
+    },
+    closed: {
+      width: '2rem',
+    },
+  };
+
   return (
-    <header
+    <motion.header
       data-opened={alwaysShowHeader || opened}
       data-always-show-header={alwaysShowHeader}
       style={style}
-      className="group/header dark absolute left-1 top-1 flex w-8 items-center overflow-hidden rounded-md bg-card/30 transition-all data-[opened=true]:w-[calc(var(--items)*2rem)]"
+      animate={alwaysShowHeader || opened ? 'opened' : 'closed'}
+      variants={headerVariants}
+      transition={{ width: { type: 'spring', bounce: 0.2, duration: 0.5 } }}
+      className="group/header dark absolute left-1 top-1 flex items-center overflow-hidden rounded-md bg-card/30"
     >
       {!alwaysShowHeader && (
         <Button
@@ -267,50 +282,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
       )}
       <div className="h-7">
         {headerItemsSorted.map((item) => headerActions[item])}
-
-        {/*  
-        {!isYoutubeStream && (
-          <button
-            onClick={() => {
-              if (isDesktop && chatList.length >= 4 && !channelSelected) return
-
-              if (!isDesktop && chatList.length >= 2 && !channelSelected) return
-
-              const newChatList = toggleChat(channel)
-
-              const newSearchParams = new URLSearchParams(
-                window.location.search,
-              )
-
-              if (newChatList.length === 0) {
-                newSearchParams.delete('chats')
-              } else if (newSearchParams.get('chats')) {
-                newSearchParams.set('chats', newChatList.join('/'))
-              } else {
-                newSearchParams.append('chats', newChatList.join('/'))
-              }
-
-              router.replace(
-                pathname +
-                  '?' +
-                  newSearchParams.toString().replaceAll('%2F', '/'),
-              )
-
-              // chatLinkRef.current!.href =
-              // 	`?${newSearchParams}`;
-              // chatLinkRef.current!.click();
-            }}
-            tabIndex={headerMenuOpened ? 0 : -1}
-            className="inline-block h-full px-2 py-1 hover:bg-[#302a3963]"
-          >
-            <ChatBubbleIcon
-              color="#fff"
-              data-opened={channelSelected}
-              className="h-4 w-4 opacity-50 data-[opened=true]:opacity-100"
-            />
-          </button>
-        )} */}
       </div>
-    </header>
+    </motion.header>
   );
 };

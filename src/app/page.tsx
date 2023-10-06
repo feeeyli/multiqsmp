@@ -132,6 +132,7 @@ export default function Home() {
           <Link
             href="https://twitter.com/feeeyli"
             className="text-[#FFA4CF] underline"
+            target="_blank"
           >
             Feyli
           </Link>

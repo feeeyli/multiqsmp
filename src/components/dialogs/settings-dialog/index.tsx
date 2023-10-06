@@ -53,6 +53,7 @@ import { useSettingsContext } from '@/contexts/settings-context';
 import { useState } from 'react';
 import { Reorder } from 'framer-motion';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
+import Link from 'next/link';
 
 const headerItemsNames = z.enum([
   'mute',

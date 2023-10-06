@@ -102,5 +102,34 @@
         }
       }
     }
+  },
+  "faq-dialog": {
+    "title": "FAQ",
+    "faq-list": {
+      "0": {
+        "title": "Posso utilizar minha conta da Twitch?",
+        "content": "Sim, para isso há 2 jeitos: \n\n - Conecte sua conta pelo site da Twitch e então atualize a pagina do MultiQSMP. \n\n - Envie uma mensagem em qualquer chat pelo MultiQSMP e um alerta de login aparecerá."
+      },
+      "1": {
+        "title": "Como ativo o chat?",
+        "content": "No topo de cada live há uma pequena seta, clicando nela abrirá um menu com varias opções, entre elas um botão para alternar o chat da live em questão."
+      },
+      "2": {
+        "title": "Oque significa as variações nos streamers?",
+        "content": "Quando o streamer está cinza, isso significa que ele está offline. Quando há um indicador amarelo ele está online porem pode não estar jogando QSMP no momento. \n\n Obs.: Para indicar se o streamers está ou não jogando QSMP é levado em consideração as tags e o jogo marcado na live, por isso nem sempre o indicador estará correto."
+      },
+      "3": {
+        "title": "Encontrei/estou tendo um erro!",
+        "content": "Se você estiver com algum erro, algo não estiver funcionando corretamente e afins, você pode entrar no nosso [formulário de feedbacks](https://forms.gle/ceFMBMkvyUKwxpms7) e explicar seu problema."
+      },
+      "4": {
+        "title": "Tenho uma sugestão!",
+        "content": "Se você quiser sugerir uma nova função, alteração de algo, ou qualquer coisa desse tipo, você pode entrar no nosso [formulário de feedbacks](https://forms.gle/ceFMBMkvyUKwxpms7) e enviar sua sugestão."
+      },
+      "5": {
+        "title": "Quero ajudar o projeto, como posso fazer isso?",
+        "content": "Se você programa e deseja me ajudar, você pode fazer um fork dos repositórios da [versão padrão](http://github.com/feeeyli/multiqsmp) e da [versão beta](http://github.com/feeeyli/multiqsmp-beta)."
+      }
+    }
   }
 }

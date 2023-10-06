@@ -21,6 +21,7 @@ import { useState } from 'react';
 import { ChatsList } from '@/components/chats-list';
 import { parseChannels } from '@/utils/parseChannels';
 import { SettingsDialog } from '@/components/dialogs/settings-dialog';
+import { FAQDialog } from '@/components/dialogs/faq-dialog';
 
 interface StreamsPageProps {
   params: {
@@ -57,12 +58,13 @@ export default function Streams(props: StreamsPageProps) {
       data-has-chats={chats.length > 0}
       className="relative flex h-screen max-h-screen w-full pr-8 data-[has-chats=true]:pr-10"
     >
-      <aside className="absolute right-0 z-10 flex flex-col gap-2 py-6">
+      <aside className="absolute right-0 z-10 flex h-full flex-col gap-2 py-6">
         <StreamsSelectorDialogProvider>
           <StreamsSelectorDialog />
         </StreamsSelectorDialogProvider>
         <OrganizeStreamsDialog />
         <SettingsDialog />
+        <FAQDialog />
       </aside>
       <PanelGroup direction={isDesktop ? 'horizontal' : 'vertical'}>
         <Panel

@@ -35,11 +35,7 @@ export const SettingsContext = createContext<
   [SettingsType, Dispatch<SetStateAction<SettingsType>>]
 >([INITIAL_VALUE, () => {}]);
 
-export const SettingsProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export function SettingsProvider({ children }: { children: React.ReactNode }) {
   const settings = useLocalStorage<SettingsType>('settings', INITIAL_VALUE);
 
   const { setTheme } = useTheme();
@@ -57,6 +53,6 @@ export const SettingsProvider = ({
       {children}
     </SettingsContext.Provider>
   );
-};
+}
 
 export const useSettingsContext = () => useContext(SettingsContext);

@@ -95,7 +95,7 @@ export const Streamer = (props: StreamerProps) => {
               alt={`${t('profile-image-alt')} ${props.streamer.displayName}`}
               width={96}
               height={96}
-              className="h-20 w-20 rounded-md group-data-[online=false]:grayscale sm:h-28 sm:w-28"
+              className="pointer-events-none h-20 w-20 select-none rounded-md group-data-[online=false]:grayscale sm:h-28 sm:w-28"
             />
           )}
           {streamersAvatar === 'skin' && (

@@ -5,37 +5,37 @@
     "profile-image-alt": "Avatar of",
     "watch": "Watch",
     "selected-streamers-or-groups": "Selected streamers or groups:",
-    "no-selected-streamers-or-groups": "No selected streamers or groups.",
+    "no-selected-streamers-or-groups": "No streamer or group selected.",
     "new-participant": "New participant!",
     "new-participants": "New participants!"
   },
   "streams-list": {
-    "no-streams": "It looks like you haven't chosen a streamer yet. Click on the button on the right and start watching!"
+    "no-streams": "It seems you haven't chosen any live streams yet. Click the button on the right and start watching!"
   },
   "organize-dialog": {
-    "title": "Reorder your streams or chats.",
+    "title": "Organize your live streams or chats.",
     "profile-image-alt": "Avatar of",
     "watch": "Watch",
-    "streams-subtitle": "Streams",
+    "streams-subtitle": "Live Streams",
     "chats-subtitle": "Chats",
-    "no-streams": "No stream selected.",
-    "no-chats": "No chat selected."
+    "no-streams": "No live streams selected.",
+    "no-chats": "No chats selected."
   },
   "create-group-dialog": {
     "title": "New group",
     "profile-image-alt": "Avatar of",
     "search-streamer-label": "Search streamer",
     "name-subtitle": "Choose a name",
-    "choose-subtitle": "Choose streamers",
+    "choose-subtitle": "Select streamers",
     "selected-streamers": "Selected streamers:",
-    "no-selected-streamers": "No selected streamers.",
-    "group-name-label": "Choose a name for group",
+    "no-selected-streamers": "No streamer selected.",
+    "group-name-label": "Choose a name for the group",
     "submit": "Create group",
-    "name-error": "A group with this name already exits. Try another one!"
+    "name-error": "A group with this name already exists. Please try another!"
   },
   "delete-group-dialog": {
     "title": "Delete group",
-    "description": "You're about to delete \"((group))\" group, are you sure? You can't undo this action.",
+    "description": "You are about to delete the group \"((group))\", are you sure? This action cannot be undone.",
     "confirm": "Yes, delete",
     "cancel": "Cancel",
     "trigger": "Delete"
@@ -44,13 +44,13 @@
     "title": "Edit group",
     "profile-image-alt": "Avatar of",
     "search-streamer-label": "Search streamer",
-    "name-subtitle": "Choose a new name",
-    "choose-subtitle": "Choose streamers",
+    "name-subtitle": "Choose the new name",
+    "choose-subtitle": "Select streamers",
     "selected-streamers": "Selected streamers:",
-    "no-selected-streamers": "No selected streamers.",
-    "group-name-label": "Choose a new name for group",
+    "no-selected-streamers": "No streamer selected.",
+    "group-name-label": "Choose a new name for the group",
     "submit": "Save group",
-    "name-error": "A group with this name already exits. Try another one!"
+    "name-error": "A group with this name already exists. Please try another!"
   },
   "settings-dialog": {
     "title": "Settings",
@@ -64,42 +64,71 @@
           "light": "Default colors (Light)",
           "gray-dark": "Black and white (Dark)",
           "gray-light": "Black and white (Light)",
-          "system": "Follow the system theme"
+          "system": "Follow system theme"
         },
         "streams-avatar": {
-          "label": "Streamers avatars",
-          "twitch": "Twitch avatar",
+          "label": "Streamers' avatars",
+          "twitch": "Twitch profile",
           "skin": "Minecraft skin",
           "both": "Both"
         },
         "streams-status": {
-          "label": "Streams status",
-          "offline": "Show if is offline.",
-          "noPlaying": "Show if is playing QSMP."
+          "label": "Live stream status",
+          "offline": "Show if offline.",
+          "noPlaying": "Show if playing QSMP."
         }
       },
       "streams": {
-        "title": "Streams",
+        "title": "Live Streams",
         "headers": {
-          "label": "Streams menu",
-          "always-show": "Keep menu always opened.",
+          "label": "Live stream menus",
+          "always-show": "Keep menu always open.",
           "actions-order": {
             "label": "Action buttons",
             "actions-labels": {
-              "mute": "Mute/unmute",
-              "fullscreen": "Toggle full screen",
-              "chat": "Toggle chat",
-              "reload": "Reload stream",
-              "remove-stream": "Remove stream",
-              "move-left": "Move stream to left",
-              "move-right": "Move stream to right"
+              "mute": "Toggle sound on/off",
+              "fullscreen": "Toggle fullscreen",
+              "chat": "Toggle chat on/off",
+              "reload": "Reload live stream",
+              "remove-stream": "Remove live stream",
+              "move-left": "Move live stream to the left",
+              "move-right": "Move live stream to the right"
             }
           }
         },
         "general": {
           "label": "General",
-          "start-muted": "Start streams muted."
+          "start-muted": "Start live streams muted."
         }
+      }
+    }
+  },
+  "faq-dialog": {
+    "title": "FAQ",
+    "faq-list": {
+      "0": {
+        "title": "Can I use my Twitch account?",
+        "content": "Yes, there are 2 ways to do this:\n\n- Connect your account through the Twitch website and then refresh the MultiQSMP page.\n\n- Send a message in any MultiQSMP chat, and a login alert will appear."
+      },
+      "1": {
+        "title": "How do I activate the chat?",
+        "content": "At the top of each live stream, there is a small arrow. Clicking on it will open a menu with various options, including a button to toggle the chat for that live stream."
+      },
+      "2": {
+        "title": "What do the variations in streamers mean?",
+        "content": "When the streamer is gray, it means they are offline. When there is a yellow indicator, they are online but may not be playing QSMP at the moment.\n\nNote: To indicate whether the streamer is playing QSMP or not, tags and the game marked in the live stream are considered, so the indicator may not always be correct."
+      },
+      "3": {
+        "title": "I found/have an error!",
+        "content": "If you encounter any errors, something is not working correctly, etc., you can go to our [feedback form](https://forms.gle/ceFMBMkvyUKwxpms7) and explain your problem."
+      },
+      "4": {
+        "title": "I have a suggestion!",
+        "content": "If you want to suggest a new feature, change something, or anything like that, you can go to our [feedback form](https://forms.gle/ceFMBMkvyUKwxpms7) and submit your suggestion."
+      },
+      "5": {
+        "title": "I want to contribute to the project, how can I do that?",
+        "content": "If you program and want to help, you can fork the repositories of the [standard version](http://github.com/feeeyli/multiqsmp) and the [beta version](http://github.com/feeeyli/multiqsmp-beta)."
       }
     }
   }
