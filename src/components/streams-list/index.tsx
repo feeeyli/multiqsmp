@@ -14,6 +14,7 @@ import { useHasMounted } from '@/utils/useHasMounted';
 
 // Components Imports
 import { StreamPlayer } from './stream-player';
+import { ArrowLeftRight } from 'lucide-react';
 
 interface StreamsListProps {
   resizing: boolean;
@@ -51,7 +52,9 @@ export const StreamsList = (props: StreamsListProps) => {
       ))}
       {mergedStreams.length === 0 && (
         <div className="absolute left-1/2 top-1/2 w-[85%] max-w-sm -translate-x-1/2 -translate-y-1/2 text-center">
-          {t('no-streams')}
+          {t('no-streams').split('((button))')[0]}
+          <ArrowLeftRight size="1.25rem" className="inline text-primary" />
+          {t('no-streams').split('((button))')[1]}
         </div>
       )}
     </div>

@@ -10,7 +10,7 @@
     "new-participants": "New participants!"
   },
   "streams-list": {
-    "no-streams": "It seems you haven't chosen any live streams yet. Click the button on the right and start watching!"
+    "no-streams": "It seems you haven't chosen any live streams yet. Click the button \"((button))\" on the right and start watching!"
   },
   "organize-dialog": {
     "title": "Organize your live streams or chats.",

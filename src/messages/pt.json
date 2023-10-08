@@ -10,7 +10,7 @@
     "new-participants": "Novos participantes!"
   },
   "streams-list": {
-    "no-streams": "Parece que você ainda não escolheu nenhuma live. Clique no botão á direita e comece a assistir!"
+    "no-streams": "Parece que você ainda não escolheu nenhuma live. Clique no botão \"((button))\" á direita e comece a assistir!"
   },
   "organize-dialog": {
     "title": "Reorganize suas lives ou chats.",
