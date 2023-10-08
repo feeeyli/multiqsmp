@@ -22,6 +22,7 @@ import { ChatsList } from '@/components/chats-list';
 import { parseChannels } from '@/utils/parseChannels';
 import { SettingsDialog } from '@/components/dialogs/settings-dialog';
 import { FAQDialog } from '@/components/dialogs/faq-dialog';
+import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 
 interface StreamsPageProps {
   params: {
@@ -34,12 +35,13 @@ export default function Streams(props: StreamsPageProps) {
   const isDesktop = useMediaQuery('(min-width: 640px)');
   const { streams, chats } = useSearchParamsStates();
   const [resizing, setResizing] = useState(false);
+  const [customGroups] = useCustomGroupsContext();
   const router = useRouter();
 
   if (props.params.streams) {
     const [selectedChannels, , selectedGroups] = parseChannels(
       props.params.streams || [],
-      [],
+      customGroups,
     );
 
     router.replace(

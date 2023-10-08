@@ -55,6 +55,11 @@
   "settings-dialog": {
     "title": "Configurações",
     "save": "Salvar",
+    "cancel": "Cancelar",
+    "discard": {
+      "confirm": "Descartar",
+      "description": "Você está prestes a descartar suas alterações feitas, tem certeza disso?"
+    },
     "form": {
       "appearance": {
         "title": "Aparência",
@@ -103,12 +108,24 @@
       }
     }
   },
+  "change-language": {
+    "description": "Você está prestes a trocar de lingua para \"((language))\", isso ira descartar suas alterações feitas, tem certeza disso?",
+    "pt": "Português",
+    "en": "Inglês",
+    "es": "Espanhol",
+    "fr": "Francês",
+    "confirm": "Descartar"
+  },
+  "discard-changes": {
+    "title": "Descartar alterações?",
+    "cancel": "Cancelar"
+  },
   "faq-dialog": {
     "title": "FAQ",
     "faq-list": {
       "0": {
         "title": "Posso utilizar minha conta da Twitch?",
-        "content": "Sim, para isso há 2 jeitos: \n\n - Conecte sua conta pelo site da Twitch e então atualize a pagina do MultiQSMP. \n\n - Envie uma mensagem em qualquer chat pelo MultiQSMP e um alerta de login aparecerá."
+        "content": "Sim, para isso há 2 jeitos: \n\n - Conecte sua conta pelo site da [Twitch](http://twitch.tv) e então atualize a pagina do MultiQSMP. \n\n - Envie uma mensagem em qualquer chat pelo MultiQSMP e um alerta de login aparecerá."
       },
       "1": {
         "title": "Como ativo o chat?",

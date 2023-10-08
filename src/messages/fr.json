@@ -55,6 +55,11 @@
   "settings-dialog": {
     "title": "Settings",
     "save": "Save",
+    "cancel": "Cancel",
+    "discard": {
+      "confirm": "Discard",
+      "description": "You are about to discard your changes, are you sure?"
+    },
     "form": {
       "appearance": {
         "title": "Appearance",
@@ -103,12 +108,24 @@
       }
     }
   },
+  "change-language": {
+    "description": "You are about to switch to \"((language))\" language, this will discard your changes, are you sure?",
+    "pt": "Portuguese",
+    "en": "English",
+    "es": "Spanish",
+    "fr": "French",
+    "confirm": "Discard"
+  },
+  "discard-changes": {
+    "title": "Discard changes?",
+    "cancel": "Cancel"
+  },
   "faq-dialog": {
     "title": "FAQ",
     "faq-list": {
       "0": {
         "title": "Can I use my Twitch account?",
-        "content": "Yes, there are 2 ways to do this:\n\n- Connect your account through the Twitch website and then refresh the MultiQSMP page.\n\n- Send a message in any MultiQSMP chat, and a login alert will appear."
+        "content": "Yes, there are 2 ways to do this:\n\n- Connect your account through the [Twitch](http://twitch.tv) website and then refresh the MultiQSMP page.\n\n- Send a message in any MultiQSMP chat, and a login alert will appear."
       },
       "1": {
         "title": "How do I activate the chat?",

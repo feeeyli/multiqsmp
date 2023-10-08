@@ -53,7 +53,13 @@ import { useSettingsContext } from '@/contexts/settings-context';
 import { useState } from 'react';
 import { Reorder } from 'framer-motion';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
-import Link from 'next/link';
+import { ChangeLanguage } from './change-language';
+import {
+  DiscardChangesDialog,
+  DiscardChangesDialogContent,
+  DiscardChangesDialogTrigger,
+} from './discard-changes-dialog';
+import { DialogClose } from '@radix-ui/react-dialog';
 
 const headerItemsNames = z.enum([
   'mute',
@@ -117,9 +123,6 @@ export const SettingsDialog = () => {
     <Dialog
       open={isOpen}
       onOpenChange={(open) => {
-        if (open === true) {
-        }
-
         setIsOpen(open);
       }}
     >
@@ -133,7 +136,13 @@ export const SettingsDialog = () => {
           <DialogTitle>{t('title')}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
-          <form className="scrollbar max-h-[75vh] space-y-8 overflow-y-auto pl-2 pr-4">
+          <form className="scrollbar max-h-[75vh] space-y-4 overflow-y-auto pl-2 pr-4">
+            <div>
+              <ChangeLanguage lang="pt" form={form} />
+              <ChangeLanguage lang="en" form={form} />
+              <ChangeLanguage lang="es" form={form} />
+              <ChangeLanguage lang="fr" form={form} />
+            </div>
             <div>
               <h3 className="mb-2 text-lg font-bold text-primary">
                 {t('form.appearance.title')}
@@ -415,12 +424,32 @@ export const SettingsDialog = () => {
             </div>
           </form>
         </Form>
-        <DialogFooter className="flex flex-col gap-2 sm:flex-col">
-          <Button
-            onClick={form.handleSubmit(onSubmit)}
-            variant="ghost"
-            className="gap-2"
-          >
+        <DialogFooter className="flex gap-2">
+          {form.formState.isDirty ? (
+            <DiscardChangesDialog form={form}>
+              <DiscardChangesDialogTrigger>
+                <Button variant="ghost">{t('cancel')}</Button>
+              </DiscardChangesDialogTrigger>
+              <DiscardChangesDialogContent
+                confirm={
+                  <DialogClose asChild>
+                    <Button onClick={() => form.reset()}>
+                      {t('discard.confirm')}
+                    </Button>
+                  </DialogClose>
+                }
+              >
+                {t('discard.description')}
+              </DiscardChangesDialogContent>
+            </DiscardChangesDialog>
+          ) : (
+            <DialogClose asChild>
+              <Button variant="ghost" onClick={() => form.reset()}>
+                {t('cancel')}
+              </Button>
+            </DialogClose>
+          )}
+          <Button onClick={form.handleSubmit(onSubmit)} className="gap-2">
             {t('save')} <Save size="1rem" />
           </Button>
         </DialogFooter>
@@ -428,3 +457,5 @@ export const SettingsDialog = () => {
     </Dialog>
   );
 };
+
+// onClick={() => setIsOpen(false)}
