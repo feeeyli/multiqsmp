@@ -36,12 +36,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center py-24">
       <header>
-        <h1 className="mb-2 text-3xl font-bold">
-          MultiQSMP{' '}
-          <strong className="text-primary underline decoration-wavy">
-            Beta
-          </strong>
-        </h1>
+        <h1 className="mb-2 text-3xl font-bold">MultiQSMP</h1>
         <div className="grid grid-cols-2 justify-items-center gap-4 gap-y-1">
           <h2 className="text-primary">Bem-vindo</h2>
           <h2 className="text-primary">Bienvenido</h2>

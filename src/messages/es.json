@@ -1,151 +1,151 @@
 {
   "streamers-dialog": {
-    "title": "Choose your streamers or groups!",
-    "group-tab-title": "Groups",
-    "profile-image-alt": "Avatar of",
-    "watch": "Watch",
-    "selected-streamers-or-groups": "Selected streamers or groups:",
-    "no-selected-streamers-or-groups": "No streamer or group selected.",
-    "new-participant": "New participant!",
-    "new-participants": "New participants!"
+    "title": "¡Elige tus streamers o grupos!",
+    "group-tab-title": "Grupos",
+    "profile-image-alt": "Avatar de",
+    "watch": "Ver",
+    "selected-streamers-or-groups": "Streamers o grupos seleccionados:",
+    "no-selected-streamers-or-groups": "Ningún streamer o grupo seleccionado.",
+    "new-participant": "¡Nuevo participante!",
+    "new-participants": "Nuevos participantes!"
   },
   "streams-list": {
-    "no-streams": "It seems you haven't chosen any live streams yet. Click the button \"((button))\" on the right and start watching!"
+    "no-streams": "Parece que aún no has elegido ninguna transmisión en vivo. ¡Haz clic en el botón \"((button))\" a la derecha y comienza a ver!"
   },
   "organize-dialog": {
-    "title": "Organize your live streams or chats.",
-    "profile-image-alt": "Avatar of",
-    "watch": "Watch",
-    "streams-subtitle": "Live Streams",
+    "title": "Reorganiza tus transmisiones en vivo o chats.",
+    "profile-image-alt": "Avatar de",
+    "watch": "Ver",
+    "streams-subtitle": "Transmisiones en Vivo",
     "chats-subtitle": "Chats",
-    "no-streams": "No live streams selected.",
-    "no-chats": "No chats selected."
+    "no-streams": "No hay transmisiones en vivo seleccionadas.",
+    "no-chats": "No hay chats seleccionados."
   },
   "create-group-dialog": {
-    "title": "New group",
-    "profile-image-alt": "Avatar of",
-    "search-streamer-label": "Search streamer",
-    "name-subtitle": "Choose a name",
-    "choose-subtitle": "Select streamers",
-    "selected-streamers": "Selected streamers:",
-    "no-selected-streamers": "No streamer selected.",
-    "group-name-label": "Choose a name for the group",
-    "submit": "Create group",
-    "name-error": "A group with this name already exists. Please try another!"
+    "title": "Nuevo grupo",
+    "profile-image-alt": "Avatar de",
+    "search-streamer-label": "Buscar streamer",
+    "name-subtitle": "Elige un nombre",
+    "choose-subtitle": "Selecciona los streamers",
+    "selected-streamers": "Streamers seleccionados:",
+    "no-selected-streamers": "Ningún streamer seleccionado.",
+    "group-name-label": "Elige un nombre para el grupo",
+    "submit": "Crear grupo",
+    "name-error": "Ya existe un grupo con este nombre. ¡Intenta con otro!"
   },
   "delete-group-dialog": {
-    "title": "Delete group",
-    "description": "You are about to delete the group \"((group))\", are you sure? This action cannot be undone.",
-    "confirm": "Yes, delete",
-    "cancel": "Cancel",
-    "trigger": "Delete"
+    "title": "Eliminar grupo",
+    "description": "Estás a punto de eliminar el grupo \"((group))\", ¿estás seguro? Esta acción no se puede deshacer.",
+    "confirm": "Sí, eliminar",
+    "cancel": "Cancelar",
+    "trigger": "Eliminar"
   },
   "edit-group-dialog": {
-    "title": "Edit group",
-    "profile-image-alt": "Avatar of",
-    "search-streamer-label": "Search streamer",
-    "name-subtitle": "Choose the new name",
-    "choose-subtitle": "Select streamers",
-    "selected-streamers": "Selected streamers:",
-    "no-selected-streamers": "No streamer selected.",
-    "group-name-label": "Choose a new name for the group",
-    "submit": "Save group",
-    "name-error": "A group with this name already exists. Please try another!"
+    "title": "Editar grupo",
+    "profile-image-alt": "Avatar de",
+    "search-streamer-label": "Buscar streamer",
+    "name-subtitle": "Elige el nuevo nombre",
+    "choose-subtitle": "Selecciona los streamers",
+    "selected-streamers": "Streamers seleccionados:",
+    "no-selected-streamers": "Ningún streamer seleccionado.",
+    "group-name-label": "Elige un nuevo nombre para el grupo",
+    "submit": "Guardar grupo",
+    "name-error": "Ya existe un grupo con este nombre. ¡Intenta con otro!"
   },
   "settings-dialog": {
-    "title": "Settings",
-    "save": "Save",
-    "cancel": "Cancel",
+    "title": "Configuraciones",
+    "save": "Guardar",
+    "cancel": "Cancelar",
     "discard": {
-      "confirm": "Discard",
-      "description": "You are about to discard your changes, are you sure?"
+      "confirm": "Descartar",
+      "description": "Estás a punto de descartar los cambios, ¿estás seguro?"
     },
     "form": {
       "appearance": {
-        "title": "Appearance",
+        "title": "Apariencia",
         "theme": {
-          "label": "Theme",
-          "dark": "Default colors (Dark)",
-          "light": "Default colors (Light)",
-          "gray-dark": "Black and white (Dark)",
-          "gray-light": "Black and white (Light)",
-          "system": "Follow system theme"
+          "label": "Tema",
+          "dark": "Colores predeterminados (oscuro)",
+          "light": "Colores predeterminados (claro)",
+          "gray-dark": "Blanco y negro (oscuro)",
+          "gray-light": "Blanco y negro (claro)",
+          "system": "Seguir el tema del sistema"
         },
         "streams-avatar": {
-          "label": "Streamers' avatars",
-          "twitch": "Twitch profile",
-          "skin": "Minecraft skin",
-          "both": "Both"
+          "label": "Avatares de los streamers",
+          "twitch": "Perfil de Twitch",
+          "skin": "Skin de Minecraft",
+          "both": "Ambos"
         },
         "streams-status": {
-          "label": "Live stream status",
-          "offline": "Show if offline.",
-          "noPlaying": "Show if playing QSMP."
+          "label": "Estado de la transmisión en vivo",
+          "offline": "Mostrar si está fuera de línea.",
+          "noPlaying": "Mostrar si está jugando QSMP."
         }
       },
       "streams": {
-        "title": "Live Streams",
+        "title": "Transmisiones en Vivo",
         "headers": {
-          "label": "Live stream menus",
-          "always-show": "Keep menu always open.",
+          "label": "Menús de transmisión en vivo",
+          "always-show": "Mantener el menú siempre abierto.",
           "actions-order": {
-            "label": "Action buttons",
+            "label": "Botones de acción",
             "actions-labels": {
-              "mute": "Toggle sound on/off",
-              "fullscreen": "Toggle fullscreen",
-              "chat": "Toggle chat on/off",
-              "reload": "Reload live stream",
-              "remove-stream": "Remove live stream",
-              "move-left": "Move live stream to the left",
-              "move-right": "Move live stream to the right"
+              "mute": "Alternar sonido encendido/apagado",
+              "fullscreen": "Alternar pantalla completa",
+              "chat": "Alternar chat encendido/apagado",
+              "reload": "Recargar transmisión en vivo",
+              "remove-stream": "Eliminar transmisión en vivo",
+              "move-left": "Mover transmisión en vivo a la izquierda",
+              "move-right": "Mover transmisión en vivo a la derecha"
             }
           }
         },
         "general": {
           "label": "General",
-          "start-muted": "Start live streams muted."
+          "start-muted": "Iniciar transmisiones en vivo en modo silencioso."
         }
       }
     }
   },
   "change-language": {
-    "description": "You are about to switch to \"((language))\" language, this will discard your changes, are you sure?",
-    "pt": "Portuguese",
-    "en": "English",
-    "es": "Spanish",
-    "fr": "French",
-    "confirm": "Discard"
+    "description": "Estás a punto de cambiar al idioma \"((language))\", esto descartará tus cambios, ¿estás seguro?",
+    "pt": "Portugués",
+    "en": "Inglés",
+    "es": "Español",
+    "fr": "Francés",
+    "confirm": "Descartar"
   },
   "discard-changes": {
-    "title": "Discard changes?",
-    "cancel": "Cancel"
+    "title": "¿Descartar cambios?",
+    "cancel": "Cancelar"
   },
   "faq-dialog": {
-    "title": "FAQ",
+    "title": "Preguntas frecuentes",
     "faq-list": {
       "0": {
-        "title": "Can I use my Twitch account?",
-        "content": "Yes, there are 2 ways to do this:\n\n- Connect your account through the [Twitch](http://twitch.tv) website and then refresh the MultiQSMP page.\n\n- Send a message in any MultiQSMP chat, and a login alert will appear."
+        "title": "¿Puedo utilizar mi cuenta de Twitch?",
+        "content": "Sí, hay 2 formas de hacerlo:\n\n- Conecta tu cuenta a través del sitio web de [Twitch](http://twitch.tv) y luego actualiza la página de MultiQSMP.\n\n- Envía un mensaje en cualquier chat de MultiQSMP, y aparecerá una alerta de inicio de sesión."
       },
       "1": {
-        "title": "How do I activate the chat?",
-        "content": "At the top of each live stream, there is a small arrow. Clicking on it will open a menu with various options, including a button to toggle the chat for that live stream."
+        "title": "¿Cómo activo el chat?",
+        "content": "En la parte superior de cada transmisión en vivo, hay una pequeña flecha. Al hacer clic en ella, se abrirá un menú con varias opciones, incluido un botón para alternar el chat de esa transmisión en vivo."
       },
       "2": {
-        "title": "What do the variations in streamers mean?",
-        "content": "When the streamer is gray, it means they are offline. When there is a yellow indicator, they are online but may not be playing QSMP at the moment.\n\nNote: To indicate whether the streamer is playing QSMP or not, tags and the game marked in the live stream are considered, so the indicator may not always be correct."
+        "title": "¿Qué significan las variaciones en los streamers?",
+        "content": "Cuando el streamer está en gris, significa que está fuera de línea. Cuando hay un indicador amarillo, está en línea pero puede que no esté jugando a QSMP en ese momento.\n\nNota: Para indicar si el streamer está jugando a QSMP o no, se consideran etiquetas y el juego marcado en la transmisión en vivo, por lo que el indicador puede no ser siempre correcto."
       },
       "3": {
-        "title": "I found/have an error!",
-        "content": "If you encounter any errors, something is not working correctly, etc., you can go to our [feedback form](https://forms.gle/ceFMBMkvyUKwxpms7) and explain your problem."
+        "title": "¡Encontré/tengo un error!",
+        "content": "Si encuentras algún error, algo no funciona correctamente, etc., puedes ir a nuestro [formulario de comentarios](https://forms.gle/ceFMBMkvyUKwxpms7) y explicar tu problema."
       },
       "4": {
-        "title": "I have a suggestion!",
-        "content": "If you want to suggest a new feature, change something, or anything like that, you can go to our [feedback form](https://forms.gle/ceFMBMkvyUKwxpms7) and submit your suggestion."
+        "title": "¡Tengo una sugerencia!",
+        "content": "Si quieres sugerir una nueva característica, cambiar algo, o cualquier cosa por el estilo, puedes ir a nuestro [formulario de comentarios](https://forms.gle/ceFMBMkvyUKwxpms7) y enviar tu sugerencia."
       },
       "5": {
-        "title": "I want to contribute to the project, how can I do that?",
-        "content": "If you program and want to help, you can fork the repositories of the [standard version](http://github.com/feeeyli/multiqsmp) and the [beta version](http://github.com/feeeyli/multiqsmp-beta)."
+        "title": "Quiero contribuir al proyecto, ¿cómo puedo hacerlo?",
+        "content": "Si programas y quieres ayudar, puedes bifurcar los repositorios de la [versión estándar](http://github.com/feeeyli/multiqsmp) y la [versión heredada](http://github.com/feeeyli/multiqsmp-legacy)."
       }
     }
   }

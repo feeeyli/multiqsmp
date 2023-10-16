@@ -145,7 +145,7 @@
       },
       "5": {
         "title": "I want to contribute to the project, how can I do that?",
-        "content": "If you program and want to help, you can fork the repositories of the [standard version](http://github.com/feeeyli/multiqsmp) and the [beta version](http://github.com/feeeyli/multiqsmp-beta)."
+        "content": "If you program and want to help, you can fork the repositories of the [standard version](http://github.com/feeeyli/multiqsmp) and the [legacy version](http://github.com/feeeyli/multiqsmp-legacy)."
       }
     }
   }
