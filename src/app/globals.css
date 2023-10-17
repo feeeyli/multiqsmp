@@ -132,4 +132,9 @@
   .diag-bottom {
     clip-path: polygon(100% 100%, 0 100%, 100% 0);
   }
+
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
 }

@@ -27,7 +27,7 @@ interface Props {
 export const StreamPlayer = ({ channel }: Props) => {
   const streamPlayerControls = useContext(StreamPlayerControlsContext);
   const { streams } = useSearchParamsStates();
-  const isDesktop = useMediaQuery('(min-width: 640px)');
+  const isDesktop = window.innerWidth > 640;
 
   const playerStyleVariants = cva('flex-grow inset-0', {
     variants: {

@@ -56,10 +56,17 @@ export const StreamsSelectorDialog = () => {
   const getWatchUrl = () => {
     const newUrl = new URLSearchParams();
 
+    const chats = searchParams.get('chats')?.split('/') || [];
+    const newChats = chats.filter((chat) =>
+      selectedStreamers.value.includes(chat),
+    );
+
     if (selectedStreamers.value.length > 0)
       newUrl.set('streamers', selectedStreamers.value.join('/'));
     if (selectedGroups.value.length > 0)
       newUrl.set('groups', selectedGroups.value.join('/'));
+    if (selectedStreamers.value.length > 0 && newChats.length > 0)
+      newUrl.set('chats', newChats.join('/'));
 
     return ('?' + newUrl).replaceAll('%2F', '/');
   };

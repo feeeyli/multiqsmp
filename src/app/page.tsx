@@ -3,6 +3,7 @@
 // Next Imports
 import { Button } from '@/components/ui/button';
 import { useSettingsContext } from '@/contexts/settings-context';
+import { useSearchParamsState } from '@/utils/useSearchParamsState';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
