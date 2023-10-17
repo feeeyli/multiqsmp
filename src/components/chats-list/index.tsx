@@ -13,7 +13,7 @@ export const ChatsList = (props: ChatsListProps) => {
   return (
     <div
       data-resizing={props.resizing}
-      className="flex h-full w-full justify-end data-[resizing=true]:pointer-events-none"
+      className="flex h-full w-full justify-center bg-muted/70 data-[resizing=true]:pointer-events-none"
     >
       {chats.map((chat) => (
         <Chat key={chat} chats={chats} chat={chat} />
