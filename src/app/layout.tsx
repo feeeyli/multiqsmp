@@ -48,6 +48,10 @@ export default function RootLayout({
           property="og:image"
           content="https://multiqsmp-beta.vercel.app/api/og"
         />
+        <meta
+          name="google-adsense-account"
+          content="ca-pub-7629305009580924"
+        ></meta>
       </head>
       <body className="min-h-screen w-full">
         <ThemeProvider
