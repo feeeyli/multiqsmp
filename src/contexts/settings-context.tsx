@@ -13,12 +13,12 @@ import { useLocalStorage } from 'usehooks-ts';
 
 // Types Imports
 import { SettingsType } from '@/components/dialogs/settings-dialog';
-import { useTheme } from 'next-themes';
 
 const INITIAL_VALUE: SettingsType = {
   appearance: {
-    dialogTriggersPosition: 'right',
     theme: 'dark',
+    dialogTriggersPosition: 'right',
+    hideDialog: false,
   },
   streamers: {
     streamersAvatar: 'twitch',

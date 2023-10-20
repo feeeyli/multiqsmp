@@ -86,8 +86,9 @@ const headerItems: {
 
 const settingsFormSchema = z.object({
   appearance: z.object({
-    dialogTriggersPosition: z.enum(['right', 'bottom', 'left']),
     theme: z.enum(['dark', 'light', 'gray-dark', 'gray-light', 'system']),
+    dialogTriggersPosition: z.enum(['right', 'bottom', 'left']),
+    hideDialog: z.boolean(),
   }),
   streamers: z.object({
     streamersAvatar: z.enum(['twitch', 'skin', 'both']),
@@ -237,6 +238,37 @@ export const SettingsDialog = () => {
                     </FormItem>
                   )}
                 />
+                <div className="space-y-3">
+                  <span className="text-sm">
+                    {t('form.appearance.outro.label')}
+                  </span>
+                  <FormField
+                    control={form.control}
+                    name="appearance.hideDialog"
+                    render={({ field }) => (
+                      <Button
+                        variant="outline"
+                        className="flex justify-start"
+                        asChild
+                      >
+                        <label>
+                          <FormItem className="flex items-center gap-2">
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <FormLabel className="!m-0">
+                              {t('form.appearance.outro.hide-dialog')}
+                            </FormLabel>
+                            <FormMessage />
+                          </FormItem>
+                        </label>
+                      </Button>
+                    )}
+                  />
+                </div>
               </div>
             </div>
             <div>

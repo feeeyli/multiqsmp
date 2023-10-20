@@ -1,6 +1,8 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { getStreamersFromGroups } from './getStreamersFromGroups';
 import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
+import { useEffect } from 'react';
+import { useLocalStorage } from 'usehooks-ts';
 
 const cleanEmpty = (obj: { [x: string]: string }) =>
   Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != ''));

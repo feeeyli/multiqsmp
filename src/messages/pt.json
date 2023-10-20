@@ -76,6 +76,10 @@
           "right": "Direita",
           "bottom": "Baixo",
           "left": "Esquerda"
+        },
+        "outro": {
+          "label": "Outro",
+          "hide-dialog": "Esconder menus."
         }
       },
       "streamers": {

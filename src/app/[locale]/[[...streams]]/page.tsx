@@ -1,11 +1,11 @@
 'use client';
 
 // Next Imports
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 // Libs Imports
 import { PanelGroup, Panel, PanelResizeHandle } from 'react-resizable-panels';
-import { useMediaQuery } from 'usehooks-ts';
+import { useLocalStorage } from 'usehooks-ts';
 
 // Components Import
 import { OrganizeStreamsDialog } from '@/components/dialogs/organize-streams-dialog';
@@ -17,7 +17,7 @@ import { StreamsList } from '@/components/streams-list';
 
 // Script Imports
 import { useSearchParamsStates } from '@/utils/useSearchParamsState';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChatsList } from '@/components/chats-list';
 import { parseChannels } from '@/utils/parseChannels';
 import { SettingsDialog } from '@/components/dialogs/settings-dialog';
@@ -60,13 +60,30 @@ export default function Streams(props: StreamsPageProps) {
   return (
     <main
       data-has-chats={chats.length > 0}
-      className="relative flex h-screen max-h-screen w-full pr-8 data-[has-chats=true]:pr-10"
+      data-hide-dialog={settings.appearance.hideDialog}
+      data-dialogs-position={settings.appearance.dialogTriggersPosition}
+      className="
+        group
+        relative
+        flex
+        h-screen
+        max-h-screen
+        w-full
+        overflow-hidden
+        data-[dialogs-position=bottom]:pb-8
+        data-[dialogs-position=left]:pl-8
+        data-[dialogs-position=right]:pr-8
+        data-[hide-dialog=true]:data-[dialogs-position=bottom]:!pb-0
+        data-[hide-dialog=true]:data-[dialogs-position=left]:!pl-0
+        data-[hide-dialog=true]:data-[dialogs-position=right]:!pr-0
+      "
     >
       <aside
         data-dialogs-position={settings.appearance.dialogTriggersPosition}
         data-horizontal={
           settings.appearance.dialogTriggersPosition === 'bottom'
         }
+        data-hide-dialog={settings.appearance.hideDialog}
         className="
           group
           absolute
@@ -74,13 +91,19 @@ export default function Streams(props: StreamsPageProps) {
           flex
           flex-col
           gap-2
+          transition-transform
           data-[dialogs-position=bottom]:bottom-0
           data-[dialogs-position=bottom]:right-0
           data-[dialogs-position=left]:left-0
           data-[dialogs-position=right]:right-0
+          data-[dialogs-position=bottom]:data-[hide-dialog=true]:translate-y-[80%]
+          data-[dialogs-position=left]:data-[hide-dialog=true]:-translate-x-[80%]
+          data-[dialogs-position=right]:data-[hide-dialog=true]:translate-x-[80%]
           data-[horizontal=true]:flex-row-reverse
           data-[horizontal=false]:py-6
           data-[horizontal=true]:px-3
+          hover:data-[hide-dialog=true]:translate-x-0
+          hover:data-[hide-dialog=true]:translate-y-0
           [&>button]:data-[dialogs-position=bottom]:rounded-b-none
           [&>button]:data-[dialogs-position=left]:rounded-l-none
           [&>button]:data-[dialogs-position=right]:rounded-r-none
@@ -114,7 +137,9 @@ export default function Streams(props: StreamsPageProps) {
               collapsedSize={0}
               collapsible
               data-resizing={resizing}
-              className="data-[resizing=true]:pointer-events-none"
+              className="
+              data-[resizing=true]:pointer-events-none
+              group-data-[dialogs-position=right]:mr-4"
             >
               <ChatsList resizing={resizing} />
             </Panel>
