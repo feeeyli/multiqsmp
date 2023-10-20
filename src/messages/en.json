@@ -71,6 +71,19 @@
           "gray-light": "Black and white (Light)",
           "system": "Follow system theme"
         },
+        "dialog-position": {
+          "label": "Menu Position",
+          "right": "Right",
+          "bottom": "Bottom",
+          "left": "Left"
+        },
+        "outro": {
+          "label": "Other",
+          "hide-dialog": "Hide menus."
+        }
+      },
+      "streamers": {
+        "title": "Streamers",
         "streams-avatar": {
           "label": "Streamers' avatars",
           "twitch": "Twitch profile",
@@ -81,6 +94,11 @@
           "label": "Live stream status",
           "offline": "Show if offline.",
           "noPlaying": "Show if playing QSMP."
+        },
+        "outro": {
+          "label": "Other",
+          "hide-offline": "Hide offline streamers.",
+          "hide-not-playing": "Hide streamers not playing QSMP."
         }
       },
       "streams": {
@@ -101,8 +119,8 @@
             }
           }
         },
-        "general": {
-          "label": "General",
+        "outro": {
+          "label": "Other",
           "start-muted": "Start live streams muted."
         }
       }

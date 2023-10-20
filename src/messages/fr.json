@@ -71,8 +71,21 @@
           "gray-light": "Noir et blanc (Clair)",
           "system": "Suivre le thème du système"
         },
+        "dialog-position": {
+          "label": "Position des menus",
+          "right": "Droite",
+          "bottom": "Bas",
+          "left": "Gauche"
+        },
+        "outro": {
+          "label": "Autre",
+          "hide-dialog": "Masquer les menus."
+        }
+      },
+      "streamers": {
+        "title": "Streamers",
         "streams-avatar": {
-          "label": "Avatars des streameurs",
+          "label": "Avatars des streamers",
           "twitch": "Profil Twitch",
           "skin": "Skin Minecraft",
           "both": "Les deux"
@@ -81,12 +94,17 @@
           "label": "État de la diffusion en direct",
           "offline": "Afficher s'il est hors ligne.",
           "noPlaying": "Afficher s'il joue à QSMP."
+        },
+        "outro": {
+          "label": "Autre",
+          "hide-offline": "Masquer les streameurs hors ligne.",
+          "hide-not-playing": "Masquer les streameurs qui ne jouent pas à QSMP."
         }
       },
       "streams": {
         "title": "Diffusions en Direct",
         "headers": {
-          "label": "Menus de diffusion en direct",
+          "label": "Menus de diffusions en direct",
           "always-show": "Garder le menu toujours ouvert.",
           "actions-order": {
             "label": "Boutons d'action",
@@ -101,8 +119,8 @@
             }
           }
         },
-        "general": {
-          "label": "Général",
+        "outro": {
+          "label": "Autre",
           "start-muted": "Démarrer les diffusions en direct en mode silencieux."
         }
       }

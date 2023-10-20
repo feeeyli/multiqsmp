@@ -71,29 +71,47 @@
           "gray-light": "Blanco y negro (claro)",
           "system": "Seguir el tema del sistema"
         },
+        "dialog-position": {
+          "label": "Posición de los menús",
+          "right": "Derecha",
+          "bottom": "Abajo",
+          "left": "Izquierda"
+        },
+        "outro": {
+          "label": "Otro",
+          "hide-dialog": "Ocultar menús."
+        }
+      },
+      "streamers": {
+        "title": "Streamers",
         "streams-avatar": {
-          "label": "Avatares de los streamers",
+          "label": "Avatar de los streamers",
           "twitch": "Perfil de Twitch",
           "skin": "Skin de Minecraft",
           "both": "Ambos"
         },
         "streams-status": {
-          "label": "Estado de la transmisión en vivo",
-          "offline": "Mostrar si está fuera de línea.",
-          "noPlaying": "Mostrar si está jugando QSMP."
+          "label": "Estado de las transmisiones en vivo",
+          "offline": "Mostrar si está offline.",
+          "noPlaying": "Mostrar si está jugando a QSMP."
+        },
+        "outro": {
+          "label": "Otro",
+          "hide-offline": "Ocultar streamers offlines.",
+          "hide-not-playing": "Ocultar streamers que no juegan a QSMP."
         }
       },
       "streams": {
         "title": "Transmisiones en Vivo",
         "headers": {
-          "label": "Menús de transmisión en vivo",
+          "label": "Menús de transmisiones en vivo",
           "always-show": "Mantener el menú siempre abierto.",
           "actions-order": {
             "label": "Botones de acción",
             "actions-labels": {
-              "mute": "Alternar sonido encendido/apagado",
-              "fullscreen": "Alternar pantalla completa",
-              "chat": "Alternar chat encendido/apagado",
+              "mute": "Activar/desactivar sonido",
+              "fullscreen": "Activar/desactivar pantalla completa",
+              "chat": "Activar/desactivar chat",
               "reload": "Recargar transmisión en vivo",
               "remove-stream": "Eliminar transmisión en vivo",
               "move-left": "Mover transmisión en vivo a la izquierda",
@@ -101,9 +119,9 @@
             }
           }
         },
-        "general": {
-          "label": "General",
-          "start-muted": "Iniciar transmisiones en vivo en modo silencioso."
+        "outro": {
+          "label": "Otro",
+          "start-muted": "Comenzar transmisiones en vivo en silencio."
         }
       }
     }
