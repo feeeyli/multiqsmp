@@ -19,11 +19,17 @@ import { useFavoriteListsContext } from './favorite-lists-context';
 // Scripts Imports
 import { sortStreamers } from '@/utils/sort';
 import { useTranslations } from 'next-intl';
+import { useSettingsContext } from '@/contexts/settings-context';
 
 type OnlineStreamerType = { twitchName: string; isPlayingQsmp: boolean };
 
 export const StreamersTab = () => {
   const t = useTranslations('streamers-dialog');
+  const [
+    {
+      streamers: { outro },
+    },
+  ] = useSettingsContext();
   const { selectedStreamers } = useStreamsSelectorDialogContext();
   const { streamers: favoritesList } = useFavoriteListsContext();
   const [onlineStreamers, setOnlineStreamers] = useState<OnlineStreamerType[]>(
@@ -67,14 +73,37 @@ export const StreamersTab = () => {
   const newParticipantsStreamers = STREAMERS.filter((item) =>
     newParticipants.includes(item.twitchName),
   );
+
+  const streamersWithHide = STREAMERS.filter((streamer) => {
+    const stream = onlineStreamers.find(
+      (online) =>
+        online.twitchName.toLocaleLowerCase() ===
+        streamer.twitchName.toLocaleLowerCase(),
+    );
+
+    if (
+      ['willyrex', 'vegetta777'].includes(streamer.twitchName) ||
+      selectedStreamers.value.includes(streamer.twitchName)
+    )
+      return true;
+
+    if (
+      (outro.hideOffline && !stream) ||
+      (outro.hideNotPlaying && !stream?.isPlayingQsmp && !!stream)
+    )
+      return false;
+
+    return true;
+  });
+
   const favoriteStreamers = sortStreamers(
-    STREAMERS.filter(
+    streamersWithHide.filter(
       (item) =>
         favoritesList.value.includes(item.twitchName) &&
         !newParticipants.includes(item.twitchName),
     ),
   );
-  const nonFavoriteStreamers = STREAMERS.filter(
+  const nonFavoriteStreamers = streamersWithHide.filter(
     (item) =>
       !favoritesList.value.includes(item.twitchName) &&
       !newParticipants.includes(item.twitchName),

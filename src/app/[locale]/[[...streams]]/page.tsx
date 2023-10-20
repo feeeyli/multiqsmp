@@ -23,6 +23,7 @@ import { parseChannels } from '@/utils/parseChannels';
 import { SettingsDialog } from '@/components/dialogs/settings-dialog';
 import { FAQDialog } from '@/components/dialogs/faq-dialog';
 import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
+import { useSettingsContext } from '@/contexts/settings-context';
 
 interface StreamsPageProps {
   params: {
@@ -36,6 +37,7 @@ export default function Streams(props: StreamsPageProps) {
   const { streams, chats } = useSearchParamsStates();
   const [resizing, setResizing] = useState(false);
   const [customGroups] = useCustomGroupsContext();
+  const [settings] = useSettingsContext();
   const router = useRouter();
 
   if (props.params.streams) {
@@ -60,7 +62,30 @@ export default function Streams(props: StreamsPageProps) {
       data-has-chats={chats.length > 0}
       className="relative flex h-screen max-h-screen w-full pr-8 data-[has-chats=true]:pr-10"
     >
-      <aside className="absolute right-0 z-10 flex h-full flex-col gap-2 py-6">
+      <aside
+        data-dialogs-position={settings.appearance.dialogTriggersPosition}
+        data-horizontal={
+          settings.appearance.dialogTriggersPosition === 'bottom'
+        }
+        className="
+          group
+          absolute
+          z-10
+          flex
+          flex-col
+          gap-2
+          data-[dialogs-position=bottom]:bottom-0
+          data-[dialogs-position=bottom]:right-0
+          data-[dialogs-position=left]:left-0
+          data-[dialogs-position=right]:right-0
+          data-[horizontal=true]:flex-row-reverse
+          data-[horizontal=false]:py-6
+          data-[horizontal=true]:px-3
+          [&>button]:data-[dialogs-position=bottom]:rounded-b-none
+          [&>button]:data-[dialogs-position=left]:rounded-l-none
+          [&>button]:data-[dialogs-position=right]:rounded-r-none
+        "
+      >
         <StreamsSelectorDialogProvider>
           <StreamsSelectorDialog />
         </StreamsSelectorDialogProvider>

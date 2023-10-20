@@ -77,7 +77,7 @@ export const OrganizeStreamsDialog = () => {
       }}
     >
       <DialogTrigger asChild>
-        <Button className="z-30 rounded-r-none px-3" size="sm">
+        <Button className="z-30 px-3" size="sm">
           <ListOrdered size="1rem" className="block text-primary-foreground" />
         </Button>
       </DialogTrigger>

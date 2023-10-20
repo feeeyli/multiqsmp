@@ -33,7 +33,7 @@ export const Streamer = (props: StreamerProps) => {
   const t = useTranslations('streamers-dialog');
   const [
     {
-      appearance: { streamersAvatar, streamStatus },
+      streamers: { streamersAvatar, streamStatus },
     },
   ] = useSettingsContext();
 

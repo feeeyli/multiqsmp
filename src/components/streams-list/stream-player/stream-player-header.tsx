@@ -1,5 +1,5 @@
 // React Imports
-import { useContext, useState } from 'react';
+import { ReactNode, useContext, useState } from 'react';
 
 // Next Imports
 import { useSearchParams } from 'next/navigation';
@@ -104,13 +104,14 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
     setStreams(newActivesStreams.join('/'));
   }
 
-  const headerActions = {
+  const headerActions: { [name: string]: ReactNode } = {
     mute: (
       <Button
         tabIndex={opened ? 0 : -1}
         onClick={() => streamPlayerControls.muted.set((old) => !old)}
         variant="stream-header"
         size="stream-header"
+        key="mute"
       >
         {streamPlayerControls.muted.value && (
           <VolumeX size="1rem" className="text-foreground" />
@@ -126,6 +127,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         onClick={() => streamPlayerControls.fullScreen.set((old) => !old)}
         variant="stream-header"
         size="stream-header"
+        key="fullscreen"
       >
         {streamPlayerControls.fullScreen.value && (
           <Minimize size="1rem" className="text-foreground" />
@@ -143,6 +145,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         size="stream-header"
         data-disabled={props.isYoutubeStream}
         className="data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
+        key="chat"
       >
         {isChatActive && (
           <MessageSquare size="1rem" className="text-foreground" />
@@ -168,6 +171,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         tabIndex={opened ? 0 : -1}
         size="stream-header"
         variant="stream-header"
+        key="reload"
       >
         <RefreshCcw
           data-refreshing={refreshing}
@@ -181,6 +185,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         tabIndex={opened ? 0 : -1}
         variant="stream-header"
         size="stream-header"
+        key="remove-stream"
       >
         <X size="1rem" className="text-foreground" />
       </Button>
@@ -191,6 +196,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         tabIndex={opened ? 0 : -1}
         variant="stream-header"
         size="stream-header"
+        key="move-left"
       >
         <ChevronsLeft size="1rem" className="text-foreground" />
       </Button>
@@ -201,6 +207,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         tabIndex={opened ? 0 : -1}
         variant="stream-header"
         size="stream-header"
+        key="move-right"
       >
         <ChevronsRight size="1rem" className="text-foreground" />
       </Button>

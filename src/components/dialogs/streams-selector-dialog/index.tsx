@@ -83,7 +83,7 @@ export const StreamsSelectorDialog = () => {
       }}
     >
       <DialogTrigger asChild>
-        <Button className="rounded-r-none px-3" size="sm">
+        <Button className="px-3" size="sm">
           <ArrowLeftRight
             size="1rem"
             className="block text-primary-foreground"

@@ -86,11 +86,18 @@ const headerItems: {
 
 const settingsFormSchema = z.object({
   appearance: z.object({
+    dialogTriggersPosition: z.enum(['right', 'bottom', 'left']),
     theme: z.enum(['dark', 'light', 'gray-dark', 'gray-light', 'system']),
+  }),
+  streamers: z.object({
     streamersAvatar: z.enum(['twitch', 'skin', 'both']),
     streamStatus: z.object({
       offline: z.boolean(),
       noPlaying: z.boolean(),
+    }),
+    outro: z.object({
+      hideOffline: z.boolean(),
+      hideNotPlaying: z.boolean(),
     }),
   }),
   streams: z.object({
@@ -127,7 +134,10 @@ export const SettingsDialog = () => {
       }}
     >
       <DialogTrigger asChild>
-        <Button className="mt-4 rounded-r-none px-3" size="sm">
+        <Button
+          className="mt-4 px-3 group-data-[dialogs-position=bottom]:mr-2.5 group-data-[dialogs-position=bottom]:mt-0"
+          size="sm"
+        >
           <Settings size="1rem" className="block text-primary-foreground" />
         </Button>
       </DialogTrigger>
@@ -192,11 +202,11 @@ export const SettingsDialog = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="appearance.streamersAvatar"
+                  name="appearance.dialogTriggersPosition"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        {t('form.appearance.streams-avatar.label')}
+                        {t('form.appearance.dialog-position.label')}
                       </FormLabel>
                       <Select
                         onValueChange={field.onChange}
@@ -206,20 +216,64 @@ export const SettingsDialog = () => {
                           <SelectTrigger>
                             <SelectValue
                               placeholder={t(
-                                'form.appearance.streams-avatar.label',
+                                'form.appearance.dialog-position.label',
+                              )}
+                            />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="right">
+                            {t('form.appearance.dialog-position.right')}
+                          </SelectItem>
+                          <SelectItem value="bottom">
+                            {t('form.appearance.dialog-position.bottom')}
+                          </SelectItem>
+                          <SelectItem value="left">
+                            {t('form.appearance.dialog-position.left')}
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <div>
+              <h3 className="mb-2 text-lg font-bold text-primary">
+                {t('form.streamers.title')}
+              </h3>
+              <div className="space-y-3">
+                <FormField
+                  control={form.control}
+                  name="streamers.streamersAvatar"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>
+                        {t('form.streamers.streams-avatar.label')}
+                      </FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue
+                              placeholder={t(
+                                'form.streamers.streams-avatar.label',
                               )}
                             />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
                           <SelectItem value="twitch">
-                            {t('form.appearance.streams-avatar.twitch')}
+                            {t('form.streamers.streams-avatar.twitch')}
                           </SelectItem>
                           <SelectItem value="skin">
-                            {t('form.appearance.streams-avatar.skin')}
+                            {t('form.streamers.streams-avatar.skin')}
                           </SelectItem>
                           <SelectItem value="both">
-                            {t('form.appearance.streams-avatar.both')}
+                            {t('form.streamers.streams-avatar.both')}
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -229,11 +283,11 @@ export const SettingsDialog = () => {
                 />
                 <div className="space-y-3">
                   <span className="text-sm">
-                    {t('form.appearance.streams-status.label')}
+                    {t('form.streamers.streams-status.label')}
                   </span>
                   <FormField
                     control={form.control}
-                    name="appearance.streamStatus.offline"
+                    name="streamers.streamStatus.offline"
                     render={({ field }) => (
                       <Button
                         variant="outline"
@@ -249,7 +303,7 @@ export const SettingsDialog = () => {
                               />
                             </FormControl>
                             <FormLabel className="!m-0">
-                              {t('form.appearance.streams-status.offline')}
+                              {t('form.streamers.streams-status.offline')}
                             </FormLabel>
                             <FormMessage />
                           </FormItem>
@@ -259,7 +313,7 @@ export const SettingsDialog = () => {
                   />
                   <FormField
                     control={form.control}
-                    name="appearance.streamStatus.noPlaying"
+                    name="streamers.streamStatus.noPlaying"
                     render={({ field }) => (
                       <Button
                         variant="outline"
@@ -275,7 +329,64 @@ export const SettingsDialog = () => {
                               />
                             </FormControl>
                             <FormLabel className="!m-0">
-                              {t('form.appearance.streams-status.noPlaying')}
+                              {t('form.streamers.streams-status.noPlaying')}
+                            </FormLabel>
+                            <FormMessage />
+                          </FormItem>
+                        </label>
+                      </Button>
+                    )}
+                  />
+                </div>
+                <div className="space-y-3">
+                  <span className="text-sm">
+                    {t('form.streamers.outro.label')}
+                  </span>
+                  <FormField
+                    control={form.control}
+                    name="streamers.outro.hideOffline"
+                    render={({ field }) => (
+                      <Button
+                        variant="outline"
+                        className="flex justify-start"
+                        asChild
+                      >
+                        <label>
+                          <FormItem className="flex items-center gap-2">
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <FormLabel className="!m-0">
+                              {t('form.streamers.outro.hide-offline')}
+                            </FormLabel>
+                            <FormMessage />
+                          </FormItem>
+                        </label>
+                      </Button>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="streamers.outro.hideNotPlaying"
+                    render={({ field }) => (
+                      <Button
+                        variant="outline"
+                        className="flex justify-start"
+                        asChild
+                      >
+                        <label>
+                          <FormItem className="flex items-center gap-2">
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <FormLabel className="!m-0">
+                              {t('form.streamers.outro.hide-not-playing')}
                             </FormLabel>
                             <FormMessage />
                           </FormItem>
@@ -359,40 +470,8 @@ export const SettingsDialog = () => {
                     </ToggleGroup.Root>
                   )}
                 />
-                {/* <FormField
-                  control={form.control}
-                  name="streams.headerItems"
-                  render={({ field }) => (
-                    <Reorder.Group
-                      values={field.value}
-                      axis="y"
-                      onReorder={console.log}
-                      className="flex flex-col gap-2"
-                    >
-                      {headerItems.map((item) => {
-                        return (
-                          <FormItem
-                            key={item.value}
-                            className="flex items-center gap-2"
-                          >
-                            <FormControl>
-                              <Reorder.Item value={item.value}>
-                                <FormLabel className="!m-0 inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-md border border-input bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground">
-                                  <item.icon size="1rem" />
-                                  {t(
-                                    `form.streams.headers.actions-order.actions-labels.${item.value}`,
-                                  )}
-                                </FormLabel>
-                              </Reorder.Item>
-                            </FormControl>
-                          </FormItem>
-                        );
-                      })}
-                    </Reorder.Group>
-                  )}
-                /> */}
                 <span className="block text-sm">
-                  {t('form.streams.general.label')}
+                  {t('form.streams.outro.label')}
                 </span>
                 <FormField
                   control={form.control}
@@ -412,7 +491,7 @@ export const SettingsDialog = () => {
                             />
                           </FormControl>
                           <FormLabel className="!m-0">
-                            {t('form.streams.general.start-muted')}
+                            {t('form.streams.outro.start-muted')}
                           </FormLabel>
                           <FormMessage />
                         </FormItem>
