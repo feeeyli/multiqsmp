@@ -13,6 +13,7 @@ import { useLocalStorage } from 'usehooks-ts';
 
 // Types Imports
 import { SettingsType } from '@/components/dialogs/settings-dialog';
+import { useTheme } from 'next-themes';
 
 const INITIAL_VALUE: SettingsType = {
   appearance: {
@@ -67,6 +68,16 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setSettings(extend({}, INITIAL_VALUE, settings));
   }, []);
+
+  const { setTheme } = useTheme();
+
+  const theme = settings.appearance.theme;
+
+  const updateTheme = useCallback(() => {
+    setTheme(theme);
+  }, [setTheme, theme]);
+
+  useEffect(updateTheme, [theme, updateTheme]);
 
   return (
     <SettingsContext.Provider value={[settings, setSettings]}>
