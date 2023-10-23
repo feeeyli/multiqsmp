@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 // Libs Imports
 import { NextIntlClientProvider } from 'next-intl';
 import { CustomGroupsProvider } from '@/contexts/custom-groups-context';
+import { EasterEggsProvider } from '@/contexts/easter-eggs-context';
 
 // Components Imports
 export const metadata: Metadata = {
@@ -38,7 +39,9 @@ export default async function RootLayout({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <CustomGroupsProvider>{children}</CustomGroupsProvider>
+      <CustomGroupsProvider>
+        <EasterEggsProvider>{children}</EasterEggsProvider>
+      </CustomGroupsProvider>
     </NextIntlClientProvider>
   );
 }

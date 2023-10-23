@@ -60,6 +60,7 @@ import {
   DiscardChangesDialogTrigger,
 } from './discard-changes-dialog';
 import { DialogClose } from '@radix-ui/react-dialog';
+import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 
 const headerItemsNames = z.enum([
   'mute',
@@ -121,6 +122,8 @@ export const SettingsDialog = () => {
     defaultValues: settings,
   });
   const [isOpen, setIsOpen] = useState(false);
+  const [{ cucurucho, active: easterEggs }, setEasterEggs] =
+    useEasterEggsContext();
 
   function onSubmit(values: SettingsType) {
     setSettings(values);
@@ -533,6 +536,29 @@ export const SettingsDialog = () => {
                 />
               </div>
             </div>
+            {easterEggs && (
+              <div>
+                <h3 className="mb-2 text-lg font-bold text-primary">???</h3>
+                <Button
+                  variant="outline"
+                  className="flex justify-start gap-2"
+                  asChild
+                >
+                  <label>
+                    <Checkbox
+                      checked={cucurucho}
+                      onCheckedChange={(checked) =>
+                        setEasterEggs((old) => ({
+                          ...old,
+                          cucurucho: !!checked,
+                        }))
+                      }
+                    />
+                    Cucurucho
+                  </label>
+                </Button>
+              </div>
+            )}
           </form>
         </Form>
         <DialogFooter className="flex gap-2">

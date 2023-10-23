@@ -57,7 +57,14 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          themes={['dark', 'light', 'gray-dark', 'gray-light']}
+          themes={[
+            'dark',
+            'light',
+            'gray-dark',
+            'gray-light',
+            'regret',
+            'code',
+          ]}
           enableSystem
         >
           <SettingsProvider>{children}</SettingsProvider>

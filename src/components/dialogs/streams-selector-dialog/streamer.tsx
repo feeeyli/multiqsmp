@@ -19,6 +19,7 @@ import { useStreamsSelectorDialogContext } from '@/components/dialogs/streams-se
 import { useFavoriteListsContext } from './tabs/favorite-lists-context';
 import { useSettingsContext } from '@/contexts/settings-context';
 import { getSkinHead } from '@/utils/getSkinHead';
+import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 
 interface StreamerProps {
   streamer: StreamerType;
@@ -39,6 +40,7 @@ export const Streamer = (props: StreamerProps) => {
 
   const { selectedStreamers } = useStreamsSelectorDialogContext();
   const { streamers: favoritesList } = useFavoriteListsContext();
+  const [{ cucurucho }] = useEasterEggsContext();
 
   return (
     /* TODO: ADD ARIA-LABEL (view doc)*/
@@ -81,7 +83,10 @@ export const Streamer = (props: StreamerProps) => {
           selectedStreamers.actions.toggleItem(props.streamer.twitchName, -1)
         }
         data-online={
-          !streamStatus.offline || props.isYoutubeStream || props.isOnline
+          !streamStatus.offline ||
+          props.isYoutubeStream ||
+          props.isOnline ||
+          cucurucho
         }
         asChild
       >
@@ -91,10 +96,15 @@ export const Streamer = (props: StreamerProps) => {
         >
           {streamersAvatar === 'twitch' && (
             <Image
-              src={props.streamer.avatarUrl}
+              src={
+                cucurucho
+                  ? 'https://i.imgur.com/c1Y9KUp.png'
+                  : props.streamer.avatarUrl
+              }
               alt={`${t('profile-image-alt')} ${props.streamer.displayName}`}
               width={96}
               height={96}
+              style={{ imageRendering: cucurucho ? 'pixelated' : 'auto' }}
               className="pointer-events-none h-20 w-20 select-none rounded-md group-data-[online=false]:grayscale sm:h-28 sm:w-28"
             />
           )}
@@ -110,12 +120,13 @@ export const Streamer = (props: StreamerProps) => {
                   }}
                 >
                   <Image
-                    src={avatar}
+                    src={cucurucho ? 'https://i.imgur.com/c1Y9KUp.png' : avatar}
                     alt={`${t('profile-image-alt')} ${
                       props.streamer.displayName
                     }`}
                     width={128}
                     height={128}
+                    style={{ imageRendering: cucurucho ? 'pixelated' : 'auto' }}
                     className="pointer-events-none aspect-square group-data-[online=false]:grayscale"
                   />
                 </picture>
@@ -125,22 +136,32 @@ export const Streamer = (props: StreamerProps) => {
           {streamersAvatar === 'both' && (
             <div className="relative">
               <Image
-                src={props.streamer.avatarUrl}
+                src={
+                  cucurucho
+                    ? 'https://i.imgur.com/c1Y9KUp.png'
+                    : props.streamer.avatarUrl
+                }
                 alt={`${t('profile-image-alt')} ${props.streamer.displayName}`}
                 width={96}
                 height={96}
+                style={{ imageRendering: cucurucho ? 'pixelated' : 'auto' }}
                 className="h-20 w-20 rounded-md group-data-[online=false]:grayscale sm:h-28 sm:w-28"
               />
               <div className="absolute bottom-1 right-1 flex flex-wrap items-center justify-center border-2 border-border">
                 {getSkinHead(props.streamer.twitchName).map((avatar) => (
                   <picture key={avatar} className="h-5 w-5 sm:h-7 sm:w-7">
                     <Image
-                      src={avatar}
+                      src={
+                        cucurucho ? 'https://i.imgur.com/c1Y9KUp.png' : avatar
+                      }
                       alt={`${t('profile-image-alt')} ${
                         props.streamer.displayName
                       }`}
                       width={128}
                       height={128}
+                      style={{
+                        imageRendering: cucurucho ? 'pixelated' : 'auto',
+                      }}
                       className="pointer-events-none aspect-square group-data-[online=false]:grayscale"
                     />
                   </picture>

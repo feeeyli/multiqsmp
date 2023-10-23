@@ -249,7 +249,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
       animate={alwaysShowHeader || opened ? 'opened' : 'closed'}
       variants={headerVariants}
       transition={{ width: { type: 'spring', bounce: 0.2, duration: 0.5 } }}
-      className="group/header dark absolute left-1 top-1 flex items-center overflow-hidden rounded-md bg-card/30"
+      className="group/header gray-dark absolute left-1 top-1 flex items-center overflow-hidden rounded-md bg-card/30"
     >
       {!alwaysShowHeader && (
         <Button

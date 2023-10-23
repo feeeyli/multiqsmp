@@ -24,6 +24,8 @@ import { SettingsDialog } from '@/components/dialogs/settings-dialog';
 import { FAQDialog } from '@/components/dialogs/faq-dialog';
 import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 import { useSettingsContext } from '@/contexts/settings-context';
+import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
+import { useKonamiCode } from '@/utils/useKonamiCode';
 
 interface StreamsPageProps {
   params: {
@@ -39,6 +41,11 @@ export default function Streams(props: StreamsPageProps) {
   const [customGroups] = useCustomGroupsContext();
   const [settings] = useSettingsContext();
   const router = useRouter();
+  const [_, setEasterEggs] = useEasterEggsContext();
+
+  useKonamiCode(() => {
+    setEasterEggs((old) => ({ ...old, active: true }));
+  });
 
   if (props.params.streams) {
     const [selectedChannels, , selectedGroups] = parseChannels(

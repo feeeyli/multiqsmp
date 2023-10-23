@@ -25,6 +25,7 @@ import { useFavoriteListsContext } from './tabs/favorite-lists-context';
 // Scripts Imports
 import { getSkinHead } from '@/utils/getSkinHead';
 import { EditGroupDialog } from '../edit-group-dialog';
+import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 
 interface GroupProps {
   group: GroupType;
@@ -38,6 +39,7 @@ export const Group = (props: GroupProps) => {
   const { groups: favoritesList } = useFavoriteListsContext();
 
   const t = useTranslations('streamers-dialog');
+  const [{ cucurucho }] = useEasterEggsContext();
 
   const cols =
     props.group.avatars.length === 1
@@ -96,11 +98,16 @@ export const Group = (props: GroupProps) => {
                   }}
                 >
                   <Image
-                    src={getSkinHead(avatar)[0]}
+                    src={
+                      cucurucho
+                        ? 'https://i.imgur.com/c1Y9KUp.png'
+                        : getSkinHead(avatar)[0]
+                    }
                     alt={`${t('profile-image-alt')} ${avatar}`}
                     width={128}
                     height={128}
-                    className="pointer-events-none aspect-square group-data-[online=false]:grayscale"
+                    style={{ imageRendering: cucurucho ? 'pixelated' : 'auto' }}
+                    className="pointer-events-none aspect-square"
                   />
                 </picture>
               ))}
