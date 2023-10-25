@@ -18,7 +18,7 @@ export const STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/9ff631ba-0389-4cd7-88fa-239a9969819f-profile_image-300x300.png',
   },
   {
-    twitchName: 'Foolish_Gamers',
+    twitchName: 'Foolish',
     displayName: 'Foolish',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/66e83125-195e-4431-bde8-89ac425a9038-profile_image-300x300.png',
