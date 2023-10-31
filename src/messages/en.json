@@ -166,5 +166,11 @@
         "content": "If you program and want to help, you can fork the repositories of the [standard version](http://github.com/feeeyli/multiqsmp) and the [legacy version](http://github.com/feeeyli/multiqsmp-legacy)."
       }
     }
+  },
+  "events-dialog": {
+    "title": "Next Events",
+    "next-event": "Next event on:",
+    "event-started": "The event has already started!",
+    "no-events": "No event scheduled!"
   }
 }

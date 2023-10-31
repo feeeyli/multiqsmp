@@ -166,5 +166,11 @@
         "content": "Si vous programmez et souhaitez aider, vous pouvez bifurquer les dépôts de la [version standard](http://github.com/feeeyli/multiqsmp) et de la [version héritée](http://github.com/feeeyli/multiqsmp-legacy)."
       }
     }
+  },
+  "events-dialog": {
+    "title": "Prochains événements",
+    "next-event": "Prochain événement le :",
+    "event-started": "L'événement a déjà commencé !",
+    "no-events": "Aucun événement n'est prévu !"
   }
 }

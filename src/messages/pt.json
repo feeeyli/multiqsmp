@@ -166,5 +166,11 @@
         "content": "Se você programa e deseja me ajudar, você pode fazer um fork dos repositórios da [versão padrão](http://github.com/feeeyli/multiqsmp) e da [versão beta](http://github.com/feeeyli/multiqsmp-beta)."
       }
     }
+  },
+  "events-dialog": {
+    "title": "Próximos Eventos",
+    "next-event": "Proximo evento em:",
+    "event-started": "O evento já começou!",
+    "no-events": "Nenhum evento programado!"
   }
 }

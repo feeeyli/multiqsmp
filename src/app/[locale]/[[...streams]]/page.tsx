@@ -26,6 +26,7 @@ import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 import { useSettingsContext } from '@/contexts/settings-context';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 import { useKonamiCode } from '@/utils/useKonamiCode';
+import { EventsDialog } from '@/components/dialogs/events-dialog';
 
 interface StreamsPageProps {
   params: {
@@ -121,6 +122,7 @@ export default function Streams(props: StreamsPageProps) {
         </StreamsSelectorDialogProvider>
         <OrganizeStreamsDialog />
         <SettingsDialog />
+        <EventsDialog />
         <FAQDialog />
       </aside>
       <PanelGroup direction={isDesktop ? 'horizontal' : 'vertical'}>
