@@ -32,12 +32,14 @@ export function EventsDialog() {
     })();
   }, []);
 
-  const futureEvents = events.filter((event) => {
-    const now = new Date().getTime();
-    const eventEnd = new Date(event.end).getTime();
+  const futureEvents = events
+    .filter((event) => {
+      const now = new Date().getTime();
+      const eventEnd = new Date(event.end).getTime();
 
-    return now < eventEnd;
-  });
+      return now < eventEnd;
+    })
+    .sort((a, b) => (a.start < b.start ? -1 : a.start > b.start ? 1 : 0));
 
   return (
     <Dialog>
