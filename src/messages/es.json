@@ -65,6 +65,7 @@
         "title": "Apariencia",
         "theme": {
           "label": "Tema",
+          "purgatory": "Purgatorio",
           "dark": "Colores predeterminados (oscuro)",
           "light": "Colores predeterminados (claro)",
           "gray-dark": "Blanco y negro (oscuro)",

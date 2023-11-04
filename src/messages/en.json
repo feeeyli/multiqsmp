@@ -65,6 +65,7 @@
         "title": "Appearance",
         "theme": {
           "label": "Theme",
+          "purgatory": "Purgatory",
           "dark": "Default colors (Dark)",
           "light": "Default colors (Light)",
           "gray-dark": "Black and white (Dark)",
