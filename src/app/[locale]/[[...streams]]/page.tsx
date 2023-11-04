@@ -122,7 +122,7 @@ export default function Streams(props: StreamsPageProps) {
         </StreamsSelectorDialogProvider>
         <OrganizeStreamsDialog />
         <SettingsDialog />
-        <EventsDialog />
+        {/* <EventsDialog /> */}
         <FAQDialog />
       </aside>
       <PanelGroup direction={isDesktop ? 'horizontal' : 'vertical'}>
