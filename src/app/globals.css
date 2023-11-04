@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 @layer base {
-  :root,
+  /*:root,
   .light {
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
@@ -49,9 +49,9 @@
     --border: 262 27.9% 16.9%;
     --input: 262 27.9% 16.9%;
     --ring: 262 54% 78%;
-  }
+  }*/
 
-  .regret {
+  .regret, :root, .light, .dark, .gray-light, .gray-dark {
     --background: 360 15% 12%;
     --foreground: 304 20% 98%;
     --card: 360 15% 12%;
@@ -73,7 +73,7 @@
     --ring: 346 76% 32%;
   }
 
-  .code {
+  /*.code {
     --background: 130 15% 3%;
     --foreground: 74 20% 98%;
     --card: 130 15% 12%;
@@ -138,7 +138,7 @@
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
-  }
+  }/*
 }
 
 @layer base {
