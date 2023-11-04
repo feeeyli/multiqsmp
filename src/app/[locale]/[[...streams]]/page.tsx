@@ -71,7 +71,6 @@ export default function Streams(props: StreamsPageProps) {
       data-hide-dialog={settings.appearance.hideDialog}
       data-dialogs-position={settings.appearance.dialogTriggersPosition}
       className="
-        purgatory
         group
         relative
         flex
