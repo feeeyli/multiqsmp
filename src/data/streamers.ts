@@ -6,12 +6,6 @@ export const STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/c2277621-ce23-4f16-b75e-1d12ef23b617-profile_image-300x300.png',
   },
   {
-    twitchName: 'dantdm',
-    displayName: 'DanTDM',
-    avatarUrl:
-      'https://static-cdn.jtvnw.net/jtv_user_pictures/47e8180c-729e-4b40-8637-247164dc846a-profile_image-300x300.png',
-  },
-  {
     twitchName: 'fitmc',
     displayName: 'FitMC',
     avatarUrl:
@@ -148,12 +142,6 @@ export const STREAMERS = [
     displayName: 'Roier',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/84138061-a22c-40ff-8ca4-fc41e70ff513-profile_image-300x300.png',
-  },
-  {
-    twitchName: 'elspreen',
-    displayName: 'SpreenDMC',
-    avatarUrl:
-      'https://static-cdn.jtvnw.net/jtv_user_pictures/d4885242-febf-4a11-a42a-a0ad52474ee2-profile_image-300x300.png',
   },
   {
     twitchName: 'rubius',

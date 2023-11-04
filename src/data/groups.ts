@@ -4,7 +4,6 @@ export const GROUPS = [
     simpleGroupName: 'english',
     members: [
       'BadBoyHalo',
-      'DanTDM',
       'FitMC',
       'Foolish',
       'Ironmouse',
@@ -20,7 +19,6 @@ export const GROUPS = [
     ],
     avatars: [
       'BadBoyHalo',
-      'dantdm',
       'fitmc',
       'Foolish',
       'ironmouse',
@@ -36,7 +34,6 @@ export const GROUPS = [
     ],
     twitchNames: [
       'BadBoyHalo',
-      'dantdm',
       'fitmc',
       'Foolish',
       'ironmouse',
@@ -65,7 +62,6 @@ export const GROUPS = [
       'Polispol',
       'Rivers',
       'Roier',
-      'SpreenDMC',
       'Rubius',
       'Vegetta',
       'Willyrex',
@@ -81,7 +77,6 @@ export const GROUPS = [
       'polispol1',
       'rivers_gg',
       'roier',
-      'elspreen',
       'rubius',
       'vegetta777',
       'willyrex',
@@ -97,7 +92,6 @@ export const GROUPS = [
       'polispol1',
       'rivers_gg',
       'roier',
-      'elspreen',
       'rubius',
       'vegetta777',
       'willyrex',

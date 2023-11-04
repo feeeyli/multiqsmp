@@ -1,10 +1,8 @@
 export const SKIN_HEADS = {
   BadBoyHalo:
     'https://s.namemc.com/2d/skin/face.png?id=bc613ffc443664bc&scale=32',
-  dantdm: 'https://s.namemc.com/2d/skin/face.png?id=57d617b25261b7a9&scale=32',
   fitmc: 'https://s.namemc.com/2d/skin/face.png?id=d7335abb103732a0&scale=32',
-  Foolish:
-    'https://s.namemc.com/2d/skin/face.png?id=dc4afe37442f06a0&scale=32',
+  Foolish: 'https://s.namemc.com/2d/skin/face.png?id=dc4afe37442f06a0&scale=32',
   ironmouse:
     'https://s.namemc.com/2d/skin/face.png?id=8a37e79888dcb5c7&scale=32',
   jaidenanimations:
@@ -41,8 +39,6 @@ export const SKIN_HEADS = {
   rivers_gg:
     'https://s.namemc.com/2d/skin/face.png?id=780ba1ca5ed1fbc7&scale=32',
   roier: 'https://s.namemc.com/2d/skin/face.png?id=30e7699886303b32&scale=32',
-  elspreen:
-    'https://s.namemc.com/2d/skin/face.png?id=2d7034609580890a&scale=32',
   rubius: 'https://s.namemc.com/2d/skin/face.png?id=5677d00fa1eeb6b0&scale=32',
   vegetta777:
     'https://s.namemc.com/2d/skin/face.png?id=5baab12d99d66840&scale=32',
