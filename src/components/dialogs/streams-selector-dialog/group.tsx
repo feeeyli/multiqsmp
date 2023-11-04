@@ -26,6 +26,8 @@ import { useFavoriteListsContext } from './tabs/favorite-lists-context';
 import { getSkinHead } from '@/utils/getSkinHead';
 import { EditGroupDialog } from '../edit-group-dialog';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
+import { cva } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
 
 interface GroupProps {
   group: GroupType;
@@ -33,6 +35,35 @@ interface GroupProps {
   favorite?: boolean;
   custom?: boolean;
 }
+
+const groupVariant = cva(
+  'group flex h-auto max-w-[6.25rem] flex-col items-center gap-2 p-2 sm:max-w-[8.25rem]',
+  {
+    variants: {
+      variant: {
+        default:
+          'hover:bg-secondary/30 data-[state=on]:border-primary data-[state=on]:bg-secondary/50',
+        red: 'bg-red-950/40 hover:bg-red-950/80 text-red-50 hover:text-red-50/80 border-red-900 data-[state=on]:border-red-500 data-[state=on]:bg-red-900/50',
+        blue: 'bg-blue-950/40 hover:bg-blue-950/80 text-blue-50 hover:text-blue-50/80 border-blue-900 data-[state=on]:border-blue-500 data-[state=on]:bg-blue-900/50',
+        green:
+          'bg-green-950/40 hover:bg-green-950/80 text-green-50 hover:text-green-50/80 border-green-900 data-[state=on]:border-green-500 data-[state=on]:bg-green-900/50',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  },
+);
+
+const teams: {
+  'Green Team': 'green';
+  'Red Team': 'red';
+  'Blue Team': 'blue';
+} = {
+  'Green Team': 'green',
+  'Red Team': 'red',
+  'Blue Team': 'blue',
+};
 
 export const Group = (props: GroupProps) => {
   const { selectedGroups } = useStreamsSelectorDialogContext();
@@ -86,7 +117,13 @@ export const Group = (props: GroupProps) => {
       >
         <Button
           variant="outline"
-          className="group flex h-auto max-w-[6.25rem] flex-col items-center gap-2 p-2 hover:bg-secondary/30 data-[state=on]:border-primary data-[state=on]:bg-secondary/50 sm:max-w-[8.25rem]"
+          className={cn(
+            groupVariant({
+              variant: teams[props.group.groupName as keyof typeof teams]
+                ? teams[props.group.groupName as keyof typeof teams]
+                : 'default',
+            }),
+          )}
         >
           <div className="flex h-20 w-20 items-center overflow-hidden rounded-xl sm:h-28 sm:w-28">
             <div className="flex max-h-24 w-full flex-wrap justify-center sm:max-h-32">

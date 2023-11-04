@@ -24,15 +24,26 @@ export const GroupsTab = () => {
   const { groups: favoritesList } = useFavoriteListsContext();
   const [customGroups] = useCustomGroupsContext();
 
-  const mergedGroups = sortGroups([...new Set([...GROUPS, ...customGroups])]);
+  const purgatoryGroups = GROUPS.filter((_, index) => index < 3);
+
+  const mergedGroups = sortGroups([
+    ...new Set([...GROUPS, ...customGroups, ...purgatoryGroups]),
+  ]);
 
   const favoriteGroups = mergedGroups.filter((item) =>
     favoritesList.value.includes(item.simpleGroupName),
   );
   const nonFavoriteGroups = GROUPS.filter(
-    (item) => !favoritesList.value.includes(item.simpleGroupName),
+    (item) =>
+      !favoritesList.value.includes(item.simpleGroupName) &&
+      !purgatoryGroups
+        .map((g) => g.simpleGroupName)
+        .includes(item.simpleGroupName),
   );
   const nonFavoriteCustomGroups = customGroups.filter(
+    (item) => !favoritesList.value.includes(item.simpleGroupName),
+  );
+  const nonFavoritePurgatoryGroups = purgatoryGroups.filter(
     (item) => !favoritesList.value.includes(item.simpleGroupName),
   );
 
@@ -54,9 +65,20 @@ export const GroupsTab = () => {
           />
         ))}
       </div>
-      {favoriteGroups.length > 0 && nonFavoriteGroups.length > 0 && (
-        <Separator />
-      )}
+      {favoriteGroups.length > 0 &&
+        (nonFavoritePurgatoryGroups.length > 0 ||
+          nonFavoriteGroups.length > 0) && <Separator />}
+      <div className="flex w-full flex-wrap justify-center gap-4">
+        {nonFavoritePurgatoryGroups.map((group) => (
+          <Group
+            key={group.groupName}
+            group={group}
+            selected={selectedGroups.value.includes(group.simpleGroupName)}
+          />
+        ))}
+      </div>
+      {nonFavoritePurgatoryGroups.length > 0 &&
+        nonFavoriteGroups.length > 0 && <Separator />}
       <div className="flex w-full flex-wrap justify-center gap-4">
         {nonFavoriteGroups.map((group) => (
           <Group
