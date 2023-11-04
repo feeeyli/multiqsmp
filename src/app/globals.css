@@ -5,7 +5,6 @@
 @tailwind utilities;
 
 @layer base {
-  /*:root,
   .light {
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
@@ -49,9 +48,10 @@
     --border: 262 27.9% 16.9%;
     --input: 262 27.9% 16.9%;
     --ring: 262 54% 78%;
-  }*/
+  }
 
-  .regret, :root, .light, .dark, .gray-light, .gray-dark {
+  :root,
+  .purgatory {
     --background: 360 15% 12%;
     --foreground: 304 20% 98%;
     --card: 360 15% 12%;
@@ -74,7 +74,7 @@
     --radius: 0.5rem;
   }
 
-  /*.code {
+  .code {
     --background: 130 15% 3%;
     --foreground: 74 20% 98%;
     --card: 130 15% 12%;
@@ -139,7 +139,7 @@
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
-  }*/
+  }
 }
 
 @layer base {
@@ -181,18 +181,5 @@
   .vertical-text {
     writing-mode: vertical-rl;
     text-orientation: mixed;
-  }
-
-  .purgatory:before {
-    content: ' ';
-    display: block;
-    position: absolute;
-    opacity: 0.03;
-    background-image: url('https://i.imgur.com/8joAr1H.png');
-    background-repeat: no-repeat;
-    background-position: 50% 0;
-    background-size: contain;
-    background-blend-mode: lighten;
-    @apply inset-0 bg-background;
   }
 }

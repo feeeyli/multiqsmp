@@ -64,9 +64,28 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
     'settings',
     INITIAL_VALUE,
   );
+  const [memory, setMemory] = useLocalStorage<{ setPurgatory: boolean }>(
+    'memory',
+    { setPurgatory: true },
+  );
 
   useEffect(() => {
-    setSettings(extend({}, INITIAL_VALUE, settings));
+    let themed = { ...settings };
+
+    if (
+      ['dark', 'light', 'gray-dark', 'gray-light'].includes(
+        settings.appearance.theme,
+      ) &&
+      memory.setPurgatory
+    ) {
+      themed.appearance.theme = 'purgatory';
+
+      setMemory({ setPurgatory: false });
+
+      window.location.reload();
+    }
+
+    setSettings(extend({}, INITIAL_VALUE, themed));
   }, []);
 
   const { setTheme } = useTheme();

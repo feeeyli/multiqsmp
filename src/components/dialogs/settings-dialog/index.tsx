@@ -87,7 +87,14 @@ const headerItems: {
 
 const settingsFormSchema = z.object({
   appearance: z.object({
-    theme: z.enum(['dark', 'light', 'gray-dark', 'gray-light', 'system']),
+    theme: z.enum([
+      'purgatory',
+      'dark',
+      'light',
+      'gray-dark',
+      'gray-light',
+      'system',
+    ]),
     dialogTriggersPosition: z.enum(['right', 'bottom', 'left']),
     hideDialog: z.boolean(),
   }),
@@ -183,6 +190,9 @@ export const SettingsDialog = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
+                          <SelectItem value="purgatory">
+                            {t('form.appearance.theme.purgatory')}
+                          </SelectItem>
                           <SelectItem value="dark">
                             {t('form.appearance.theme.dark')}
                           </SelectItem>
