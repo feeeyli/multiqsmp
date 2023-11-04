@@ -64,6 +64,7 @@ export default function RootLayout({
             'gray-light',
             'regret',
             'code',
+            'purgatory'
           ]}
           enableSystem
         >
