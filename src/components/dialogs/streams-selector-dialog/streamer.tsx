@@ -20,6 +20,9 @@ import { useFavoriteListsContext } from './tabs/favorite-lists-context';
 import { useSettingsContext } from '@/contexts/settings-context';
 import { getSkinHead } from '@/utils/getSkinHead';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
+import { cva } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
+import { GROUPS } from '@/data/groups';
 
 interface StreamerProps {
   streamer: StreamerType;
@@ -30,11 +33,34 @@ interface StreamerProps {
   isYoutubeStream: boolean;
 }
 
+const groupVariant = cva(
+  'group flex h-auto max-w-[6.25rem] flex-col items-center gap-2 p-2 sm:max-w-[8.25rem]',
+  {
+    variants: {
+      variant: {
+        default:
+          'hover:bg-secondary/30 data-[state=on]:border-primary data-[state=on]:bg-secondary/50',
+        red: 'bg-red-950/40 hover:bg-red-950/80 text-red-50 hover:text-red-50/80 border-red-900 data-[state=on]:border-red-500 data-[state=on]:bg-red-900/50',
+        blue: 'bg-blue-950/40 hover:bg-blue-950/80 text-blue-50 hover:text-blue-50/80 border-blue-900 data-[state=on]:border-blue-500 data-[state=on]:bg-blue-900/50',
+        green:
+          'bg-green-950/40 hover:bg-green-950/80 text-green-50 hover:text-green-50/80 border-green-900 data-[state=on]:border-green-500 data-[state=on]:bg-green-900/50',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  },
+);
+
 export const Streamer = (props: StreamerProps) => {
   const t = useTranslations('streamers-dialog');
   const [
     {
-      streamers: { streamersAvatar, streamStatus },
+      streamers: {
+        streamersAvatar,
+        streamStatus,
+        outro: { showTeam },
+      },
     },
   ] = useSettingsContext();
 
@@ -92,7 +118,23 @@ export const Streamer = (props: StreamerProps) => {
       >
         <Button
           variant="outline"
-          className="group flex h-auto max-w-[6.25rem] flex-col items-center gap-2 p-2 hover:bg-secondary/30 data-[state=on]:border-primary data-[state=on]:bg-secondary/50 sm:max-w-[8.25rem]"
+          className={cn(
+            groupVariant({
+              variant: (() => {
+                if (!showTeam) return 'default';
+
+                const team = GROUPS.filter((g) =>
+                  /(Green|Red|Blue) Team/g.test(g.groupName),
+                ).find((g) =>
+                  g.twitchNames.includes(props.streamer.twitchName),
+                );
+
+                if (!team) return 'default';
+
+                return team.simpleGroupName as 'green' | 'red' | 'blue';
+              })(),
+            }),
+          )}
         >
           {streamersAvatar === 'twitch' && (
             <Image

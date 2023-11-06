@@ -30,6 +30,7 @@ const INITIAL_VALUE: SettingsType = {
     outro: {
       hideOffline: false,
       hideNotPlaying: false,
+      showTeam: true,
     },
   },
   streams: {

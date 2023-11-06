@@ -107,6 +107,7 @@ const settingsFormSchema = z.object({
     outro: z.object({
       hideOffline: z.boolean(),
       hideNotPlaying: z.boolean(),
+      showTeam: z.boolean(),
     }),
   }),
   streams: z.object({
@@ -432,6 +433,32 @@ export const SettingsDialog = () => {
                             </FormControl>
                             <FormLabel className="!m-0">
                               {t('form.streamers.outro.hide-not-playing')}
+                            </FormLabel>
+                            <FormMessage />
+                          </FormItem>
+                        </label>
+                      </Button>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="streamers.outro.showTeam"
+                    render={({ field }) => (
+                      <Button
+                        variant="outline"
+                        className="purgatory flex justify-start"
+                        asChild
+                      >
+                        <label>
+                          <FormItem className="flex items-center gap-2">
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <FormLabel className="!m-0">
+                              {t('form.streamers.outro.show-team')}
                             </FormLabel>
                             <FormMessage />
                           </FormItem>
