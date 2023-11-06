@@ -99,7 +99,8 @@
         "outro": {
           "label": "Autre",
           "hide-offline": "Masquer les streameurs hors ligne.",
-          "hide-not-playing": "Masquer les streameurs qui ne jouent pas à QSMP."
+          "hide-not-playing": "Masquer les streameurs qui ne jouent pas à QSMP.",
+          "show-team": "Montrer la couleur de l'équipe du Purgatoire."
         }
       },
       "streams": {

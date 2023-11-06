@@ -100,7 +100,7 @@
           "label": "Outro",
           "hide-offline": "Esconder streamers offlines.",
           "hide-not-playing": "Esconder streamers sem jogar QSMP.",
-          "show-team": "Mostrar cor do time no Purgatório"
+          "show-team": "Mostrar a cor do time do Purgatório."
         }
       },
       "streams": {
