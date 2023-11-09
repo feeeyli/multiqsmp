@@ -23,6 +23,7 @@ import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { GROUPS } from '@/data/groups';
+import { getTeamByName } from '@/utils/getTeamByName';
 
 interface StreamerProps {
   streamer: StreamerType;
@@ -123,15 +124,7 @@ export const Streamer = (props: StreamerProps) => {
               variant: (() => {
                 if (!showTeam) return 'default';
 
-                const team = GROUPS.filter((g) =>
-                  /(Green|Red|Blue) Team/g.test(g.groupName),
-                ).find((g) =>
-                  g.twitchNames.includes(props.streamer.twitchName),
-                );
-
-                if (!team) return 'default';
-
-                return team.simpleGroupName as 'green' | 'red' | 'blue';
+                return getTeamByName(props.streamer.twitchName);
               })(),
             }),
           )}

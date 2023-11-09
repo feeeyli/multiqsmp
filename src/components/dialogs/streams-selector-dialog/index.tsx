@@ -1,7 +1,7 @@
 'use client';
 
 // React Imports
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 // Next Imports
 import Link from 'next/link';
@@ -44,6 +44,7 @@ import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 
 // Scripts Imports
 import { getDisplayName } from '@/utils/getDisplayName';
+import { getTeamByName } from '@/utils/getTeamByName';
 
 export const StreamsSelectorDialog = () => {
   const t = useTranslations('streamers-dialog');
@@ -131,9 +132,43 @@ export const StreamsSelectorDialog = () => {
             {[...selectedStreamers.value, ...selectedGroups.value].map((s) =>
               getDisplayName(s, customGroups),
             ).length > 0 &&
-              [...selectedStreamers.value, ...selectedGroups.value]
-                .map((s) => getDisplayName(s, customGroups))
-                .join(', ')}
+              [...selectedStreamers.value, ...selectedGroups.value].map(
+                (s, i) => {
+                  const teams: {
+                    'Green Team': 'green';
+                    'Red Team': 'red';
+                    'Blue Team': 'blue';
+                  } = {
+                    'Green Team': 'green',
+                    'Red Team': 'red',
+                    'Blue Team': 'blue',
+                  };
+
+                  return (
+                    <Fragment key={s}>
+                      {i > 0 && ', '}
+                      <span
+                        data-team={
+                          getTeamByName(s) ||
+                          teams[
+                            getDisplayName(
+                              s,
+                              customGroups,
+                            ) as keyof typeof teams
+                          ]
+                        }
+                        className="
+                        data-[team=blue]:text-blue-500
+                        data-[team=green]:text-green-500
+                        data-[team=red]:text-red-500
+                        "
+                      >
+                        {getDisplayName(s, customGroups)}
+                      </span>
+                    </Fragment>
+                  );
+                },
+              )}
           </p>
           <div className="flex w-full items-center !justify-between">
             <div>
