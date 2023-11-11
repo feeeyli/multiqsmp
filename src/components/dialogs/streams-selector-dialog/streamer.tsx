@@ -133,7 +133,7 @@ export const Streamer = (props: StreamerProps) => {
             <Image
               src={
                 cucurucho
-                  ? 'https://i.imgur.com/c1Y9KUp.png'
+                  ? 'https://static-cdn.jtvnw.net/jtv_user_pictures/90d53586-b538-4588-a03d-a67e9997dd9d-profile_image-300x300.png'
                   : props.streamer.avatarUrl
               }
               alt={`${t('profile-image-alt')} ${props.streamer.displayName}`}
