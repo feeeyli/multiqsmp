@@ -119,9 +119,7 @@ export const Group = (props: GroupProps) => {
           variant="outline"
           className={cn(
             groupVariant({
-              variant: teams[props.group.groupName as keyof typeof teams]
-                ? teams[props.group.groupName as keyof typeof teams]
-                : 'default',
+              variant: 'default',
             }),
           )}
         >

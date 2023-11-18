@@ -30,7 +30,6 @@ const INITIAL_VALUE: SettingsType = {
     outro: {
       hideOffline: false,
       hideNotPlaying: false,
-      showTeam: true,
     },
   },
   streams: {
@@ -67,21 +66,16 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
   );
   const [memory, setMemory] = useLocalStorage<{ setPurgatory: boolean }>(
     'memory',
-    { setPurgatory: true },
+    { setPurgatory: false },
   );
 
   useEffect(() => {
     let themed = { ...settings };
 
-    if (
-      ['dark', 'light', 'gray-dark', 'gray-light'].includes(
-        settings.appearance.theme,
-      ) &&
-      memory.setPurgatory
-    ) {
-      themed.appearance.theme = 'purgatory';
+    if (settings.appearance.theme === 'purgatory' && !memory.setPurgatory) {
+      themed.appearance.theme = 'dark';
 
-      setMemory({ setPurgatory: false });
+      setMemory({ setPurgatory: true });
 
       window.location.reload();
     }

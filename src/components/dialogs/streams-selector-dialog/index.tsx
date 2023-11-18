@@ -132,43 +132,9 @@ export const StreamsSelectorDialog = () => {
             {[...selectedStreamers.value, ...selectedGroups.value].map((s) =>
               getDisplayName(s, customGroups),
             ).length > 0 &&
-              [...selectedStreamers.value, ...selectedGroups.value].map(
-                (s, i) => {
-                  const teams: {
-                    'Green Team': 'green';
-                    'Red Team': 'red';
-                    'Blue Team': 'blue';
-                  } = {
-                    'Green Team': 'green',
-                    'Red Team': 'red',
-                    'Blue Team': 'blue',
-                  };
-
-                  return (
-                    <Fragment key={s}>
-                      {i > 0 && ', '}
-                      <span
-                        data-team={
-                          getTeamByName(s) ||
-                          teams[
-                            getDisplayName(
-                              s,
-                              customGroups,
-                            ) as keyof typeof teams
-                          ]
-                        }
-                        className="
-                        data-[team=blue]:text-blue-500
-                        data-[team=green]:text-green-500
-                        data-[team=red]:text-red-500
-                        "
-                      >
-                        {getDisplayName(s, customGroups)}
-                      </span>
-                    </Fragment>
-                  );
-                },
-              )}
+              [...selectedStreamers.value, ...selectedGroups.value]
+                .map((s) => getDisplayName(s, customGroups))
+                .join(', ')}
           </p>
           <div className="flex w-full items-center !justify-between">
             <div>

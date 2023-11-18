@@ -57,11 +57,7 @@ export const Streamer = (props: StreamerProps) => {
   const t = useTranslations('streamers-dialog');
   const [
     {
-      streamers: {
-        streamersAvatar,
-        streamStatus,
-        outro: { showTeam },
-      },
+      streamers: { streamersAvatar, streamStatus },
     },
   ] = useSettingsContext();
 
@@ -121,11 +117,7 @@ export const Streamer = (props: StreamerProps) => {
           variant="outline"
           className={cn(
             groupVariant({
-              variant: (() => {
-                if (!showTeam) return 'default';
-
-                return getTeamByName(props.streamer.twitchName);
-              })(),
+              variant: 'default',
             }),
           )}
         >
