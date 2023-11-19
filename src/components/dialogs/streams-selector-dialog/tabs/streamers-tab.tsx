@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { StreamResponseType } from '@/@types/StreamResponseType';
 
 // Data Imports
-import { STREAMERS } from '@/data/streamers';
+// import { STREAMERS } from '@/data/streamers';
 
 // Components Imports
 import { TabsContent } from '@/components/ui/tabs';
@@ -20,10 +20,15 @@ import { useFavoriteListsContext } from './favorite-lists-context';
 import { sortStreamers } from '@/utils/sort';
 import { useTranslations } from 'next-intl';
 import { useSettingsContext } from '@/contexts/settings-context';
+import { StreamerType } from '@/@types/data';
 
 type OnlineStreamerType = { twitchName: string; isPlayingQsmp: boolean };
 
-export const StreamersTab = () => {
+interface StreamersTabProps {
+  STREAMERS: StreamerType[];
+}
+
+export const StreamersTab = ({ STREAMERS }: StreamersTabProps) => {
   const t = useTranslations('streamers-dialog');
   const [
     {

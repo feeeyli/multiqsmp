@@ -8,8 +8,11 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
 // Datas Imports
-import { STREAMERS } from '@/data/streamers';
-import { GROUPS } from '@/data/groups';
+import {
+  STREAMERS as DEFAULT_STREAMERS,
+  PURGATORY_STREAMERS,
+} from '@/data/streamers';
+import { GROUPS as DEFAULT_GROUPS, PURGATORY_GROUPS } from '@/data/groups';
 
 // Libs Imports
 import { useTranslations } from 'next-intl';
@@ -46,13 +49,20 @@ import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 import { getDisplayName } from '@/utils/getDisplayName';
 import { getTeamByName } from '@/utils/getTeamByName';
 
-export const StreamsSelectorDialog = () => {
+interface StreamsSelectorDialogProps {
+  purgatory: boolean;
+}
+
+export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
   const t = useTranslations('streamers-dialog');
   const { selectedStreamers, selectedGroups } =
     useStreamsSelectorDialogContext();
   const searchParams = useSearchParams();
   const [tab, setTab] = useState<string>('streamers');
   const [customGroups] = useCustomGroupsContext();
+
+  const STREAMERS = props.purgatory ? PURGATORY_STREAMERS : DEFAULT_STREAMERS;
+  const GROUPS = props.purgatory ? PURGATORY_GROUPS : DEFAULT_GROUPS;
 
   const getWatchUrl = () => {
     const newUrl = new URLSearchParams();
@@ -115,8 +125,8 @@ export const StreamsSelectorDialog = () => {
             </TabsTrigger>
           </TabsList>
           <FavoriteListsProvider>
-            <StreamersTab />
-            <GroupsTab />
+            <StreamersTab STREAMERS={STREAMERS} />
+            <GroupsTab GROUPS={GROUPS} />
           </FavoriteListsProvider>
         </Tabs>
         <DialogFooter className="flex flex-col gap-2 sm:flex-col">

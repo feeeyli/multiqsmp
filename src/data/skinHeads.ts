@@ -1,4 +1,5 @@
 export const SKIN_HEADS = {
+  qsmp: 'https://s.namemc.com/i/0e8e0237bb86c1f5.png',
   BadBoyHalo:
     'https://s.namemc.com/2d/skin/face.png?id=bc613ffc443664bc&scale=32',
   fitmc: 'https://s.namemc.com/2d/skin/face.png?id=d7335abb103732a0&scale=32',

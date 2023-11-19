@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 // Libs Imports
 import { PanelGroup, Panel, PanelResizeHandle } from 'react-resizable-panels';
-import { useLocalStorage } from 'usehooks-ts';
+import { useLocalStorage, useWindowSize } from 'usehooks-ts';
 
 // Components Import
 import { OrganizeStreamsDialog } from '@/components/dialogs/organize-streams-dialog';
@@ -29,14 +29,12 @@ import { useKonamiCode } from '@/utils/useKonamiCode';
 import { EventsDialog } from '@/components/dialogs/events-dialog';
 
 interface StreamsPageProps {
-  params: {
-    locale: string;
-    streams?: string[];
-  };
+  purgatory: boolean;
 }
 
 export default function Streams(props: StreamsPageProps) {
-  const isDesktop = window.innerWidth > 640;
+  const { width: windowWidth } = useWindowSize();
+  const isDesktop = windowWidth > 640;
   const { streams, chats } = useSearchParamsStates();
   const [resizing, setResizing] = useState(false);
   const [customGroups] = useCustomGroupsContext();
@@ -48,21 +46,8 @@ export default function Streams(props: StreamsPageProps) {
     setEasterEggs((old) => ({ ...old, active: true }));
   });
 
-  if (props.params.streams) {
-    const [selectedChannels, , selectedGroups] = parseChannels(
-      props.params.streams || [],
-      customGroups,
-    );
-
-    router.replace(
-      `/${props.params.locale}?${
-        selectedChannels.length > 0
-          ? 'streamers=' + selectedChannels.join('/')
-          : ''
-      }${
-        selectedGroups.length > 0 ? '&groups=' + selectedGroups.join('/') : ''
-      }`,
-    );
+  if (props.purgatory) {
+    document.body.classList.add('purgatory');
   }
 
   return (
@@ -118,7 +103,7 @@ export default function Streams(props: StreamsPageProps) {
         "
       >
         <StreamsSelectorDialogProvider>
-          <StreamsSelectorDialog />
+          <StreamsSelectorDialog purgatory={props.purgatory} />
         </StreamsSelectorDialogProvider>
         <OrganizeStreamsDialog />
         <SettingsDialog />

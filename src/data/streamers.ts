@@ -1,3 +1,5 @@
+export const PURGATORY_STREAMERS = [];
+
 export const STREAMERS = [
   {
     twitchName: 'qsmp',

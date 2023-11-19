@@ -9,6 +9,7 @@ import { SettingsType } from '..';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { usePathname } from 'next/navigation';
 
 interface ChangeLanguageProps {
   form: UseFormReturn<SettingsType>;
@@ -66,6 +67,8 @@ const FLAGS = {
 export const ChangeLanguage = (props: ChangeLanguageProps) => {
   const t = useTranslations('change-language');
 
+  const pathname = usePathname();
+
   return (
     <DiscardChangesDialog form={props.form}>
       <DiscardChangesDialogTrigger>
@@ -80,7 +83,13 @@ export const ChangeLanguage = (props: ChangeLanguageProps) => {
               {t(props.lang)}
             </>
           ) : (
-            <Link href={'/' + props.lang}>
+            <Link
+              href={
+                '/' +
+                props.lang +
+                (pathname.includes('purgatory') ? '/purgatory' : '')
+              }
+            >
               {FLAGS[props.lang]}
               {t(props.lang)}
             </Link>
@@ -88,7 +97,17 @@ export const ChangeLanguage = (props: ChangeLanguageProps) => {
         </Button>
       </DiscardChangesDialogTrigger>
       <DiscardChangesDialogContent
-        confirm={<Link href={'/' + props.lang}>{t('confirm')}</Link>}
+        confirm={
+          <Link
+            href={
+              '/' +
+              props.lang +
+              (pathname.includes('purgatory') ? '/purgatory' : '')
+            }
+          >
+            {t('confirm')}
+          </Link>
+        }
       >
         {t('description').replace('((language))', t(props.lang))}
       </DiscardChangesDialogContent>

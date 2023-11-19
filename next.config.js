@@ -26,6 +26,12 @@ const nextConfig = {
         port: '',
         pathname: '/2d/skin/face.png',
       },
+      {
+        protocol: 'https',
+        hostname: 's.namemc.com',
+        port: '',
+        pathname: '/i/*.png',
+      },
     ],
   },
 };

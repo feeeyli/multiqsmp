@@ -39,10 +39,10 @@ export default function Home() {
       <header className="text-center">
         <h1 className="mb-2 text-3xl font-bold">MultiQSMP</h1>
         <div className="grid grid-cols-2 justify-items-center gap-4 gap-y-1">
-          <h2 className="text-primary">Bem-vindo</h2>
-          <h2 className="text-primary">Bienvenido</h2>
-          <h2 className="text-primary">Welcome</h2>
-          <h2 className="text-primary">Bienvenu</h2>
+          <span className="text-primary">Bem-vindo</span>
+          <span className="text-primary">Bienvenido</span>
+          <span className="text-primary">Welcome</span>
+          <span className="text-primary">Bienvenu</span>
         </div>
       </header>
       <main className="mt-8 flex-1">

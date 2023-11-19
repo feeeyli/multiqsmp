@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 
 // Data Imports
-import { GROUPS } from '@/data/groups';
+// import { GROUPS } from '@/data/groups';
 
 // Contexts Imports
 import { StreamsSelectorDialogContext } from '../streams-selector-dialog-context';
@@ -18,8 +18,13 @@ import { Separator } from '@/components/ui/separator';
 
 // Scripts Imports
 import { sortGroups } from '@/utils/sort';
+import { GroupType } from '@/@types/data';
 
-export const GroupsTab = () => {
+interface GroupsTabProps {
+  GROUPS: GroupType[];
+}
+
+export const GroupsTab = ({ GROUPS }: GroupsTabProps) => {
   const { selectedGroups } = useContext(StreamsSelectorDialogContext);
   const { groups: favoritesList } = useFavoriteListsContext();
   const [customGroups] = useCustomGroupsContext();
