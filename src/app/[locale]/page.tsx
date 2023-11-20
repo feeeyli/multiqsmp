@@ -1,3 +1,5 @@
 import Page from './streams';
 
-export default Page;
+export default function Streams() {
+  return <Page purgatory={false} />;
+}

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Page from '../streams';
+import Page from '../../[locale]/streams';
 
 export const metadata: Metadata = {
   title: 'MultiQSMP Purgatory',
