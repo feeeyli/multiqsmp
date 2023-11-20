@@ -9,8 +9,9 @@ import { EasterEggsProvider } from '@/contexts/easter-eggs-context';
 
 // Components Imports
 export const metadata: Metadata = {
-  title: 'MultiQSMP',
-  description: 'A website to watch all QSMP streamers at the same time.',
+  title: 'MultiQSMP Purgatory',
+  description:
+    'A website to watch all QSMP Purgatory streamers at the same time.',
 };
 
 export function generateStaticParams() {
