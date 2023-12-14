@@ -11,6 +11,12 @@ export const PURGATORY_STREAMERS = [
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/82db33be-a407-46d8-b6b6-3e85825160b8-profile_image-300x300.png',
   },
+  {
+    twitchName: 'peqitw',
+    displayName: 'Pac',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/10258fc3-5d91-4a7f-956d-f375d7e4490e-profile_image-300x300.png',
+  }
 ];
 
 export const STREAMERS = [
@@ -210,7 +216,7 @@ export const STREAMERS = [
     twitchName: 'peqitw',
     displayName: 'Pac (Tazercraft)',
     avatarUrl:
-      'https://static-cdn.jtvnw.net/jtv_user_pictures/267d5dd6-5710-4687-8464-858348cc1255-profile_image-300x300.png',
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/10258fc3-5d91-4a7f-956d-f375d7e4490e-profile_image-300x300.png',
   },
   {
     twitchName: 'tazercraft',
