@@ -45,7 +45,7 @@ export default function Home() {
           <span className="text-primary">Bienvenu</span>
         </div>
       </header>
-      <main className="mt-8 flex-1">
+      <main className="mt-8 flex flex-1 flex-col items-center gap-8">
         <div className="grid grid-cols-2 gap-8 gap-y-4">
           <Button
             variant="ghost"
@@ -121,6 +121,23 @@ export default function Home() {
             </Link>
           </Button>
         </div>
+        <Button
+          variant="outline"
+          className="default flex h-auto cursor-pointer gap-2 border-primary/10 bg-muted hover:bg-primary/10"
+          asChild
+        >
+          <Link href="/">
+            <Image
+              src="/icon.svg"
+              alt="Logo MultiQSMP"
+              width={96}
+              height={72}
+              className="w-6"
+            />
+            MultiQSMP
+            {/* <ExternalLink size="1rem" /> */}
+          </Link>
+        </Button>
       </main>
       <footer className="w-full justify-center p-8">
         <p className="text-cold-purple-200 text-center text-sm [text-wrap:balance]">

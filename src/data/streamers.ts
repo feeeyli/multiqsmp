@@ -1,4 +1,17 @@
-export const PURGATORY_STREAMERS = [];
+export const PURGATORY_STREAMERS = [
+  {
+    twitchName: 'tubbo',
+    displayName: 'Tubbo',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/905af69a-4fd8-42c7-b842-bf4ee4d51b3b-profile_image-300x300.png',
+  },
+  {
+    twitchName: 'TubboLIVE',
+    displayName: 'TubboLive',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/82db33be-a407-46d8-b6b6-3e85825160b8-profile_image-300x300.png',
+  },
+];
 
 export const STREAMERS = [
   {
