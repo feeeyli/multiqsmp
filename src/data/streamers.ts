@@ -22,6 +22,12 @@ export const PURGATORY_STREAMERS = [
     displayName: 'Tiba',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/89dba2f2-567d-4697-840f-1c3cc863e7f0-profile_image-300x300.png',
+  },
+  {
+    twitchName: 'soarinng',
+    displayName: 'Soarinng',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/b9306292-90e4-467a-940f-1719501c0fd0-profile_image-300x300.png',
   }
 ];
 
