@@ -62,16 +62,20 @@ export const GroupsTab = ({ GROUPS }: GroupsTabProps) => {
       {favoriteGroups.length > 0 && nonFavoriteGroups.length > 0 && (
         <Separator />
       )}
-      <div className="flex w-full flex-wrap justify-center gap-4">
-        {nonFavoriteGroups.map((group) => (
-          <Group
-            key={group.groupName}
-            group={group}
-            selected={selectedGroups.value.includes(group.simpleGroupName)}
-          />
-        ))}
-      </div>
-      <Separator />
+      {nonFavoriteGroups.length > 0 && (
+        <>
+          <div className="flex w-full flex-wrap justify-center gap-4">
+            {nonFavoriteGroups.map((group) => (
+              <Group
+                key={group.groupName}
+                group={group}
+                selected={selectedGroups.value.includes(group.simpleGroupName)}
+              />
+            ))}
+          </div>
+          <Separator />
+        </>
+      )}
       <div className="flex w-full flex-wrap justify-center gap-4">
         {nonFavoriteCustomGroups.map((group) => (
           <Group

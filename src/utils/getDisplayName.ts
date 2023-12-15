@@ -1,6 +1,12 @@
 import { GroupType } from '@/@types/data';
-import { GROUPS } from '@/data/groups';
-import { STREAMERS } from '@/data/streamers';
+import { GROUPS as DEFAULT_GROUPS, PURGATORY_GROUPS } from '@/data/groups';
+import {
+  STREAMERS as DEFAULT_STREAMERS,
+  PURGATORY_STREAMERS,
+} from '@/data/streamers';
+
+const GROUPS = [...DEFAULT_GROUPS, ...PURGATORY_GROUPS];
+const STREAMERS = [...DEFAULT_STREAMERS, ...PURGATORY_STREAMERS];
 
 export function getDisplayName(
   twitchName: string,

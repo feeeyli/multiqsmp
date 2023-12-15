@@ -54,11 +54,13 @@ export const StreamPlayer = ({ channel }: Props) => {
     >
       <StreamPlayerHeader
         channel={channel}
-        isYoutubeStream={getStreamUrl(channel).includes('youtube')}
+        isYoutubeStream={`https://player.twitch.tv/${channel}`.includes(
+          'youtube',
+        )}
       />
       <ReactPlayer
         className="!h-full !w-full"
-        url={getStreamUrl(channel)}
+        url={`https://player.twitch.tv/${channel}`}
         muted={streamPlayerControls.muted.value}
         playing
         controls

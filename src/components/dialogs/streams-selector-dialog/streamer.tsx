@@ -31,7 +31,7 @@ interface StreamerProps {
   favorite?: boolean;
   isOnline: boolean;
   isPlayingQsmp: boolean;
-  isYoutubeStream: boolean;
+  purgatory: boolean;
 }
 
 const groupVariant = cva(
@@ -87,17 +87,9 @@ export const Streamer = (props: StreamerProps) => {
           className="group-data-[favorite=true]:fill-rose-400"
         />
       </Button>
-      {!props.isPlayingQsmp &&
-        props.isOnline &&
-        !props.isYoutubeStream &&
-        streamStatus.noPlaying && (
-          <span className="absolute right-3 top-3 z-10 h-auto rounded-md bg-yellow-500 p-1.5 text-yellow-50 transition-all">
-            <Info size="1rem" />
-          </span>
-        )}
-      {props.isYoutubeStream && (
-        <span className="absolute right-3 top-3 z-10 h-auto rounded-md bg-red-500 p-1.5 text-red-50 transition-all">
-          <Youtube size="1rem" />
+      {!props.isPlayingQsmp && props.isOnline && streamStatus.noPlaying && (
+        <span className="absolute right-3 top-3 z-10 h-auto rounded-md bg-yellow-500 p-1.5 text-yellow-50 transition-all">
+          <Info size="1rem" />
         </span>
       )}
       <Toggle
@@ -105,12 +97,7 @@ export const Streamer = (props: StreamerProps) => {
         onPressedChange={() =>
           selectedStreamers.actions.toggleItem(props.streamer.twitchName, -1)
         }
-        data-online={
-          !streamStatus.offline ||
-          props.isYoutubeStream ||
-          props.isOnline ||
-          cucurucho
-        }
+        data-online={!streamStatus.offline || props.isOnline || cucurucho}
         asChild
       >
         <Button
@@ -198,6 +185,11 @@ export const Streamer = (props: StreamerProps) => {
           )}
           <span className="group-data-[online=false]:text-muted-foreground">
             {props.streamer.displayName}
+            {props.purgatory && (
+              <span className="ml-3 inline-block text-xs opacity-70">
+                #{String(props.streamer.invitation).padStart(3, '0')}
+              </span>
+            )}
           </span>
         </Button>
       </Toggle>

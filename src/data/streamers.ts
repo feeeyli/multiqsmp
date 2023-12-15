@@ -4,49 +4,57 @@ export const PURGATORY_STREAMERS = [
     displayName: 'Tubbo',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/905af69a-4fd8-42c7-b842-bf4ee4d51b3b-profile_image-300x300.png',
+    invitation: 1,
   },
   {
     twitchName: 'TubboLIVE',
     displayName: 'TubboLive',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/82db33be-a407-46d8-b6b6-3e85825160b8-profile_image-300x300.png',
+    invitation: 1,
   },
   {
     twitchName: 'peqitw',
     displayName: 'Pac',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/10258fc3-5d91-4a7f-956d-f375d7e4490e-profile_image-300x300.png',
+    invitation: 2,
   },
   {
     twitchName: 'tiba041',
     displayName: 'Tiba',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/89dba2f2-567d-4697-840f-1c3cc863e7f0-profile_image-300x300.png',
+    invitation: 3,
   },
   {
     twitchName: 'soarinng',
     displayName: 'Soarinng',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/b9306292-90e4-467a-940f-1719501c0fd0-profile_image-300x300.png',
+    invitation: 4,
   },
   {
     twitchName: 'BadBoyHalo',
     displayName: 'BadBoyHalo',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/c2277621-ce23-4f16-b75e-1d12ef23b617-profile_image-300x300.png',
-  },
-  {
-    twitchName: 'noblezito',
-    displayName: 'Noblezito',
-    avatarUrl:
-      'https://static-cdn.jtvnw.net/jtv_user_pictures/e7f16fd0-e883-4fc5-a821-34ee2d6c3b4d-profile_image-300x300.png',
+    invitation: 5,
   },
   {
     twitchName: 'ljoga',
     displayName: 'LJoga',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/5d465f44-69bf-4b06-b49f-b20944fe0bcf-profile_image-300x300.png',
-  }
+    invitation: 7,
+  },
+  {
+    twitchName: 'Sneegsnag',
+    displayName: 'Sneegsnag',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/5c63dae5-ad78-44d5-844c-85696e505864-profile_image-300x300.png',
+    invitation: 8,
+  },
 ];
 
 export const STREAMERS = [
@@ -210,13 +218,13 @@ export const STREAMERS = [
     twitchName: 'vegetta777',
     displayName: 'Vegetta',
     avatarUrl:
-      'https://static-cdn.jtvnw.net/jtv_user_pictures/vegetta777-profile_image-30828b653fac8621-300x300.jpeg',
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/bbe9b7f7-8c58-4734-adab-52c2c791b9a6-profile_image-300x300.png',
   },
   {
     twitchName: 'willyrex',
     displayName: 'Willyrex',
     avatarUrl:
-      'https://yt3.googleusercontent.com/5vqxHPajO65W8t2GULUSZq-J5MEqThFO1n4SakaWvmQHC8rUxgEec6fmqIGY0r06UWi7gVxY2wk=s176-c-k-c0x00ffffff-no-rj',
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/willyrex-profile_image-9b7848e2994dd433-300x300.png',
   },
   {
     twitchName: 'bagi',
@@ -252,7 +260,7 @@ export const STREAMERS = [
     twitchName: 'tazercraft',
     displayName: 'Tazercraft',
     avatarUrl:
-      'https://static-cdn.jtvnw.net/jtv_user_pictures/963f3857-ead0-4aa8-bd20-4bbe07514bc9-profile_image-300x300.png',
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/42b888b7-7ace-48b7-8ad4-d67cf49b5545-profile_image-300x300.png',
   },
   {
     twitchName: 'antoinedaniel',

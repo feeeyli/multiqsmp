@@ -26,9 +26,10 @@ type OnlineStreamerType = { twitchName: string; isPlayingQsmp: boolean };
 
 interface StreamersTabProps {
   STREAMERS: StreamerType[];
+  purgatory: boolean;
 }
 
-export const StreamersTab = ({ STREAMERS }: StreamersTabProps) => {
+export const StreamersTab = ({ STREAMERS, ...props }: StreamersTabProps) => {
   const t = useTranslations('streamers-dialog');
   const [
     {
@@ -43,11 +44,13 @@ export const StreamersTab = ({ STREAMERS }: StreamersTabProps) => {
 
   useEffect(() => {
     (async () => {
-      const twitchStreamers = STREAMERS.filter(
+      /*.filter(
         (streamer) => !['willyrex', 'vegetta777'].includes(streamer.twitchName),
-      )
-        .map((streamer) => `user_login=${streamer.twitchName}`)
-        .join('&');
+      )*/
+
+      const twitchStreamers = STREAMERS.map(
+        (streamer) => `user_login=${streamer.twitchName}`,
+      ).join('&');
 
       const response = await fetch(
         'https://api.twitch.tv/helix/streams?' + twitchStreamers,
@@ -145,10 +148,8 @@ export const StreamersTab = ({ STREAMERS }: StreamersTabProps) => {
                     )}
                     isOnline={!!stream}
                     isPlayingQsmp={!!stream?.isPlayingQsmp}
-                    isYoutubeStream={['willyrex', 'vegetta777'].includes(
-                      streamer.twitchName,
-                    )}
                     favorite={favoritesList.value.includes(streamer.twitchName)}
+                    purgatory={props.purgatory}
                   />
                 );
               })}
@@ -170,10 +171,8 @@ export const StreamersTab = ({ STREAMERS }: StreamersTabProps) => {
               selected={selectedStreamers.value.includes(streamer.twitchName)}
               isOnline={!!stream}
               isPlayingQsmp={!!stream?.isPlayingQsmp}
-              isYoutubeStream={['willyrex', 'vegetta777'].includes(
-                streamer.twitchName,
-              )}
               favorite
+              purgatory={props.purgatory}
             />
           );
         })}
@@ -195,9 +194,7 @@ export const StreamersTab = ({ STREAMERS }: StreamersTabProps) => {
               selected={selectedStreamers.value.includes(streamer.twitchName)}
               isOnline={!!stream}
               isPlayingQsmp={!!stream?.isPlayingQsmp}
-              isYoutubeStream={['willyrex', 'vegetta777'].includes(
-                streamer.twitchName,
-              )}
+              purgatory={props.purgatory}
             />
           );
         })}

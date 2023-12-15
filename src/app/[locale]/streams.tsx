@@ -27,9 +27,13 @@ import { useSettingsContext } from '@/contexts/settings-context';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 import { useKonamiCode } from '@/utils/useKonamiCode';
 import { EventsDialog } from '@/components/dialogs/events-dialog';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Eye, Globe2 } from 'lucide-react';
 
 interface StreamsPageProps {
   purgatory: boolean;
+  locale: string;
 }
 
 export default function Streams(props: StreamsPageProps) {
@@ -41,6 +45,7 @@ export default function Streams(props: StreamsPageProps) {
   const [settings] = useSettingsContext();
   const router = useRouter();
   const [_, setEasterEggs] = useEasterEggsContext();
+  const searchParams = useSearchParams();
 
   useKonamiCode(() => {
     setEasterEggs((old) => ({ ...old, active: true }));
@@ -48,6 +53,16 @@ export default function Streams(props: StreamsPageProps) {
 
   if (props.purgatory) {
     document.body.classList.add('purgatory');
+  }
+
+  function getOppositeUrl() {
+    if (!props.purgatory)
+      return `/purgatory/${props.locale}?${String(searchParams).replaceAll(
+        '%2F',
+        '/',
+      )}`;
+
+    return `/${props.locale}?${String(searchParams).replaceAll('%2F', '/')}`;
   }
 
   return (
@@ -97,6 +112,9 @@ export default function Streams(props: StreamsPageProps) {
           data-[horizontal=true]:px-3
           hover:data-[hide-dialog=true]:translate-x-0
           hover:data-[hide-dialog=true]:translate-y-0
+          [&>a]:data-[dialogs-position=bottom]:rounded-b-none
+          [&>a]:data-[dialogs-position=left]:rounded-l-none
+          [&>a]:data-[dialogs-position=right]:rounded-r-none
           [&>button]:data-[dialogs-position=bottom]:rounded-b-none
           [&>button]:data-[dialogs-position=left]:rounded-l-none
           [&>button]:data-[dialogs-position=right]:rounded-r-none
@@ -109,6 +127,30 @@ export default function Streams(props: StreamsPageProps) {
         <SettingsDialog />
         {/* <EventsDialog /> */}
         <FAQDialog />
+        <Button
+          className={`${
+            props.purgatory ? 'default' : 'purgatory'
+          } mt-4 px-3 group-data-[dialogs-position=bottom]:mr-2.5 group-data-[dialogs-position=bottom]:mt-0`}
+          size="sm"
+          asChild
+        >
+          <Link
+            href={getOppositeUrl()}
+            onClick={() => {
+              if (props.purgatory)
+                return document.body.classList.remove('purgatory');
+
+              return document.body.classList.add('purgatory');
+            }}
+          >
+            {props.purgatory && (
+              <Globe2 size="1rem" className="block text-primary-foreground" />
+            )}
+            {!props.purgatory && (
+              <Eye size="1rem" className="block text-primary-foreground" />
+            )}
+          </Link>
+        </Button>
       </aside>
       <PanelGroup direction={isDesktop ? 'horizontal' : 'vertical'}>
         <Panel

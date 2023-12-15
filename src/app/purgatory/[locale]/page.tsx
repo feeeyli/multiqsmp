@@ -1,5 +1,9 @@
 import Page from '../../[locale]/streams';
 
-export default function Purgatory() {
-  return <Page purgatory />;
+interface PageProps {
+  params: { locale: string };
+}
+
+export default function Streams({ params: { locale } }: PageProps) {
+  return <Page purgatory locale={locale} />;
 }

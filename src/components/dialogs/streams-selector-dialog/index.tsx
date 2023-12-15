@@ -125,7 +125,7 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
             </TabsTrigger>
           </TabsList>
           <FavoriteListsProvider>
-            <StreamersTab STREAMERS={STREAMERS} />
+            <StreamersTab STREAMERS={STREAMERS} purgatory={props.purgatory} />
             <GroupsTab GROUPS={GROUPS} />
           </FavoriteListsProvider>
         </Tabs>
