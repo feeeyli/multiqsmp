@@ -153,6 +153,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/4eecaab8-4de3-4bcc-b2b7-f3a03e8273a8-profile_image-300x300.png',
     invitation: 23,
   },
+  {
+    twitchName: 'natalan',
+    displayName: 'Natalan',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/1912ddb4-0963-40d1-a529-a96807ec2a8e-profile_image-300x300.png',
+    invitation: 25,
+  },
 ];
 
 export const STREAMERS = [
