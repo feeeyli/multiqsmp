@@ -21,6 +21,13 @@ export const PURGATORY_STREAMERS = [
     invitation: 2,
   },
   {
+    twitchName: 'aimsey',
+    displayName: 'Aimsey',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/e36ba903-c647-4533-a2d4-60260ae0bb32-profile_image-300x300.png',
+    invitation: 2,
+  },
+  {
     twitchName: 'soarinng',
     displayName: 'Soarinng',
     avatarUrl:

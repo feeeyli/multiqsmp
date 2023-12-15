@@ -1,4 +1,5 @@
 export const SKIN_HEADS = {
+  aimsey: 'https://s.namemc.com/2d/skin/face.png?id=7c02357fff44a3ed&scale=32',
   soarinng:
     'https://s.namemc.com/2d/skin/face.png?id=7e567a804815059f&scale=32',
   tiba041: 'https://s.namemc.com/2d/skin/face.png?id=2a2ef50f1f015f2e&scale=32',
