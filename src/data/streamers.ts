@@ -111,6 +111,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/460cdbe2-58df-4cdd-b04a-54a12e405707-profile_image-300x300.png',
     invitation: 18,
   },
+  {
+    twitchName: 'scottonauta',
+    displayName: 'Scottonauta',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/4334979d-fb63-4fc0-8494-52e8a7daf4c8-profile_image-300x300.png',
+    invitation: 20,
+  },
 ];
 
 export const STREAMERS = [
