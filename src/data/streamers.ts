@@ -112,6 +112,13 @@ export const PURGATORY_STREAMERS = [
     invitation: 18,
   },
   {
+    twitchName: 'axozer',
+    displayName: 'aXoZer',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/53765267-5c52-456d-a20d-069f656ec2bb-profile_image-300x300.png',
+    invitation: 19,
+  },
+  {
     twitchName: 'scottonauta',
     displayName: 'Scottonauta',
     avatarUrl:

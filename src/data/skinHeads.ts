@@ -4,6 +4,7 @@ export const SKIN_HEADS = {
     'https://s.namemc.com/2d/skin/face.png?id=cb215af7877586b4&scale=32',
   scottonauta:
     'https://s.namemc.com/2d/skin/face.png?id=1bc6a4fa5e1c221d&scale=32',
+  axozer: 'https://s.namemc.com/2d/skin/face.png?id=23f228a6d47074e3&scale=32',
   soarinng:
     'https://s.namemc.com/2d/skin/face.png?id=7e567a804815059f&scale=32',
   tiba041: 'https://s.namemc.com/2d/skin/face.png?id=2a2ef50f1f015f2e&scale=32',
