@@ -28,6 +28,13 @@ export const PURGATORY_STREAMERS = [
     invitation: 3,
   },
   {
+    twitchName: 'febatista',
+    displayName: 'Febatista',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/0129c7d8-8e76-4501-8bad-35e6c0d3c0f6-profile_image-300x300.png',
+    invitation: 4,
+  },
+  {
     twitchName: 'soarinng',
     displayName: 'Soarinng',
     avatarUrl:
