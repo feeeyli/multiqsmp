@@ -183,14 +183,14 @@ export const Streamer = (props: StreamerProps) => {
               </div>
             </div>
           )}
-          <span className="group-data-[online=false]:text-muted-foreground">
-            {props.streamer.displayName}
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 group-data-[online=false]:text-muted-foreground">
+            <span>{props.streamer.displayName}</span>
             {props.purgatory && (
-              <span className="ml-3 inline-block text-xs opacity-70">
+              <span className="text-xs leading-3 opacity-70">
                 #{String(props.streamer.invitation).padStart(3, '0')}
               </span>
             )}
-          </span>
+          </div>
         </Button>
       </Toggle>
     </div>
