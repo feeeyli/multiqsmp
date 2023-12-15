@@ -40,6 +40,12 @@ export const PURGATORY_STREAMERS = [
     displayName: 'Noblezito',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/e7f16fd0-e883-4fc5-a821-34ee2d6c3b4d-profile_image-300x300.png',
+  },
+  {
+    twitchName: 'ljoga',
+    displayName: 'LJoga',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/5d465f44-69bf-4b06-b49f-b20944fe0bcf-profile_image-300x300.png',
   }
 ];
 
