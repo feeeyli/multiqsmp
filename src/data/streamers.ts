@@ -28,6 +28,12 @@ export const PURGATORY_STREAMERS = [
     displayName: 'Soarinng',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/b9306292-90e4-467a-940f-1719501c0fd0-profile_image-300x300.png',
+  },
+  {
+    twitchName: 'BadBoyHalo',
+    displayName: 'BadBoyHalo',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/c2277621-ce23-4f16-b75e-1d12ef23b617-profile_image-300x300.png',
   }
 ];
 
