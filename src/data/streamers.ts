@@ -16,6 +16,13 @@ export const PURGATORY_STREAMERS = [
     displayName: 'Pac',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/10258fc3-5d91-4a7f-956d-f375d7e4490e-profile_image-300x300.png',
+  },
+  {
+    twitchName: 'tiba041',
+    displayName: 'Tiba',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/89dba2f2-567d-4697-840f-1c3cc863e7f0-profile_image-300x300.png
+',
   }
 ];
 
