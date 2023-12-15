@@ -107,6 +107,7 @@ const settingsFormSchema = z.object({
     outro: z.object({
       hideOffline: z.boolean(),
       hideNotPlaying: z.boolean(),
+      showOpposite: z.boolean(),
     }),
   }),
   streams: z.object({
@@ -121,7 +122,11 @@ const settingsFormSchema = z.object({
 
 export type SettingsType = z.infer<typeof settingsFormSchema>;
 
-export const SettingsDialog = () => {
+type SettingsDialogProps = {
+  purgatory: boolean;
+};
+
+export const SettingsDialog = (props: SettingsDialogProps) => {
   const t = useTranslations('settings-dialog');
   const [settings, setSettings] = useSettingsContext();
   const form = useForm<SettingsType>({
@@ -432,6 +437,35 @@ export const SettingsDialog = () => {
                             </FormControl>
                             <FormLabel className="!m-0">
                               {t('form.streamers.outro.hide-not-playing')}
+                            </FormLabel>
+                            <FormMessage />
+                          </FormItem>
+                        </label>
+                      </Button>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="streamers.outro.showOpposite"
+                    render={({ field }) => (
+                      <Button
+                        variant="outline"
+                        className="flex justify-start"
+                        asChild
+                      >
+                        <label>
+                          <FormItem className="flex items-center gap-2">
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <FormLabel className="!m-0">
+                              {props.purgatory &&
+                                t('form.streamers.outro.show-default')}
+                              {!props.purgatory &&
+                                t('form.streamers.outro.show-purgatory')}
                             </FormLabel>
                             <FormMessage />
                           </FormItem>

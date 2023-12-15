@@ -39,10 +39,10 @@ export default function Home() {
       <header className="text-center">
         <h1 className="mb-2 text-3xl font-bold">MultiQSMP Purgatory</h1>
         <div className="grid grid-cols-2 justify-items-center gap-4 gap-y-1">
-          <span className="text-primary">Bem-vindo</span>
-          <span className="text-primary">Bienvenido</span>
-          <span className="text-primary">Welcome</span>
-          <span className="text-primary">Bienvenu</span>
+          <span className="text-primary">Bem-vindo, pecador</span>
+          <span className="text-primary">Bienvenido, pecador</span>
+          <span className="text-primary">Welcome, sinner</span>
+          <span className="text-primary">Bienvenue, pécheur</span>
         </div>
       </header>
       <main className="mt-8 flex flex-1 flex-col items-center gap-8">

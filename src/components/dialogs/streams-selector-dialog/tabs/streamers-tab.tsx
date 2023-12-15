@@ -26,7 +26,6 @@ type OnlineStreamerType = { twitchName: string; isPlayingQsmp: boolean };
 
 interface StreamersTabProps {
   STREAMERS: StreamerType[];
-  purgatory: boolean;
 }
 
 export const StreamersTab = ({ STREAMERS, ...props }: StreamersTabProps) => {
@@ -149,7 +148,6 @@ export const StreamersTab = ({ STREAMERS, ...props }: StreamersTabProps) => {
                     isOnline={!!stream}
                     isPlayingQsmp={!!stream?.isPlayingQsmp}
                     favorite={favoritesList.value.includes(streamer.twitchName)}
-                    purgatory={props.purgatory}
                   />
                 );
               })}
@@ -172,7 +170,6 @@ export const StreamersTab = ({ STREAMERS, ...props }: StreamersTabProps) => {
               isOnline={!!stream}
               isPlayingQsmp={!!stream?.isPlayingQsmp}
               favorite
-              purgatory={props.purgatory}
             />
           );
         })}
@@ -194,7 +191,6 @@ export const StreamersTab = ({ STREAMERS, ...props }: StreamersTabProps) => {
               selected={selectedStreamers.value.includes(streamer.twitchName)}
               isOnline={!!stream}
               isPlayingQsmp={!!stream?.isPlayingQsmp}
-              purgatory={props.purgatory}
             />
           );
         })}

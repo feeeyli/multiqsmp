@@ -100,6 +100,8 @@
           "label": "Autre",
           "hide-offline": "Masquer les streameurs hors ligne.",
           "hide-not-playing": "Masquer les streameurs qui ne jouent pas à QSMP.",
+          "show-purgatory": "Afficher les streameurs du Purgatoire.",
+          "show-default": "Afficher les streameurs par défaut.",
           "show-team": "Montrer la couleur de l'équipe du Purgatoire."
         }
       },

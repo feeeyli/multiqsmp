@@ -124,7 +124,7 @@ export default function Streams(props: StreamsPageProps) {
           <StreamsSelectorDialog purgatory={props.purgatory} />
         </StreamsSelectorDialogProvider>
         <OrganizeStreamsDialog />
-        <SettingsDialog />
+        <SettingsDialog purgatory={props.purgatory} />
         {/* <EventsDialog /> */}
         <FAQDialog />
         <Button

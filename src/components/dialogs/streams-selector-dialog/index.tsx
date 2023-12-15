@@ -48,6 +48,7 @@ import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 // Scripts Imports
 import { getDisplayName } from '@/utils/getDisplayName';
 import { getTeamByName } from '@/utils/getTeamByName';
+import { useSettingsContext } from '@/contexts/settings-context';
 
 interface StreamsSelectorDialogProps {
   purgatory: boolean;
@@ -60,8 +61,25 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
   const searchParams = useSearchParams();
   const [tab, setTab] = useState<string>('streamers');
   const [customGroups] = useCustomGroupsContext();
+  const [
+    {
+      streamers: {
+        outro: { showOpposite },
+      },
+    },
+  ] = useSettingsContext();
 
-  const STREAMERS = props.purgatory ? PURGATORY_STREAMERS : DEFAULT_STREAMERS;
+  const STREAMERS = showOpposite
+    ? [
+        ...PURGATORY_STREAMERS,
+        ...DEFAULT_STREAMERS.filter(
+          (s) =>
+            !PURGATORY_STREAMERS.find((ps) => ps.twitchName === s.twitchName),
+        ),
+      ]
+    : props.purgatory
+    ? PURGATORY_STREAMERS
+    : DEFAULT_STREAMERS;
   const GROUPS = props.purgatory ? PURGATORY_GROUPS : DEFAULT_GROUPS;
 
   const getWatchUrl = () => {
@@ -125,7 +143,7 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
             </TabsTrigger>
           </TabsList>
           <FavoriteListsProvider>
-            <StreamersTab STREAMERS={STREAMERS} purgatory={props.purgatory} />
+            <StreamersTab STREAMERS={STREAMERS} />
             <GroupsTab GROUPS={GROUPS} />
           </FavoriteListsProvider>
         </Tabs>
