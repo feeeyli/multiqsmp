@@ -104,6 +104,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/fee53afc-157d-412e-8761-6f2f3dd741ef-profile_image-300x300.png',
     invitation: 8,
   },
+  {
+    twitchName: 'malena0202',
+    displayName: 'Malena0202',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/460cdbe2-58df-4cdd-b04a-54a12e405707-profile_image-300x300.png',
+    invitation: 2,
+  },
 ];
 
 export const STREAMERS = [
