@@ -1,4 +1,20 @@
 export const SKIN_HEADS = {
+  soarinng:
+    'https://s.namemc.com/2d/skin/face.png?id=7e567a804815059f&scale=32',
+  tiba041: 'https://s.namemc.com/2d/skin/face.png?id=2a2ef50f1f015f2e&scale=32',
+  duxo: 'https://s.namemc.com/2d/skin/face.png?id=36ac677f09b7aabf&scale=32',
+  ljoga: 'https://s.namemc.com/2d/skin/face.png?id=973be1dbd245328b&scale=32',
+  Sneegsnag:
+    'https://s.namemc.com/2d/skin/face.png?id=df8d2e7c1df37ae0&scale=32',
+  estailus:
+    'https://s.namemc.com/2d/skin/face.png?id=481c6f1daa852036&scale=32',
+  seapeekay:
+    'https://s.namemc.com/2d/skin/face.png?id=ab9fc351a844d81f&scale=32',
+  kennystream:
+    'https://s.namemc.com/2d/skin/face.png?id=5d417fcd129c111c&scale=32',
+  supninjaz:
+    'https://s.namemc.com/2d/skin/face.png?id=efb3a5d22f95e3b9&scale=32',
+  bastet: 'https://s.namemc.com/2d/skin/face.png?id=69b67bb41ed22260&scale=32',
   qsmp: 'https://s.namemc.com/i/0e8e0237bb86c1f5.png',
   BadBoyHalo:
     'https://s.namemc.com/2d/skin/face.png?id=bc613ffc443664bc&scale=32',
@@ -52,6 +68,8 @@ export const SKIN_HEADS = {
   mikethelink:
     'https://s.namemc.com/2d/skin/face.png?id=6bc1332059bb2e3c&scale=32',
   peqitw: 'https://s.namemc.com/2d/skin/face.png?id=06b352d72c7f7adf&scale=32',
+  tazercraft:
+    'https://s.namemc.com/2d/skin/face.png?id=6bc1332059bb2e3c&scale=32',
   pactw: 'https://s.namemc.com/2d/skin/face.png?id=06b352d72c7f7adf&scale=32',
   antoinedaniel:
     'https://s.namemc.com/2d/skin/face.png?id=9a5dc83f41384a35&scale=32',

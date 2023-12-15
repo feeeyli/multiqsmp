@@ -184,11 +184,11 @@ export const Streamer = (props: StreamerProps) => {
           )}
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 group-data-[online=false]:text-muted-foreground">
             <span>{props.streamer.displayName}</span>
-            {props.streamer.invitation && (
+            {/* {props.streamer.invitation && (
               <span className="text-xs leading-3 opacity-70">
                 #{String(props.streamer.invitation).padStart(3, '0')}
               </span>
-            )}
+            )} */}
           </div>
         </Button>
       </Toggle>
