@@ -125,6 +125,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/1917209e-3c4e-49c2-8c09-e4e77141e1e1-profile_image-300x300.png',
     invitation: 20,
   },
+  {
+    twitchName: 'jvnq',
+    displayName: 'Jvnq',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/7b6c75021a9aaa79-profile_image-300x300.png',
+    invitation: 21,
+  },
 ];
 
 export const STREAMERS = [
