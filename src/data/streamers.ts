@@ -132,6 +132,20 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/7b6c75021a9aaa79-profile_image-300x300.png',
     invitation: 21,
   },
+  {
+    twitchName: 'bagi',
+    displayName: 'Bagi',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/762a31e8-9829-4957-8073-dd85d67ad576-profile_image-300x300.png',
+    invitation: 22,
+  },
+  {
+    twitchName: 'etoiles',
+    displayName: 'Etoiles',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/4eecaab8-4de3-4bcc-b2b7-f3a03e8273a8-profile_image-300x300.png',
+    invitation: 23,
+  },
 ];
 
 export const STREAMERS = [
