@@ -25,91 +25,91 @@ export const PURGATORY_STREAMERS = [
     displayName: 'Aimsey',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/e36ba903-c647-4533-a2d4-60260ae0bb32-profile_image-300x300.png',
-    invitation: 2,
+    invitation: 3,
   },
   {
     twitchName: 'soarinng',
     displayName: 'Soarinng',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/b9306292-90e4-467a-940f-1719501c0fd0-profile_image-300x300.png',
-    invitation: 4,
+    invitation: 5,
   },
   {
     twitchName: 'tiba041',
     displayName: 'Tiba',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/89dba2f2-567d-4697-840f-1c3cc863e7f0-profile_image-300x300.png',
-    invitation: 3,
+    invitation: 6,
   },
   {
     twitchName: 'duxo',
     displayName: 'Duxo',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/5f5c5f86-1e9e-47bc-98dd-d6cfb00153d5-profile_image-300x300.png',
-    invitation: 3,
+    invitation: 7,
   },
   {
     twitchName: 'BadBoyHalo',
     displayName: 'BadBoyHalo',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/c2277621-ce23-4f16-b75e-1d12ef23b617-profile_image-300x300.png',
-    invitation: 5,
+    invitation: 8,
   },
   {
     twitchName: 'ljoga',
     displayName: 'LJoga',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/5d465f44-69bf-4b06-b49f-b20944fe0bcf-profile_image-300x300.png',
-    invitation: 7,
+    invitation: 10,
   },
   {
     twitchName: 'Sneegsnag',
     displayName: 'Sneegsnag',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/5c63dae5-ad78-44d5-844c-85696e505864-profile_image-300x300.png',
-    invitation: 8,
+    invitation: 11,
   },
   {
     twitchName: 'estailus',
     displayName: 'Estailus',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/7ee26850-100e-487b-81c7-cf0007764320-profile_image-300x300.png',
-    invitation: 8,
+    invitation: 12,
   },
   {
     twitchName: 'seapeekay',
     displayName: 'Seapeekay',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/seapeekay-profile_image-73c394da44f786c6-300x300.png',
-    invitation: 8,
+    invitation: 13,
   },
   {
     twitchName: 'kennystream',
     displayName: 'KennyStream',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/85a6dff5-2ad1-4866-9f64-eba43b0e4402-profile_image-300x300.png',
-    invitation: 8,
+    invitation: 14,
   },
   {
     twitchName: 'supninjaz',
     displayName: 'SupNinjaz',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/b78fea09-8a21-4aae-aebf-9c6f080652f0-profile_image-300x300.png',
-    invitation: 8,
+    invitation: 15,
   },
   {
     twitchName: 'bastet',
     displayName: 'Bastet',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/fee53afc-157d-412e-8761-6f2f3dd741ef-profile_image-300x300.png',
-    invitation: 8,
+    invitation: 16,
   },
   {
     twitchName: 'malena0202',
     displayName: 'Malena0202',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/460cdbe2-58df-4cdd-b04a-54a12e405707-profile_image-300x300.png',
-    invitation: 2,
+    invitation: 18,
   },
 ];
 
