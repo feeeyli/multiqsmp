@@ -122,7 +122,7 @@ export const PURGATORY_STREAMERS = [
     twitchName: 'scottonauta',
     displayName: 'Scott',
     avatarUrl:
-      'https://static-cdn.jtvnw.net/jtv_user_pictures/4334979d-fb63-4fc0-8494-52e8a7daf4c8-profile_image-300x300.png',
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/1917209e-3c4e-49c2-8c09-e4e77141e1e1-profile_image-300x300.png',
     invitation: 20,
   },
 ];
