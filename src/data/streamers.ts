@@ -167,6 +167,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/bc07744c-0200-4968-b6b3-b1ac6c89d42a-profile_image-300x300.png',
     invitation: 27,
   },
+  {
+    twitchName: 'crystalmolly',
+    displayName: 'CrystalMolly',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/f1f5921c-bf2e-4232-9610-b4e2fdd8a64d-profile_image-300x300.png',
+    // invitation: 27,
+  },
 ];
 
 export const STREAMERS = [
