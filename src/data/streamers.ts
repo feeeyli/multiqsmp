@@ -216,6 +216,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/5bb6bc7d-4371-4f10-8827-7dc925f83230-profile_image-300x300.png',
     invitation: 32,
   },
+  {
+    twitchName: 'mynthos',
+    displayName: 'Mynthos',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/c5be9ad8-95e9-4937-b4b7-e4dd460a6c36-profile_image-300x300.png',
+    invitation: 33,
+  },
 ];
 
 export const STREAMERS = [
