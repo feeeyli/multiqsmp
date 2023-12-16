@@ -49,6 +49,8 @@ export const SKIN_HEADS = {
     'https://s.namemc.com/2d/skin/face.png?id=d481f88700ce7d4e&scale=32',
   himarublack:
     'https://s.namemc.com/2d/skin/face.png?id=a060d937a9068d78&scale=32',
+  jinkiwinkki:
+    'https://s.namemc.com/2d/skin/face.png?id=0a300ede0136a613&scale=32',
 
   /* --- */
 

@@ -258,6 +258,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/1500f17d-0831-4304-9f6d-51ab95a61fad-profile_image-300x300.png',
     invitation: 37,
   },
+  {
+    twitchName: 'jinkiwinkki',
+    displayName: 'Jinki',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/e08bd224-64d0-4f1f-8473-1ff7b1dcf195-profile_image-300x300.png',
+    invitation: 39,
+  },
 ];
 
 export const STREAMERS = [
