@@ -189,11 +189,32 @@ export const PURGATORY_STREAMERS = [
     invitation: 28,
   },
   {
+    twitchName: 'capitangatoo',
+    displayName: 'CapitanGatoo',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/d24aadef-337e-4aa5-8682-d18d1359596c-profile_image-300x300.png',
+    invitation: 29,
+  },
+  {
     twitchName: 'g0ularte',
     displayName: 'Goularte',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/016626ec-56e6-40e1-9278-60e60508e099-profile_image-300x300.png',
     invitation: 30,
+  },
+  {
+    twitchName: 'guaxinim',
+    displayName: 'Guaxinim',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/3a88fb53-3d0b-45f5-8658-6bb6b49575d4-profile_image-300x300.png',
+    invitation: 31,
+  },
+  {
+    twitchName: 'gabepeixe',
+    displayName: 'Gabepeixe',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/5bb6bc7d-4371-4f10-8827-7dc925f83230-profile_image-300x300.png',
+    invitation: 32,
   },
 ];
 
