@@ -34,14 +34,12 @@ export const SKIN_HEADS = {
   capitangatoo:
     'https://s.namemc.com/2d/skin/face.png?id=0de8acb0aa669646&scale=32',
   g0ularte:
-    'https://s.namemc.com/2d/skin/face.png?id=b06c5744493092c6&scale=32',
+    'https://s.namemc.com/2d/skin/face.png?id=7ef24d5c6f783067&scale=32',
   guaxinim:
     'https://s.namemc.com/2d/skin/face.png?id=77dfc1ab6dec4d13&scale=32',
   gabepeixe:
     'https://s.namemc.com/2d/skin/face.png?id=c8d611085040019e&scale=32',
   mynthos: 'https://s.namemc.com/2d/skin/face.png?id=c20c7ad2af0d7fea&scale=32',
-  jinkiwinkki:
-    'https://s.namemc.com/2d/skin/face.png?id=0a300ede0136a613&scale=32',
   qsmp: 'https://s.namemc.com/i/0e8e0237bb86c1f5.png',
   BadBoyHalo:
     'https://s.namemc.com/2d/skin/face.png?id=bc613ffc443664bc&scale=32',
