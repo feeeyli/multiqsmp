@@ -112,6 +112,13 @@ export const PURGATORY_STREAMERS = [
     invitation: 16,
   },
   {
+    twitchName: 'rodezel',
+    displayName: 'Rodezel',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/681a6843-cc35-4361-b567-fe037632ba2b-profile_image-300x300.png',
+    invitation: 17,
+  },
+  {
     twitchName: 'malena0202',
     displayName: 'Malena0202',
     avatarUrl:
