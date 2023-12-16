@@ -230,6 +230,20 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/bc85ed0b-a9db-428b-b545-18b0e6d0c3ba-profile_image-300x300.png',
     invitation: 34,
   },
+  {
+    twitchName: 'wuant',
+    displayName: 'Wuant',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/cc2eca81-9d08-4945-bf84-abf8f2f8c65c-profile_image-300x300.png',
+    invitation: 35,
+  },
+  {
+    twitchName: 'theguill84',
+    displayName: 'Guill',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/a88bb6b7-c7c2-489c-9500-7631b31f94ec-profile_image-300x300.png',
+    invitation: 36,
+  },
 ];
 
 export const STREAMERS = [

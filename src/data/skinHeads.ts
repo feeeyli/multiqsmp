@@ -42,6 +42,12 @@ export const SKIN_HEADS = {
   mynthos: 'https://s.namemc.com/2d/skin/face.png?id=c20c7ad2af0d7fea&scale=32',
   cherry_rar:
     'https://s.namemc.com/2d/skin/face.png?id=fd076f165b98eb01&scale=32',
+  wuant: 'https://s.namemc.com/2d/skin/face.png?id=e02513c340a11e08&scale=32',
+  theguill84:
+    'https://s.namemc.com/2d/skin/face.png?id=d481f88700ce7d4e&scale=32',
+
+  /* --- */
+
   qsmp: 'https://s.namemc.com/i/0e8e0237bb86c1f5.png',
   BadBoyHalo:
     'https://s.namemc.com/2d/skin/face.png?id=bc613ffc443664bc&scale=32',
