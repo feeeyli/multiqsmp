@@ -34,7 +34,7 @@ export const SKIN_HEADS = {
   foioguto:
     'https://s.namemc.com/2d/skin/face.png?id=fcec3b87bbc4df9e&scale=32',
   capitangatoo:
-    'https://s.namemc.com/2d/skin/face.png?id=0de8acb0aa669646&scale=32',
+    'https://s.namemc.com/2d/skin/face.png?id=a4a68f76f278e6b2&scale=32',
   g0ularte:
     'https://s.namemc.com/2d/skin/face.png?id=7ef24d5c6f783067&scale=32',
   guaxinim:
