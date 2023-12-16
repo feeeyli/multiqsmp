@@ -5,7 +5,10 @@ import { useEffect, useState } from 'react';
 import { StreamResponseType } from '@/@types/StreamResponseType';
 
 // Data Imports
-// import { STREAMERS } from '@/data/streamers';
+import {
+  STREAMERS as DEFAULT_STREAMERS,
+  PURGATORY_STREAMERS,
+} from '@/data/streamers';
 
 // Components Imports
 import { TabsContent } from '@/components/ui/tabs';
@@ -28,7 +31,10 @@ interface StreamersTabProps {
   STREAMERS: StreamerType[];
 }
 
-export const StreamersTab = ({ STREAMERS, ...props }: StreamersTabProps) => {
+export const StreamersTab = ({
+  STREAMERS: STREAMERS_LIST,
+  ...props
+}: StreamersTabProps) => {
   const t = useTranslations('streamers-dialog');
   const [
     {
@@ -40,6 +46,16 @@ export const StreamersTab = ({ STREAMERS, ...props }: StreamersTabProps) => {
   const [onlineStreamers, setOnlineStreamers] = useState<OnlineStreamerType[]>(
     [],
   );
+
+  const SELECTED_STREAMERS = [
+    ...new Set([...DEFAULT_STREAMERS, ...PURGATORY_STREAMERS]),
+  ].filter(
+    (s) =>
+      selectedStreamers.value.includes(s.twitchName) &&
+      !STREAMERS_LIST.find((st) => st.twitchName === s.twitchName),
+  );
+
+  const STREAMERS = [...new Set([...SELECTED_STREAMERS, ...STREAMERS_LIST])];
 
   useEffect(() => {
     (async () => {
