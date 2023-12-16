@@ -265,6 +265,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/e08bd224-64d0-4f1f-8473-1ff7b1dcf195-profile_image-300x300.png',
     invitation: 39,
   },
+  {
+    twitchName: 'shubble',
+    displayName: 'Shubble',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/da12111f-cbce-4e83-8323-89a81388011c-profile_image-300x300.png',
+    invitation: 39,
+  },
 ];
 
 export const STREAMERS = [
