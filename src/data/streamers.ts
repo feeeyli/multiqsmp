@@ -175,6 +175,13 @@ export const PURGATORY_STREAMERS = [
     invitation: 25,
   },
   {
+    twitchName: 'jimmyboyyy',
+    displayName: 'JimmyBoyy',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/7b605ae5-525e-44b1-8335-0ff05873cdc2-profile_image-300x300.png',
+    invitation: 26,
+  },
+  {
     twitchName: 'vgumiho',
     displayName: 'vGumiho',
     avatarUrl:
