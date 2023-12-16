@@ -56,6 +56,8 @@ export const SKIN_HEADS = {
     'https://s.namemc.com/2d/skin/face.png?id=023bc964b5d02697&scale=32',
   jackmanifoldtv:
     'https://s.namemc.com/2d/skin/face.png?id=2baa5d8557afc01b&scale=32',
+  Barcagamer:
+    'https://s.namemc.com/2d/skin/face.png?id=34734fa1c9976055&scale=32',
 
   /* --- */
 

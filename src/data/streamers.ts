@@ -286,6 +286,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/f7bfa0ca-e9ec-4ca6-935a-a9b6c5c8f651-profile_image-300x300.png',
     invitation: 42,
   },
+  {
+    twitchName: 'Barcagamer',
+    displayName: 'BarcaGamer',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/33e6b1d6-9dc5-4b6b-8d14-9ccb6b6d409d-profile_image-300x300.png',
+    invitation: 43,
+  },
 ];
 
 export const STREAMERS = [
