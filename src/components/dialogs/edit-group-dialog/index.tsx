@@ -2,11 +2,14 @@
 import { useState } from 'react';
 
 // Types Imports
-import { GroupType } from '@/@types/data';
+import { GroupType, StreamerType } from '@/@types/data';
 
 // Datas Imports
 import { GROUPS } from '@/data/groups';
-import { STREAMERS } from '@/data/streamers';
+import {
+  STREAMERS as DEFAULT_STREAMERS,
+  PURGATORY_STREAMERS,
+} from '@/data/streamers';
 
 // Libs Imports
 import { useTranslations } from 'next-intl';
@@ -41,9 +44,13 @@ import { useFavoriteListsContext } from '../streams-selector-dialog/tabs/favorit
 
 interface EditGroupDialog {
   group: GroupType;
+  STREAMERS: StreamerType[];
 }
 
-export const EditGroupDialog = (props: EditGroupDialog) => {
+export const EditGroupDialog = ({
+  STREAMERS: STREAMERS_LIST,
+  ...props
+}: EditGroupDialog) => {
   const t = useTranslations('edit-group-dialog');
   const [customGroups, setCustomGroups] = useCustomGroupsContext();
   const { groups: favoriteGroups } = useFavoriteListsContext();
@@ -61,6 +68,16 @@ export const EditGroupDialog = (props: EditGroupDialog) => {
     .map((cg) => cg.simpleGroupName)
     .filter((cg) => cg !== props.group.simpleGroupName)
     .includes(groupName.toLocaleLowerCase().replaceAll(' ', '-'));
+
+  const STREAMERS_FROM_GROUP = [
+    ...new Set([...DEFAULT_STREAMERS, ...PURGATORY_STREAMERS]),
+  ].filter(
+    (s) =>
+      props.group.twitchNames.includes(s.twitchName) &&
+      !STREAMERS_LIST.find((st) => st.twitchName === s.twitchName),
+  );
+
+  const STREAMERS = [...new Set([...STREAMERS_FROM_GROUP, ...STREAMERS_LIST])];
 
   return (
     <Dialog

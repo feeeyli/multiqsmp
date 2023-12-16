@@ -2,11 +2,14 @@
 import { useState } from 'react';
 
 // Types Imports
-import { GroupType } from '@/@types/data';
+import { GroupType, StreamerType } from '@/@types/data';
 
 // Datas Imports
-import { GROUPS } from '@/data/groups';
-import { STREAMERS } from '@/data/streamers';
+import { GROUPS as DEFAULT_GROUPS, PURGATORY_GROUPS } from '@/data/groups';
+import {
+  STREAMERS as DEFAULT_STREAMERS,
+  PURGATORY_STREAMERS,
+} from '@/data/streamers';
 
 // Libs Imports
 import { useTranslations } from 'next-intl';
@@ -37,14 +40,23 @@ import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 // Scripts Imports
 import { getDisplayName } from '@/utils/getDisplayName';
 import { getAvatarsList } from '@/utils/getAvatarsList';
+import { useSettingsContext } from '@/contexts/settings-context';
 
-export const CreateGroupDialog = () => {
+type CreateGroupDialogProps = {
+  purgatory: boolean;
+  STREAMERS: StreamerType[];
+};
+
+export const CreateGroupDialog = ({STREAMERS, ...props}: CreateGroupDialogProps) => {
   const t = useTranslations('create-group-dialog');
   const [selectedGroupStreamers, { updateList: setSelectedGroupStreamers }] =
     useCreateGroupDialogContext();
   const [search, setSearch] = useState('');
   const [groupName, setGroupName] = useState('');
   const [customGroups, setCustomGroups] = useCustomGroupsContext();
+  const [{ streamers: { outro: { showOpposite } } }] = useSettingsContext()
+
+  const GROUPS = [...DEFAULT_GROUPS, ...PURGATORY_GROUPS];
 
   const mergedGroups = [...new Set([...GROUPS, ...customGroups])];
 

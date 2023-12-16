@@ -144,7 +144,7 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
           </TabsList>
           <FavoriteListsProvider>
             <StreamersTab STREAMERS={STREAMERS} />
-            <GroupsTab GROUPS={GROUPS} />
+            <GroupsTab GROUPS={GROUPS} STREAMERS={STREAMERS} purgatory={props.purgatory} />
           </FavoriteListsProvider>
         </Tabs>
         <DialogFooter className="flex flex-col gap-2 sm:flex-col">

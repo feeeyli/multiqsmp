@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 // Types Imports
-import { GroupType } from '@/@types/data';
+import { GroupType, StreamerType } from '@/@types/data';
 
 // Icons Imports
 import { Heart } from 'lucide-react';
@@ -34,6 +34,7 @@ interface GroupProps {
   selected: boolean;
   favorite?: boolean;
   custom?: boolean;
+  STREAMERS: StreamerType[];
 }
 
 const groupVariant = cva(
@@ -105,7 +106,7 @@ export const Group = (props: GroupProps) => {
       </Button>
       {props.custom && (
         <>
-          <EditGroupDialog group={props.group} />
+          <EditGroupDialog group={props.group} STREAMERS={props.STREAMERS} />
         </>
       )}
       <Toggle

@@ -18,13 +18,15 @@ import { Separator } from '@/components/ui/separator';
 
 // Scripts Imports
 import { sortGroups } from '@/utils/sort';
-import { GroupType } from '@/@types/data';
+import { GroupType, StreamerType } from '@/@types/data';
 
 interface GroupsTabProps {
   GROUPS: GroupType[];
+  STREAMERS: StreamerType[];
+  purgatory: boolean;
 }
 
-export const GroupsTab = ({ GROUPS }: GroupsTabProps) => {
+export const GroupsTab = ({ GROUPS, ...props }: GroupsTabProps) => {
   const { selectedGroups } = useContext(StreamsSelectorDialogContext);
   const { groups: favoritesList } = useFavoriteListsContext();
   const [customGroups] = useCustomGroupsContext();
@@ -56,6 +58,7 @@ export const GroupsTab = ({ GROUPS }: GroupsTabProps) => {
             custom={customGroups
               .map((cg) => cg.simpleGroupName)
               .includes(group.simpleGroupName)}
+            STREAMERS={props.STREAMERS}
           />
         ))}
       </div>
@@ -70,6 +73,7 @@ export const GroupsTab = ({ GROUPS }: GroupsTabProps) => {
                 key={group.groupName}
                 group={group}
                 selected={selectedGroups.value.includes(group.simpleGroupName)}
+                STREAMERS={props.STREAMERS}
               />
             ))}
           </div>
@@ -83,10 +87,14 @@ export const GroupsTab = ({ GROUPS }: GroupsTabProps) => {
             group={group}
             selected={selectedGroups.value.includes(group.simpleGroupName)}
             custom
+            STREAMERS={props.STREAMERS}
           />
         ))}
         <CreateGroupDialogProvider>
-          <CreateGroupDialog />
+          <CreateGroupDialog
+            purgatory={props.purgatory}
+            STREAMERS={props.STREAMERS}
+          />
         </CreateGroupDialogProvider>
       </div>
     </TabsContent>
