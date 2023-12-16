@@ -251,6 +251,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/a88bb6b7-c7c2-489c-9500-7631b31f94ec-profile_image-300x300.png',
     invitation: 36,
   },
+  {
+    twitchName: 'himarublack',
+    displayName: 'HimaruBlack',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/1500f17d-0831-4304-9f6d-51ab95a61fad-profile_image-300x300.png',
+    invitation: 37,
+  },
 ];
 
 export const STREAMERS = [

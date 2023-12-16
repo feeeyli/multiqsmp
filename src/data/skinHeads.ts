@@ -47,6 +47,8 @@ export const SKIN_HEADS = {
   wuant: 'https://s.namemc.com/2d/skin/face.png?id=e02513c340a11e08&scale=32',
   theguill84:
     'https://s.namemc.com/2d/skin/face.png?id=d481f88700ce7d4e&scale=32',
+  himarublack:
+    'https://s.namemc.com/2d/skin/face.png?id=a060d937a9068d78&scale=32',
 
   /* --- */
 
