@@ -12,7 +12,7 @@ export const SKIN_HEADS = {
     'https://s.namemc.com/2d/skin/face.png?id=7e567a804815059f&scale=32',
   tiba041: 'https://s.namemc.com/2d/skin/face.png?id=2a2ef50f1f015f2e&scale=32',
   duxo: 'https://s.namemc.com/2d/skin/face.png?id=36ac677f09b7aabf&scale=32',
-  ljoga: 'https://s.namemc.com/2d/skin/face.png?id=973be1dbd245328b&scale=32',
+  ljoga: 'https://s.namemc.com/2d/skin/face.png?id=8060c75162f7c77c&scale=32',
   Sneegsnag:
     'https://s.namemc.com/2d/skin/face.png?id=df8d2e7c1df37ae0&scale=32',
   estailus:
