@@ -160,6 +160,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/1912ddb4-0963-40d1-a529-a96807ec2a8e-profile_image-300x300.png',
     invitation: 25,
   },
+  {
+    twitchName: 'vgumiho',
+    displayName: 'vGumiho',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/bc07744c-0200-4968-b6b3-b1ac6c89d42a-profile_image-300x300.png',
+    invitation: 27,
+  },
 ];
 
 export const STREAMERS = [

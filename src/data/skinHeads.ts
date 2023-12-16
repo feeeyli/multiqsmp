@@ -25,6 +25,7 @@ export const SKIN_HEADS = {
     'https://s.namemc.com/2d/skin/face.png?id=efb3a5d22f95e3b9&scale=32',
   bastet: 'https://s.namemc.com/2d/skin/face.png?id=69b67bb41ed22260&scale=32',
   natalan: 'https://s.namemc.com/2d/skin/face.png?id=40736d947c74a3c1&scale=32',
+  vgumiho: 'https://s.namemc.com/2d/skin/face.png?id=838a980781fb8777&scale=32',
   qsmp: 'https://s.namemc.com/i/0e8e0237bb86c1f5.png',
   BadBoyHalo:
     'https://s.namemc.com/2d/skin/face.png?id=bc613ffc443664bc&scale=32',
