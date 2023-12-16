@@ -223,6 +223,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/c5be9ad8-95e9-4937-b4b7-e4dd460a6c36-profile_image-300x300.png',
     invitation: 33,
   },
+  {
+    twitchName: 'cherry_rar',
+    displayName: 'Cherryrar',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/bc85ed0b-a9db-428b-b545-18b0e6d0c3ba-profile_image-300x300.png',
+    invitation: 34,
+  },
 ];
 
 export const STREAMERS = [
