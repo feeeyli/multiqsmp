@@ -52,6 +52,10 @@ export const SKIN_HEADS = {
   jinkiwinkki:
     'https://s.namemc.com/2d/skin/face.png?id=0a300ede0136a613&scale=32',
   shubble: 'https://s.namemc.com/2d/skin/face.png?id=7182234ba7a6dff2&scale=32',
+  aldo_geo:
+    'https://s.namemc.com/2d/skin/face.png?id=023bc964b5d02697&scale=32',
+  jackmanifoldtv:
+    'https://s.namemc.com/2d/skin/face.png?id=2baa5d8557afc01b&scale=32',
 
   /* --- */
 

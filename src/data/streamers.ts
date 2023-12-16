@@ -272,6 +272,20 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/da12111f-cbce-4e83-8323-89a81388011c-profile_image-300x300.png',
     invitation: 39,
   },
+  {
+    twitchName: 'aldo_geo',
+    displayName: 'AldoGeo',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/51984fc0-a31a-413c-b1b8-3331bdf6d036-profile_image-300x300.png',
+    invitation: 41,
+  },
+  {
+    twitchName: 'jackmanifoldtv',
+    displayName: 'JackManifold',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/f7bfa0ca-e9ec-4ca6-935a-a9b6c5c8f651-profile_image-300x300.png',
+    invitation: 42,
+  },
 ];
 
 export const STREAMERS = [
