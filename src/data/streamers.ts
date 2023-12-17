@@ -293,6 +293,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/33e6b1d6-9dc5-4b6b-8d14-9ccb6b6d409d-profile_image-300x300.png',
     invitation: 43,
   },
+  {
+    twitchName: 'brunimneets',
+    displayName: 'BrunimNeets',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/83ef1e0a-8e5b-4b4a-852e-54b13b8ed7ba-profile_image-300x300.png',
+    invitation: 44,
+  },
 ];
 
 export const STREAMERS = [
