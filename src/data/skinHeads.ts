@@ -32,7 +32,7 @@ export const SKIN_HEADS = {
   crystalmolly:
     'https://s.namemc.com/2d/skin/face.png?id=f4e964005d538881&scale=32',
   foioguto:
-    'https://s.namemc.com/2d/skin/face.png?id=fcec3b87bbc4df9e&scale=32',
+    'https://s.namemc.com/2d/skin/face.png?id=0674fde65412092a&scale=32',
   capitangatoo:
     'https://s.namemc.com/2d/skin/face.png?id=a4a68f76f278e6b2&scale=32',
   g0ularte:
