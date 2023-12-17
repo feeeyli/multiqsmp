@@ -300,6 +300,13 @@ export const PURGATORY_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/83ef1e0a-8e5b-4b4a-852e-54b13b8ed7ba-profile_image-300x300.png',
     invitation: 44,
   },
+  {
+    twitchName: 'Condifiction',
+    displayName: 'Condifiction',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/condifiction-profile_image-b113c10ca57b7e56-300x300.png',
+    invitation: 45,
+  },
 ];
 
 export const STREAMERS = [

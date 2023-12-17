@@ -60,6 +60,8 @@ export const SKIN_HEADS = {
     'https://s.namemc.com/2d/skin/face.png?id=34734fa1c9976055&scale=32',
   brunimneets:
     'https://s.namemc.com/2d/skin/face.png?id=69f7038575461eaa&scale=32',
+  Condifiction:
+    'https://s.namemc.com/2d/skin/face.png?id=83a9565a6d8c7054&scale=32',
 
   /* --- */
 
