@@ -10,7 +10,7 @@ export const SKIN_HEADS = {
   axozer: 'https://s.namemc.com/2d/skin/face.png?id=23f228a6d47074e3&scale=32',
   soarinng:
     'https://s.namemc.com/2d/skin/face.png?id=7e567a804815059f&scale=32',
-  tiba041: 'https://s.namemc.com/2d/skin/face.png?id=2a2ef50f1f015f2e&scale=32',
+  tiba041: 'https://s.namemc.com/2d/skin/face.png?id=033d4ea3b84874b3&scale=32',
   duxo: 'https://s.namemc.com/2d/skin/face.png?id=36ac677f09b7aabf&scale=32',
   ljoga: 'https://s.namemc.com/2d/skin/face.png?id=8060c75162f7c77c&scale=32',
   Sneegsnag:
