@@ -259,6 +259,13 @@ export const PURGATORY_STREAMERS = [
     invitation: 37,
   },
   {
+    twitchName: 'ethannestor',
+    displayName: 'EthanNestor',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/e0a15b7d-52eb-4613-ad92-b17dc854b0b8-profile_image-300x300.png',
+    invitation: 38,
+  },
+  {
     twitchName: 'jinkiwinkki',
     displayName: 'Jinki',
     avatarUrl:
