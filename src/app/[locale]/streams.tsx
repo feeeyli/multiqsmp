@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 // Libs Imports
 import { PanelGroup, Panel, PanelResizeHandle } from 'react-resizable-panels';
-import { useLocalStorage, useWindowSize } from 'usehooks-ts';
+import { useLocalStorage, useWindowSize, useMediaQuery } from 'usehooks-ts';
 
 // Components Import
 import { OrganizeStreamsDialog } from '@/components/dialogs/organize-streams-dialog';
@@ -38,7 +38,7 @@ interface StreamsPageProps {
 
 export default function Streams(props: StreamsPageProps) {
   const { width: windowWidth } = useWindowSize();
-  const isDesktop = windowWidth > 640;
+  const isDesktop = useMediaQuery('(min-width: 640px)');
   const { streams, chats } = useSearchParamsStates();
   const [resizing, setResizing] = useState(false);
   const [customGroups] = useCustomGroupsContext();

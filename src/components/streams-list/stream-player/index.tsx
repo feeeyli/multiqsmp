@@ -29,7 +29,7 @@ export const StreamPlayer = ({ channel }: Props) => {
   const { streams } = useSearchParamsStates();
   const isDesktop = window.innerWidth > 640;
 
-  const playerStyleVariants = cva('flex-grow inset-0', {
+  const playerStyleVariants = cva('flex-grow inset-0 flex flex-col', {
     variants: {
       fullScreen: {
         true: 'absolute z-20',
