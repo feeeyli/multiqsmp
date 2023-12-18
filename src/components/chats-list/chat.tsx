@@ -28,8 +28,12 @@ export const Chat = (props: ChatProps) => {
           className="h-auto p-1.5"
           size="sm"
         >
-          {collapsed && <UnfoldHorizontal size="1rem" color="#fff" />}
-          {!collapsed && <FoldHorizontal size="1rem" color="#fff" />}
+          {collapsed && (
+            <UnfoldHorizontal size="1rem" className="text-foreground" />
+          )}
+          {!collapsed && (
+            <FoldHorizontal size="1rem" className="text-foreground" />
+          )}
         </Button>
         <span className="group-data-[collapsed=true]:vertical-text text-white">
           {props.chat}
@@ -40,7 +44,7 @@ export const Chat = (props: ChatProps) => {
           className="h-auto p-1.5"
           size="sm"
         >
-          <X size="1rem" color="#fff" />
+          <X size="1rem" className="text-foreground" />
         </Button>
       </div>
       {/* <TwitchChat channel={props.chat} className="!w-full !h-full" /> */}
