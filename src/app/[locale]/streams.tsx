@@ -38,7 +38,7 @@ interface StreamsPageProps {
 
 export default function Streams(props: StreamsPageProps) {
   const { width: windowWidth } = useWindowSize();
-  const isDesktop = useMediaQuery('(min-width: 640px)');
+  const isDesktop = !useMediaQuery('(max-width: 640px)');
   const { streams, chats } = useSearchParamsStates();
   const [resizing, setResizing] = useState(false);
   const [customGroups] = useCustomGroupsContext();

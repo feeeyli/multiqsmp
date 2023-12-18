@@ -35,7 +35,7 @@ export const Chat = (props: ChatProps) => {
             <FoldHorizontal size="1rem" className="text-foreground" />
           )}
         </Button>
-        <span className="group-data-[collapsed=true]:vertical-text text-white">
+        <span className="group-data-[collapsed=true]:vertical-text text-foreground">
           {props.chat}
         </span>
         <Button

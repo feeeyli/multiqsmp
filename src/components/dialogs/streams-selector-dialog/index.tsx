@@ -23,6 +23,9 @@ import {
   ArrowRight,
   BoxSelect,
   CheckSquare,
+  Gamepad2,
+  MousePointerSquareDashed,
+  Radio,
 } from 'lucide-react';
 
 // Components Imports
@@ -49,6 +52,14 @@ import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 import { getDisplayName } from '@/utils/getDisplayName';
 import { getTeamByName } from '@/utils/getTeamByName';
 import { useSettingsContext } from '@/contexts/settings-context';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 interface StreamsSelectorDialogProps {
   purgatory: boolean;
@@ -144,7 +155,11 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
           </TabsList>
           <FavoriteListsProvider>
             <StreamersTab STREAMERS={STREAMERS} />
-            <GroupsTab GROUPS={GROUPS} STREAMERS={STREAMERS} purgatory={props.purgatory} />
+            <GroupsTab
+              GROUPS={GROUPS}
+              STREAMERS={STREAMERS}
+              purgatory={props.purgatory}
+            />
           </FavoriteListsProvider>
         </Tabs>
         <DialogFooter className="flex flex-col gap-2 sm:flex-col">
@@ -166,26 +181,44 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
           </p>
           <div className="flex w-full items-center !justify-between">
             <div>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="px-2.5"
-                onClick={() => {
-                  if (tab === 'streamers')
-                    selectedStreamers.actions.updateList(
-                      STREAMERS.map((streamer) => streamer.twitchName),
-                    );
-                  if (tab === 'groups')
-                    selectedGroups.actions.updateList(
-                      [...GROUPS, ...customGroups].map(
-                        (group) => group.simpleGroupName,
-                      ),
-                    );
-                }}
-              >
-                <CheckSquare size="1rem" />
-              </Button>
-              <Button
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="flex items-center gap-2 px-2.5"
+                  >
+                    Selecionar
+                    <MousePointerSquareDashed size="1rem" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem onClick={() => {}}>
+                    <CheckSquare size="1rem" /> Todos
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => {
+                      if (tab === 'streamers')
+                        selectedStreamers.actions.updateList([]);
+                      if (tab === 'groups')
+                        selectedGroups.actions.updateList([]);
+                    }}
+                  >
+                    <BoxSelect size="1rem" /> Nenhum
+                  </DropdownMenuItem>
+                  {tab === 'streamers' && (
+                    <>
+                      <DropdownMenuItem>
+                        <Radio size="1rem" /> Todos onlines
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Gamepad2 size="1rem" /> Todos jogando QSMP
+                      </DropdownMenuItem>
+                    </>
+                  )}
+                </DropdownMenuContent>
+              </DropdownMenu>
+              {/* <Button
                 variant="ghost"
                 size="sm"
                 className="px-2.5"
@@ -196,7 +229,7 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
                 }}
               >
                 <BoxSelect size="1rem" />
-              </Button>
+              </Button> */}
             </div>
             <DialogClose asChild>
               <Button variant="ghost" asChild className="gap-2">
