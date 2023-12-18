@@ -51,6 +51,38 @@ const config: Config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        squirrel: {
+          DEFAULT: 'hsl(var(--squirrel-primary))',
+          secondary: 'hsl(var(--squirrel-secondary))',
+        },
+        crab: {
+          DEFAULT: 'hsl(var(--crab-primary))',
+          secondary: 'hsl(var(--crab-secondary))',
+        },
+        capybara: {
+          DEFAULT: 'hsl(var(--capybara-primary))',
+          secondary: 'hsl(var(--capybara-secondary))',
+        },
+        crow: {
+          DEFAULT: 'hsl(var(--crow-primary))',
+          secondary: 'hsl(var(--crow-secondary))',
+        },
+        goose: {
+          DEFAULT: 'hsl(var(--goose-primary))',
+          secondary: 'hsl(var(--goose-secondary))',
+        },
+        axolotl: {
+          DEFAULT: 'hsl(var(--axolotl-primary))',
+          secondary: 'hsl(var(--axolotl-secondary))',
+        },
+        racoon: {
+          DEFAULT: 'hsl(var(--racoon-primary))',
+          secondary: 'hsl(var(--racoon-secondary))',
+        },
+        panda: {
+          DEFAULT: 'hsl(var(--panda-primary))',
+          secondary: 'hsl(var(--panda-secondary))',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',

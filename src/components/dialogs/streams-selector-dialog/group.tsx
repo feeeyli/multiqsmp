@@ -44,10 +44,24 @@ const groupVariant = cva(
       variant: {
         default:
           'hover:bg-secondary/30 data-[state=on]:border-primary data-[state=on]:bg-secondary/50',
-        red: 'bg-red-950/40 hover:bg-red-950/80 text-red-50 hover:text-red-50/80 border-red-900 data-[state=on]:border-red-500 data-[state=on]:bg-red-900/50',
-        blue: 'bg-blue-950/40 hover:bg-blue-950/80 text-blue-50 hover:text-blue-50/80 border-blue-900 data-[state=on]:border-blue-500 data-[state=on]:bg-blue-900/50',
-        green:
-          'bg-green-950/40 hover:bg-green-950/80 text-green-50 hover:text-green-50/80 border-green-900 data-[state=on]:border-green-500 data-[state=on]:bg-green-900/50',
+        squirrel:
+          'border bg-squirrel-secondary/20 hover:bg-squirrel-secondary/30 border-squirrel/60 data-[state=on]:bg-squirrel/40',
+        crab: 'border bg-crab-secondary/20 hover:bg-crab-secondary/30 border-crab/60 data-[state=on]:bg-crab/40',
+        capybara:
+          'border bg-capybara-secondary/20 hover:bg-capybara-secondary/30 border-capybara/60 data-[state=on]:bg-capybara/40',
+        crow: 'border bg-crow-secondary/20 hover:bg-crow-secondary/30 border-crow/60 data-[state=on]:bg-crow/40',
+        goose:
+          'border bg-goose-secondary/20 hover:bg-goose-secondary/30 border-goose/60 data-[state=on]:bg-goose/40',
+        axolotl:
+          'border bg-axolotl-secondary/20 hover:bg-axolotl-secondary/30 border-axolotl/60 data-[state=on]:bg-axolotl/40',
+        racoon:
+          'border bg-racoon-secondary/20 hover:bg-racoon-secondary/30 border-racoon/60 data-[state=on]:bg-racoon/40',
+        panda:
+          'border bg-panda-secondary/20 hover:bg-panda-secondary/30 border-panda/60 data-[state=on]:bg-panda/40',
+        // red: 'bg-red-950/40 hover:bg-red-950/80 text-red-50 hover:text-red-50/80 border-red-900 data-[state=on]:border-red-500 data-[state=on]:bg-red-900/50',
+        // blue: 'bg-blue-950/40 hover:bg-blue-950/80 text-blue-50 hover:text-blue-50/80 border-blue-900 data-[state=on]:border-blue-500 data-[state=on]:bg-blue-900/50',
+        // green:
+        //   'bg-green-950/40 hover:bg-green-950/80 text-green-50 hover:text-green-50/80 border-green-900 data-[state=on]:border-green-500 data-[state=on]:bg-green-900/50',
       },
     },
     defaultVariants: {
@@ -120,7 +134,16 @@ export const Group = (props: GroupProps) => {
           variant="outline"
           className={cn(
             groupVariant({
-              variant: 'default',
+              variant: props.group.simpleGroupName as
+                | 'default'
+                | 'axolotl'
+                | 'squirrel'
+                | 'goose'
+                | 'crow'
+                | 'capybara'
+                | 'panda'
+                | 'crab'
+                | 'racoon',
             }),
           )}
         >
