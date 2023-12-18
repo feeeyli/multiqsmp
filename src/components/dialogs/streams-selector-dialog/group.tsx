@@ -54,8 +54,8 @@ const groupVariant = cva(
           'border bg-goose-secondary/20 hover:bg-goose-secondary/30 border-goose/60 data-[state=on]:bg-goose/40',
         axolotl:
           'border bg-axolotl-secondary/20 hover:bg-axolotl-secondary/30 border-axolotl/60 data-[state=on]:bg-axolotl/40',
-        racoon:
-          'border bg-racoon-secondary/20 hover:bg-racoon-secondary/30 border-racoon/60 data-[state=on]:bg-racoon/40',
+        raccoon:
+          'border bg-raccoon-secondary/20 hover:bg-raccoon-secondary/30 border-raccoon/60 data-[state=on]:bg-raccoon/40',
         panda:
           'border bg-panda-secondary/20 hover:bg-panda-secondary/30 border-panda/60 data-[state=on]:bg-panda/40',
         // red: 'bg-red-950/40 hover:bg-red-950/80 text-red-50 hover:text-red-50/80 border-red-900 data-[state=on]:border-red-500 data-[state=on]:bg-red-900/50',
@@ -143,7 +143,7 @@ export const Group = (props: GroupProps) => {
                 | 'capybara'
                 | 'panda'
                 | 'crab'
-                | 'racoon',
+                | 'raccoon',
             }),
           )}
         >

@@ -77,8 +77,8 @@ export const PURGATORY_GROUPS = [
     ],
   },
   {
-    groupName: 'Racoon',
-    simpleGroupName: 'racoon',
+    groupName: 'Raccoon',
+    simpleGroupName: 'raccoon',
     members: [
       'BadBoyHalo',
       'Rodezel',

@@ -75,9 +75,9 @@ const config: Config = {
           DEFAULT: 'hsl(var(--axolotl-primary))',
           secondary: 'hsl(var(--axolotl-secondary))',
         },
-        racoon: {
-          DEFAULT: 'hsl(var(--racoon-primary))',
-          secondary: 'hsl(var(--racoon-secondary))',
+        raccoon: {
+          DEFAULT: 'hsl(var(--raccoon-primary))',
+          secondary: 'hsl(var(--raccoon-secondary))',
         },
         panda: {
           DEFAULT: 'hsl(var(--panda-primary))',
