@@ -43,7 +43,7 @@ export const StreamsList = (props: StreamsListProps) => {
   return (
     <div
       data-resizing={props.resizing}
-      className="flex h-full max-h-screen flex-1 flex-wrap data-[resizing=true]:pointer-events-none"
+      className="relative flex h-full max-h-screen flex-1 flex-wrap data-[resizing=true]:pointer-events-none"
     >
       {mergedStreams.map((channel) => (
         <StreamPlayerControlsProvider key={channel}>
