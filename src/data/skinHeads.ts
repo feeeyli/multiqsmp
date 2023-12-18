@@ -5,7 +5,7 @@ export const SKIN_HEADS = {
   malena0202:
     'https://s.namemc.com/2d/skin/face.png?id=cb215af7877586b4&scale=32',
   scottonauta:
-    'https://s.namemc.com/2d/skin/face.png?id=1bc6a4fa5e1c221d&scale=32',
+    'https://s.namemc.com/2d/skin/face.png?id=56097d3643dc64f5&scale=32',
   jvnq: 'https://s.namemc.com/2d/skin/face.png?id=6f0b3fefe1688f57&scale=32',
   axozer: 'https://s.namemc.com/2d/skin/face.png?id=23f228a6d47074e3&scale=32',
   soarinng:
