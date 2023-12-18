@@ -159,7 +159,7 @@ export default function Streams(props: StreamsPageProps) {
           data-resizing={resizing}
           className="data-[resizing=true]:pointer-events-none"
         >
-          <StreamsList resizing={resizing} />
+          <StreamsList resizing={resizing} purgatory={props.purgatory} />
         </Panel>
         {chats.length > 0 && streams.length > 0 && (
           <>
