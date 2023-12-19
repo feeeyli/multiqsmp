@@ -184,43 +184,7 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
           </p>
           <div className="flex w-full items-center !justify-between">
             <div>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="flex items-center gap-2 px-2.5"
-                  >
-                    Selecionar
-                    <MousePointerSquareDashed size="1rem" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem onClick={() => {}}>
-                    <CheckSquare size="1rem" /> Todos
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={() => {
-                      if (tab === 'streamers')
-                        selectedStreamers.actions.updateList([]);
-                      if (tab === 'groups')
-                        selectedGroups.actions.updateList([]);
-                    }}
-                  >
-                    <BoxSelect size="1rem" /> Nenhum
-                  </DropdownMenuItem>
-                  {tab === 'streamers' && (
-                    <>
-                      <DropdownMenuItem>
-                        <Radio size="1rem" /> Todos onlines
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <Gamepad2 size="1rem" /> Todos jogando QSMP
-                      </DropdownMenuItem>
-                    </>
-                  )}
-                </DropdownMenuContent>
-              </DropdownMenu>
+              
               {/* <Button
                 variant="ghost"
                 size="sm"

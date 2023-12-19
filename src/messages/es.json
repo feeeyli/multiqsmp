@@ -7,7 +7,15 @@
     "selected-streamers-or-groups": "Streamers o grupos seleccionados:",
     "no-selected-streamers-or-groups": "Ningún streamer o grupo seleccionado.",
     "new-participant": "¡Nuevo participante!",
-    "new-participants": "Nuevos participantes!"
+    "new-participants": "Nuevos participantes!",
+    "streamer-search-label": "Buscar streamer",
+    "group-search-label": "Buscar grupo",
+    "select": {
+      "all": "Todos",
+      "none": "Ninguno",
+      "online": "Todos en directo",
+      "playing": "Todos jugando a QSMP"
+    }
   },
   "streams-list": {
     "no-streams": "Parece que aún no has elegido ninguna transmisión en vivo. ¡Haz clic en el botón \"((button))\" a la derecha y comienza a ver!"

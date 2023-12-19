@@ -24,6 +24,24 @@ import { sortStreamers } from '@/utils/sort';
 import { useTranslations } from 'next-intl';
 import { useSettingsContext } from '@/contexts/settings-context';
 import { StreamerType } from '@/@types/data';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+import {
+  MousePointerSquareDashed,
+  CheckSquare,
+  BoxSelect,
+  Radio,
+  Gamepad2,
+} from 'lucide-react';
 
 type OnlineStreamerType = { twitchName: string; isPlayingQsmp: boolean };
 
@@ -46,6 +64,7 @@ export const StreamersTab = ({
   const [onlineStreamers, setOnlineStreamers] = useState<OnlineStreamerType[]>(
     [],
   );
+  const [search, setSearch] = useState('');
 
   const SELECTED_STREAMERS = [
     ...new Set([...DEFAULT_STREAMERS, ...PURGATORY_STREAMERS]),
@@ -55,7 +74,9 @@ export const StreamersTab = ({
       !STREAMERS_LIST.find((st) => st.twitchName === s.twitchName),
   );
 
-  const STREAMERS = [...new Set([...SELECTED_STREAMERS, ...STREAMERS_LIST])];
+  const STREAMERS = [
+    ...new Set([...SELECTED_STREAMERS, ...STREAMERS_LIST]),
+  ].filter((s) => s.twitchName.includes(search));
 
   useEffect(() => {
     (async () => {
@@ -104,11 +125,7 @@ export const StreamersTab = ({
         streamer.twitchName.toLocaleLowerCase(),
     );
 
-    if (
-      ['willyrex', 'vegetta777'].includes(streamer.twitchName) ||
-      selectedStreamers.value.includes(streamer.twitchName)
-    )
-      return true;
+    if (selectedStreamers.value.includes(streamer.twitchName)) return true;
 
     if (
       (outro.hideOffline && !stream) ||
@@ -135,8 +152,108 @@ export const StreamersTab = ({
   return (
     <TabsContent
       value="streamers"
-      className="scrollbar flex max-h-80 flex-col gap-3 overflow-y-auto pb-3 pt-2 data-[state=inactive]:hidden"
+      className="scrollbar relative flex max-h-80 flex-col gap-3 overflow-y-auto pb-3 data-[state=inactive]:hidden"
     >
+      <header className="sticky top-0 z-20 flex w-full items-center gap-3 bg-background pb-4 pl-2 pr-4 pt-2">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              className="flex items-center gap-2 px-2.5"
+            >
+              Selecionar
+              <MousePointerSquareDashed size="1rem" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem
+              onClick={() => {
+                selectedStreamers.actions.updateList(
+                  streamersWithHide.map((s) => s.twitchName),
+                );
+              }}
+            >
+              <CheckSquare size="1rem" /> {t('select.all')}
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                selectedStreamers.actions.updateList([]);
+              }}
+            >
+              <BoxSelect size="1rem" /> {t('select.none')}
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                selectedStreamers.actions.updateList(
+                  streamersWithHide
+                    .filter((streamer) => {
+                      const stream = onlineStreamers.find(
+                        (online) =>
+                          online.twitchName.toLocaleLowerCase() ===
+                          streamer.twitchName.toLocaleLowerCase(),
+                      );
+
+                      if (
+                        !stream ||
+                        (outro.hideOffline && !stream) ||
+                        (outro.hideNotPlaying &&
+                          !stream?.isPlayingQsmp &&
+                          !!stream)
+                      )
+                        return false;
+
+                      return true;
+                    })
+                    .map((s) => s.twitchName),
+                );
+              }}
+            >
+              <Radio size="1rem" /> {t('select.online')}
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                selectedStreamers.actions.updateList(
+                  streamersWithHide
+                    .filter((streamer) => {
+                      const stream = onlineStreamers.find(
+                        (online) =>
+                          online.twitchName.toLocaleLowerCase() ===
+                          streamer.twitchName.toLocaleLowerCase(),
+                      );
+
+                      if (
+                        !stream?.isPlayingQsmp ||
+                        (outro.hideOffline && !stream) ||
+                        (outro.hideNotPlaying &&
+                          !stream?.isPlayingQsmp &&
+                          !!stream)
+                      )
+                        return false;
+
+                      return true;
+                    })
+                    .map((s) => s.twitchName),
+                );
+              }}
+            >
+              <Gamepad2 size="1rem" /> {t('select.playing')}
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <div className="w-full">
+          <Label className="sr-only" htmlFor="streamer-search">
+            {t('streamer-search-label')}
+          </Label>
+          <Input
+            type="text"
+            id="streamer-search"
+            placeholder={t('streamer-search-label')}
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+          />
+        </div>
+      </header>
       <div className="flex w-full flex-wrap justify-center gap-4">
         {newParticipantsStreamers.length > 0 && (
           <div className="flex w-full flex-col items-center gap-4">
