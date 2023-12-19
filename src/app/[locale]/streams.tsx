@@ -95,7 +95,7 @@ export default function Streams(props: StreamsPageProps) {
         className="
           group
           absolute
-          z-10
+          z-50
           flex
           flex-col
           gap-2
