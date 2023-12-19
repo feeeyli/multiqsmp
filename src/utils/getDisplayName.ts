@@ -15,7 +15,7 @@ export function getDisplayName(
   const streamerDisplayName = STREAMERS.find((s) => s.twitchName === twitchName)
     ?.displayName;
   const groupDisplayName = [...GROUPS, ...customGroups].find(
-    (s) => s.simpleGroupName === twitchName,
+    (s) => s.simpleGroupName === twitchName.split('.')[0],
   )?.groupName;
 
   return streamerDisplayName || groupDisplayName || twitchName;

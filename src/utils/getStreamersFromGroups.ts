@@ -10,6 +10,18 @@ export function getStreamersFromGroups(
     ...new Set([...GROUPS, ...PURGATORY_GROUPS, ...customGroups]),
   ];
 
+  const groupsWithOptionsDone = groupsNames
+    .map((gn) => {
+      const name = gn.split('.')[0] || '';
+
+      const group = mergedGroups.find((g) => g.simpleGroupName === name);
+
+      if (!group) return '';
+
+      return getStreamersFromGroup(group, gn);
+    })
+    .filter((item) => item !== '');
+
   const groups = mergedGroups.filter((group) =>
     groupsNames.includes(group.simpleGroupName),
   );
@@ -20,9 +32,30 @@ export function getStreamersFromGroups(
 
   const streamersFromGroups: string[] = [];
 
-  groups.forEach((group) => {
-    streamersFromGroups.push(...group.twitchNames);
+  groupsWithOptionsDone.forEach((group) => {
+    streamersFromGroups.push(...group);
   });
 
   return streamersFromGroups;
 }
+
+function getStreamersFromGroup(group: GroupType, nameOnQuery: string) {
+  const options = nameOnQuery.split('.')[1];
+
+  if (!options) return group.twitchNames;
+
+  const [order, ...exclusions] = options.split('-');
+
+  const reorderedGroupMembers = order
+    ? order.split('').map((pos) => group.twitchNames[Number(pos) - 1])
+    : group.twitchNames;
+
+  const groupMembersWithExclusions: string[] = reorderedGroupMembers.filter(
+    (name) => !exclusions.includes(name),
+  );
+
+  return groupMembersWithExclusions.filter((item) => item);
+}
+/*
+group.twitchNames.map((name, index) => )
+*/

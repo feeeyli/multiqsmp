@@ -118,7 +118,10 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
           searchParams.get('streamers')?.split('/') || [],
         );
         selectedGroups.actions.updateList(
-          searchParams.get('groups')?.split('/') || [],
+          searchParams
+            .get('groups')
+            ?.split('/')
+            .map((g) => g.split('.')[0]) || [],
         );
       }}
     >
