@@ -516,10 +516,10 @@ export const STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/10258fc3-5d91-4a7f-956d-f375d7e4490e-profile_image-300x300.png',
   },
   {
-    twitchName: 'tazercraft',
+    twitchName: 'linkthemike',
     displayName: 'Mike (Tazercraft)',
     avatarUrl:
-      'https://static-cdn.jtvnw.net/jtv_user_pictures/42b888b7-7ace-48b7-8ad4-d67cf49b5545-profile_image-300x300.png',
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/74501660-f734-4e21-a8ab-0871180fc95e-profile_image-300x300.png',
   },
   {
     twitchName: 'antoinedaniel',
