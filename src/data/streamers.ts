@@ -1,5 +1,11 @@
 export const PURGATORY_STREAMERS = [
   {
+    twitchName: 'quackity',
+    displayName: 'Quackity',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/823b1a32-eb4e-425a-b1e6-48913ed58f1b-profile_image-300x300.png',
+  },
+  {
     twitchName: 'tubbo',
     displayName: 'Tubbo',
     avatarUrl:
