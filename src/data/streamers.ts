@@ -21,7 +21,7 @@ export const PURGATORY_STREAMERS = [
   },
   {
     twitchName: 'peqitw',
-    displayName: 'Pac',
+    displayName: 'Pac (Tazercraft)',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/10258fc3-5d91-4a7f-956d-f375d7e4490e-profile_image-300x300.png',
     invitation: 2,
@@ -319,6 +319,13 @@ export const PURGATORY_STREAMERS = [
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/condifiction-profile_image-b113c10ca57b7e56-300x300.png',
     invitation: 45,
+  },
+  {
+    twitchName: 'linkthemike',
+    displayName: 'Mike (Tazercraft)',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/74501660-f734-4e21-a8ab-0871180fc95e-profile_image-300x300.png',
+    invitation: 46,
   },
 ];
 

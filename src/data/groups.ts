@@ -23,9 +23,30 @@ export const PURGATORY_GROUPS = [
   {
     groupName: 'Crow',
     simpleGroupName: 'crow',
-    members: ['Gabepeixe', 'Goularte', 'Wuant', 'Seapeekay', 'AldoGeo'],
-    avatars: ['gabepeixe', 'g0ularte', 'wuant', 'seapeekay', 'aldo_geo'],
-    twitchNames: ['gabepeixe', 'g0ularte', 'wuant', 'seapeekay', 'aldo_geo'],
+    members: [
+      'Gabepeixe',
+      'Goularte',
+      'Wuant',
+      'Seapeekay',
+      'AldoGeo',
+      'Mike (Tazercraft)',
+    ],
+    avatars: [
+      'gabepeixe',
+      'g0ularte',
+      'wuant',
+      'seapeekay',
+      'aldo_geo',
+      'linkthemike',
+    ],
+    twitchNames: [
+      'gabepeixe',
+      'g0ularte',
+      'wuant',
+      'seapeekay',
+      'aldo_geo',
+      'linkthemike',
+    ],
   },
   {
     groupName: 'Capybara',
