@@ -352,6 +352,22 @@
     @apply bg-primary-foreground;
   }
 
+  .streams-list-scrollbar::-webkit-scrollbar {
+    @apply h-5 w-2;
+  }
+
+  .streams-list-scrollbar::-webkit-scrollbar-track {
+    @apply rounded-full bg-muted/60;
+  }
+
+  .streams-list-scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-primary/30;
+  }
+
+  .streams-list-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/60;
+  }
+
   .diag-top {
     clip-path: polygon(0 0, 0% 100%, 100% 0);
   }
