@@ -46,6 +46,16 @@ export const StreamsList = (props: StreamsListProps) => {
     },
   ] = useSettingsContext();
 
+  function getLayoutKey() {
+    const streamers = searchParams.get('streamers')?.split('/');
+    const groups = searchParams.get('groups')?.split('/');
+    const chats = searchParams.get('chats')?.split('/');
+
+    return `${streamers?.join('/') || ''}${streamers && groups ? '/' : ''}${
+      groups?.join('/') || ''
+    }${chats && groups ? '/' : ''}${chats ? '$chats$' : ''}`;
+  }
+
   const movingHandles = {
     start() {
       setIsMoving(true);
@@ -55,7 +65,7 @@ export const StreamsList = (props: StreamsListProps) => {
       setLayoutMemory((old) => {
         const n = { ...old };
 
-        n[String(searchParams).replaceAll('%2F', '/')] = layout;
+        n[getLayoutKey()] = layout;
 
         return n;
       });
@@ -95,7 +105,7 @@ export const StreamsList = (props: StreamsListProps) => {
       h: Math.floor(height / 39),
     };
 
-    const layout = layoutMemory[String(searchParams).replaceAll('%2F', '/')];
+    const layout = layoutMemory[getLayoutKey()];
 
     if (layout) {
       const item = layout.find((l) => l.i === String(i));
