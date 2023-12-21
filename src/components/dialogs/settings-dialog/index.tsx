@@ -116,6 +116,7 @@ const settingsFormSchema = z.object({
       value: headerItemsNames,
       subtitle: z.boolean()
     }).transform(h => h.value)) */,
+    movableMode: z.boolean(),
     startMuted: z.boolean(),
   }),
 });
@@ -571,6 +572,32 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
                           </FormControl>
                           <FormLabel className="!m-0">
                             {t('form.streams.outro.start-muted')}
+                          </FormLabel>
+                          <FormMessage />
+                        </FormItem>
+                      </label>
+                    </Button>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="streams.movableMode"
+                  render={({ field }) => (
+                    <Button
+                      variant="outline"
+                      className="flex justify-start"
+                      asChild
+                    >
+                      <label>
+                        <FormItem className="flex items-center gap-2">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                          <FormLabel className="!m-0">
+                            {t('form.streams.outro.movable-mode')}
                           </FormLabel>
                           <FormMessage />
                         </FormItem>

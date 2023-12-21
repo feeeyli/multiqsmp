@@ -36,6 +36,7 @@ const INITIAL_VALUE: SettingsType = {
   streams: {
     alwaysShowHeader: false,
     startMuted: true,
+    movableMode: false,
     headerItems: ['mute', 'fullscreen', 'chat', 'reload'],
   },
 };

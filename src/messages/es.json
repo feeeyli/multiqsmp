@@ -133,7 +133,8 @@
         },
         "outro": {
           "label": "Otro",
-          "start-muted": "Comenzar transmisiones en vivo en silencio."
+          "start-muted": "Comenzar transmisiones en vivo en silencio.",
+          "movable-mode": "Mover y redimensionar streams. (Experimental)"
         }
       }
     }

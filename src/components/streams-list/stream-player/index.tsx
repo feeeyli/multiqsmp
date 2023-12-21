@@ -19,21 +19,40 @@ import { useSearchParamsStates } from '@/utils/useSearchParamsState';
 // Components Imports
 import { StreamPlayerHeader } from './stream-player-header';
 import { getColumns } from '@/utils/getColumns';
+import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
+import { useSettingsContext } from '@/contexts/settings-context';
 
 interface Props {
   channel: string;
+  // containerSize: { width: number; height: number };
+  isMoving: boolean;
+  size?: {
+    height: number;
+    width: number;
+  };
 }
 
-export const StreamPlayer = ({ channel }: Props) => {
+export const StreamPlayer = ({ channel, ...props }: Props) => {
   const streamPlayerControls = useContext(StreamPlayerControlsContext);
   const { streams } = useSearchParamsStates();
-  const isDesktop = window.innerWidth > 640;
+  const isDesktop = !useMediaQuery('(max-width: 640px)');
+  const [
+    {
+      streams: { movableMode },
+    },
+  ] = useSettingsContext();
 
-  const playerStyleVariants = cva('flex-grow inset-0 flex flex-col', {
+  const playerStyleVariants = cva('inset-0 flex-grow', {
     variants: {
       fullScreen: {
         true: 'absolute z-20',
         false: 'relative z-0',
+      },
+      moving: {
+        true: 'pointer-events-none',
+      },
+      movableMode: {
+        true: 'w-full',
       },
     },
     defaultVariants: {
@@ -45,12 +64,18 @@ export const StreamPlayer = ({ channel }: Props) => {
     <div
       className={playerStyleVariants({
         fullScreen: streamPlayerControls.fullScreen.value,
+        moving: props.isMoving,
+        movableMode,
       })}
-      style={{
-        width: streamPlayerControls.fullScreen.value
-          ? 'auto'
-          : `${100 / getColumns(streams.length, isDesktop)}%`,
-      }}
+      style={
+        movableMode
+          ? undefined
+          : {
+              width: streamPlayerControls.fullScreen.value
+                ? 'auto'
+                : `${100 / getColumns(streams.length, isDesktop)}%`,
+            }
+      }
     >
       <StreamPlayerHeader
         channel={channel}

@@ -133,7 +133,8 @@
         },
         "outro": {
           "label": "Outro",
-          "start-muted": "Começar lives sem som."
+          "start-muted": "Começar lives sem som.",
+          "movable-mode": "Movimentar e redimensionar lives. (Experimental)"
         }
       }
     }
