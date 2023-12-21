@@ -93,7 +93,8 @@ export const OrganizeStreamsDialog = () => {
                 axis="y"
                 values={newStreamsOrder}
                 onReorder={setNewStreamsOrder}
-                className="flex w-full flex-col space-y-2"
+                layoutScroll
+                className="scrollbar flex max-h-[25rem] w-full flex-col space-y-2 overflow-y-auto"
               >
                 {newStreamsOrder.map((stream) => (
                   <OrganizeListItem
