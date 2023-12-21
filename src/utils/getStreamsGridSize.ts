@@ -2,10 +2,12 @@ export function getStreamsGridSize(
   items: number,
   isDesktop: boolean = true,
   containerSize: { width: number; height: number },
+  hasChatOpen?: boolean,
 ) {
   const getColumns = () => {
     if (isDesktop) {
       if (items === 1) return 1;
+      if (items === 2 && hasChatOpen) return 1;
       if (items >= 2 && items <= 6) return 2;
     } else {
       if (items <= 3) return 1;

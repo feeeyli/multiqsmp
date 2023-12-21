@@ -24,15 +24,11 @@ import { useSettingsContext } from '@/contexts/settings-context';
 
 interface Props {
   channel: string;
-  // containerSize: { width: number; height: number };
   isMoving: boolean;
-  size?: {
-    height: number;
-    width: number;
-  };
 }
 
 export const StreamPlayer = ({ channel, ...props }: Props) => {
+  const searchParams = useSearchParams();
   const streamPlayerControls = useContext(StreamPlayerControlsContext);
   const { streams } = useSearchParamsStates();
   const isDesktop = !useMediaQuery('(max-width: 640px)');
@@ -73,7 +69,14 @@ export const StreamPlayer = ({ channel, ...props }: Props) => {
           : {
               width: streamPlayerControls.fullScreen.value
                 ? 'auto'
-                : `${100 / getColumns(streams.length, isDesktop)}%`,
+                : `${
+                    100 /
+                    getColumns(
+                      streams.length,
+                      isDesktop,
+                      !!searchParams.get('chats'),
+                    )
+                  }%`,
             }
       }
     >

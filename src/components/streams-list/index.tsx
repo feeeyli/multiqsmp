@@ -91,11 +91,11 @@ export const StreamsList = (props: StreamsListProps) => {
     ...new Set([...streamersOnQuery, ...streamersFromGroups]),
   ];
 
-  const {
-    columns: cols,
-    height,
-    width,
-  } = getStreamsGridSize(mergedStreams.length, true, containerSize);
+  const { columns: cols, height } = getStreamsGridSize(
+    mergedStreams.length,
+    true,
+    containerSize,
+  );
 
   function getGridData(i: number) {
     const def = {
@@ -161,11 +161,7 @@ export const StreamsList = (props: StreamsListProps) => {
             <div className="flex h-full max-h-screen flex-1 flex-wrap">
               {mergedStreams.map((channel) => (
                 <StreamPlayerControlsProvider key={channel}>
-                  <StreamPlayer
-                    channel={channel}
-                    size={{ height, width }}
-                    isMoving={isMoving}
-                  />
+                  <StreamPlayer channel={channel} isMoving={isMoving} />
                 </StreamPlayerControlsProvider>
               ))}
             </div>
