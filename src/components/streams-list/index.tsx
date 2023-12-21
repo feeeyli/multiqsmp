@@ -122,7 +122,8 @@ export const StreamsList = (props: StreamsListProps) => {
     <div
       data-resizing={props.resizing}
       data-movable-mode={movableMode}
-      className="streams-list-scrollbar relative h-full flex-1 overflow-auto data-[resizing=true]:pointer-events-none data-[movable-mode=true]:mr-3"
+      data-has-chat-open={!!searchParams.get('chats')}
+      className="streams-list-scrollbar relative h-full flex-1 overflow-auto data-[resizing=true]:pointer-events-none data-[movable-mode=true]:data-[has-chat-open=false]:mr-3"
       ref={containerRef}
     >
       {mergedStreams.length > 0 && (
