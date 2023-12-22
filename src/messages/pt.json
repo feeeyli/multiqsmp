@@ -134,7 +134,8 @@
         "outro": {
           "label": "Outro",
           "start-muted": "Começar lives sem som.",
-          "movable-mode": "Movimentar e redimensionar lives. (Experimental)"
+          "movable-mode": "Movimentar e redimensionar lives. (Experimental)",
+          "movable-chat": "Movimentar e redimensionar chats. (Apenas com \"Movimentar e redimensionar lives\" ativo)"
         }
       }
     }

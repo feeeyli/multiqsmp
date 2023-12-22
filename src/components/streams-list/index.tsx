@@ -24,6 +24,7 @@ import RGL, { Layout, WidthProvider } from 'react-grid-layout';
 import { getColumns } from '@/utils/getColumns';
 import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
 import { useSettingsContext } from '@/contexts/settings-context';
+import { Chat } from '../chats-list/chat';
 
 interface StreamsListProps {
   resizing: boolean;
@@ -42,9 +43,11 @@ export const StreamsList = (props: StreamsListProps) => {
   }>('layout-memory', {});
   const [
     {
-      streams: { movableMode },
+      streams: { movableMode, movableChat: mChat },
     },
   ] = useSettingsContext();
+
+  const movableChat = mChat && movableMode;
 
   function getLayoutKey() {
     const streamers = searchParams.get('streamers')?.split('/');
@@ -53,7 +56,9 @@ export const StreamsList = (props: StreamsListProps) => {
 
     return `${streamers?.join('/') || ''}${streamers && groups ? '/' : ''}${
       groups?.join('/') || ''
-    }${chats && groups ? '/' : ''}${chats ? '$chats$' : ''}`;
+    }${chats && (groups || streamers) ? '/' : ''}${
+      chats && movableChat ? `$${chats?.join('$')}` : chats ? '$chats$' : ''
+    }`;
   }
 
   const movingHandles = {
@@ -81,6 +86,7 @@ export const StreamsList = (props: StreamsListProps) => {
 
   const streamersOnQuery = searchParams.get('streamers')?.split('/') || [];
   const groupsOnQuery = searchParams.get('groups')?.split('/') || [];
+  const chatsOnQuery = searchParams.get('chats')?.split('/') || [];
 
   const streamersFromGroups = getStreamersFromGroups(
     groupsOnQuery,
@@ -91,8 +97,22 @@ export const StreamsList = (props: StreamsListProps) => {
     ...new Set([...streamersOnQuery, ...streamersFromGroups]),
   ];
 
+  const listWithChat: string[] = [
+    ...mergedStreams,
+    ...(movableChat ? chatsOnQuery : []).map((c) => '$' + c),
+  ];
+
+  // listWithChat.forEach((s) => {
+  //   // let re = [s];
+
+  //   if (searchParams.get('chats')?.split('/').includes(s))
+  //     listWithChat.push('$' + s);
+
+  //   // listWithChat.push(...re);
+  // });
+
   const { columns: cols, height } = getStreamsGridSize(
-    mergedStreams.length,
+    listWithChat.length,
     true,
     containerSize,
   );
@@ -126,7 +146,7 @@ export const StreamsList = (props: StreamsListProps) => {
       className="streams-list-scrollbar relative h-full flex-1 overflow-auto data-[resizing=true]:pointer-events-none data-[movable-mode=true]:data-[has-chat-open=false]:mr-3"
       ref={containerRef}
     >
-      {mergedStreams.length > 0 && (
+      {listWithChat.length > 0 && (
         <>
           {movableMode && (
             <ReactGridLayout
@@ -141,27 +161,34 @@ export const StreamsList = (props: StreamsListProps) => {
               onResizeStop={movingHandles.stop}
               margin={[4, 4]}
             >
-              {mergedStreams.map((channel, i) => (
+              {listWithChat.map((channel, i) => (
                 <div
                   key={i}
                   className="grid-layout-item flex select-none flex-col rounded-sm bg-muted"
                   data-grid={getGridData(i)}
                 >
-                  <div className="handle h-3 w-full cursor-move"></div>
-                  <StreamPlayerControlsProvider>
-                    <StreamPlayer
-                      channel={channel}
-                      // containerSize={containerSize}
-                      isMoving={isMoving}
-                    />
-                  </StreamPlayerControlsProvider>
+                  {!channel.includes('$') && (
+                    <>
+                      <div className="handle h-3 w-full cursor-move"></div>
+                      <StreamPlayerControlsProvider>
+                        <StreamPlayer
+                          channel={channel}
+                          // containerSize={containerSize}
+                          isMoving={isMoving}
+                        />
+                      </StreamPlayerControlsProvider>
+                    </>
+                  )}
+                  {channel.includes('$') && (
+                    <Chat chat={channel.replace('$', '')} isMoving={isMoving} />
+                  )}
                 </div>
               ))}
             </ReactGridLayout>
           )}
           {!movableMode && (
             <div className="flex h-full max-h-screen flex-1 flex-wrap">
-              {mergedStreams.map((channel) => (
+              {listWithChat.map((channel) => (
                 <StreamPlayerControlsProvider key={channel}>
                   <StreamPlayer channel={channel} isMoving={isMoving} />
                 </StreamPlayerControlsProvider>
@@ -170,7 +197,7 @@ export const StreamsList = (props: StreamsListProps) => {
           )}
         </>
       )}
-      {mergedStreams.length === 0 && (
+      {listWithChat.length === 0 && (
         <div className="absolute left-1/2 top-1/2 flex w-[85%] max-w-sm -translate-x-1/2 -translate-y-1/2 flex-col gap-12 ">
           <div className="text-center">
             {t('no-streams').split('((button))')[0]}

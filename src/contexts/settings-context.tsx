@@ -37,6 +37,7 @@ const INITIAL_VALUE: SettingsType = {
     alwaysShowHeader: false,
     startMuted: true,
     movableMode: false,
+    movableChat: false,
     headerItems: ['mute', 'fullscreen', 'chat', 'reload'],
   },
 };

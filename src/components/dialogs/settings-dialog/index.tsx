@@ -117,6 +117,7 @@ const settingsFormSchema = z.object({
       subtitle: z.boolean()
     }).transform(h => h.value)) */,
     movableMode: z.boolean(),
+    movableChat: z.boolean(),
     startMuted: z.boolean(),
   }),
 });
@@ -598,6 +599,32 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
                           </FormControl>
                           <FormLabel className="!m-0">
                             {t('form.streams.outro.movable-mode')}
+                          </FormLabel>
+                          <FormMessage />
+                        </FormItem>
+                      </label>
+                    </Button>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="streams.movableChat"
+                  render={({ field }) => (
+                    <Button
+                      variant="outline"
+                      className="min-h-10 flex h-auto justify-start"
+                      asChild
+                    >
+                      <label>
+                        <FormItem className="flex items-center gap-2">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                          <FormLabel className="!m-0 leading-5">
+                            {t('form.streams.outro.movable-chat')}
                           </FormLabel>
                           <FormMessage />
                         </FormItem>

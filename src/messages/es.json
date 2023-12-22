@@ -134,7 +134,8 @@
         "outro": {
           "label": "Otro",
           "start-muted": "Comenzar transmisiones en vivo en silencio.",
-          "movable-mode": "Mover y redimensionar streams. (Experimental)"
+          "movable-mode": "Mover y redimensionar streams. (Experimental)",
+          "movable-chat": "Mover y redimensionar chats. (Solo con \"Mover y redimensionar streams\" activado)."
         }
       }
     }

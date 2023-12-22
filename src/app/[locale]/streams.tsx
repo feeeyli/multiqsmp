@@ -161,26 +161,28 @@ export default function Streams(props: StreamsPageProps) {
         >
           <StreamsList resizing={resizing} purgatory={props.purgatory} />
         </Panel>
-        {chats.length > 0 && streams.length > 0 && (
-          <>
-            <PanelResizeHandle
-              onDragging={(dragging) => setResizing(dragging)}
-              className="relative p-2 before:absolute before:inset-1.5 before:block before:rounded-full before:bg-primary before:opacity-50 hover:before:opacity-70 active:before:opacity-100"
-            />
-            <Panel
-              minSize={20}
-              defaultSize={35}
-              collapsedSize={0}
-              collapsible
-              data-resizing={resizing}
-              className="
+        {chats.length > 0 &&
+          streams.length > 0 &&
+          (!settings.streams.movableChat || !settings.streams.movableMode) && (
+            <>
+              <PanelResizeHandle
+                onDragging={(dragging) => setResizing(dragging)}
+                className="relative p-2 before:absolute before:inset-1.5 before:block before:rounded-full before:bg-primary before:opacity-50 hover:before:opacity-70 active:before:opacity-100"
+              />
+              <Panel
+                minSize={20}
+                defaultSize={35}
+                collapsedSize={0}
+                collapsible
+                data-resizing={resizing}
+                className="
               data-[resizing=true]:pointer-events-none
               group-data-[dialogs-position=right]:mr-4"
-            >
-              <ChatsList resizing={resizing} />
-            </Panel>
-          </>
-        )}
+              >
+                <ChatsList resizing={resizing} />
+              </Panel>
+            </>
+          )}
       </PanelGroup>
     </main>
   );
