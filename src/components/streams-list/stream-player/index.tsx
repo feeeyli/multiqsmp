@@ -38,7 +38,7 @@ export const StreamPlayer = ({ channel, ...props }: Props) => {
     },
   ] = useSettingsContext();
 
-  const playerStyleVariants = cva('inset-0 flex-grow', {
+  const playerStyleVariants = cva('inset-0 flex-grow overflow-hidden', {
     variants: {
       fullScreen: {
         true: 'absolute z-20',
