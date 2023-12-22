@@ -76,7 +76,11 @@ export const StreamersTab = ({
 
   const STREAMERS = [
     ...new Set([...SELECTED_STREAMERS, ...STREAMERS_LIST]),
-  ].filter((s) => s.twitchName.includes(search));
+  ].filter(
+    (s) =>
+      s.twitchName.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+      s.displayName.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
+  );
 
   useEffect(() => {
     (async () => {

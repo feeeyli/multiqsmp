@@ -55,18 +55,30 @@ export const GroupsTab = ({ GROUPS, ...props }: GroupsTabProps) => {
   const mergedGroups = sortGroups([
     ...new Set([...GROUPS, ...customGroups]),
   ]).filter(
-    (s) => s.simpleGroupName.includes(search) || s.groupName.includes(search),
+    (s) =>
+      s.simpleGroupName
+        .toLocaleLowerCase()
+        .includes(search.toLocaleLowerCase()) ||
+      s.groupName.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
   );
 
   const favoriteGroups = mergedGroups.filter((item) =>
     favoritesList.value.includes(item.simpleGroupName),
   );
   const nonFavoriteGroups = GROUPS.filter(
-    (s) => s.simpleGroupName.includes(search) || s.groupName.includes(search),
+    (s) =>
+      s.simpleGroupName
+        .toLocaleLowerCase()
+        .includes(search.toLocaleLowerCase()) ||
+      s.groupName.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
   ).filter((item) => !favoritesList.value.includes(item.simpleGroupName));
   const nonFavoriteCustomGroups = customGroups
     .filter(
-      (s) => s.simpleGroupName.includes(search) || s.groupName.includes(search),
+      (s) =>
+        s.simpleGroupName
+          .toLocaleLowerCase()
+          .includes(search.toLocaleLowerCase()) ||
+        s.groupName.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
     )
     .filter((item) => !favoritesList.value.includes(item.simpleGroupName));
 
