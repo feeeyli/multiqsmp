@@ -127,30 +127,6 @@ export default function Streams(props: StreamsPageProps) {
         <SettingsDialog purgatory={props.purgatory} />
         {/* <EventsDialog /> */}
         <FAQDialog />
-        <Button
-          className={`${
-            props.purgatory ? 'default' : 'purgatory'
-          } mt-4 px-3 group-data-[dialogs-position=bottom]:mr-2.5 group-data-[dialogs-position=bottom]:mt-0`}
-          size="sm"
-          asChild
-        >
-          <Link
-            href={getOppositeUrl()}
-            onClick={() => {
-              if (props.purgatory)
-                return document.body.classList.remove('purgatory');
-
-              return document.body.classList.add('purgatory');
-            }}
-          >
-            {props.purgatory && (
-              <Globe2 size="1rem" className="block text-primary-foreground" />
-            )}
-            {!props.purgatory && (
-              <Eye size="1rem" className="block text-primary-foreground" />
-            )}
-          </Link>
-        </Button>
       </aside>
       <PanelGroup direction={isDesktop ? 'horizontal' : 'vertical'}>
         <Panel

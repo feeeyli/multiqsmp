@@ -204,38 +204,6 @@ export const StreamsList = (props: StreamsListProps) => {
             <ArrowLeftRight size="1.25rem" className="inline text-primary" />
             {t('no-streams').split('((button))')[1]}
           </div>
-          {!props.purgatory && (
-            <div className="flex flex-col items-center gap-3">
-              <p className="text-cold-purple-200 text-center text-sm [text-wrap:balance]">
-                Watch the{' '}
-                <Link
-                  href="https://twitter.com/QSMPEvents"
-                  className="text-[#FFA4CF]"
-                  target="_blank"
-                >
-                  #QSMPPurgatory2{' '}
-                </Link>
-                here:
-              </p>
-              <Button
-                variant="outline"
-                className="purgatory flex h-auto cursor-pointer gap-2 border-primary/10 bg-muted hover:bg-primary/10"
-                asChild
-              >
-                <Link href="/purgatory">
-                  <Image
-                    src="/icon-purgatory.svg"
-                    alt="Logo MultiQSMP Purgatório"
-                    width={96}
-                    height={72}
-                    className="w-6"
-                  />
-                  MultiQSMP Purgatory
-                  {/* <ExternalLink size="1rem" /> */}
-                </Link>
-              </Button>
-            </div>
-          )}
         </div>
       )}
     </div>
