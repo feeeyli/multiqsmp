@@ -158,12 +158,6 @@ dependencies:
   usehooks-ts:
     specifier: ^2.9.1
     version: 2.9.1(react-dom@18.2.0)(react@18.2.0)
-  vue-grid-layout:
-    specifier: ^2.4.0
-    version: 2.4.0(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2)
-  vuera:
-    specifier: ^0.2.7
-    version: 0.2.7(react-dom@18.2.0)(react@18.2.0)(vue@3.3.13)
   zod:
     specifier: ^3.21.4
     version: 3.21.4
@@ -188,38 +182,11 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /@babel/helper-string-parser@7.23.4:
-    resolution: {integrity: sha512-803gmbQdqwdf4olxrX4AJyFBV/RTr3rSmOj0rKwesmzlfhYNDEs+/iOcznzpNWlJlIlTJC2QfPFcHB6DlzdVLQ==}
-    engines: {node: '>=6.9.0'}
-    dev: false
-
-  /@babel/helper-validator-identifier@7.22.20:
-    resolution: {integrity: sha512-Y4OZ+ytlatR8AI+8KZfKuL5urKp7qey08ha31L8b3BwewJAoJamTzyvxPR/5D+KkdJCGPq/+8TukHBlY10FX9A==}
-    engines: {node: '>=6.9.0'}
-    dev: false
-
-  /@babel/parser@7.23.6:
-    resolution: {integrity: sha512-Z2uID7YJ7oNvAI20O9X0bblw7Qqs8Q2hFy0R9tAfnfLkp5MW0UH9eUvnDSnFwKZ0AvgS1ucqR4KzvVHgnke1VQ==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
-    dependencies:
-      '@babel/types': 7.23.6
-    dev: false
-
   /@babel/runtime@7.22.15:
     resolution: {integrity: sha512-T0O+aa+4w0u06iNmapipJXMV4HoUir03hpx3/YqXXhu9xim3w+dVphjFWl1OH8NbZHw5Lbm9k45drDkgq2VNNA==}
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
-    dev: false
-
-  /@babel/types@7.23.6:
-    resolution: {integrity: sha512-+uarb83brBzPKN38NX1MkB6vb6+mwvR6amUulqAE7ccQw1pEl+bCia9TbdG1lsnFP7lZySvUn37CHyXQdfTwzg==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/helper-string-parser': 7.23.4
-      '@babel/helper-validator-identifier': 7.22.20
-      to-fast-properties: 2.0.0
     dev: false
 
   /@dnd-kit/accessibility@3.0.1(react@18.2.0):
@@ -423,192 +390,6 @@ packages:
 
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
-    dev: false
-
-  /@interactjs/actions@1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2):
-    resolution: {integrity: sha512-BHJcW84WCMf/LsKmha/1Yog7aH3+QBXbLvowvZvwYvgjdUIb3xCa1a7FUYXuWAeKNMyKPVjFun+WPce75B+1tA==}
-    peerDependencies:
-      '@interactjs/core': 1.10.2
-      '@interactjs/utils': 1.10.2
-    dependencies:
-      '@interactjs/core': 1.10.2(@interactjs/utils@1.10.2)
-      '@interactjs/utils': 1.10.2
-    optionalDependencies:
-      '@interactjs/interact': 1.10.2
-    dev: false
-
-  /@interactjs/arrange@1.10.2:
-    resolution: {integrity: sha512-pPLA9o4RWMFN0VfalklOFSRLL4WqqXcD9no4XEuqV00goZPCxLBbMTztaWwnutlRy7evtOhUjUH+pZVsS+dZ4Q==}
-    dev: false
-
-  /@interactjs/auto-scroll@1.10.2(@interactjs/utils@1.10.2):
-    resolution: {integrity: sha512-yYqzOawwvWd1NNnlqZdzrXoOMFafQ2/ws85erpJqdaNMQE221z2uP+QYhFRLQRgYUlTbHFfmjDpzhuJgq4uA8Q==}
-    peerDependencies:
-      '@interactjs/utils': 1.10.2
-    dependencies:
-      '@interactjs/utils': 1.10.2
-    optionalDependencies:
-      '@interactjs/interact': 1.10.2
-    dev: false
-
-  /@interactjs/auto-start@1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2):
-    resolution: {integrity: sha512-nZudj8VzJzz+uEyDHqXwtKpvUYr+Oj1+xBrJEu21CywroHQWM2J4fCIiCgeCo3d5/p/TrzFk5b+YfAWePKiLxA==}
-    peerDependencies:
-      '@interactjs/core': 1.10.2
-      '@interactjs/utils': 1.10.2
-    dependencies:
-      '@interactjs/core': 1.10.2(@interactjs/utils@1.10.2)
-      '@interactjs/utils': 1.10.2
-    optionalDependencies:
-      '@interactjs/interact': 1.10.2
-    dev: false
-
-  /@interactjs/clone@1.10.2:
-    resolution: {integrity: sha512-XzA8BRHSCwvysOegZ1kopg+IJF3erh4qzY6DRoZsIJovKAXawoa176E58IAzDbgYPJ2yoaSGT+XyzT2C0wa3pQ==}
-    dev: false
-
-  /@interactjs/core@1.10.2(@interactjs/utils@1.10.2):
-    resolution: {integrity: sha512-SA5KRGo+gFJOhBj1Z2dLHhAf0/2nyHNd4SQ460aIQ3jj/QhqbJW6kGzmh7hBa2FzVGgxLhcQu7NZaP4rnDfUNw==}
-    peerDependencies:
-      '@interactjs/utils': 1.10.2
-    dependencies:
-      '@interactjs/utils': 1.10.2
-    dev: false
-
-  /@interactjs/dev-tools@1.10.2:
-    resolution: {integrity: sha512-aAd9NgTAGA3yVdFCYcAAYrM4TYQFuVqEvsF+xj+g5SlGyrJ7+GTjPZ2rScOyAsABY4Tz64L2pXvWmXMG87dncA==}
-    dependencies:
-      '@interactjs/utils': 1.10.2
-    optionalDependencies:
-      '@interactjs/interact': 1.10.2
-    dev: false
-
-  /@interactjs/feedback@1.10.2:
-    resolution: {integrity: sha512-XlcoICGrFeUwwRtDgOpstOOvlU42WZoEg7gJHK3LwF7j0IctPd1+3blXofFlBeVvodle8MvUMepm5CRXz741fA==}
-    dev: false
-
-  /@interactjs/inertia@1.10.2(@interactjs/core@1.10.2)(@interactjs/modifiers@1.10.2)(@interactjs/utils@1.10.2):
-    resolution: {integrity: sha512-ZmN1joN6J36Q6SOp3V0iZOisXZOBMSAUj0STo8wbwCKy7K8IrC9vjUBbO2JM52cT6o7hg5ebHsp5c8FrebSHlg==}
-    peerDependencies:
-      '@interactjs/core': 1.10.2
-      '@interactjs/modifiers': 1.10.2
-      '@interactjs/utils': 1.10.2
-    dependencies:
-      '@interactjs/core': 1.10.2(@interactjs/utils@1.10.2)
-      '@interactjs/modifiers': 1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2)
-      '@interactjs/offset': 1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2)
-      '@interactjs/utils': 1.10.2
-    optionalDependencies:
-      '@interactjs/interact': 1.10.2
-    dev: false
-
-  /@interactjs/interact@1.10.2:
-    resolution: {integrity: sha512-Ms5uVCY9IobVYpQyBnBdkP6Bk6iDY7TkC7GupsdUPUxzAvYSQCTEAGr/1PwxSrSS6dN/8O8TuyUWPbCaylr/JA==}
-    dependencies:
-      '@interactjs/core': 1.10.2(@interactjs/utils@1.10.2)
-      '@interactjs/types': 1.10.2
-      '@interactjs/utils': 1.10.2
-    dev: false
-
-  /@interactjs/interactjs@1.10.2:
-    resolution: {integrity: sha512-OwLl70af6lfZOOg/bvWKSNm1DS1nDI72QnzDYljSKfc2D8stqLIGDO1wPY2rhZudUG5q3t50EhmMUQF76yll/g==}
-    dependencies:
-      '@interactjs/actions': 1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2)
-      '@interactjs/arrange': 1.10.2
-      '@interactjs/auto-scroll': 1.10.2(@interactjs/utils@1.10.2)
-      '@interactjs/auto-start': 1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2)
-      '@interactjs/clone': 1.10.2
-      '@interactjs/core': 1.10.2(@interactjs/utils@1.10.2)
-      '@interactjs/dev-tools': 1.10.2
-      '@interactjs/feedback': 1.10.2
-      '@interactjs/inertia': 1.10.2(@interactjs/core@1.10.2)(@interactjs/modifiers@1.10.2)(@interactjs/utils@1.10.2)
-      '@interactjs/interact': 1.10.2
-      '@interactjs/modifiers': 1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2)
-      '@interactjs/multi-target': 1.10.2
-      '@interactjs/offset': 1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2)
-      '@interactjs/pointer-events': 1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2)
-      '@interactjs/react': 1.10.2
-      '@interactjs/reflow': 1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2)
-      '@interactjs/utils': 1.10.2
-      '@interactjs/vue': 1.10.2
-    dev: false
-
-  /@interactjs/modifiers@1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2):
-    resolution: {integrity: sha512-3wYEucvZF2NTIslnVIKw5MWhkn9LM42cGCQaC19o3LZeWnbps7NnHJCyQp6zylJrCbwt7f+CSt4Oj2/s0f6XEA==}
-    peerDependencies:
-      '@interactjs/core': 1.10.2
-      '@interactjs/utils': 1.10.2
-    dependencies:
-      '@interactjs/core': 1.10.2(@interactjs/utils@1.10.2)
-      '@interactjs/snappers': 1.10.2(@interactjs/utils@1.10.2)
-      '@interactjs/utils': 1.10.2
-    optionalDependencies:
-      '@interactjs/interact': 1.10.2
-    dev: false
-
-  /@interactjs/multi-target@1.10.2:
-    resolution: {integrity: sha512-O2GiIqgZBzjAVTOpL8doTnAcM9AtM3+H/Bb+An12wWKtNutVK7JbqUAO2nYueOk55/PP3yDLY9Qdr15RJns3lQ==}
-    dev: false
-
-  /@interactjs/offset@1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2):
-    resolution: {integrity: sha512-xLgQqinFUY7ZqSX9d9on7XRcxvQdHNEAktj2QFwxMsEwrA6zbKROpPVwt8WQ1yBAeJSFjgYGcmCMPW5K41dT0w==}
-    peerDependencies:
-      '@interactjs/core': 1.10.2
-      '@interactjs/utils': 1.10.2
-    dependencies:
-      '@interactjs/core': 1.10.2(@interactjs/utils@1.10.2)
-      '@interactjs/utils': 1.10.2
-    optionalDependencies:
-      '@interactjs/interact': 1.10.2
-    dev: false
-
-  /@interactjs/pointer-events@1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2):
-    resolution: {integrity: sha512-O8s3N399hkGIzWGlcJVy0LJyDn5YWDh6XKjyowh/QivtlZSWPY8eglmlN2uZX0lmiqUYghbKI4CpQYP/cE0ZDA==}
-    peerDependencies:
-      '@interactjs/core': 1.10.2
-      '@interactjs/utils': 1.10.2
-    dependencies:
-      '@interactjs/core': 1.10.2(@interactjs/utils@1.10.2)
-      '@interactjs/utils': 1.10.2
-    optionalDependencies:
-      '@interactjs/interact': 1.10.2
-    dev: false
-
-  /@interactjs/react@1.10.2:
-    resolution: {integrity: sha512-JXzPdANft+W2vq3SCSzprCwom5UuC8TaiAAhVdt8R+/P6xHbOeAX93XLS5YmDwT8e0Zh9J9jYvz55tkTdwjFZQ==}
-    dev: false
-
-  /@interactjs/reflow@1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2):
-    resolution: {integrity: sha512-pc6o6RRhSCYQC4auZexRb7z5FQkdSVev5HzlRfUAjfw4C076qgbcs63ESRKy4YXdSBtUTvARQZxpuWUNGquzJw==}
-    peerDependencies:
-      '@interactjs/core': 1.10.2
-      '@interactjs/utils': 1.10.2
-    dependencies:
-      '@interactjs/core': 1.10.2(@interactjs/utils@1.10.2)
-      '@interactjs/utils': 1.10.2
-    optionalDependencies:
-      '@interactjs/interact': 1.10.2
-    dev: false
-
-  /@interactjs/snappers@1.10.2(@interactjs/utils@1.10.2):
-    resolution: {integrity: sha512-wQ41Vn5GRn6VavjIEUtTkd9d5QgdKgC4+CPW0fjKkiQclLBmaic7VibNETO8twN0Jx5e73EoPj9K2nAVHIA0hA==}
-    peerDependencies:
-      '@interactjs/utils': 1.10.2
-    dependencies:
-      '@interactjs/utils': 1.10.2
-    dev: false
-
-  /@interactjs/types@1.10.2:
-    resolution: {integrity: sha512-l0T1bU8OHRv716ztQOYwP+K7b/lA76C0T3r/cdabbUv6CKeAFdFRRFlmNxYOM36SxMGWAiq5VWrN3SeXlB7Fow==}
-    requiresBuild: true
-    dev: false
-
-  /@interactjs/utils@1.10.2:
-    resolution: {integrity: sha512-sOr+pu7XGAN4qv+ikajMo3RJygbkbMLegmx0Tv5Qf6e80sF42FjkmHeMGuV7fL98nwat0VmDiWerOFBnKctXow==}
-    dev: false
-
-  /@interactjs/vue@1.10.2:
-    resolution: {integrity: sha512-msLdc42DFsCPQZt6YBGZrw8Ro23kQcNnj+iLz2OUQcOrp/lma7WjorUuAwwfyFna2DevLtiYlMLbT0dpO/cVhg==}
     dev: false
 
   /@jridgewell/gen-mapping@0.3.3:
@@ -1880,89 +1661,6 @@ packages:
       yoga-wasm-web: 0.3.3
     dev: false
 
-  /@vue/compiler-core@3.3.13:
-    resolution: {integrity: sha512-bwi9HShGu7uaZLOErZgsH2+ojsEdsjerbf2cMXPwmvcgZfVPZ2BVZzCVnwZBxTAYd6Mzbmf6izcUNDkWnBBQ6A==}
-    dependencies:
-      '@babel/parser': 7.23.6
-      '@vue/shared': 3.3.13
-      estree-walker: 2.0.2
-      source-map-js: 1.0.2
-    dev: false
-
-  /@vue/compiler-dom@3.3.13:
-    resolution: {integrity: sha512-EYRDpbLadGtNL0Gph+HoKiYqXLqZ0xSSpR5Dvnu/Ep7ggaCbjRDIus1MMxTS2Qm0koXED4xSlvTZaTnI8cYAsw==}
-    dependencies:
-      '@vue/compiler-core': 3.3.13
-      '@vue/shared': 3.3.13
-    dev: false
-
-  /@vue/compiler-sfc@3.3.13:
-    resolution: {integrity: sha512-DQVmHEy/EKIgggvnGRLx21hSqnr1smUS9Aq8tfxiiot8UR0/pXKHN9k78/qQ7etyQTFj5em5nruODON7dBeumw==}
-    dependencies:
-      '@babel/parser': 7.23.6
-      '@vue/compiler-core': 3.3.13
-      '@vue/compiler-dom': 3.3.13
-      '@vue/compiler-ssr': 3.3.13
-      '@vue/reactivity-transform': 3.3.13
-      '@vue/shared': 3.3.13
-      estree-walker: 2.0.2
-      magic-string: 0.30.5
-      postcss: 8.4.32
-      source-map-js: 1.0.2
-    dev: false
-
-  /@vue/compiler-ssr@3.3.13:
-    resolution: {integrity: sha512-d/P3bCeUGmkJNS1QUZSAvoCIW4fkOKK3l2deE7zrp0ypJEy+En2AcypIkqvcFQOcw3F0zt2VfMvNsA9JmExTaw==}
-    dependencies:
-      '@vue/compiler-dom': 3.3.13
-      '@vue/shared': 3.3.13
-    dev: false
-
-  /@vue/reactivity-transform@3.3.13:
-    resolution: {integrity: sha512-oWnydGH0bBauhXvh5KXUy61xr9gKaMbtsMHk40IK9M4gMuKPJ342tKFarY0eQ6jef8906m35q37wwA8DMZOm5Q==}
-    dependencies:
-      '@babel/parser': 7.23.6
-      '@vue/compiler-core': 3.3.13
-      '@vue/shared': 3.3.13
-      estree-walker: 2.0.2
-      magic-string: 0.30.5
-    dev: false
-
-  /@vue/reactivity@3.3.13:
-    resolution: {integrity: sha512-fjzCxceMahHhi4AxUBzQqqVhuA21RJ0COaWTbIBl1PruGW1CeY97louZzLi4smpYx+CHfFPPU/CS8NybbGvPKQ==}
-    dependencies:
-      '@vue/shared': 3.3.13
-    dev: false
-
-  /@vue/runtime-core@3.3.13:
-    resolution: {integrity: sha512-1TzA5TvGuh2zUwMJgdfvrBABWZ7y8kBwBhm7BXk8rvdx2SsgcGfz2ruv2GzuGZNvL1aKnK8CQMV/jFOrxNQUMA==}
-    dependencies:
-      '@vue/reactivity': 3.3.13
-      '@vue/shared': 3.3.13
-    dev: false
-
-  /@vue/runtime-dom@3.3.13:
-    resolution: {integrity: sha512-JJkpE8R/hJKXqVTgUoODwS5wqKtOsmJPEqmp90PDVGygtJ4C0PtOkcEYXwhiVEmef6xeXcIlrT3Yo5aQ4qkHhQ==}
-    dependencies:
-      '@vue/runtime-core': 3.3.13
-      '@vue/shared': 3.3.13
-      csstype: 3.1.3
-    dev: false
-
-  /@vue/server-renderer@3.3.13(vue@3.3.13):
-    resolution: {integrity: sha512-vSnN+nuf6iSqTL3Qgx/9A+BT+0Zf/VJOgF5uMZrKjYPs38GMYyAU1coDyBNHauehXDaP+zl73VhwWv0vBRBHcg==}
-    peerDependencies:
-      vue: 3.3.13
-    dependencies:
-      '@vue/compiler-ssr': 3.3.13
-      '@vue/shared': 3.3.13
-      vue: 3.3.13(typescript@5.2.2)
-    dev: false
-
-  /@vue/shared@3.3.13:
-    resolution: {integrity: sha512-/zYUwiHD8j7gKx2argXEMCUXVST6q/21DFU0sTfNX0URJroCe3b1UF6vLJ3lQDfLNIiiRl2ONp7Nh5UVWS6QnA==}
-    dev: false
-
   /acorn-jsx@5.3.2(acorn@8.10.0):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -2167,10 +1865,6 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
-  /batch-processor@1.0.0:
-    resolution: {integrity: sha512-xoLQD8gmmR32MeuBHgH0Tzd5PuSZx71ZsbhVxOCRbgktZEPe4SQy7s9Z50uPp0F/f7iw2XmkHN2xkgbMfckMDA==}
-    dev: false
-
   /binary-extensions@2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
@@ -2351,10 +2045,6 @@ packages:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
     dev: false
 
-  /csstype@3.1.3:
-    resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
-    dev: false
-
   /damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
     dev: false
@@ -2466,12 +2156,6 @@ packages:
 
   /electron-to-chromium@1.4.523:
     resolution: {integrity: sha512-9AreocSUWnzNtvLcbpng6N+GkXnCcBR80IQkxRC9Dfdyg4gaWNUPBujAHUpKkiUkoSoR9UlhA4zD/IgBklmhzg==}
-    dev: false
-
-  /element-resize-detector@1.2.4:
-    resolution: {integrity: sha512-Fl5Ftk6WwXE0wqCgNoseKWndjzZlDCwuPTcoVZfCP9R3EHQF8qUtr3YUPNETegRBOKqQKPW3n4kiIWngGi8tKg==}
-    dependencies:
-      batch-processor: 1.0.0
     dev: false
 
   /emoji-regex@10.2.1:
@@ -2859,10 +2543,6 @@ packages:
   /estraverse@5.3.0:
     resolution: {integrity: sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==}
     engines: {node: '>=4.0'}
-    dev: false
-
-  /estree-walker@2.0.2:
-    resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
     dev: false
 
   /esutils@2.0.3:
@@ -3563,13 +3243,6 @@ packages:
       react: 18.2.0
     dev: false
 
-  /magic-string@0.30.5:
-    resolution: {integrity: sha512-7xlpfBaQaP/T6Vh8MO/EqXSW5En6INHEvEXQiuff7Gku0PWjU3uf6w/j9o7O+SpB5fOAkrI5HeoNgwjEO0pFsA==}
-    engines: {node: '>=12'}
-    dependencies:
-      '@jridgewell/sourcemap-codec': 1.4.15
-    dev: false
-
   /mdast-util-from-markdown@2.0.0:
     resolution: {integrity: sha512-n7MTOr/z+8NAX/wmhhDji8O3bRvPTV/U0oTCaZJkjhPSKTPhS3xufVhKGF8s1pJ7Ox4QgoIU7KHseh09S+9rTA==}
     dependencies:
@@ -3840,12 +3513,6 @@ packages:
 
   /nanoid@3.3.6:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
-    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-    dev: false
-
-  /nanoid@3.3.7:
-    resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
     dev: false
@@ -4191,15 +3858,6 @@ packages:
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.6
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
-    dev: false
-
-  /postcss@8.4.32:
-    resolution: {integrity: sha512-D/kj5JNu6oo2EIy+XL/26JEDTlIbB8hw85G8StOE6L74RQAVVP5rej6wxCNqyMbR4RkPfqvezVbPw81Ngd6Kcw==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.7
       picocolors: 1.0.0
       source-map-js: 1.0.2
     dev: false
@@ -4877,11 +4535,6 @@ packages:
     resolution: {integrity: sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==}
     dev: false
 
-  /to-fast-properties@2.0.0:
-    resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
-    engines: {node: '>=4'}
-    dev: false
-
   /to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -5131,49 +4784,6 @@ packages:
       '@types/unist': 3.0.0
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
-    dev: false
-
-  /vue-grid-layout@2.4.0(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2):
-    resolution: {integrity: sha512-MRQVt1BdWDaPN4gKGEKOVVwiTyucqJhrGEyjiY9Muor+dzFFq4Hm0geSpYJpLvC1GLlTL8KWUwy0suKrHm+mqg==}
-    dependencies:
-      '@interactjs/actions': 1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2)
-      '@interactjs/auto-scroll': 1.10.2(@interactjs/utils@1.10.2)
-      '@interactjs/auto-start': 1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2)
-      '@interactjs/dev-tools': 1.10.2
-      '@interactjs/interactjs': 1.10.2
-      '@interactjs/modifiers': 1.10.2(@interactjs/core@1.10.2)(@interactjs/utils@1.10.2)
-      element-resize-detector: 1.2.4
-    transitivePeerDependencies:
-      - '@interactjs/core'
-      - '@interactjs/utils'
-    dev: false
-
-  /vue@3.3.13(typescript@5.2.2):
-    resolution: {integrity: sha512-LDnUpQvDgsfc0u/YgtAgTMXJlJQqjkxW1PVcOnJA5cshPleULDjHi7U45pl2VJYazSSvLH8UKcid/kzH8I0a0Q==}
-    peerDependencies:
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@vue/compiler-dom': 3.3.13
-      '@vue/compiler-sfc': 3.3.13
-      '@vue/runtime-dom': 3.3.13
-      '@vue/server-renderer': 3.3.13(vue@3.3.13)
-      '@vue/shared': 3.3.13
-      typescript: 5.2.2
-    dev: false
-
-  /vuera@0.2.7(react-dom@18.2.0)(react@18.2.0)(vue@3.3.13):
-    resolution: {integrity: sha512-MZErNEK+xXjxBzIDFL9cdEtX3TDZk4pMJGB+WLrlFOVro9okS/FeOSpdPFkpdyZUImZN/or4CrmztA932ChGEQ==}
-    peerDependencies:
-      react: '>= 15.2.0'
-      react-dom: '>= 15.2.0'
-      vue: '>= 2.2'
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      vue: 3.3.13(typescript@5.2.2)
     dev: false
 
   /watchpack@2.4.0:
