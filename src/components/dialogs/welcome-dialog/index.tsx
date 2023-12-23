@@ -26,11 +26,12 @@ export const WelcomeDialog = () => {
     false,
   );
 
-  if (notFirstView) return null;
+  // if (notFirstView) return null;
 
   return (
     <Dialog
       defaultOpen={!notFirstView}
+      open={notFirstView ? false : undefined}
       onOpenChange={(open) => {
         if (!open) setNotFirstView(true);
       }}
