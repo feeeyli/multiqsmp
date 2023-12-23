@@ -25,6 +25,7 @@ import { useSettingsContext } from '@/contexts/settings-context';
 interface Props {
   channel: string;
   isMoving: boolean;
+  groupName?: string;
 }
 
 export const StreamPlayer = ({ channel, ...props }: Props) => {
@@ -34,7 +35,7 @@ export const StreamPlayer = ({ channel, ...props }: Props) => {
   const isDesktop = !useMediaQuery('(max-width: 640px)');
   const [
     {
-      streams: { movableMode },
+      streams: { movableMode, useHandleAsHeader: useHandleAsHeaderSet },
     },
   ] = useSettingsContext();
 
@@ -56,44 +57,75 @@ export const StreamPlayer = ({ channel, ...props }: Props) => {
     },
   });
 
+  const useHandleAsHeader =
+    streamPlayerControls.fullScreen.value || !movableMode
+      ? false
+      : useHandleAsHeaderSet;
+
   return (
-    <div
-      className={playerStyleVariants({
-        fullScreen: streamPlayerControls.fullScreen.value,
-        moving: props.isMoving,
-        movableMode,
-      })}
-      style={
-        movableMode
-          ? undefined
-          : {
-              width: streamPlayerControls.fullScreen.value
-                ? 'auto'
-                : `${
-                    100 /
-                    getColumns(
-                      streams.length,
-                      isDesktop,
-                      !!searchParams.get('chats'),
-                    )
-                  }%`,
-            }
-      }
-    >
-      <StreamPlayerHeader
-        channel={channel}
-        isYoutubeStream={`https://player.twitch.tv/${channel}`.includes(
-          'youtube',
+    <>
+      {movableMode && (
+        <div
+          className={`flex h-7 w-full cursor-move data-[use-handle-as-header=true]:h-7 sm:h-3 ${
+            useHandleAsHeader ? '' : 'handle'
+          }`}
+          data-use-handle-as-header={useHandleAsHeader}
+        >
+          {useHandleAsHeader && (
+            <>
+              <StreamPlayerHeader
+                channel={channel}
+                isYoutubeStream={`https://player.twitch.tv/${channel}`.includes(
+                  'youtube',
+                )}
+                groupName={props.groupName}
+              />
+              <div className="handle h-7 flex-grow"></div>
+            </>
+          )}
+        </div>
+      )}
+      <div
+        className={playerStyleVariants({
+          fullScreen: streamPlayerControls.fullScreen.value,
+          moving: props.isMoving,
+          movableMode,
+        })}
+        style={
+          movableMode
+            ? undefined
+            : {
+                width: streamPlayerControls.fullScreen.value
+                  ? 'auto'
+                  : `${
+                      100 /
+                      getColumns(
+                        streams.length,
+                        isDesktop,
+                        !!searchParams.get('chats'),
+                      )
+                    }%`,
+              }
+        }
+      >
+        {!useHandleAsHeader && (
+          <StreamPlayerHeader
+            channel={channel}
+            isYoutubeStream={`https://player.twitch.tv/${channel}`.includes(
+              'youtube',
+            )}
+            groupName={props.groupName}
+          />
         )}
-      />
-      <ReactPlayer
-        className="!h-full !w-full"
-        url={`https://player.twitch.tv/${channel}`}
-        muted={streamPlayerControls.muted.value}
-        playing
-        controls
-        key={streamPlayerControls.refresh.key}
-      />
-    </div>
+        <ReactPlayer
+          className="!h-full !w-full"
+          url={`https://player.twitch.tv/${channel}`}
+          muted={streamPlayerControls.muted.value}
+          playing
+          controls
+          key={streamPlayerControls.refresh.key}
+        />
+      </div>
+    </>
   );
 };

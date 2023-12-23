@@ -35,6 +35,7 @@ import { motion } from 'framer-motion';
 interface StreamPlayerHeaderProps {
   channel: string;
   isYoutubeStream: boolean;
+  groupName?: string;
 }
 
 export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
@@ -44,12 +45,18 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
   const searchParams = useSearchParams();
   const [
     {
-      streams: { alwaysShowHeader, headerItems },
+      streams: {
+        alwaysShowHeader,
+        headerItems,
+        useHandleAsHeader: useHandleAsHeaderSet,
+        movableMode,
+      },
     },
   ] = useSettingsContext();
 
   const [chats, setChats] = useSearchParamsState('chats', '');
   const [streams, setStreams] = useSearchParamsState('streamers', '');
+  const [groups, setGroups] = useSearchParamsState('groups', '');
   const isChatActive = chats.includes(props.channel);
 
   function handleToggleChat() {
@@ -63,11 +70,26 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
   }
 
   function handleRemove() {
-    const streamsArray = streams === '' ? [] : streams.split('/');
+    if (props.groupName === undefined) {
+      const streamsArray = streams === '' ? [] : streams.split('/');
 
-    setStreams(
-      streamsArray.filter((stream) => stream !== props.channel).join('/'),
-    );
+      setStreams(
+        streamsArray.filter((stream) => stream !== props.channel).join('/'),
+      );
+    } else {
+      const groupsArray = groups === '' ? [] : groups.split('/');
+
+      setGroups(
+        groupsArray
+          .map((g) => {
+            if (g.split('.')[0] === props.groupName)
+              return `${g}${g.includes('.') ? '' : '.'}-${props.channel}`;
+
+            return g;
+          })
+          .join('/'),
+      );
+    }
   }
 
   function handleMove(dir: 'up' | 'down') {
@@ -241,17 +263,30 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
     },
   };
 
+  const useHandleAsHeader =
+    streamPlayerControls.fullScreen.value || !movableMode
+      ? false
+      : useHandleAsHeaderSet;
+
+  const showOnlyFullScreen =
+    useHandleAsHeaderSet &&
+    movableMode &&
+    streamPlayerControls.fullScreen.value;
+
+  const isOpened =
+    alwaysShowHeader || useHandleAsHeader || opened || showOnlyFullScreen;
   return (
     <motion.header
-      data-opened={alwaysShowHeader || opened}
-      data-always-show-header={alwaysShowHeader}
+      data-opened={isOpened}
+      data-always-show-header={alwaysShowHeader || showOnlyFullScreen}
+      data-use-handle-as-header={useHandleAsHeader}
       style={style}
-      animate={alwaysShowHeader || opened ? 'opened' : 'closed'}
+      animate={isOpened ? 'opened' : 'closed'}
       variants={headerVariants}
       transition={{ width: { type: 'spring', bounce: 0.2, duration: 0.5 } }}
-      className="group/header gray-dark absolute left-1 top-1 flex items-center overflow-hidden rounded-md bg-card/30"
+      className="group/header data-[use-handle-as-header=false]:gray-dark absolute left-1 top-1 flex items-center overflow-hidden rounded-md bg-card/30 data-[use-handle-as-header=true]:static data-[use-handle-as-header=true]:bg-transparent"
     >
-      {!alwaysShowHeader && (
+      {!alwaysShowHeader && !useHandleAsHeader && !showOnlyFullScreen && (
         <Button
           variant="stream-header"
           size="stream-header"
@@ -264,7 +299,15 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         </Button>
       )}
       <div className="h-7">
-        {headerItemsSorted.map((item) => headerActions[item])}
+        {!(
+          useHandleAsHeaderSet &&
+          movableMode &&
+          streamPlayerControls.fullScreen.value
+        ) && headerItemsSorted.map((item) => headerActions[item])}
+        {useHandleAsHeaderSet &&
+          movableMode &&
+          streamPlayerControls.fullScreen.value &&
+          headerActions.fullscreen}
       </div>
     </motion.header>
   );

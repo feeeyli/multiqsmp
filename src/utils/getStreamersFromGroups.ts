@@ -20,7 +20,10 @@ export function getStreamersFromGroups(
 
       return getStreamersFromGroup(group, gn);
     })
-    .filter((item) => item !== '');
+    .filter((item) => item !== '') as {
+    groupName: string;
+    members: string[];
+  }[];
 
   const groups = mergedGroups.filter((group) =>
     groupsNames.includes(group.simpleGroupName),
@@ -30,10 +33,18 @@ export function getStreamersFromGroups(
   //   const toReturn = new Set(group.twitchNames)
   // })
 
-  const streamersFromGroups: string[] = [];
+  const streamersFromGroups: {
+    groupName: string;
+    twitchName: string;
+  }[] = [];
 
   groupsWithOptionsDone.forEach((group) => {
-    streamersFromGroups.push(...group);
+    streamersFromGroups.push(
+      ...group.members.map((g) => ({
+        groupName: group.groupName,
+        twitchName: g,
+      })),
+    );
   });
 
   return streamersFromGroups;
@@ -42,7 +53,8 @@ export function getStreamersFromGroups(
 function getStreamersFromGroup(group: GroupType, nameOnQuery: string) {
   const options = nameOnQuery.split('.')[1];
 
-  if (!options) return group.twitchNames;
+  if (!options)
+    return { groupName: group.simpleGroupName, members: group.twitchNames };
 
   const [order, ...exclusions] = options.split('-');
 
@@ -54,7 +66,10 @@ function getStreamersFromGroup(group: GroupType, nameOnQuery: string) {
     (name) => !exclusions.includes(name),
   );
 
-  return groupMembersWithExclusions.filter((item) => item);
+  return {
+    groupName: group.simpleGroupName,
+    members: groupMembersWithExclusions.filter((item) => item),
+  };
 }
 /*
 group.twitchNames.map((name, index) => )

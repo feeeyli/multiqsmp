@@ -61,6 +61,7 @@ import {
 } from './discard-changes-dialog';
 import { DialogClose } from '@radix-ui/react-dialog';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
+import { Separator } from '@/components/ui/separator';
 
 const headerItemsNames = z.enum([
   'mute',
@@ -118,6 +119,7 @@ const settingsFormSchema = z.object({
     }).transform(h => h.value)) */,
     movableMode: z.boolean(),
     movableChat: z.boolean(),
+    useHandleAsHeader: z.boolean(),
     startMuted: z.boolean(),
   }),
 });
@@ -138,6 +140,8 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [{ cucurucho, active: easterEggs }, setEasterEggs] =
     useEasterEggsContext();
+
+  const movableMode = form.watch('streams.movableMode');
 
   function onSubmit(values: SettingsType) {
     setSettings(values);
@@ -606,32 +610,68 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
                     </Button>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name="streams.movableChat"
-                  render={({ field }) => (
-                    <Button
-                      variant="outline"
-                      className="min-h-10 flex h-auto justify-start"
-                      asChild
-                    >
-                      <label>
-                        <FormItem className="flex items-center gap-2">
-                          <FormControl>
-                            <Checkbox
-                              checked={field.value}
-                              onCheckedChange={field.onChange}
-                            />
-                          </FormControl>
-                          <FormLabel className="!m-0 leading-5">
-                            {t('form.streams.outro.movable-chat')}
-                          </FormLabel>
-                          <FormMessage />
-                        </FormItem>
-                      </label>
-                    </Button>
-                  )}
-                />
+                {movableMode && (
+                  <div className="flex gap-4">
+                    <Separator
+                      orientation="vertical"
+                      className="ml-4 h-auto bg-primary/60"
+                    />
+                    <div className="w-full space-y-3">
+                      <FormField
+                        control={form.control}
+                        name="streams.movableChat"
+                        render={({ field }) => (
+                          <Button
+                            variant="outline"
+                            className="min-h-10 flex h-auto justify-start"
+                            asChild
+                          >
+                            <label>
+                              <FormItem className="flex items-center gap-2">
+                                <FormControl>
+                                  <Checkbox
+                                    checked={field.value}
+                                    onCheckedChange={field.onChange}
+                                  />
+                                </FormControl>
+                                <FormLabel className="!m-0 leading-5">
+                                  {t('form.streams.outro.movable-chat')}
+                                </FormLabel>
+                                <FormMessage />
+                              </FormItem>
+                            </label>
+                          </Button>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="streams.useHandleAsHeader"
+                        render={({ field }) => (
+                          <Button
+                            variant="outline"
+                            className="min-h-10 flex h-auto justify-start"
+                            asChild
+                          >
+                            <label>
+                              <FormItem className="flex items-center gap-2">
+                                <FormControl>
+                                  <Checkbox
+                                    checked={field.value}
+                                    onCheckedChange={field.onChange}
+                                  />
+                                </FormControl>
+                                <FormLabel className="!m-0 leading-5">
+                                  {t('form.streams.outro.use-handle-as-header')}
+                                </FormLabel>
+                                <FormMessage />
+                              </FormItem>
+                            </label>
+                          </Button>
+                        )}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             {easterEggs && (

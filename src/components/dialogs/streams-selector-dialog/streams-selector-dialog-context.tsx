@@ -14,6 +14,7 @@ interface ContextItemValue {
 export const StreamsSelectorDialogContext = createContext<{
   selectedStreamers: ContextItemValue;
   selectedGroups: ContextItemValue;
+  changedGroups: ContextItemValue;
 }>({
   selectedStreamers: {
     value: [],
@@ -35,6 +36,16 @@ export const StreamsSelectorDialogContext = createContext<{
       toggleItem() {},
     },
   },
+  changedGroups: {
+    value: [],
+    actions: {
+      addItem() {},
+      moveItem() {},
+      removeItem() {},
+      updateList() {},
+      toggleItem() {},
+    },
+  },
 });
 
 export const StreamsSelectorDialogProvider = ({
@@ -44,6 +55,7 @@ export const StreamsSelectorDialogProvider = ({
 }) => {
   const selectedStreamers = useList<string>([]);
   const selectedGroups = useList<string>([]);
+  const changedGroups = useList<string>([]);
 
   return (
     <StreamsSelectorDialogContext.Provider
@@ -55,6 +67,10 @@ export const StreamsSelectorDialogProvider = ({
         selectedGroups: {
           value: selectedGroups[0],
           actions: selectedGroups[1],
+        },
+        changedGroups: {
+          value: changedGroups[0],
+          actions: changedGroups[1],
         },
       }}
     >

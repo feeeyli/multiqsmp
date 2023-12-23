@@ -28,12 +28,12 @@ export const Chat = (props: ChatProps) => {
   if (movableChat && movableMode)
     return (
       <>
-        <div className="handle flex h-7 w-full cursor-move items-center justify-between gap-2 px-3 text-sm group-data-[collapsed=true]:h-full group-data-[collapsed=true]:flex-col group-data-[collapsed=true]:px-1 group-data-[collapsed=true]:py-3">
+        <div className="handle flex h-7 w-full cursor-move items-center justify-between gap-2 pl-3 text-sm group-data-[collapsed=true]:h-full group-data-[collapsed=true]:flex-col group-data-[collapsed=true]:px-1 group-data-[collapsed=true]:py-3">
           {getDisplayName(props.chat)}
           <Button
             onClick={() => handleRemoveChat(props.chat)}
             variant="ghost"
-            className="h-6 w-6 cursor-pointer px-0 hover:bg-primary/20"
+            className="h-7 w-8 cursor-pointer px-0 hover:bg-primary/20"
             size="sm"
           >
             <X size="1rem" className="text-foreground" />

@@ -81,7 +81,7 @@ const teams: {
 };
 
 export const Group = (props: GroupProps) => {
-  const { selectedGroups } = useStreamsSelectorDialogContext();
+  const { selectedGroups, changedGroups } = useStreamsSelectorDialogContext();
   const { groups: favoritesList } = useFavoriteListsContext();
 
   const t = useTranslations('streamers-dialog');
@@ -125,9 +125,19 @@ export const Group = (props: GroupProps) => {
       )}
       <Toggle
         pressed={props.selected}
-        onPressedChange={() =>
-          selectedGroups.actions.toggleItem(props.group.simpleGroupName, -1)
-        }
+        onPressedChange={() => {
+          console.log('> changed', props.group.simpleGroupName);
+
+          if (selectedGroups.value.includes(props.group.simpleGroupName)) {
+            changedGroups.actions.updateList((old) =>
+              old.filter((g) => g !== props.group.simpleGroupName),
+            );
+          } else {
+            changedGroups.actions.addItem(props.group.simpleGroupName, -1);
+          }
+
+          selectedGroups.actions.toggleItem(props.group.simpleGroupName, -1);
+        }}
         asChild
       >
         <Button

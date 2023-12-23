@@ -381,6 +381,10 @@
     text-orientation: mixed;
   }
 
+  .grid-layout .react-resizable-handle {
+    @apply z-30;
+  }
+
   .grid-layout .react-resizable-handle::after {
     height: 0.5rem;
     width: 0.5rem;

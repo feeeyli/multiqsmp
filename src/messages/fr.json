@@ -134,8 +134,9 @@
         "outro": {
           "label": "Autre",
           "start-muted": "Démarrer les diffusions en direct en mode silencieux.",
-          "movable-mode": "Déplacer et redimensionner streams. (expérimental)",
-          "movable-chat": "Déplacer et redimensionner les chats. (Uniquement si l'option \"Déplacer et redimensionner streams\" est activée)"
+          "movable-mode": "Déplacer et redimensionner streams. (Expérimental)",
+          "movable-chat": "Déplacer et redimensionner les chats.",
+          "use-handle-as-header": "Garder le menu toujours visible au-dessus du stream."
         }
       }
     }

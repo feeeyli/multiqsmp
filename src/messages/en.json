@@ -135,7 +135,8 @@
           "label": "Other",
           "start-muted": "Start live streams muted.",
           "movable-mode": "Move and resize streams. (Experimental)",
-          "movable-chat": "Move and resize chats. (Only with \"Move and resize streams\" enabled)"
+          "movable-chat": "Move and resize chats.",
+          "use-handle-as-header": "Keep menu always visible above stream."
         }
       }
     }

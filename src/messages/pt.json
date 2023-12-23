@@ -135,7 +135,8 @@
           "label": "Outro",
           "start-muted": "Começar lives sem som.",
           "movable-mode": "Movimentar e redimensionar lives. (Experimental)",
-          "movable-chat": "Movimentar e redimensionar chats. (Apenas com \"Movimentar e redimensionar lives\" ativo)"
+          "movable-chat": "Movimentar e redimensionar chats.",
+          "use-handle-as-header": "Manter menu sempre visível acima da live."
         }
       }
     }

@@ -67,7 +67,7 @@ interface StreamsSelectorDialogProps {
 
 export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
   const t = useTranslations('streamers-dialog');
-  const { selectedStreamers, selectedGroups } =
+  const { selectedStreamers, selectedGroups, changedGroups } =
     useStreamsSelectorDialogContext();
   const searchParams = useSearchParams();
   const [tab, setTab] = useState<string>('streamers');
@@ -100,11 +100,24 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
     const newChats = chats.filter((chat) =>
       selectedStreamers.value.includes(chat),
     );
+    const groupsOnQuery = searchParams.get('groups')?.split('/') || [];
 
     if (selectedStreamers.value.length > 0)
       newUrl.set('streamers', selectedStreamers.value.join('/'));
     if (selectedGroups.value.length > 0)
-      newUrl.set('groups', selectedGroups.value.join('/'));
+      newUrl.set(
+        'groups',
+        [
+          ...groupsOnQuery.filter(
+            (g) =>
+              !changedGroups.value.includes(g.split('.')[0]) &&
+              selectedGroups.value.includes(g.split('.')[0]),
+          ),
+          ...selectedGroups.value.filter((g) =>
+            changedGroups.value.includes(g),
+          ),
+        ].join('/'),
+      );
     if (selectedStreamers.value.length > 0 && newChats.length > 0)
       newUrl.set('chats', newChats.join('/'));
 
@@ -123,6 +136,7 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
             ?.split('/')
             .map((g) => g.split('.')[0]) || [],
         );
+        changedGroups.actions.updateList([]);
       }}
     >
       <DialogTrigger asChild>
@@ -182,22 +196,7 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
                 .map((s) => getDisplayName(s, customGroups))
                 .join(', ')}
           </p>
-          <div className="flex w-full items-center !justify-between">
-            <div>
-              
-              {/* <Button
-                variant="ghost"
-                size="sm"
-                className="px-2.5"
-                onClick={() => {
-                  if (tab === 'streamers')
-                    selectedStreamers.actions.updateList([]);
-                  if (tab === 'groups') selectedGroups.actions.updateList([]);
-                }}
-              >
-                <BoxSelect size="1rem" />
-              </Button> */}
-            </div>
+          <div className="flex w-full flex-row-reverse items-center">
             <DialogClose asChild>
               <Button variant="ghost" asChild className="gap-2">
                 <Link href={getWatchUrl()}>

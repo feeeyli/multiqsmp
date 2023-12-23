@@ -94,12 +94,31 @@ export const StreamsList = (props: StreamsListProps) => {
   );
 
   const mergedStreams = [
-    ...new Set([...streamersOnQuery, ...streamersFromGroups]),
+    ...new Set([
+      ...streamersOnQuery.map((s) => ({
+        twitchName: s,
+        groupName: undefined,
+        isChat: false,
+      })),
+      ...streamersFromGroups.map((s) => ({
+        twitchName: s.twitchName,
+        groupName: s.groupName,
+        isChat: false,
+      })),
+    ]),
   ];
 
-  const listWithChat: string[] = [
+  const listWithChat: {
+    twitchName: string;
+    groupName?: string;
+    isChat: boolean;
+  }[] = [
     ...mergedStreams,
-    ...(movableChat ? chatsOnQuery : []).map((c) => '$' + c),
+    ...(movableChat ? chatsOnQuery : []).map((c) => ({
+      twitchName: c,
+      groupName: undefined,
+      isChat: true,
+    })),
   ];
 
   // listWithChat.forEach((s) => {
@@ -167,20 +186,17 @@ export const StreamsList = (props: StreamsListProps) => {
                   className="grid-layout-item flex select-none flex-col rounded-sm bg-muted"
                   data-grid={getGridData(i)}
                 >
-                  {!channel.includes('$') && (
-                    <>
-                      <div className="handle h-3 w-full cursor-move"></div>
-                      <StreamPlayerControlsProvider>
-                        <StreamPlayer
-                          channel={channel}
-                          // containerSize={containerSize}
-                          isMoving={isMoving}
-                        />
-                      </StreamPlayerControlsProvider>
-                    </>
+                  {!channel.isChat && (
+                    <StreamPlayerControlsProvider>
+                      <StreamPlayer
+                        channel={channel.twitchName}
+                        groupName={channel.groupName}
+                        isMoving={isMoving}
+                      />
+                    </StreamPlayerControlsProvider>
                   )}
-                  {channel.includes('$') && (
-                    <Chat chat={channel.replace('$', '')} isMoving={isMoving} />
+                  {channel.isChat && (
+                    <Chat chat={channel.twitchName} isMoving={isMoving} />
                   )}
                 </div>
               ))}
@@ -189,8 +205,12 @@ export const StreamsList = (props: StreamsListProps) => {
           {!movableMode && (
             <div className="flex h-full max-h-screen flex-1 flex-wrap">
               {listWithChat.map((channel) => (
-                <StreamPlayerControlsProvider key={channel}>
-                  <StreamPlayer channel={channel} isMoving={isMoving} />
+                <StreamPlayerControlsProvider key={channel.twitchName}>
+                  <StreamPlayer
+                    channel={channel.twitchName}
+                    isMoving={isMoving}
+                    groupName={channel.groupName}
+                  />
                 </StreamPlayerControlsProvider>
               ))}
             </div>
