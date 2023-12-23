@@ -30,6 +30,7 @@ import { EventsDialog } from '@/components/dialogs/events-dialog';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Eye, Globe2 } from 'lucide-react';
+import { WelcomeDialog } from '@/components/dialogs/welcome-dialog';
 
 interface StreamsPageProps {
   purgatory: boolean;
@@ -160,6 +161,7 @@ export default function Streams(props: StreamsPageProps) {
             </>
           )}
       </PanelGroup>
+      <WelcomeDialog />
     </main>
   );
 }

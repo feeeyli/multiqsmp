@@ -33,7 +33,7 @@ export const FAQDialog = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button className="px-3" size="sm">
-          <HelpCircle size="1rem" className="block text-primary-foreground" />
+          <HelpCircle size="1rem" className="block text-secondary" />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-2xl">

@@ -187,5 +187,25 @@
     "next-event": "Prochain événement le :",
     "event-started": "L'événement a déjà commencé !",
     "no-events": "Aucun événement n'est prévu !"
+  },
+  "welcome-dialog": {
+    "title": "Bienvenue à MultiQSMP",
+    "description": "Voici un petit guide des menus du site",
+    "selector": {
+      "title": "Sélecteur de flux",
+      "content": "Ceci est le menu principal de MultiQSMP. Entrez-y, sélectionnez les streamers ou les groupes que vous voulez, cliquez sur regarder et profitez-en. Si l'un des streamers que vous souhaitez regarder n'est pas sur MultiQSMP, vous pouvez l'ajouter directement à l'url."
+    },
+    "organizer": {
+      "title": "Organizer",
+      "content": "Ici, vous pouvez organiser l'ordre de vos streamers et chats."
+    },
+    "settings": {
+      "title": "Paramètres",
+      "content": "Ici, vous pouvez modifier le thème, changer les boutons dans les menus en direct, choisir qui apparaît dans le menu de sélection ou même changer la façon dont vous regardez les lives. Je vous recommande de jeter un coup d'œil dans les paramètres lorsque vous le pouvez."
+    },
+    "faq": {
+      "title": "FAQ",
+      "content": "Ceci est la FAQ où vous trouverez de nombreuses informations utiles sur l'utilisation de MultiQSMP. Il est important de lire les informations contenues ici !"
+    }
   }
 }

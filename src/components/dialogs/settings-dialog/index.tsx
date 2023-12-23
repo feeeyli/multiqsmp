@@ -160,7 +160,7 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
           className="mt-4 px-3 group-data-[dialogs-position=bottom]:mr-2.5 group-data-[dialogs-position=bottom]:mt-0"
           size="sm"
         >
-          <Settings size="1rem" className="block text-primary-foreground" />
+          <Settings size="1rem" className="block text-secondary" />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-2xl">

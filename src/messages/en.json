@@ -187,5 +187,25 @@
     "next-event": "Next event on:",
     "event-started": "The event has already started!",
     "no-events": "No event scheduled!"
+  },
+  "welcome-dialog": {
+    "title": "Welcome to MultiQSMP",
+    "description": "Here's a little guide to the site's menus.",
+    "selector": {
+      "title": "Streamer selector",
+      "content": "This is MultiQSMP's main menu. Enter it, select the streamers or groups you want, click watch and enjoy. If any of the streamers you want to watch aren't on MultiQSMP, you can add them directly to the url."
+    },
+    "organizer": {
+      "title": "Organizer",
+      "content": "Here you can organize the order of your streamers and chats."
+    },
+    "settings": {
+      "title": "Settings",
+      "content": "Here you can change the theme, change the buttons in the live menus, choose who appears in the selection menu or even change the way you watch the lives. I recommend poking around in the settings when you can."
+    },
+    "faq": {
+      "title": "FAQ",
+      "content": "This is the FAQ where you'll find lots of useful information about using MultiQSMP. Reading the information contained here is important!"
+    }
   }
 }

@@ -141,10 +141,7 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
     >
       <DialogTrigger asChild>
         <Button className="px-3" size="sm">
-          <ArrowLeftRight
-            size="1rem"
-            className="block text-primary-foreground"
-          />
+          <ArrowLeftRight size="1rem" className="block text-secondary" />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-2xl">
