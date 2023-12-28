@@ -336,6 +336,9 @@ export const STREAMERS = [
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/90d53586-b538-4588-a03d-a67e9997dd9d-profile_image-300x300.png',
   },
+
+  //#region English
+
   {
     twitchName: 'BadBoyHalo',
     displayName: 'BadBoyHalo',
@@ -416,13 +419,18 @@ export const STREAMERS = [
   },
   {
     twitchName: 'wilbursoot',
-    displayName: 'Wilbur Soot',
+    displayName: 'WilburSoot',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/96a94fcc-65e6-46f7-af5c-dc308155a63b-profile_image-300x300.png',
   },
+
+  //#endregion
+
+  //#region Spanish
+
   {
     twitchName: 'carreraaa',
-    displayName: 'Carreraaa',
+    displayName: 'Carre',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/0fc464e5-810f-4995-8319-a3f48599f2f4-profile_image-300x300.png',
   },
@@ -433,16 +441,16 @@ export const STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/0107210e-a98c-409d-92a6-1caf70bb3953-profile_image-300x300.png',
   },
   {
+    twitchName: 'quackitytoo',
+    displayName: 'ElQuackity',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/823b1a32-eb4e-425a-b1e6-48913ed58f1b-profile_image-300x300.png',
+  },
+  {
     twitchName: 'germangarmendia',
     displayName: 'German',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/07bc82ee-1bf8-43e0-bb18-6eaf410a20a0-profile_image-300x300.png',
-  },
-  {
-    twitchName: 'quackitytoo',
-    displayName: 'QuackityToo',
-    avatarUrl:
-      'https://static-cdn.jtvnw.net/jtv_user_pictures/e4b8f0d6-91ed-4233-b923-aae2c9269992-profile_image-300x300.png',
   },
   {
     twitchName: 'luzu',
@@ -458,7 +466,7 @@ export const STREAMERS = [
   },
   {
     twitchName: 'missasinfonia',
-    displayName: 'Missasinfonia',
+    displayName: 'MissaSinfonia',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/35879a43-1805-44ff-8fe8-3bfa38f14f9f-profile_image-300x300.jpeg',
   },
@@ -498,6 +506,11 @@ export const STREAMERS = [
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/willyrex-profile_image-9b7848e2994dd433-300x300.png',
   },
+
+  //#endregion
+
+  //#region Portuguese
+
   {
     twitchName: 'bagi',
     displayName: 'Bagi',
@@ -511,22 +524,16 @@ export const STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/0595cdd0-65a7-4fa3-996d-323cf3a54be1-profile_image-300x300.png',
   },
   {
-    twitchName: 'forever',
-    displayName: 'Forever',
-    avatarUrl:
-      'https://static-cdn.jtvnw.net/jtv_user_pictures/9f6cb0ba-70f2-4fd0-9912-2c315dde0338-profile_image-300x300.png',
-  },
-  {
     twitchName: 'felps',
     displayName: 'Felps',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/50942827-74fa-407b-9edc-bc3827e47f9f-profile_image-300x300.png',
   },
   {
-    twitchName: 'peqitw',
-    displayName: 'Pac (Tazercraft)',
+    twitchName: 'forever',
+    displayName: 'Forever',
     avatarUrl:
-      'https://static-cdn.jtvnw.net/jtv_user_pictures/10258fc3-5d91-4a7f-956d-f375d7e4490e-profile_image-300x300.png',
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/9f6cb0ba-70f2-4fd0-9912-2c315dde0338-profile_image-300x300.png',
   },
   {
     twitchName: 'linkthemike',
@@ -535,8 +542,19 @@ export const STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/74501660-f734-4e21-a8ab-0871180fc95e-profile_image-300x300.png',
   },
   {
+    twitchName: 'peqitw',
+    displayName: 'Pac (Tazercraft)',
+    avatarUrl:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/10258fc3-5d91-4a7f-956d-f375d7e4490e-profile_image-300x300.png',
+  },
+
+  //#endregion
+
+  //#region French
+
+  {
     twitchName: 'antoinedaniel',
-    displayName: 'Antoine Daniel',
+    displayName: 'AntoineDaniel',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/7474d9d8-ab27-46c8-95f4-0c71b1878c78-profile_image-300x300.png',
   },
@@ -548,7 +566,7 @@ export const STREAMERS = [
   },
   {
     twitchName: 'bagherajones',
-    displayName: 'Baghera Jones',
+    displayName: 'BagheraJones',
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/5f161f8d-ef6a-4276-b6ba-4639df412aab-profile_image-300x300.png',
   },
@@ -564,4 +582,6 @@ export const STREAMERS = [
     avatarUrl:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/9e12862d-a8d0-4df2-81aa-e2241022dc98-profile_image-300x300.jpg',
   },
+
+  //#endregion
 ];

@@ -212,7 +212,7 @@ export const GROUPS = [
       'Carreraaa',
       'ElMariana',
       'German',
-      'QuackityToo',
+      'ElQuackity',
       'Luzu',
       'Maximus',
       'Missasinfonia',
