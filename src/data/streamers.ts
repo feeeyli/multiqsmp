@@ -444,7 +444,7 @@ export const STREAMERS = [
     twitchName: 'quackitytoo',
     displayName: 'ElQuackity',
     avatarUrl:
-      'https://static-cdn.jtvnw.net/jtv_user_pictures/823b1a32-eb4e-425a-b1e6-48913ed58f1b-profile_image-300x300.png',
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/e4b8f0d6-91ed-4233-b923-aae2c9269992-profile_image-300x300.png',
   },
   {
     twitchName: 'germangarmendia',
