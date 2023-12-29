@@ -123,6 +123,10 @@ export default function Home() {
           </Button>
         </div>
       </main>
+      <p className="text-center text-sm text-red-300 [text-wrap:balance]">
+        You are using a version with experimental features, <br /> in case of
+        bugs please report them as soon as possible.
+      </p>
       <footer className="w-full justify-center p-8">
         <p className="text-cold-purple-200 text-center text-sm [text-wrap:balance]">
           Feito com 💜 por{' '}
