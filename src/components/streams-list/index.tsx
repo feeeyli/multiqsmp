@@ -25,6 +25,7 @@ import { getColumns } from '@/utils/getColumns';
 import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
 import { useSettingsContext } from '@/contexts/settings-context';
 import { Chat } from '../chats-list/chat';
+import { SwapStreamsProvider } from '@/contexts/swap-points-context';
 
 interface StreamsListProps {
   resizing: boolean;
@@ -65,15 +66,15 @@ export const StreamsList = (props: StreamsListProps) => {
     start() {
       setIsMoving(true);
     },
-    stop(layout: Layout[]) {
-      // console.log('> new layout', layout);
+    stop(lay: Layout[]) {
       setLayoutMemory((old) => {
         const n = { ...old };
 
-        n[getLayoutKey()] = layout;
+        n[getLayoutKey()] = lay;
 
         return n;
       });
+
       setIsMoving(false);
     },
   };
@@ -81,8 +82,6 @@ export const StreamsList = (props: StreamsListProps) => {
   // const on
 
   const [containerRef, containerSize] = useElementSize();
-
-  if (!hasMounted) return null;
 
   const streamersOnQuery = searchParams.get('streamers')?.split('/') || [];
   const groupsOnQuery = searchParams.get('groups')?.split('/') || [];
@@ -95,14 +94,14 @@ export const StreamsList = (props: StreamsListProps) => {
 
   const mergedStreams = [
     ...new Set([
-      ...streamersOnQuery.map((s) => ({
-        twitchName: s,
-        groupName: undefined,
-        isChat: false,
-      })),
       ...streamersFromGroups.map((s) => ({
         twitchName: s.twitchName,
         groupName: s.groupName,
+        isChat: false,
+      })),
+      ...streamersOnQuery.map((s) => ({
+        twitchName: s,
+        groupName: undefined,
         isChat: false,
       })),
     ]),
@@ -121,15 +120,6 @@ export const StreamsList = (props: StreamsListProps) => {
     })),
   ];
 
-  // listWithChat.forEach((s) => {
-  //   // let re = [s];
-
-  //   if (searchParams.get('chats')?.split('/').includes(s))
-  //     listWithChat.push('$' + s);
-
-  //   // listWithChat.push(...re);
-  // });
-
   const { columns: cols, height } = getStreamsGridSize(
     listWithChat.length,
     true,
@@ -141,7 +131,7 @@ export const StreamsList = (props: StreamsListProps) => {
       y: Math.floor(i / cols),
       x: (i % cols) * 10,
       w: 10,
-      h: Math.floor(height / 39),
+      h: Math.floor(window.innerHeight / 118),
     };
 
     const layout = layoutMemory[getLayoutKey()];
@@ -157,6 +147,20 @@ export const StreamsList = (props: StreamsListProps) => {
     return def;
   }
 
+  const [layout, setLayout] = useState<Layout[]>(
+    [],
+    // listWithChat.map((_, i) => ({ i: String(i), ...getGridData(i) })),
+  );
+
+  useEffect(() => {
+    setLayout(
+      listWithChat.map((_, i) => ({ i: String(i), ...getGridData(i) })),
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
+  if (!hasMounted) return null;
+
   return (
     <div
       data-resizing={props.resizing}
@@ -165,8 +169,12 @@ export const StreamsList = (props: StreamsListProps) => {
       className="streams-list-scrollbar relative h-full flex-1 overflow-auto data-[resizing=true]:pointer-events-none data-[movable-mode=true]:data-[has-chat-open=false]:mr-3"
       ref={containerRef}
     >
+      {/* <pre>{JSON.stringify(layout, null, 2)}</pre> */}
       {listWithChat.length > 0 && (
-        <>
+        <SwapStreamsProvider
+          layout={{ value: layout, set: setLayout }}
+          getLayoutKey={getLayoutKey}
+        >
           {movableMode && (
             <ReactGridLayout
               className="grid-layout max-h-full"
@@ -178,16 +186,20 @@ export const StreamsList = (props: StreamsListProps) => {
               onDragStop={movingHandles.stop}
               onResizeStart={movingHandles.start}
               onResizeStop={movingHandles.stop}
+              onLayoutChange={(lay) => {
+                setLayout(lay);
+              }}
+              layout={layout}
               margin={[4, 4]}
             >
               {listWithChat.map((channel, i) => (
                 <div
                   key={i}
                   className="grid-layout-item flex select-none flex-col rounded-sm bg-muted"
-                  data-grid={getGridData(i)}
+                  // data-grid={getGridData(i)}
                 >
                   {!channel.isChat && (
-                    <StreamPlayerControlsProvider>
+                    <StreamPlayerControlsProvider index={i}>
                       <StreamPlayer
                         channel={channel.twitchName}
                         groupName={channel.groupName}
@@ -205,7 +217,10 @@ export const StreamsList = (props: StreamsListProps) => {
           {!movableMode && (
             <div className="flex h-full max-h-screen flex-1 flex-wrap">
               {listWithChat.map((channel) => (
-                <StreamPlayerControlsProvider key={channel.twitchName}>
+                <StreamPlayerControlsProvider
+                  key={channel.twitchName}
+                  index={null}
+                >
                   <StreamPlayer
                     channel={channel.twitchName}
                     isMoving={isMoving}
@@ -215,7 +230,7 @@ export const StreamsList = (props: StreamsListProps) => {
               ))}
             </div>
           )}
-        </>
+        </SwapStreamsProvider>
       )}
       {listWithChat.length === 0 && (
         <div className="absolute left-1/2 top-1/2 flex w-[85%] max-w-sm -translate-x-1/2 -translate-y-1/2 flex-col gap-12 ">

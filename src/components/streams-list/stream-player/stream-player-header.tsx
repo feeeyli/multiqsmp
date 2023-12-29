@@ -31,6 +31,13 @@ import {
   useSearchParamsStates,
 } from '@/utils/useSearchParamsState';
 import { motion } from 'framer-motion';
+import {
+  AddSwapPoint,
+  GoToSwapPoint,
+  RemoveSwapPoint,
+} from '@/components/icons';
+import { useSwapStreams } from '@/contexts/swap-points-context';
+import { useTranslations } from 'next-intl';
 
 interface StreamPlayerHeaderProps {
   channel: string;
@@ -41,8 +48,9 @@ interface StreamPlayerHeaderProps {
 export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
   const [opened, setOpened] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const streamPlayerControls = useContext(StreamPlayerControlsContext);
-  const searchParams = useSearchParams();
+  const { index, ...streamPlayerControls } = useContext(
+    StreamPlayerControlsContext,
+  );
   const [
     {
       streams: {
@@ -58,6 +66,8 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
   const [streams, setStreams] = useSearchParamsState('streamers', '');
   const [groups, setGroups] = useSearchParamsState('groups', '');
   const isChatActive = chats.includes(props.channel);
+  const { swap, swapPoints } = useSwapStreams();
+  const t = useTranslations('button-titles.stream-player-header');
 
   function handleToggleChat() {
     const chatsArray = chats === '' ? [] : chats.split('/');
@@ -134,6 +144,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         variant="stream-header"
         size="stream-header"
         key="mute"
+        title={t('mute')}
       >
         {streamPlayerControls.muted.value && (
           <VolumeX size="1rem" className="text-foreground" />
@@ -150,6 +161,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         variant="stream-header"
         size="stream-header"
         key="fullscreen"
+        title={t('fullscreen')}
       >
         {streamPlayerControls.fullScreen.value && (
           <Minimize size="1rem" className="text-foreground" />
@@ -168,6 +180,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         data-disabled={props.isYoutubeStream}
         className="data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
         key="chat"
+        title={t('chat')}
       >
         {isChatActive && (
           <MessageSquare size="1rem" className="text-foreground" />
@@ -194,6 +207,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         size="stream-header"
         variant="stream-header"
         key="reload"
+        title={t('reload')}
       >
         <RefreshCcw
           data-refreshing={refreshing}
@@ -208,6 +222,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         variant="stream-header"
         size="stream-header"
         key="remove-stream"
+        title={t('remove-stream')}
       >
         <X size="1rem" className="text-foreground" />
       </Button>
@@ -219,6 +234,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         variant="stream-header"
         size="stream-header"
         key="move-left"
+        title={t('move-left')}
       >
         <ChevronsLeft size="1rem" className="text-foreground" />
       </Button>
@@ -230,9 +246,77 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         variant="stream-header"
         size="stream-header"
         key="move-right"
+        title={t('move-right')}
       >
         <ChevronsRight size="1rem" className="text-foreground" />
       </Button>
+    ),
+    'swap-points': (
+      <>
+        {index !== null && (
+          <>
+            {!swapPoints.value.includes(index) && (
+              <>
+                {swapPoints.value.slice(0, 4).map((_, i) => {
+                  return (
+                    <Button
+                      tabIndex={opened ? 0 : -1}
+                      onClick={() => {
+                        if (index !== undefined) swap(i, index);
+                      }}
+                      variant="stream-header"
+                      size="stream-header"
+                      title={t('goto-swap-point').replace(
+                        '((swap-point))',
+                        String(i + 1),
+                      )}
+                      key={i}
+                    >
+                      <GoToSwapPoint
+                        className="text-foreground"
+                        size="1rem"
+                        variant={i}
+                      />
+                    </Button>
+                  );
+                })}
+                {swapPoints.value.length < 4 && (
+                  <Button
+                    tabIndex={opened ? 0 : -1}
+                    onClick={() => {
+                      swapPoints.set((old) => {
+                        if (index !== undefined && old.length < 4)
+                          return [...old, index];
+
+                        return old;
+                      });
+                    }}
+                    variant="stream-header"
+                    size="stream-header"
+                    title={t('add-swap-point')}
+                  >
+                    <AddSwapPoint className="text-foreground" size="1rem" />
+                  </Button>
+                )}
+              </>
+            )}
+            {swapPoints.value.includes(index) && (
+              <Button
+                tabIndex={opened ? 0 : -1}
+                onClick={() => {
+                  if (index !== undefined)
+                    swapPoints.set((old) => old.filter((sp) => sp !== index));
+                }}
+                variant="stream-header"
+                size="stream-header"
+                title={t('remove-swap-point')}
+              >
+                <RemoveSwapPoint className="text-foreground" size="1rem" />
+              </Button>
+            )}
+          </>
+        )}
+      </>
     ),
   };
 
@@ -245,6 +329,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
       'remove-stream',
       'move-left',
       'move-right',
+      'swap-points',
     ] as typeof headerItems
   ).filter((i) => (headerItems || []).includes(i));
 

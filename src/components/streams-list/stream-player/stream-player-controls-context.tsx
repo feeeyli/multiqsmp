@@ -17,6 +17,7 @@ export const StreamPlayerControlsContext = createContext<{
     key: number;
     run: () => void;
   };
+  index: number | null;
 }>({
   muted: {
     value: false,
@@ -30,12 +31,15 @@ export const StreamPlayerControlsContext = createContext<{
     key: 0,
     run: () => {},
   },
+  index: null,
 });
 
 export const StreamPlayerControlsProvider = ({
   children,
+  index,
 }: {
   children: React.ReactNode;
+  index: number | null;
 }) => {
   const [
     {
@@ -66,7 +70,9 @@ export const StreamPlayerControlsProvider = ({
   type t = typeof streamPlayerControls;
 
   return (
-    <StreamPlayerControlsContext.Provider value={streamPlayerControls}>
+    <StreamPlayerControlsContext.Provider
+      value={{ ...streamPlayerControls, index }}
+    >
       {children}
     </StreamPlayerControlsContext.Provider>
   );

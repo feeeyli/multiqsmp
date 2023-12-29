@@ -127,7 +127,8 @@
               "reload": "Recharger la diffusion en direct",
               "remove-stream": "Supprimer la diffusion en direct",
               "move-left": "Déplacer la diffusion en direct vers la gauche",
-              "move-right": "Déplacer la diffusion en direct vers la droite"
+              "move-right": "Déplacer la diffusion en direct vers la droite",
+              "swap-points": "Points d'échange"
             }
           }
         },
@@ -206,6 +207,20 @@
     "faq": {
       "title": "FAQ",
       "content": "Ceci est la FAQ où vous trouverez de nombreuses informations utiles sur l'utilisation de MultiQSMP. Il est important de lire les informations contenues ici !"
+    }
+  },
+  "button-titles": {
+    "stream-player-header": {
+      "mute": "Activer/désactiver le son",
+      "fullscreen": "Activer/désactiver le mode plein écran",
+      "chat": "Activer/désactiver le chat",
+      "reload": "Recharger la diffusion en direct",
+      "remove-stream": "Supprimer la diffusion en direct",
+      "move-left": "Déplacer la diffusion en direct vers la gauche",
+      "move-right": "Déplacer la diffusion en direct vers la droite",
+      "add-swap-point": "Ajouter un Point d'échange",
+      "remove-swap-point": "Supprimer un Point d'échange",
+      "goto-swap-point": "Aller au Point d'échange ((swap-point))"
     }
   }
 }

@@ -62,6 +62,7 @@ import {
 import { DialogClose } from '@radix-ui/react-dialog';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 import { Separator } from '@/components/ui/separator';
+import { GoToSwapPoint } from '@/components/icons';
 
 const headerItemsNames = z.enum([
   'mute',
@@ -71,19 +72,24 @@ const headerItemsNames = z.enum([
   'remove-stream',
   'move-left',
   'move-right',
+  'swap-points',
 ]);
 
 const headerItems: {
   value: z.infer<typeof headerItemsNames>;
-  icon: LucideIcon;
+  icon: React.ReactNode;
 }[] = [
-  { value: 'mute', icon: Volume2 },
-  { value: 'fullscreen', icon: Maximize },
-  { value: 'chat', icon: MessageSquare },
-  { value: 'reload', icon: RefreshCcw },
-  { value: 'remove-stream', icon: X },
-  { value: 'move-left', icon: ChevronsLeft },
-  { value: 'move-right', icon: ChevronsRight },
+  { value: 'mute', icon: <Volume2 size="1rem" /> },
+  { value: 'fullscreen', icon: <Maximize size="1rem" /> },
+  { value: 'chat', icon: <MessageSquare size="1rem" /> },
+  { value: 'reload', icon: <RefreshCcw size="1rem" /> },
+  { value: 'remove-stream', icon: <X size="1rem" /> },
+  { value: 'move-left', icon: <ChevronsLeft size="1rem" /> },
+  { value: 'move-right', icon: <ChevronsRight size="1rem" /> },
+  {
+    value: 'swap-points',
+    icon: <GoToSwapPoint size="1rem" variant={0} />,
+  },
 ];
 
 const settingsFormSchema = z.object({
@@ -540,7 +546,7 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
                                 value={item.value}
                                 className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-input bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground"
                               >
-                                <item.icon size="1rem" />
+                                {item.icon}
                                 <FormLabel className="!m-0 cursor-pointer">
                                   {t(
                                     `form.streams.headers.actions-order.actions-labels.${item.value}`,

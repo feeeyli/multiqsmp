@@ -127,7 +127,8 @@
               "reload": "Recarregar live",
               "remove-stream": "Remover live",
               "move-left": "Mover live para esquerda",
-              "move-right": "Mover live para direita"
+              "move-right": "Mover live para direita",
+              "swap-points": "Pontos de troca"
             }
           }
         },
@@ -206,6 +207,20 @@
     "faq": {
       "title": "FAQ",
       "content": "Esse é o FAQ onde há varias informações uteis na hora de usar o MultiQSMP. Ler as informações contidas aqui é importante!"
+    }
+  },
+  "button-titles": {
+    "stream-player-header": {
+      "mute": "Ativar/desativar som",
+      "fullscreen": "Ativar/desativar tela cheia",
+      "chat": "Ativar/desativar chat",
+      "reload": "Recarregar live",
+      "remove-stream": "Remover live",
+      "move-left": "Mover live para esquerda",
+      "move-right": "Mover live para direita",
+      "add-swap-point": "Adicionar Ponto de troca",
+      "remove-swap-point": "Remover Ponto de troca",
+      "goto-swap-point": "Ir para o Ponto de troca ((swap-point))"
     }
   }
 }
