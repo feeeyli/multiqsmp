@@ -3,7 +3,6 @@
 // Next Imports
 import { Button } from '@/components/ui/button';
 import { useSettingsContext } from '@/contexts/settings-context';
-import { useSearchParamsState } from '@/utils/useSearchParamsState';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
@@ -14,18 +13,26 @@ export default function Home() {
   useEffect(() => {
     if (
       settings.appearance.theme.includes('default') ||
-      !settings.streams.headerItems
+      !settings.streams.headerItems ||
+      settings.streams.headerItems.some((h) => h.includes('move-'))
     ) {
       setSettings((old) => {
         const newSettings = old;
 
         newSettings.appearance.theme = 'dark';
-        newSettings.streams.headerItems = [
-          'mute',
-          'fullscreen',
-          'chat',
-          'reload',
-        ];
+        if (!settings.streams.headerItems)
+          newSettings.streams.headerItems = [
+            'mute',
+            'fullscreen',
+            'chat',
+            'reload',
+          ];
+
+        if (settings.streams.headerItems.some((h) => h.includes('move-')))
+          newSettings.streams.headerItems =
+            newSettings.streams.headerItems.filter(
+              (hi) => !hi.includes('move-'),
+            );
 
         return newSettings;
       });

@@ -25,9 +25,9 @@
     "profile-image-alt": "Avatar de",
     "watch": "Assistir",
     "streams-subtitle": "Lives",
-    "chats-subtitle": "Chats",
+    "groups-subtitle": "Grupos",
     "no-streams": "Nenhuma live selecionada.",
-    "no-chats": "Nenhum chat selecionado."
+    "no-groups": "Nenhum grupo selecionado."
   },
   "create-group-dialog": {
     "title": "Novo grupo",
@@ -122,10 +122,10 @@
             "label": "Botões de ação",
             "actions-labels": {
               "mute": "Ativar/desativar som",
-              "fullscreen": "Ativar/desativar tela cheia",
+              "fullscreen": "Expandir live",
               "chat": "Ativar/desativar chat",
               "reload": "Recarregar live",
-              "remove-stream": "Remover live",
+              "remove-stream": "Remover live / Esconder Live",
               "move-left": "Mover live para esquerda",
               "move-right": "Mover live para direita",
               "swap-points": "Pontos de troca"
@@ -210,14 +210,15 @@
     }
   },
   "button-titles": {
+    "aside": {
+      "reset-layout": "Resetar layout"
+    },
     "stream-player-header": {
       "mute": "Ativar/desativar som",
-      "fullscreen": "Ativar/desativar tela cheia",
+      "fullscreen": "Expandir live",
       "chat": "Ativar/desativar chat",
       "reload": "Recarregar live",
-      "remove-stream": "Remover live",
-      "move-left": "Mover live para esquerda",
-      "move-right": "Mover live para direita",
+      "remove-stream": "Remover/esconder live",
       "add-swap-point": "Adicionar Ponto de troca",
       "remove-swap-point": "Remover Ponto de troca",
       "goto-swap-point": "Ir para o Ponto de troca ((swap-point))"

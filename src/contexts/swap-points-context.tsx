@@ -1,10 +1,11 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { ReadonlyURLSearchParams, useSearchParams } from 'next/navigation';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Layout } from 'react-grid-layout';
 import { useLocalStorage } from 'usehooks-ts';
+import { useLayoutMemory } from './layout-memory-context';
 
 export const SwapStreamsContext = createContext<{
   swapPoints: {
@@ -30,7 +31,7 @@ export const SwapStreamsProvider = ({
     value: Layout[];
     set: React.Dispatch<React.SetStateAction<Layout[]>>;
   };
-  getLayoutKey: () => string;
+  getLayoutKey: (searchParams: ReadonlyURLSearchParams) => string;
 }) => {
   const searchParams = useSearchParams();
 
@@ -38,33 +39,35 @@ export const SwapStreamsProvider = ({
     [url: string]: number[];
   }>('swap-points-memory', {});
 
-  const [_, setLayoutMemory] = useLocalStorage<{
-    [url: string]: Layout[];
-  }>('layout-memory', {});
+  const [_, setLayoutMemory] = useLayoutMemory();
 
   const [swapPoints, setSwapPoints] = useState<number[]>(
-    swapPointsMemory[getLayoutKey()] || [],
+    swapPointsMemory[getLayoutKey(searchParams)] || [],
   );
 
   useEffect(() => {
     setSwapPointsMemory((old) => {
-      if (swapPoints.length === 0 && old[getLayoutKey()].length === 0)
+      if (
+        swapPoints.length === 0 &&
+        old[getLayoutKey(searchParams)].length === 0
+      )
         return old;
 
-      return { ...old, [getLayoutKey()]: swapPoints };
+      return { ...old, [getLayoutKey(searchParams)]: swapPoints };
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [swapPoints]);
 
   useEffect(() => {
-    setSwapPoints(swapPointsMemory[getLayoutKey()] || []);
+    setSwapPoints(swapPointsMemory[getLayoutKey(searchParams)] || []);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   function swap(swapPoint: number, toSwap: number) {
     const swapPointIndex = swapPoints[swapPoint];
 
-    if (swapPointIndex === toSwap) return swapPointIndex;
+    if (swapPointIndex === toSwap || swapPoint === -1 || toSwap === -1)
+      return swapPointIndex;
 
     const swapPointLayout = layout.value.find(
       (lay) => lay.i === String(swapPointIndex),
@@ -85,7 +88,7 @@ export const SwapStreamsProvider = ({
       setLayoutMemory((old) => {
         const n = { ...old };
 
-        n[getLayoutKey()] = layoutCopy;
+        n[getLayoutKey(searchParams)] = layoutCopy;
 
         return n;
       });

@@ -25,9 +25,9 @@
     "profile-image-alt": "Avatar of",
     "watch": "Watch",
     "streams-subtitle": "Live Streams",
-    "chats-subtitle": "Chats",
+    "groups-subtitle": "Groups",
     "no-streams": "No live streams selected.",
-    "no-chats": "No chats selected."
+    "no-groups": "No group selected."
   },
   "create-group-dialog": {
     "title": "New group",
@@ -122,10 +122,10 @@
             "label": "Action buttons",
             "actions-labels": {
               "mute": "Toggle sound on/off",
-              "fullscreen": "Toggle fullscreen",
+              "fullscreen": "Expand stream",
               "chat": "Toggle chat on/off",
               "reload": "Reload live stream",
-              "remove-stream": "Remove live stream",
+              "remove-stream": "Remove live stream / Hide live stream",
               "move-left": "Move live stream to the left",
               "move-right": "Move live stream to the right",
               "swap-points": "Swap points"
@@ -210,12 +210,15 @@
     }
   },
   "button-titles": {
+    "aside": {
+      "reset-layout": "Reset layout"
+    },
     "stream-player-header": {
       "mute": "Toggle sound on/off",
-      "fullscreen": "Toggle fullscreen",
+      "fullscreen": "Expand live stream",
       "chat": "Toggle chat on/off",
       "reload": "Reload live stream",
-      "remove-stream": "Remove live stream",
+      "remove-stream": "Remove/hide live stream",
       "move-left": "Move live stream to the left",
       "move-right": "Move live stream to the right",
       "add-swap-point": "Add Swap point",

@@ -25,9 +25,9 @@
     "profile-image-alt": "Avatar de",
     "watch": "Ver",
     "streams-subtitle": "Transmisiones en Vivo",
-    "chats-subtitle": "Chats",
+    "groups-subtitle": "Grupo",
     "no-streams": "No hay transmisiones en vivo seleccionadas.",
-    "no-chats": "No hay chats seleccionados."
+    "no-groups": "No hay grupo seleccionado."
   },
   "create-group-dialog": {
     "title": "Nuevo grupo",
@@ -122,10 +122,10 @@
             "label": "Botones de acción",
             "actions-labels": {
               "mute": "Activar/desactivar sonido",
-              "fullscreen": "Activar/desactivar pantalla completa",
+              "fullscreen": "Ampliar transmisión en vivo",
               "chat": "Activar/desactivar chat",
               "reload": "Recargar transmisión en vivo",
-              "remove-stream": "Eliminar transmisión en vivo",
+              "remove-stream": "Eliminar la transmisión en vivo / Ocultar la transmisión en vivo",
               "move-left": "Mover transmisión en vivo a la izquierda",
               "move-right": "Mover transmisión en vivo a la derecha",
               "swap-points": "Puntos de cambio"
@@ -210,12 +210,15 @@
     }
   },
   "button-titles": {
+    "aside": {
+      "reset-layout": "Restablecer layout"
+    },
     "stream-player-header": {
       "mute": "Activar/desactivar sonido",
-      "fullscreen": "Activar/desactivar pantalla completa",
+      "fullscreen": "Ampliar transmisión en vivo",
       "chat": "Activar/desactivar chat",
       "reload": "Recargar transmisión en vivo",
-      "remove-stream": "Eliminar transmisión en vivo",
+      "remove-stream": "Eliminar/ocultar la transmisión en vivo",
       "move-left": "Mover transmisión en vivo a la izquierda",
       "move-right": "Mover transmisión en vivo a la derecha",
       "add-swap-point": "Agregar Punto de cambio",

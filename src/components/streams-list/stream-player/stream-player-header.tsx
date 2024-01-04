@@ -10,6 +10,7 @@ import {
   ChevronLeft,
   ChevronsLeft,
   ChevronsRight,
+  EyeOff,
   Maximize,
   MessageSquare,
   MessageSquareDashed,
@@ -57,7 +58,6 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         alwaysShowHeader,
         headerItems,
         useHandleAsHeader: useHandleAsHeaderSet,
-        movableMode,
       },
     },
   ] = useSettingsContext();
@@ -224,97 +224,74 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         key="remove-stream"
         title={t('remove-stream')}
       >
-        <X size="1rem" className="text-foreground" />
-      </Button>
-    ),
-    'move-left': (
-      <Button
-        onClick={() => handleMove('down')}
-        tabIndex={opened ? 0 : -1}
-        variant="stream-header"
-        size="stream-header"
-        key="move-left"
-        title={t('move-left')}
-      >
-        <ChevronsLeft size="1rem" className="text-foreground" />
-      </Button>
-    ),
-    'move-right': (
-      <Button
-        onClick={() => handleMove('up')}
-        tabIndex={opened ? 0 : -1}
-        variant="stream-header"
-        size="stream-header"
-        key="move-right"
-        title={t('move-right')}
-      >
-        <ChevronsRight size="1rem" className="text-foreground" />
+        {props.groupName === undefined && (
+          <X size="1rem" className="text-foreground" />
+        )}
+        {props.groupName !== undefined && (
+          <EyeOff size="1rem" className="text-foreground" />
+        )}
       </Button>
     ),
     'swap-points': (
       <>
-        {index !== null && (
+        {!swapPoints.value.includes(index) && (
           <>
-            {!swapPoints.value.includes(index) && (
-              <>
-                {swapPoints.value.slice(0, 4).map((_, i) => {
-                  return (
-                    <Button
-                      tabIndex={opened ? 0 : -1}
-                      onClick={() => {
-                        if (index !== undefined) swap(i, index);
-                      }}
-                      variant="stream-header"
-                      size="stream-header"
-                      title={t('goto-swap-point').replace(
-                        '((swap-point))',
-                        String(i + 1),
-                      )}
-                      key={i}
-                    >
-                      <GoToSwapPoint
-                        className="text-foreground"
-                        size="1rem"
-                        variant={i}
-                      />
-                    </Button>
-                  );
-                })}
-                {swapPoints.value.length < 4 && (
-                  <Button
-                    tabIndex={opened ? 0 : -1}
-                    onClick={() => {
-                      swapPoints.set((old) => {
-                        if (index !== undefined && old.length < 4)
-                          return [...old, index];
-
-                        return old;
-                      });
-                    }}
-                    variant="stream-header"
-                    size="stream-header"
-                    title={t('add-swap-point')}
-                  >
-                    <AddSwapPoint className="text-foreground" size="1rem" />
-                  </Button>
-                )}
-              </>
-            )}
-            {swapPoints.value.includes(index) && (
+            {swapPoints.value.slice(0, 4).map((_, i) => {
+              return (
+                <Button
+                  tabIndex={opened ? 0 : -1}
+                  onClick={() => {
+                    if (index !== undefined) swap(i, index);
+                  }}
+                  variant="stream-header"
+                  size="stream-header"
+                  title={t('goto-swap-point').replace(
+                    '((swap-point))',
+                    String(i + 1),
+                  )}
+                  key={i}
+                >
+                  <GoToSwapPoint
+                    className="text-foreground"
+                    size="1rem"
+                    variant={i}
+                  />
+                </Button>
+              );
+            })}
+            {swapPoints.value.length < 4 && (
               <Button
                 tabIndex={opened ? 0 : -1}
                 onClick={() => {
-                  if (index !== undefined)
-                    swapPoints.set((old) => old.filter((sp) => sp !== index));
+                  swapPoints.set((old) => {
+                    if (index !== undefined && old.length < 4)
+                      return [...old, index];
+
+                    return old;
+                  });
                 }}
                 variant="stream-header"
                 size="stream-header"
-                title={t('remove-swap-point')}
+                title={t('add-swap-point')}
               >
-                <RemoveSwapPoint className="text-foreground" size="1rem" />
+                <AddSwapPoint className="text-foreground" size="1rem" />
               </Button>
             )}
           </>
+        )}
+        {swapPoints.value.includes(index) && (
+          <Button
+            tabIndex={opened ? 0 : -1}
+            onClick={() => {
+              if (index !== undefined)
+                swapPoints.set((old) => old.filter((sp) => sp !== index));
+            }}
+            variant="stream-header"
+            size="stream-header"
+            title={t('remove-swap-point')}
+          >
+            <RemoveSwapPoint className="text-foreground" size="1rem" />
+          </Button>
         )}
       </>
     ),
@@ -327,8 +304,6 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
       'chat',
       'reload',
       'remove-stream',
-      'move-left',
-      'move-right',
       'swap-points',
     ] as typeof headerItems
   ).filter((i) => (headerItems || []).includes(i));
@@ -348,15 +323,12 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
     },
   };
 
-  const useHandleAsHeader =
-    streamPlayerControls.fullScreen.value || !movableMode
-      ? false
-      : useHandleAsHeaderSet;
+  const useHandleAsHeader = streamPlayerControls.fullScreen.value
+    ? false
+    : useHandleAsHeaderSet;
 
   const showOnlyFullScreen =
-    useHandleAsHeaderSet &&
-    movableMode &&
-    streamPlayerControls.fullScreen.value;
+    useHandleAsHeaderSet && streamPlayerControls.fullScreen.value;
 
   const isOpened =
     alwaysShowHeader || useHandleAsHeader || opened || showOnlyFullScreen;
@@ -384,13 +356,9 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         </Button>
       )}
       <div className="h-7">
-        {!(
-          useHandleAsHeaderSet &&
-          movableMode &&
-          streamPlayerControls.fullScreen.value
-        ) && headerItemsSorted.map((item) => headerActions[item])}
+        {!(useHandleAsHeaderSet && streamPlayerControls.fullScreen.value) &&
+          headerItemsSorted.map((item) => headerActions[item])}
         {useHandleAsHeaderSet &&
-          movableMode &&
           streamPlayerControls.fullScreen.value &&
           headerActions.fullscreen}
       </div>

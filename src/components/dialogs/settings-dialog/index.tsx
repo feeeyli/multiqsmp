@@ -10,6 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   ChevronsLeft,
   ChevronsRight,
+  EyeOff,
   LucideIcon,
   Maximize,
   MessageSquare,
@@ -70,8 +71,6 @@ const headerItemsNames = z.enum([
   'chat',
   'reload',
   'remove-stream',
-  'move-left',
-  'move-right',
   'swap-points',
 ]);
 
@@ -84,8 +83,6 @@ const headerItems: {
   { value: 'chat', icon: <MessageSquare size="1rem" /> },
   { value: 'reload', icon: <RefreshCcw size="1rem" /> },
   { value: 'remove-stream', icon: <X size="1rem" /> },
-  { value: 'move-left', icon: <ChevronsLeft size="1rem" /> },
-  { value: 'move-right', icon: <ChevronsRight size="1rem" /> },
   {
     value: 'swap-points',
     icon: <GoToSwapPoint size="1rem" variant={0} />,
@@ -119,11 +116,11 @@ const settingsFormSchema = z.object({
   }),
   streams: z.object({
     alwaysShowHeader: z.boolean(),
-    headerItems: z.array(headerItemsNames) /**z.array(z.object({
-      value: headerItemsNames,
-      subtitle: z.boolean()
-    }).transform(h => h.value)) */,
-    movableMode: z.boolean(),
+    headerItems: z
+      .array(z.string())
+      .transform((h) =>
+        h.filter((i) => !['move-left', 'move-right'].includes(i)),
+      ),
     movableChat: z.boolean(),
     useHandleAsHeader: z.boolean(),
     startMuted: z.boolean(),
@@ -146,8 +143,6 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [{ cucurucho, active: easterEggs }, setEasterEggs] =
     useEasterEggsContext();
-
-  const movableMode = form.watch('streams.movableMode');
 
   function onSubmit(values: SettingsType) {
     setSettings(values);
@@ -522,6 +517,32 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
                     </Button>
                   )}
                 />
+                <FormField
+                  control={form.control}
+                  name="streams.useHandleAsHeader"
+                  render={({ field }) => (
+                    <Button
+                      variant="outline"
+                      className="min-h-10 flex h-auto justify-start"
+                      asChild
+                    >
+                      <label>
+                        <FormItem className="flex items-center gap-2">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                          <FormLabel className="!m-0 leading-5">
+                            {t('form.streams.outro.use-handle-as-header')}
+                          </FormLabel>
+                          <FormMessage />
+                        </FormItem>
+                      </label>
+                    </Button>
+                  )}
+                />
                 <span className="block text-sm">
                   {t('form.streams.headers.actions-order.label')}
                 </span>
@@ -546,12 +567,37 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
                                 value={item.value}
                                 className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-input bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground"
                               >
-                                {item.icon}
-                                <FormLabel className="!m-0 cursor-pointer">
-                                  {t(
-                                    `form.streams.headers.actions-order.actions-labels.${item.value}`,
-                                  )}
-                                </FormLabel>
+                                {item.value !== 'remove-stream' && (
+                                  <>
+                                    {item.icon}
+                                    <FormLabel className="!m-0 cursor-pointer">
+                                      {t(
+                                        `form.streams.headers.actions-order.actions-labels.${item.value}`,
+                                      )}
+                                    </FormLabel>
+                                  </>
+                                )}
+                                {item.value === 'remove-stream' && (
+                                  <>
+                                    <X size="1rem" />
+                                    <FormLabel className="!m-0 cursor-pointer">
+                                      {
+                                        t(
+                                          `form.streams.headers.actions-order.actions-labels.${item.value}`,
+                                        ).split(' / ')[0]
+                                      }
+                                    </FormLabel>
+                                    <span className="font-light">/</span>
+                                    <EyeOff size="1rem" />
+                                    <FormLabel className="!m-0 cursor-pointer">
+                                      {
+                                        t(
+                                          `form.streams.headers.actions-order.actions-labels.${item.value}`,
+                                        ).split(' / ')[1]
+                                      }
+                                    </FormLabel>
+                                  </>
+                                )}
                                 <FormMessage />
                               </ToggleGroup.Item>
                             </FormControl>
@@ -592,11 +638,11 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
                 />
                 <FormField
                   control={form.control}
-                  name="streams.movableMode"
+                  name="streams.movableChat"
                   render={({ field }) => (
                     <Button
                       variant="outline"
-                      className="flex justify-start"
+                      className="min-h-10 flex h-auto justify-start"
                       asChild
                     >
                       <label>
@@ -607,8 +653,8 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
                               onCheckedChange={field.onChange}
                             />
                           </FormControl>
-                          <FormLabel className="!m-0">
-                            {t('form.streams.outro.movable-mode')}
+                          <FormLabel className="!m-0 leading-5">
+                            {t('form.streams.outro.movable-chat')}
                           </FormLabel>
                           <FormMessage />
                         </FormItem>
@@ -616,68 +662,6 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
                     </Button>
                   )}
                 />
-                {movableMode && (
-                  <div className="flex gap-4">
-                    <Separator
-                      orientation="vertical"
-                      className="ml-4 h-auto bg-primary/60"
-                    />
-                    <div className="w-full space-y-3">
-                      <FormField
-                        control={form.control}
-                        name="streams.movableChat"
-                        render={({ field }) => (
-                          <Button
-                            variant="outline"
-                            className="min-h-10 flex h-auto justify-start"
-                            asChild
-                          >
-                            <label>
-                              <FormItem className="flex items-center gap-2">
-                                <FormControl>
-                                  <Checkbox
-                                    checked={field.value}
-                                    onCheckedChange={field.onChange}
-                                  />
-                                </FormControl>
-                                <FormLabel className="!m-0 leading-5">
-                                  {t('form.streams.outro.movable-chat')}
-                                </FormLabel>
-                                <FormMessage />
-                              </FormItem>
-                            </label>
-                          </Button>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="streams.useHandleAsHeader"
-                        render={({ field }) => (
-                          <Button
-                            variant="outline"
-                            className="min-h-10 flex h-auto justify-start"
-                            asChild
-                          >
-                            <label>
-                              <FormItem className="flex items-center gap-2">
-                                <FormControl>
-                                  <Checkbox
-                                    checked={field.value}
-                                    onCheckedChange={field.onChange}
-                                  />
-                                </FormControl>
-                                <FormLabel className="!m-0 leading-5">
-                                  {t('form.streams.outro.use-handle-as-header')}
-                                </FormLabel>
-                                <FormMessage />
-                              </FormItem>
-                            </label>
-                          </Button>
-                        )}
-                      />
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
             {easterEggs && (

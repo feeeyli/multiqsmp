@@ -15,18 +15,26 @@ export default function Home() {
   useEffect(() => {
     if (
       settings.appearance.theme.includes('default') ||
-      !settings.streams.headerItems
+      !settings.streams.headerItems ||
+      settings.streams.headerItems.some((h) => h.includes('move-'))
     ) {
       setSettings((old) => {
         const newSettings = old;
 
         newSettings.appearance.theme = 'dark';
-        newSettings.streams.headerItems = [
-          'mute',
-          'fullscreen',
-          'chat',
-          'reload',
-        ];
+        if (!settings.streams.headerItems)
+          newSettings.streams.headerItems = [
+            'mute',
+            'fullscreen',
+            'chat',
+            'reload',
+          ];
+
+        if (settings.streams.headerItems.some((h) => h.includes('move-')))
+          newSettings.streams.headerItems =
+            newSettings.streams.headerItems.filter(
+              (hi) => !hi.includes('move-'),
+            );
 
         return newSettings;
       });

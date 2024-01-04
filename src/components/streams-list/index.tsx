@@ -5,27 +5,25 @@ import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 
 // Context Imports
-import { StreamPlayerControlsProvider } from './stream-player/stream-player-controls-context';
 import { useCustomGroupsContext } from '../../contexts/custom-groups-context';
+import { StreamPlayerControlsProvider } from './stream-player/stream-player-controls-context';
 
 // Scripts Imports
 import { getStreamersFromGroups } from '@/utils/getStreamersFromGroups';
 import { useHasMounted } from '@/utils/useHasMounted';
 
 // Components Imports
-import { StreamPlayer } from './stream-player';
-import { ArrowLeftRight, ChevronLeft } from 'lucide-react';
-import { Button } from '../ui/button';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { useElementSize, useLocalStorage } from 'usehooks-ts';
-import RGL, { Layout, WidthProvider } from 'react-grid-layout';
-import { getColumns } from '@/utils/getColumns';
-import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
+import { useLayoutMemory } from '@/contexts/layout-memory-context';
 import { useSettingsContext } from '@/contexts/settings-context';
-import { Chat } from '../chats-list/chat';
 import { SwapStreamsProvider } from '@/contexts/swap-points-context';
+import { getLayoutKey } from '@/utils/getLayoutKey';
+import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
+import { ArrowLeftRight } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
+import RGL, { Layout, WidthProvider } from 'react-grid-layout';
+import { useElementSize } from 'usehooks-ts';
+import { Chat } from '../chats-list/chat';
+import { StreamPlayer } from './stream-player';
 
 interface StreamsListProps {
   resizing: boolean;
@@ -39,28 +37,12 @@ export const StreamsList = (props: StreamsListProps) => {
   const hasMounted = useHasMounted();
   const ReactGridLayout = useMemo(() => WidthProvider(RGL), []);
   const [isMoving, setIsMoving] = useState(false);
-  const [layoutMemory, setLayoutMemory] = useLocalStorage<{
-    [url: string]: Layout[];
-  }>('layout-memory', {});
+  const [layoutMemory, setLayoutMemory] = useLayoutMemory();
   const [
     {
-      streams: { movableMode, movableChat: mChat },
+      streams: { movableChat },
     },
   ] = useSettingsContext();
-
-  const movableChat = mChat && movableMode;
-
-  function getLayoutKey() {
-    const streamers = searchParams.get('streamers')?.split('/');
-    const groups = searchParams.get('groups')?.split('/');
-    const chats = searchParams.get('chats')?.split('/');
-
-    return `${streamers?.join('/') || ''}${streamers && groups ? '/' : ''}${
-      groups?.join('/') || ''
-    }${chats && (groups || streamers) ? '/' : ''}${
-      chats && movableChat ? `$${chats?.join('$')}` : chats ? '$chats$' : ''
-    }`;
-  }
 
   const movingHandles = {
     start() {
@@ -70,7 +52,7 @@ export const StreamsList = (props: StreamsListProps) => {
       setLayoutMemory((old) => {
         const n = { ...old };
 
-        n[getLayoutKey()] = lay;
+        n[getLayoutKey(searchParams, { movableChat })] = lay;
 
         return n;
       });
@@ -107,12 +89,24 @@ export const StreamsList = (props: StreamsListProps) => {
     ]),
   ];
 
+  const mergedStreamsWithoutDuplicates = Array.from(
+    new Set(mergedStreams.map((item) => item.twitchName)),
+  ).map((twitchName) => {
+    const itemWithGroupName = mergedStreams.find(
+      (item) => item.twitchName === twitchName && item.groupName,
+    );
+    return (
+      itemWithGroupName ||
+      mergedStreams.find((item) => item.twitchName === twitchName)
+    );
+  }) as typeof mergedStreams;
+
   const listWithChat: {
     twitchName: string;
     groupName?: string;
     isChat: boolean;
   }[] = [
-    ...mergedStreams,
+    ...mergedStreamsWithoutDuplicates,
     ...(movableChat ? chatsOnQuery : []).map((c) => ({
       twitchName: c,
       groupName: undefined,
@@ -120,21 +114,27 @@ export const StreamsList = (props: StreamsListProps) => {
     })),
   ];
 
-  const { columns: cols, height } = getStreamsGridSize(
-    listWithChat.length,
-    true,
-    containerSize,
-  );
+  const { columns: cols, rows } = getStreamsGridSize(listWithChat.length, true);
 
   function getGridData(i: number) {
+    const isInLastRow =
+      Math.floor(i / cols) >=
+        (rows === 5
+          ? 3
+          : rows === 9
+          ? 5
+          : Math.floor((listWithChat.length - 1) / cols)) && rows !== 1;
+
     const def = {
       y: Math.floor(i / cols),
       x: (i % cols) * 10,
       w: 10,
-      h: Math.floor(window.innerHeight / 118),
+      h:
+        Math.ceil(Math.round(containerSize.height / 36) / rows) -
+        (isInLastRow ? 1 : 0),
     };
 
-    const layout = layoutMemory[getLayoutKey()];
+    const layout = layoutMemory[getLayoutKey(searchParams, { movableChat })];
 
     if (layout) {
       const item = layout.find((l) => l.i === String(i));
@@ -147,35 +147,32 @@ export const StreamsList = (props: StreamsListProps) => {
     return def;
   }
 
-  const [layout, setLayout] = useState<Layout[]>(
-    [],
-    // listWithChat.map((_, i) => ({ i: String(i), ...getGridData(i) })),
-  );
+  const [layout, setLayout] = useState<Layout[]>([]);
 
   useEffect(() => {
+    if (!hasMounted || containerSize.height === 0) return;
+
     setLayout(
       listWithChat.map((_, i) => ({ i: String(i), ...getGridData(i) })),
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
+  }, [searchParams, containerSize, hasMounted, layoutMemory]);
 
   if (!hasMounted) return null;
 
   return (
     <div
       data-resizing={props.resizing}
-      data-movable-mode={movableMode}
       data-has-chat-open={!!searchParams.get('chats')}
-      className="streams-list-scrollbar relative h-full flex-1 overflow-auto data-[resizing=true]:pointer-events-none data-[movable-mode=true]:data-[has-chat-open=false]:mr-3"
+      className="streams-list-scrollbar relative h-full flex-1 overflow-auto data-[resizing=true]:pointer-events-none data-[has-chat-open=false]:mr-3"
       ref={containerRef}
     >
-      {/* <pre>{JSON.stringify(layout, null, 2)}</pre> */}
       {listWithChat.length > 0 && (
         <SwapStreamsProvider
           layout={{ value: layout, set: setLayout }}
-          getLayoutKey={getLayoutKey}
+          getLayoutKey={(sp) => getLayoutKey(sp, { movableChat })}
         >
-          {movableMode && (
+          {
             <ReactGridLayout
               className="grid-layout max-h-full"
               cols={10 * cols}
@@ -196,7 +193,6 @@ export const StreamsList = (props: StreamsListProps) => {
                 <div
                   key={i}
                   className="grid-layout-item flex select-none flex-col rounded-sm bg-muted"
-                  // data-grid={getGridData(i)}
                 >
                   {!channel.isChat && (
                     <StreamPlayerControlsProvider index={i}>
@@ -213,23 +209,7 @@ export const StreamsList = (props: StreamsListProps) => {
                 </div>
               ))}
             </ReactGridLayout>
-          )}
-          {!movableMode && (
-            <div className="flex h-full max-h-screen flex-1 flex-wrap">
-              {listWithChat.map((channel) => (
-                <StreamPlayerControlsProvider
-                  key={channel.twitchName}
-                  index={null}
-                >
-                  <StreamPlayer
-                    channel={channel.twitchName}
-                    isMoving={isMoving}
-                    groupName={channel.groupName}
-                  />
-                </StreamPlayerControlsProvider>
-              ))}
-            </div>
-          )}
+          }
         </SwapStreamsProvider>
       )}
       {listWithChat.length === 0 && (

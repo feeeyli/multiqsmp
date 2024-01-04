@@ -1,7 +1,6 @@
 export function getStreamsGridSize(
   items: number,
   isDesktop: boolean = true,
-  containerSize: { width: number; height: number },
   hasChatOpen?: boolean,
 ) {
   const getColumns = () => {
@@ -18,23 +17,16 @@ export function getStreamsGridSize(
     if (items >= 13 && items <= 20) return 4;
     if (items >= 21 && items <= 30) return 6;
     if (items >= 31 && items <= 35) return 7;
+    if (items >= 36 && items <= 45) return 8;
 
-    return 8;
+    return 9;
   };
 
   const columns = getColumns();
 
-  // console.log('> columns', columns);
-
   const rows = Math.ceil(items / columns);
 
-  // console.log('> rows', rows);
-
-  // console.log('> height', containerSize.height / rows);
-
   return {
-    height: Math.floor((containerSize.height * 0.98) / rows),
-    width: Math.floor((containerSize.width * 0.98) / columns),
     rows,
     columns,
   };

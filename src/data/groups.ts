@@ -257,7 +257,14 @@ export const GROUPS = [
   {
     groupName: 'Favela6',
     simpleGroupName: 'favela6',
-    members: ['Bagi', 'Cellbit', 'Forever', 'Felps', 'TazerCraft'],
+    members: [
+      'Bagi',
+      'Cellbit',
+      'Forever',
+      'Felps',
+      'Mike (Tazercraft)',
+      'Pac (Tazercraft)',
+    ],
     avatars: ['bagi', 'cellbit', 'forever', 'felps', 'linkthemike', 'peqitw'],
     twitchNames: [
       'bagi',

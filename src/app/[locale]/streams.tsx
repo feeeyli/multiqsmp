@@ -1,14 +1,14 @@
 'use client';
 
 // Next Imports
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 // Libs Imports
-import { PanelGroup, Panel, PanelResizeHandle } from 'react-resizable-panels';
-import { useLocalStorage, useWindowSize, useMediaQuery } from 'usehooks-ts';
+import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
+import { useMediaQuery } from 'usehooks-ts';
 
 // Components Import
-import { OrganizeStreamsDialog } from '@/components/dialogs/organize-streams-dialog';
+import { OrganizeDialog } from '@/components/dialogs/organize-dialog';
 import { StreamsSelectorDialog } from '@/components/dialogs/streams-selector-dialog';
 
 // Contexts Import
@@ -16,21 +16,20 @@ import { StreamsSelectorDialogProvider } from '@/components/dialogs/streams-sele
 import { StreamsList } from '@/components/streams-list';
 
 // Script Imports
-import { useSearchParamsStates } from '@/utils/useSearchParamsState';
-import { useEffect, useState } from 'react';
 import { ChatsList } from '@/components/chats-list';
-import { parseChannels } from '@/utils/parseChannels';
-import { SettingsDialog } from '@/components/dialogs/settings-dialog';
 import { FAQDialog } from '@/components/dialogs/faq-dialog';
-import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
-import { useSettingsContext } from '@/contexts/settings-context';
-import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
-import { useKonamiCode } from '@/utils/useKonamiCode';
-import { EventsDialog } from '@/components/dialogs/events-dialog';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Eye, Globe2 } from 'lucide-react';
+import { SettingsDialog } from '@/components/dialogs/settings-dialog';
 import { WelcomeDialog } from '@/components/dialogs/welcome-dialog';
+import { ResetLayout } from '@/components/icons';
+import { Button } from '@/components/ui/button';
+import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
+import { useLayoutMemory } from '@/contexts/layout-memory-context';
+import { useSettingsContext } from '@/contexts/settings-context';
+import { getLayoutKey } from '@/utils/getLayoutKey';
+import { useKonamiCode } from '@/utils/useKonamiCode';
+import { useSearchParamsStates } from '@/utils/useSearchParamsState';
+import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 interface StreamsPageProps {
   purgatory: boolean;
@@ -38,15 +37,14 @@ interface StreamsPageProps {
 }
 
 export default function Streams(props: StreamsPageProps) {
-  const { width: windowWidth } = useWindowSize();
   const isDesktop = !useMediaQuery('(max-width: 640px)');
   const { streams, chats } = useSearchParamsStates();
   const [resizing, setResizing] = useState(false);
-  const [customGroups] = useCustomGroupsContext();
   const [settings] = useSettingsContext();
-  const router = useRouter();
+  const t = useTranslations();
   const [_, setEasterEggs] = useEasterEggsContext();
   const searchParams = useSearchParams();
+  const [__, setLayoutMemory] = useLayoutMemory();
 
   useKonamiCode(() => {
     setEasterEggs((old) => ({ ...old, active: true }));
@@ -54,16 +52,6 @@ export default function Streams(props: StreamsPageProps) {
 
   if (props.purgatory) {
     document.body.classList.add('purgatory');
-  }
-
-  function getOppositeUrl() {
-    if (!props.purgatory)
-      return `/purgatory/${props.locale}?${String(searchParams).replaceAll(
-        '%2F',
-        '/',
-      )}`;
-
-    return `/${props.locale}?${String(searchParams).replaceAll('%2F', '/')}`;
   }
 
   return (
@@ -124,10 +112,29 @@ export default function Streams(props: StreamsPageProps) {
         <StreamsSelectorDialogProvider>
           <StreamsSelectorDialog purgatory={props.purgatory} />
         </StreamsSelectorDialogProvider>
-        <OrganizeStreamsDialog />
+        <OrganizeDialog />
         <SettingsDialog purgatory={props.purgatory} />
         {/* <EventsDialog /> */}
         <FAQDialog />
+        <Button
+          className="mt-4 px-3 group-data-[dialogs-position=bottom]:mr-2.5 group-data-[dialogs-position=bottom]:mt-0"
+          size="sm"
+          title={t('button-titles.aside.reset-layout')}
+          onClick={() => {
+            setLayoutMemory((old) => {
+              const {
+                [getLayoutKey(searchParams, {
+                  movableChat: settings.streams.movableChat,
+                })]: _,
+                ...rest
+              } = old;
+
+              return rest;
+            });
+          }}
+        >
+          <ResetLayout size="1rem" className="block text-secondary" />
+        </Button>
       </aside>
       <PanelGroup direction={isDesktop ? 'horizontal' : 'vertical'}>
         <Panel
@@ -140,7 +147,7 @@ export default function Streams(props: StreamsPageProps) {
         </Panel>
         {chats.length > 0 &&
           streams.length > 0 &&
-          (!settings.streams.movableChat || !settings.streams.movableMode) && (
+          !settings.streams.movableChat && (
             <>
               <PanelResizeHandle
                 onDragging={(dragging) => setResizing(dragging)}

@@ -17,7 +17,7 @@ export const StreamPlayerControlsContext = createContext<{
     key: number;
     run: () => void;
   };
-  index: number | null;
+  index: number;
 }>({
   muted: {
     value: false,
@@ -31,7 +31,7 @@ export const StreamPlayerControlsContext = createContext<{
     key: 0,
     run: () => {},
   },
-  index: null,
+  index: -1,
 });
 
 export const StreamPlayerControlsProvider = ({
@@ -39,7 +39,7 @@ export const StreamPlayerControlsProvider = ({
   index,
 }: {
   children: React.ReactNode;
-  index: number | null;
+  index: number;
 }) => {
   const [
     {

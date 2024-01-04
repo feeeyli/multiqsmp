@@ -25,9 +25,9 @@
     "profile-image-alt": "Avatar de",
     "watch": "Regarder",
     "streams-subtitle": "Diffusions en Direct",
-    "chats-subtitle": "Chats",
+    "groups-subtitle": "Groupes",
     "no-streams": "Aucune diffusion en direct sélectionnée.",
-    "no-chats": "Aucun chat sélectionné."
+    "no-groups": "Aucun groupe sélectionné."
   },
   "create-group-dialog": {
     "title": "Nouveau groupe",
@@ -122,10 +122,10 @@
             "label": "Boutons d'action",
             "actions-labels": {
               "mute": "Activer/désactiver le son",
-              "fullscreen": "Activer/désactiver le mode plein écran",
+              "fullscreen": "Élargir le stream",
               "chat": "Activer/désactiver le chat",
               "reload": "Recharger la diffusion en direct",
-              "remove-stream": "Supprimer la diffusion en direct",
+              "remove-stream": "Supprimer le stream / Cacher le stream",
               "move-left": "Déplacer la diffusion en direct vers la gauche",
               "move-right": "Déplacer la diffusion en direct vers la droite",
               "swap-points": "Points d'échange"
@@ -210,12 +210,15 @@
     }
   },
   "button-titles": {
+    "aside": {
+      "reset-layout": "Réinitialiser la disposition"
+    },
     "stream-player-header": {
       "mute": "Activer/désactiver le son",
-      "fullscreen": "Activer/désactiver le mode plein écran",
+      "fullscreen": "Élargir le stream",
       "chat": "Activer/désactiver le chat",
       "reload": "Recharger la diffusion en direct",
-      "remove-stream": "Supprimer la diffusion en direct",
+      "remove-stream": "Supprimer/masquer le stream",
       "move-left": "Déplacer la diffusion en direct vers la gauche",
       "move-right": "Déplacer la diffusion en direct vers la droite",
       "add-swap-point": "Ajouter un Point d'échange",
