@@ -11,7 +11,7 @@ interface ChatProps {
   chat: string;
 }
 
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 
 export const Chat = (props: ChatProps) => {
   const [chatsString, setChats] = useSearchParamsState('chats', '');

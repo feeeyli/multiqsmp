@@ -22,7 +22,7 @@ interface Props {
   groupName?: string;
 }
 
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 
 export const StreamPlayer = ({ channel, ...props }: Props) => {
   const streamPlayerControls = useContext(StreamPlayerControlsContext);
