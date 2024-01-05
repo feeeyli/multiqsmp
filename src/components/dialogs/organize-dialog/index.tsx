@@ -45,6 +45,7 @@ type OrganizeState = {
 
 export const OrganizeDialog = () => {
   const t = useTranslations('organize-dialog');
+  const bt = useTranslations('button-titles');
   const searchParams = useSearchParams();
   const [customGroups] = useCustomGroupsContext();
 
@@ -124,7 +125,11 @@ export const OrganizeDialog = () => {
       }}
     >
       <DialogTrigger asChild>
-        <Button className="z-30 px-3" size="sm">
+        <Button
+          className="z-30 px-3"
+          size="sm"
+          title={bt('aside.organize-dialog')}
+        >
           <ListOrdered size="1rem" className="block text-secondary" />
         </Button>
       </DialogTrigger>

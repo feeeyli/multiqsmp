@@ -19,9 +19,9 @@ import { SwapStreamsProvider } from '@/contexts/swap-points-context';
 import { getLayoutKey } from '@/utils/getLayoutKey';
 import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
 import { ArrowLeftRight } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import RGL, { Layout, WidthProvider } from 'react-grid-layout';
-import { useElementSize } from 'usehooks-ts';
+import { useElementSize, useMediaQuery } from 'usehooks-ts';
 import { Chat } from '../chats-list/chat';
 import { StreamPlayer } from './stream-player';
 
@@ -31,6 +31,7 @@ interface StreamsListProps {
 }
 
 export const StreamsList = (props: StreamsListProps) => {
+  const isDesktop = !useMediaQuery('(max-width: 640px)');
   const searchParams = useSearchParams();
   const t = useTranslations('streams-list');
   const [customGroups] = useCustomGroupsContext();
@@ -114,7 +115,10 @@ export const StreamsList = (props: StreamsListProps) => {
     })),
   ];
 
-  const { columns: cols, rows } = getStreamsGridSize(listWithChat.length, true);
+  const { columns: cols, rows } = getStreamsGridSize(
+    listWithChat.length,
+    isDesktop,
+  );
 
   function getGridData(i: number) {
     const isInLastRow =
@@ -130,7 +134,7 @@ export const StreamsList = (props: StreamsListProps) => {
       x: (i % cols) * 10,
       w: 10,
       h:
-        Math.ceil(Math.round(containerSize.height / 36) / rows) -
+        Math.ceil(Math.floor(containerSize.height / 36) / rows) -
         (isInLastRow ? 1 : 0),
     };
 
@@ -149,14 +153,14 @@ export const StreamsList = (props: StreamsListProps) => {
 
   const [layout, setLayout] = useState<Layout[]>([]);
 
-  useEffect(() => {
-    if (!hasMounted || containerSize.height === 0) return;
+  // useEffect(() => {
+  //   if (!hasMounted || containerSize.height === 0) return;
 
-    setLayout(
-      listWithChat.map((_, i) => ({ i: String(i), ...getGridData(i) })),
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams, containerSize, hasMounted, layoutMemory]);
+  //   setLayout(
+  //     listWithChat.map((_, i) => ({ i: String(i), ...getGridData(i) })),
+  //   );
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [searchParams, containerSize, hasMounted, layoutMemory]);
 
   if (!hasMounted) return null;
 

@@ -27,7 +27,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/utils/useList.ts"
+    "src/utils/useList.ts",
+    "src/@types/globals.d.ts",
+    "src/utils/useFullscreen.js"
   ],
   "exclude": ["node_modules"]
 }

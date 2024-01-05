@@ -211,7 +211,12 @@
   },
   "button-titles": {
     "aside": {
-      "reset-layout": "Restablecer layout"
+      "streams-selector-dialog": "Streamer selector",
+      "organizar-diálogo": "Organizador",
+      "settings-dialog": "Ajustes",
+      "faq-diálogo": "FAQ",
+      "reset-layout": "Reset layout",
+      "toggle-fullscreen": "Pantalla completa"
     },
     "stream-player-header": {
       "mute": "Activar/desactivar sonido",
@@ -219,8 +224,6 @@
       "chat": "Activar/desactivar chat",
       "reload": "Recargar transmisión en vivo",
       "remove-stream": "Eliminar/ocultar la transmisión en vivo",
-      "move-left": "Mover transmisión en vivo a la izquierda",
-      "move-right": "Mover transmisión en vivo a la derecha",
       "add-swap-point": "Agregar Punto de cambio",
       "remove-swap-point": "Eliminar Punto de cambio",
       "goto-swap-point": "Ir al Punto de cambio ((swap-point))"

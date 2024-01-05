@@ -53,7 +53,7 @@ export default function RootLayout({
           content="ca-pub-7629305009580924"
         ></meta>
       </head>
-      <body className="min-h-screen w-full">
+      <body className="min-h-dvh w-full">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -64,7 +64,7 @@ export default function RootLayout({
             'gray-light',
             'regret',
             'code',
-            'purgatory'
+            'purgatory',
           ]}
           enableSystem
         >

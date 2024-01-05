@@ -26,8 +26,10 @@ import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 import { useLayoutMemory } from '@/contexts/layout-memory-context';
 import { useSettingsContext } from '@/contexts/settings-context';
 import { getLayoutKey } from '@/utils/getLayoutKey';
+import { useFullscreen } from '@/utils/useFullscreen';
 import { useKonamiCode } from '@/utils/useKonamiCode';
 import { useSearchParamsStates } from '@/utils/useSearchParamsState';
+import { Maximize, Minimize } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
@@ -45,6 +47,7 @@ export default function Streams(props: StreamsPageProps) {
   const [_, setEasterEggs] = useEasterEggsContext();
   const searchParams = useSearchParams();
   const [__, setLayoutMemory] = useLayoutMemory();
+  const { toggle, fullscreen } = useFullscreen();
 
   useKonamiCode(() => {
     setEasterEggs((old) => ({ ...old, active: true }));
@@ -60,20 +63,20 @@ export default function Streams(props: StreamsPageProps) {
       data-hide-dialog={settings.appearance.hideDialog}
       data-dialogs-position={settings.appearance.dialogTriggersPosition}
       className="
-        group
-        relative
-        flex
-        h-screen
-        max-h-screen
-        w-full
-        overflow-hidden
-        data-[dialogs-position=bottom]:pb-8
-        data-[dialogs-position=left]:pl-8
-        data-[dialogs-position=right]:pr-8
-        data-[hide-dialog=true]:data-[dialogs-position=bottom]:!pb-0
-        data-[hide-dialog=true]:data-[dialogs-position=left]:!pl-0
-        data-[hide-dialog=true]:data-[dialogs-position=right]:!pr-0
-      "
+          group
+          relative
+          flex
+          h-dvh
+          max-h-dvh
+          w-full
+          overflow-hidden
+          data-[dialogs-position=bottom]:pb-8
+          data-[dialogs-position=left]:pl-8
+          data-[dialogs-position=right]:pr-8
+          data-[hide-dialog=true]:data-[dialogs-position=bottom]:!pb-0
+          data-[hide-dialog=true]:data-[dialogs-position=left]:!pl-0
+          data-[hide-dialog=true]:data-[dialogs-position=right]:!pr-0
+        "
     >
       <aside
         data-dialogs-position={settings.appearance.dialogTriggersPosition}
@@ -82,32 +85,32 @@ export default function Streams(props: StreamsPageProps) {
         }
         data-hide-dialog={settings.appearance.hideDialog}
         className="
-          group
-          absolute
-          z-50
-          flex
-          flex-col
-          gap-2
-          transition-transform
-          data-[dialogs-position=bottom]:bottom-0
-          data-[dialogs-position=bottom]:right-0
-          data-[dialogs-position=left]:left-0
-          data-[dialogs-position=right]:right-0
-          data-[dialogs-position=bottom]:data-[hide-dialog=true]:translate-y-[80%]
-          data-[dialogs-position=left]:data-[hide-dialog=true]:-translate-x-[80%]
-          data-[dialogs-position=right]:data-[hide-dialog=true]:translate-x-[80%]
-          data-[horizontal=true]:flex-row-reverse
-          data-[horizontal=false]:py-6
-          data-[horizontal=true]:px-3
-          hover:data-[hide-dialog=true]:translate-x-0
-          hover:data-[hide-dialog=true]:translate-y-0
-          [&>a]:data-[dialogs-position=bottom]:rounded-b-none
-          [&>a]:data-[dialogs-position=left]:rounded-l-none
-          [&>a]:data-[dialogs-position=right]:rounded-r-none
-          [&>button]:data-[dialogs-position=bottom]:rounded-b-none
-          [&>button]:data-[dialogs-position=left]:rounded-l-none
-          [&>button]:data-[dialogs-position=right]:rounded-r-none
-        "
+            group
+            absolute
+            z-50
+            flex
+            flex-col
+            gap-2
+            transition-transform
+            data-[dialogs-position=bottom]:bottom-0
+            data-[dialogs-position=bottom]:right-0
+            data-[dialogs-position=left]:left-0
+            data-[dialogs-position=right]:right-0
+            data-[dialogs-position=bottom]:data-[hide-dialog=true]:translate-y-[80%]
+            data-[dialogs-position=left]:data-[hide-dialog=true]:-translate-x-[80%]
+            data-[dialogs-position=right]:data-[hide-dialog=true]:translate-x-[80%]
+            data-[horizontal=true]:flex-row-reverse
+            data-[horizontal=false]:py-6
+            data-[horizontal=true]:px-3
+            hover:data-[hide-dialog=true]:translate-x-0
+            hover:data-[hide-dialog=true]:translate-y-0
+            [&>a]:data-[dialogs-position=bottom]:rounded-b-none
+            [&>a]:data-[dialogs-position=left]:rounded-l-none
+            [&>a]:data-[dialogs-position=right]:rounded-r-none
+            [&>button]:data-[dialogs-position=bottom]:rounded-b-none
+            [&>button]:data-[dialogs-position=left]:rounded-l-none
+            [&>button]:data-[dialogs-position=right]:rounded-r-none
+          "
       >
         <StreamsSelectorDialogProvider>
           <StreamsSelectorDialog purgatory={props.purgatory} />
@@ -128,12 +131,21 @@ export default function Streams(props: StreamsPageProps) {
                 })]: _,
                 ...rest
               } = old;
-
               return rest;
             });
           }}
         >
           <ResetLayout size="1rem" className="block text-secondary" />
+        </Button>
+        <Button
+          className="px-3 md:data-[fullscreen=false]:sr-only"
+          data-fullscreen={fullscreen}
+          size="sm"
+          title={t('button-titles.aside.toggle-fullscreen')}
+          onClick={toggle}
+        >
+          {!fullscreen && <Maximize size="1rem" className="text-secondary" />}
+          {fullscreen && <Minimize size="1rem" className="text-secondary" />}
         </Button>
       </aside>
       <PanelGroup direction={isDesktop ? 'horizontal' : 'vertical'}>
@@ -160,8 +172,8 @@ export default function Streams(props: StreamsPageProps) {
                 collapsible
                 data-resizing={resizing}
                 className="
-              data-[resizing=true]:pointer-events-none
-              group-data-[dialogs-position=right]:mr-4"
+                data-[resizing=true]:pointer-events-none
+                group-data-[dialogs-position=right]:mr-4"
               >
                 <ChatsList resizing={resizing} />
               </Panel>

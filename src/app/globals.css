@@ -382,15 +382,10 @@
   }
 
   .grid-layout .react-resizable-handle {
-    @apply z-30;
+    @apply z-30 bg-none;
   }
 
   .grid-layout .react-resizable-handle::after {
-    height: 0.5rem;
-    width: 0.5rem;
-    border-bottom-width: 3px;
-    border-right-width: 3px;
-    border-style: dotted;
-    border-color: hsl(var(--primary));
+    @apply h-2 w-2 rounded-br-sm border-b-[3px] border-r-[3px] border-solid border-primary sm:h-[0.4rem] sm:w-[0.4rem] sm:border-b-2 sm:border-r-2;
   }
 }

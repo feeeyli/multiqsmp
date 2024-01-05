@@ -211,7 +211,12 @@
   },
   "button-titles": {
     "aside": {
-      "reset-layout": "Reset layout"
+      "streams-selector-dialog": "Streamer selector",
+      "organize-dialog": "Organizer",
+      "settings-dialog": "Settings",
+      "faq-dialog": "FAQ",
+      "reset-layout": "Reset layout",
+      "toggle-fullscreen": "Fullscreen"
     },
     "stream-player-header": {
       "mute": "Toggle sound on/off",
@@ -219,8 +224,6 @@
       "chat": "Toggle chat on/off",
       "reload": "Reload live stream",
       "remove-stream": "Remove/hide live stream",
-      "move-left": "Move live stream to the left",
-      "move-right": "Move live stream to the right",
       "add-swap-point": "Add Swap point",
       "remove-swap-point": "Remove Swap point",
       "goto-swap-point": "Go to Swap point ((swap-point))"

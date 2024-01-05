@@ -3,8 +3,6 @@
 // Next Imports
 import { Button } from '@/components/ui/button';
 import { useSettingsContext } from '@/contexts/settings-context';
-import { useSearchParamsState } from '@/utils/useSearchParamsState';
-import { ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
@@ -44,7 +42,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col items-center py-24">
+    <div className="flex min-h-dvh flex-col items-center py-24">
       <header className="text-center">
         <h1 className="mb-2 text-3xl font-bold">MultiQSMP Beta</h1>
         <div className="grid grid-cols-2 justify-items-center gap-4 gap-y-1">

@@ -91,6 +91,13 @@ export const StreamPlayer = ({ channel, ...props }: Props) => {
           <ReactPlayer
             className="!h-full !w-full"
             url={`https://player.twitch.tv/${channel}`}
+            config={{
+              twitch: {
+                options: {
+                  theme: 'dark',
+                },
+              },
+            }}
             muted={streamPlayerControls.muted.value}
             playing
             controls

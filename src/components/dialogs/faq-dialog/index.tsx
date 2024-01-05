@@ -6,20 +6,20 @@ import Markdown from 'react-markdown';
 
 // Components Imports
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import { Button } from '@/components/ui/button';
+import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
 import { HelpCircle } from 'lucide-react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
 import Link from 'next/link';
 
 type Q = 0 | 1 | 2 | 3 | 4 | 5;
@@ -28,11 +28,12 @@ const q: Q[] = [0, 1, 2, 3, 4, 5];
 
 export const FAQDialog = () => {
   const t = useTranslations('faq-dialog');
+  const bt = useTranslations('button-titles');
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="px-3" size="sm">
+        <Button className="px-3" size="sm" title={bt('aside.faq-dialog')}>
           <HelpCircle size="1rem" className="block text-secondary" />
         </Button>
       </DialogTrigger>

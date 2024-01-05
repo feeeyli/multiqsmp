@@ -1,32 +1,24 @@
 'use client';
 
 // React Imports
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 
 // Next Imports
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
 // Datas Imports
+import { GROUPS as DEFAULT_GROUPS, PURGATORY_GROUPS } from '@/data/groups';
 import {
   STREAMERS as DEFAULT_STREAMERS,
   PURGATORY_STREAMERS,
 } from '@/data/streamers';
-import { GROUPS as DEFAULT_GROUPS, PURGATORY_GROUPS } from '@/data/groups';
 
 // Libs Imports
 import { useTranslations } from 'next-intl';
 
 // Icons Imports
-import {
-  ArrowLeftRight,
-  ArrowRight,
-  BoxSelect,
-  CheckSquare,
-  Gamepad2,
-  MousePointerSquareDashed,
-  Radio,
-} from 'lucide-react';
+import { ArrowLeftRight, ArrowRight } from 'lucide-react';
 
 // Components Imports
 import { Button } from '@/components/ui/button';
@@ -38,28 +30,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { DialogClose } from '@radix-ui/react-dialog';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { StreamersTab } from './tabs/streamers-tab';
+import { DialogClose } from '@radix-ui/react-dialog';
 import { GroupsTab } from './tabs/groups-tab';
+import { StreamersTab } from './tabs/streamers-tab';
 
 // Contexts Import
 import { useStreamsSelectorDialogContext } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
-import { FavoriteListsProvider } from './tabs/favorite-lists-context';
 import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
+import { FavoriteListsProvider } from './tabs/favorite-lists-context';
 
 // Scripts Imports
-import { getDisplayName } from '@/utils/getDisplayName';
-import { getTeamByName } from '@/utils/getTeamByName';
 import { useSettingsContext } from '@/contexts/settings-context';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { getDisplayName } from '@/utils/getDisplayName';
 
 interface StreamsSelectorDialogProps {
   purgatory: boolean;
@@ -67,6 +50,7 @@ interface StreamsSelectorDialogProps {
 
 export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
   const t = useTranslations('streamers-dialog');
+  const bt = useTranslations('button-titles');
   const { selectedStreamers, selectedGroups, changedGroups } =
     useStreamsSelectorDialogContext();
   const searchParams = useSearchParams();
@@ -140,7 +124,11 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
       }}
     >
       <DialogTrigger asChild>
-        <Button className="px-3" size="sm">
+        <Button
+          className="px-3"
+          size="sm"
+          title={bt('aside.streams-selector-dialog')}
+        >
           <ArrowLeftRight size="1rem" className="block text-secondary" />
         </Button>
       </DialogTrigger>

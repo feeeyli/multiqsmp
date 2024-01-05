@@ -1,18 +1,15 @@
 'use client';
 
 // Libs Imports
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 
 // Icons Imports
 import {
-  ChevronsLeft,
-  ChevronsRight,
+  Expand,
   EyeOff,
-  LucideIcon,
-  Maximize,
   MessageSquare,
   RefreshCcw,
   Save,
@@ -23,6 +20,7 @@ import {
 
 // Components Imports
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Dialog,
   DialogContent,
@@ -34,7 +32,6 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -47,23 +44,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Checkbox } from '@/components/ui/checkbox';
 
 // Contexts Imports
+import { GoToSwapPoint } from '@/components/icons';
+import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 import { useSettingsContext } from '@/contexts/settings-context';
-import { useState } from 'react';
-import { Reorder } from 'framer-motion';
+import { DialogClose } from '@radix-ui/react-dialog';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
+import { useState } from 'react';
 import { ChangeLanguage } from './change-language';
 import {
   DiscardChangesDialog,
   DiscardChangesDialogContent,
   DiscardChangesDialogTrigger,
 } from './discard-changes-dialog';
-import { DialogClose } from '@radix-ui/react-dialog';
-import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
-import { Separator } from '@/components/ui/separator';
-import { GoToSwapPoint } from '@/components/icons';
 
 const headerItemsNames = z.enum([
   'mute',
@@ -79,7 +73,7 @@ const headerItems: {
   icon: React.ReactNode;
 }[] = [
   { value: 'mute', icon: <Volume2 size="1rem" /> },
-  { value: 'fullscreen', icon: <Maximize size="1rem" /> },
+  { value: 'fullscreen', icon: <Expand size="1rem" /> },
   { value: 'chat', icon: <MessageSquare size="1rem" /> },
   { value: 'reload', icon: <RefreshCcw size="1rem" /> },
   { value: 'remove-stream', icon: <X size="1rem" /> },
@@ -135,6 +129,7 @@ type SettingsDialogProps = {
 
 export const SettingsDialog = (props: SettingsDialogProps) => {
   const t = useTranslations('settings-dialog');
+  const bt = useTranslations('button-titles');
   const [settings, setSettings] = useSettingsContext();
   const form = useForm<SettingsType>({
     resolver: zodResolver(settingsFormSchema),
@@ -160,16 +155,17 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
         <Button
           className="mt-4 px-3 group-data-[dialogs-position=bottom]:mr-2.5 group-data-[dialogs-position=bottom]:mt-0"
           size="sm"
+          title={bt('aside.settings-dialog')}
         >
           <Settings size="1rem" className="block text-secondary" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-2xl">
+      <DialogContent className="flex max-h-[90dvh] max-w-2xl flex-col">
         <DialogHeader>
           <DialogTitle>{t('title')}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
-          <form className="scrollbar max-h-[75vh] space-y-4 overflow-y-auto pl-2 pr-4">
+          <form className="scrollbar space-y-4 overflow-y-auto pl-2 pr-4">
             <div>
               <ChangeLanguage lang="pt" form={form} />
               <ChangeLanguage lang="en" form={form} />
@@ -523,7 +519,7 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
                   render={({ field }) => (
                     <Button
                       variant="outline"
-                      className="min-h-10 flex h-auto justify-start"
+                      className="flex h-auto min-h-10 justify-start"
                       asChild
                     >
                       <label>
@@ -642,7 +638,7 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
                   render={({ field }) => (
                     <Button
                       variant="outline"
-                      className="min-h-10 flex h-auto justify-start"
+                      className="flex h-auto min-h-10 justify-start"
                       asChild
                     >
                       <label>

@@ -2,20 +2,16 @@
 import { ReactNode, useContext, useState } from 'react';
 
 // Next Imports
-import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 
 // Icons Imports
 import {
   ChevronLeft,
-  ChevronsLeft,
-  ChevronsRight,
+  Expand,
   EyeOff,
-  Maximize,
   MessageSquare,
   MessageSquareDashed,
-  Minimize,
   RefreshCcw,
+  Shrink,
   Volume2,
   VolumeX,
   X,
@@ -25,19 +21,16 @@ import {
 import { StreamPlayerControlsContext } from './stream-player-controls-context';
 
 // Components Imports
-import { Button } from '@/components/ui/button';
-import { useSettingsContext } from '@/contexts/settings-context';
-import {
-  useSearchParamsState,
-  useSearchParamsStates,
-} from '@/utils/useSearchParamsState';
-import { motion } from 'framer-motion';
 import {
   AddSwapPoint,
   GoToSwapPoint,
   RemoveSwapPoint,
 } from '@/components/icons';
+import { Button } from '@/components/ui/button';
+import { useSettingsContext } from '@/contexts/settings-context';
 import { useSwapStreams } from '@/contexts/swap-points-context';
+import { useSearchParamsState } from '@/utils/useSearchParamsState';
+import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
 interface StreamPlayerHeaderProps {
@@ -164,10 +157,10 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         title={t('fullscreen')}
       >
         {streamPlayerControls.fullScreen.value && (
-          <Minimize size="1rem" className="text-foreground" />
+          <Shrink size="1rem" className="text-foreground" />
         )}
         {!streamPlayerControls.fullScreen.value && (
-          <Maximize size="1rem" className="text-foreground" />
+          <Expand size="1rem" className="text-foreground" />
         )}
       </Button>
     ),
@@ -299,11 +292,11 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
 
   const headerItemsSorted = (
     [
-      'mute',
       'fullscreen',
+      'mute',
       'chat',
-      'reload',
       'remove-stream',
+      'reload',
       'swap-points',
     ] as typeof headerItems
   ).filter((i) => (headerItems || []).includes(i));

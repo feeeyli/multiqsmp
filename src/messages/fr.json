@@ -193,7 +193,7 @@
     "title": "Bienvenue à MultiQSMP",
     "description": "Voici un petit guide des menus du site",
     "selector": {
-      "title": "Sélecteur de flux",
+      "title": "Sélecteur de streamer",
       "content": "Ceci est le menu principal de MultiQSMP. Entrez-y, sélectionnez les streamers ou les groupes que vous voulez, cliquez sur regarder et profitez-en. Si l'un des streamers que vous souhaitez regarder n'est pas sur MultiQSMP, vous pouvez l'ajouter directement à l'url."
     },
     "organizer": {
@@ -211,7 +211,12 @@
   },
   "button-titles": {
     "aside": {
-      "reset-layout": "Réinitialiser la disposition"
+      "streams-selector-dialog": "Sélecteur de streamer",
+      "dialogue d'organisation": "Organizer",
+      "boîte de dialogue des paramètres": "Paramètres",
+      "faq-dialog": "FAQ",
+      "reset-layout": "Réinitialiser la disposition",
+      "toggle-fullscreen": "Écran complet"
     },
     "stream-player-header": {
       "mute": "Activer/désactiver le son",
@@ -219,8 +224,6 @@
       "chat": "Activer/désactiver le chat",
       "reload": "Recharger la diffusion en direct",
       "remove-stream": "Supprimer/masquer le stream",
-      "move-left": "Déplacer la diffusion en direct vers la gauche",
-      "move-right": "Déplacer la diffusion en direct vers la droite",
       "add-swap-point": "Ajouter un Point d'échange",
       "remove-swap-point": "Supprimer un Point d'échange",
       "goto-swap-point": "Aller au Point d'échange ((swap-point))"

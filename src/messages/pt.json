@@ -211,7 +211,12 @@
   },
   "button-titles": {
     "aside": {
-      "reset-layout": "Resetar layout"
+      "streams-selector-dialog": "Seletor de streamers",
+      "organize-dialog": "Organizador",
+      "settings-dialog": "Configurações",
+      "faq-dialog": "FAQ",
+      "reset-layout": "Resetar layout",
+      "toggle-fullscreen": "Tela cheia"
     },
     "stream-player-header": {
       "mute": "Ativar/desativar som",
