@@ -115,7 +115,6 @@ export const SKIN_HEADS = {
     'https://s.namemc.com/2d/skin/face.png?id=a5a7f1a56ac40699&scale=32',
   bagi: 'https://s.namemc.com/2d/skin/face.png?id=45f1594adebda93e&scale=32g',
   cellbit: 'https://s.namemc.com/2d/skin/face.png?id=b8d69d0ab1ea7b45&scale=32',
-  forever: 'https://s.namemc.com/2d/skin/face.png?id=19dd5b0aa64c02b5&scale=32',
   felps: 'https://s.namemc.com/2d/skin/face.png?id=60aa9227d3c55836&scale=32',
   linkthemike:
     'https://s.namemc.com/2d/skin/face.png?id=6bc1332059bb2e3c&scale=32',
