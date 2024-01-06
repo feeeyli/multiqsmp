@@ -255,18 +255,11 @@ export const GROUPS = [
     ],
   },
   {
-    groupName: 'Favela6',
-    simpleGroupName: 'favela6',
-    members: ['Bagi', 'Cellbit', 'Forever', 'Felps', 'TazerCraft'],
-    avatars: ['bagi', 'cellbit', 'forever', 'felps', 'linkthemike', 'peqitw'],
-    twitchNames: [
-      'bagi',
-      'cellbit',
-      'forever',
-      'felps',
-      'linkthemike',
-      'peqitw',
-    ],
+    groupName: 'Favela5',
+    simpleGroupName: 'favela5',
+    members: ['Bagi', 'Cellbit', 'Felps', 'TazerCraft'],
+    avatars: ['bagi', 'cellbit', 'felps', 'linkthemike', 'peqitw'],
+    twitchNames: ['bagi', 'cellbit', 'felps', 'linkthemike', 'peqitw'],
   },
   {
     groupName: 'France',
