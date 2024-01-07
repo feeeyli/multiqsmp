@@ -11,10 +11,18 @@
     "streamer-search-label": "Buscar por streamer",
     "group-search-label": "Buscar por grupo",
     "select": {
+      "label": "Selecionar",
       "all": "Todos",
       "none": "Nenhum",
       "online": "Todos onlines",
       "playing": "Todos jogando QSMP"
+    },
+    "sort": {
+      "label": "Ordenar",
+      "name-lang": "Nome e lingua",
+      "name": "Nome",
+      "online-first": "Onlines primeiro",
+      "playing-first": "Jogando QSMP primeiro"
     }
   },
   "streams-list": {

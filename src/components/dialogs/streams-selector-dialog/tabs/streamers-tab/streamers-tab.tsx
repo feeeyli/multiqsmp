@@ -11,39 +11,26 @@ import {
 } from '@/data/streamers';
 
 // Components Imports
-import { TabsContent } from '@/components/ui/tabs';
-import { Streamer } from '../streamer';
 import { Separator } from '@/components/ui/separator';
+import { TabsContent } from '@/components/ui/tabs';
+import { Streamer } from '../../streamer';
 
 // Contexts Import
 import { useStreamsSelectorDialogContext } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
-import { useFavoriteListsContext } from './favorite-lists-context';
+import { useFavoriteListsContext } from '../favorite-lists-context';
 
 // Scripts Imports
+import { StreamerType } from '@/@types/data';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useSettingsContext } from '@/contexts/settings-context';
 import { sortStreamers } from '@/utils/sort';
 import { useTranslations } from 'next-intl';
-import { useSettingsContext } from '@/contexts/settings-context';
-import { StreamerType } from '@/@types/data';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
-import {
-  MousePointerSquareDashed,
-  CheckSquare,
-  BoxSelect,
-  Radio,
-  Gamepad2,
-} from 'lucide-react';
+import { SelectStreamersDropdown } from './select-streamers-dropdown';
+import { SortStreamers } from './sort-streamers';
+import { StreamersList } from './streamers-list';
 
-type OnlineStreamerType = { twitchName: string; isPlayingQsmp: boolean };
+export type OnlineStreamerType = { twitchName: string; isPlayingQsmp: boolean };
 
 interface StreamersTabProps {
   STREAMERS: StreamerType[];
@@ -51,7 +38,6 @@ interface StreamersTabProps {
 
 export const StreamersTab = ({
   STREAMERS: STREAMERS_LIST,
-  ...props
 }: StreamersTabProps) => {
   const t = useTranslations('streamers-dialog');
   const [
@@ -159,92 +145,11 @@ export const StreamersTab = ({
       className="scrollbar relative flex max-h-80 flex-col gap-3 overflow-y-auto pb-3 data-[state=inactive]:hidden"
     >
       <header className="sticky top-0 z-20 flex w-full items-center gap-3 bg-background pb-4 pl-2 pr-4 pt-2">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex items-center gap-2 px-2.5"
-            >
-              Selecionar
-              <MousePointerSquareDashed size="1rem" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem
-              onClick={() => {
-                selectedStreamers.actions.updateList(
-                  streamersWithHide.map((s) => s.twitchName),
-                );
-              }}
-            >
-              <CheckSquare size="1rem" /> {t('select.all')}
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => {
-                selectedStreamers.actions.updateList([]);
-              }}
-            >
-              <BoxSelect size="1rem" /> {t('select.none')}
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => {
-                selectedStreamers.actions.updateList(
-                  streamersWithHide
-                    .filter((streamer) => {
-                      const stream = onlineStreamers.find(
-                        (online) =>
-                          online.twitchName.toLocaleLowerCase() ===
-                          streamer.twitchName.toLocaleLowerCase(),
-                      );
-
-                      if (
-                        !stream ||
-                        (outro.hideOffline && !stream) ||
-                        (outro.hideNotPlaying &&
-                          !stream?.isPlayingQsmp &&
-                          !!stream)
-                      )
-                        return false;
-
-                      return true;
-                    })
-                    .map((s) => s.twitchName),
-                );
-              }}
-            >
-              <Radio size="1rem" /> {t('select.online')}
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => {
-                selectedStreamers.actions.updateList(
-                  streamersWithHide
-                    .filter((streamer) => {
-                      const stream = onlineStreamers.find(
-                        (online) =>
-                          online.twitchName.toLocaleLowerCase() ===
-                          streamer.twitchName.toLocaleLowerCase(),
-                      );
-
-                      if (
-                        !stream?.isPlayingQsmp ||
-                        (outro.hideOffline && !stream) ||
-                        (outro.hideNotPlaying &&
-                          !stream?.isPlayingQsmp &&
-                          !!stream)
-                      )
-                        return false;
-
-                      return true;
-                    })
-                    .map((s) => s.twitchName),
-                );
-              }}
-            >
-              <Gamepad2 size="1rem" /> {t('select.playing')}
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <SelectStreamersDropdown
+          streamersWithHide={streamersWithHide}
+          onlineStreamers={onlineStreamers}
+        />
+        <SortStreamers />
         <div className="w-full">
           <Label className="sr-only" htmlFor="streamer-search">
             {t('streamer-search-label')}
@@ -314,24 +219,10 @@ export const StreamersTab = ({
       {favoriteStreamers.length > 0 && nonFavoriteStreamers.length > 0 && (
         <Separator />
       )}
-      <div className="flex w-full flex-wrap justify-center gap-4">
-        {nonFavoriteStreamers.map((streamer) => {
-          const stream = onlineStreamers.find(
-            (online) =>
-              online.twitchName.toLocaleLowerCase() ===
-              streamer.twitchName.toLocaleLowerCase(),
-          );
-          return (
-            <Streamer
-              key={streamer.twitchName}
-              streamer={streamer}
-              selected={selectedStreamers.value.includes(streamer.twitchName)}
-              isOnline={!!stream}
-              isPlayingQsmp={!!stream?.isPlayingQsmp}
-            />
-          );
-        })}
-      </div>
+      <StreamersList
+        streamers={nonFavoriteStreamers}
+        onlineStreamers={onlineStreamers}
+      />
     </TabsContent>
   );
 };

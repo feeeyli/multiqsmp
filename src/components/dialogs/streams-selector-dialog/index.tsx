@@ -33,7 +33,7 @@ import {
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { DialogClose } from '@radix-ui/react-dialog';
 import { GroupsTab } from './tabs/groups-tab';
-import { StreamersTab } from './tabs/streamers-tab';
+import { StreamersTab } from './tabs/streamers-tab/streamers-tab';
 
 // Contexts Import
 import { useStreamsSelectorDialogContext } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
@@ -43,6 +43,7 @@ import { FavoriteListsProvider } from './tabs/favorite-lists-context';
 // Scripts Imports
 import { useSettingsContext } from '@/contexts/settings-context';
 import { getDisplayName } from '@/utils/getDisplayName';
+import { SortStreamersProvider } from './tabs/streamers-tab/sort-streamers-context';
 
 interface StreamsSelectorDialogProps {
   purgatory: boolean;
@@ -156,7 +157,9 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
             </TabsTrigger>
           </TabsList>
           <FavoriteListsProvider>
-            <StreamersTab STREAMERS={STREAMERS} />
+            <SortStreamersProvider>
+              <StreamersTab STREAMERS={STREAMERS} />
+            </SortStreamersProvider>
             <GroupsTab
               GROUPS={GROUPS}
               STREAMERS={STREAMERS}

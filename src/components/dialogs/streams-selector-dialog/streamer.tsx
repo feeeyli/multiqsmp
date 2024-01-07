@@ -8,22 +8,20 @@ import { useTranslations } from 'next-intl';
 import { StreamerType } from '@/@types/data';
 
 /// Icons Imports
-import { Heart, Info, Youtube } from 'lucide-react';
+import { Heart, Info } from 'lucide-react';
 
 // Components Imports
-import { Toggle } from '@/components/ui/toggle';
 import { Button } from '@/components/ui/button';
+import { Toggle } from '@/components/ui/toggle';
 
 // Contexts Import
 import { useStreamsSelectorDialogContext } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
-import { useFavoriteListsContext } from './tabs/favorite-lists-context';
-import { useSettingsContext } from '@/contexts/settings-context';
-import { getSkinHead } from '@/utils/getSkinHead';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
-import { cva } from 'class-variance-authority';
+import { useSettingsContext } from '@/contexts/settings-context';
 import { cn } from '@/lib/utils';
-import { GROUPS } from '@/data/groups';
-import { getTeamByName } from '@/utils/getTeamByName';
+import { getSkinHead } from '@/utils/getSkinHead';
+import { cva } from 'class-variance-authority';
+import { useFavoriteListsContext } from './tabs/favorite-lists-context';
 
 interface StreamerProps {
   streamer: StreamerType;

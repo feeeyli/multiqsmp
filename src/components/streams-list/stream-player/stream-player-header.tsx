@@ -23,6 +23,8 @@ import { StreamPlayerControlsContext } from './stream-player-controls-context';
 // Components Imports
 import {
   AddSwapPoint,
+  CaptionsSquare,
+  CaptionsSquareDashed,
   GoToSwapPoint,
   RemoveSwapPoint,
 } from '@/components/icons';
@@ -183,6 +185,23 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         )}
       </Button>
     ),
+    captions: (
+      <Button
+        tabIndex={opened ? 0 : -1}
+        onClick={() => streamPlayerControls.captions.set((old) => !old)}
+        variant="stream-header"
+        size="stream-header"
+        key="captions"
+        title={t('captions')}
+      >
+        {streamPlayerControls.captions.value && (
+          <CaptionsSquare size="1rem" className="text-foreground" />
+        )}
+        {!streamPlayerControls.captions.value && (
+          <CaptionsSquareDashed size="1rem" className="text-foreground" />
+        )}
+      </Button>
+    ),
     reload: (
       <Button
         onClick={() => {
@@ -294,12 +313,13 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
     [
       'fullscreen',
       'mute',
+      'captions',
       'chat',
       'remove-stream',
       'reload',
       'swap-points',
     ] as typeof headerItems
-  ).filter((i) => (headerItems || []).includes(i));
+  ).filter((i) => ([...headerItems, 'captions'] || []).includes(i));
 
   const style = {
     '--items': headerItemsSorted.length + (alwaysShowHeader ? 0 : 1),

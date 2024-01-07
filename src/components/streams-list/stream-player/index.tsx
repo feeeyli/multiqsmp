@@ -13,7 +13,10 @@ import { StreamPlayerControlsContext } from './stream-player-controls-context';
 // Scripts Imports
 
 // Components Imports
+import { ResizableHandle } from '@/components/ui/resizable';
 import { useSettingsContext } from '@/contexts/settings-context';
+import { Panel, PanelGroup } from 'react-resizable-panels';
+import { StreamPlayerCaptions } from './stream-player-captions';
 import { StreamPlayerHeader } from './stream-player-header';
 
 interface Props {
@@ -22,7 +25,12 @@ interface Props {
   groupName?: string;
 }
 
-const DEBUG_MODE = false;
+const DEBUG_MODE =
+  typeof localStorage === 'undefined'
+    ? false
+    : localStorage.getItem('DEBUG_MODE') === 'true'
+    ? true
+    : false;
 
 export const StreamPlayer = ({ channel, ...props }: Props) => {
   const streamPlayerControls = useContext(StreamPlayerControlsContext);
@@ -32,20 +40,23 @@ export const StreamPlayer = ({ channel, ...props }: Props) => {
     },
   ] = useSettingsContext();
 
-  const playerStyleVariants = cva('inset-0 flex-grow overflow-hidden w-full', {
-    variants: {
-      fullScreen: {
-        true: 'absolute z-20',
-        false: 'relative z-0',
+  const playerStyleVariants = cva(
+    'inset-0 flex-grow overflow-hidden w-full flex flex-col',
+    {
+      variants: {
+        fullScreen: {
+          true: 'absolute z-20',
+          false: 'relative z-0',
+        },
+        moving: {
+          true: 'pointer-events-none',
+        },
       },
-      moving: {
-        true: 'pointer-events-none',
+      defaultVariants: {
+        fullScreen: false,
       },
     },
-    defaultVariants: {
-      fullScreen: false,
-    },
-  });
+  );
 
   const useHandleAsHeader = streamPlayerControls.fullScreen.value
     ? false
@@ -87,28 +98,38 @@ export const StreamPlayer = ({ channel, ...props }: Props) => {
             groupName={props.groupName}
           />
         )}
-        {!DEBUG_MODE && (
-          <ReactPlayer
-            className="!h-full !w-full"
-            url={`https://player.twitch.tv/${channel}`}
-            config={{
-              twitch: {
-                options: {
-                  theme: 'dark',
-                },
-              },
-            }}
-            muted={streamPlayerControls.muted.value}
-            playing
-            controls
-            key={streamPlayerControls.refresh.key}
-          />
-        )}
-        {DEBUG_MODE && (
-          <div className="flex h-full w-full items-center justify-center">
-            {channel}
-          </div>
-        )}
+        <PanelGroup direction="vertical" disablePointerEventsDuringResize>
+          {!DEBUG_MODE && (
+            <Panel className="flex h-full w-full items-center justify-center data-[is-resizing-captions=true]:pointer-events-none">
+              <ReactPlayer
+                className="!h-full !w-full"
+                url={`https://player.twitch.tv/${channel}`}
+                config={{
+                  twitch: {
+                    options: {
+                      theme: 'dark',
+                    },
+                  },
+                }}
+                muted={streamPlayerControls.muted.value}
+                playing
+                controls
+                key={streamPlayerControls.refresh.key}
+              />
+            </Panel>
+          )}
+          {DEBUG_MODE && (
+            <Panel className="flex h-full w-full items-center justify-center border-t-2 border-border data-[is-resizing-captions=true]:pointer-events-none">
+              {channel}
+            </Panel>
+          )}
+          {streamPlayerControls.captions.value && (
+            <>
+              <ResizableHandle withHandle />
+              <StreamPlayerCaptions streamer={channel} />
+            </>
+          )}
+        </PanelGroup>
       </div>
     </>
   );

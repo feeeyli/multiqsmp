@@ -19,7 +19,7 @@ import { SwapStreamsProvider } from '@/contexts/swap-points-context';
 import { getLayoutKey } from '@/utils/getLayoutKey';
 import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
 import { ArrowLeftRight } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import RGL, { Layout, WidthProvider } from 'react-grid-layout';
 import { useElementSize, useMediaQuery } from 'usehooks-ts';
 import { Chat } from '../chats-list/chat';
@@ -153,14 +153,14 @@ export const StreamsList = (props: StreamsListProps) => {
 
   const [layout, setLayout] = useState<Layout[]>([]);
 
-  // useEffect(() => {
-  //   if (!hasMounted || containerSize.height === 0) return;
+  useEffect(() => {
+    if (!hasMounted || containerSize.height === 0) return;
 
-  //   setLayout(
-  //     listWithChat.map((_, i) => ({ i: String(i), ...getGridData(i) })),
-  //   );
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [searchParams, containerSize, hasMounted, layoutMemory]);
+    setLayout(
+      listWithChat.map((_, i) => ({ i: String(i), ...getGridData(i) })),
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, containerSize, hasMounted, layoutMemory]);
 
   if (!hasMounted) return null;
 

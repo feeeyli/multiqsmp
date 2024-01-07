@@ -11,7 +11,12 @@ interface ChatProps {
   chat: string;
 }
 
-const DEBUG_MODE = false;
+const DEBUG_MODE =
+  typeof localStorage === 'undefined'
+    ? false
+    : localStorage.getItem('DEBUG_MODE') === 'true'
+    ? true
+    : false;
 
 export const Chat = (props: ChatProps) => {
   const [chatsString, setChats] = useSearchParamsState('chats', '');

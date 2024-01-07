@@ -13,6 +13,10 @@ export const StreamPlayerControlsContext = createContext<{
     value: boolean;
     set: React.Dispatch<React.SetStateAction<boolean>>;
   };
+  captions: {
+    value: boolean;
+    set: React.Dispatch<React.SetStateAction<boolean>>;
+  };
   refresh: {
     key: number;
     run: () => void;
@@ -24,6 +28,10 @@ export const StreamPlayerControlsContext = createContext<{
     set: () => {},
   },
   fullScreen: {
+    value: false,
+    set: () => {},
+  },
+  captions: {
     value: false,
     set: () => {},
   },
@@ -48,6 +56,7 @@ export const StreamPlayerControlsProvider = ({
   ] = useSettingsContext();
   const [muted, setMuted] = useState(startMuted);
   const [fullScreen, setFullScreen] = useState(false);
+  const [captions, setCaptions] = useState(false);
   const [refreshCounter, setRefreshCounter] = useState(0);
 
   const refresh = () => setRefreshCounter((old) => (old > 0 ? 0 : 1));
@@ -60,6 +69,10 @@ export const StreamPlayerControlsProvider = ({
     fullScreen: {
       value: fullScreen,
       set: setFullScreen,
+    },
+    captions: {
+      value: captions,
+      set: setCaptions,
     },
     refresh: {
       key: refreshCounter,
