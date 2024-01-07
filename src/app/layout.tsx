@@ -24,6 +24,36 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <head>
+        <meta
+          name="description"
+          content="A website to watch all QSMP streamers at the same time."
+        />
+
+        <meta property="og:url" content="https://multiqsmp.vercel.app" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="MultiQSMP" />
+        <meta
+          property="og:description"
+          content="A website to watch all QSMP streamers at the same time."
+        />
+        <meta
+          property="og:image"
+          content="https://multiqsmp.vercel.app/api/og"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="multiqsmp.vercel.app" />
+        <meta property="twitter:url" content="https://multiqsmp.vercel.app" />
+        <meta name="twitter:title" content="MultiQSMP" />
+        <meta
+          name="twitter:description"
+          content="A website to watch all QSMP streamers at the same time."
+        />
+        <meta
+          name="twitter:image"
+          content="https://multiqsmp.vercel.app/api/og"
+        />
+
         <Script
           async
           src={`https://www.googletagmanager.com/gtag/js? 
