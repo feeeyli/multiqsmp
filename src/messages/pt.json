@@ -129,8 +129,9 @@
           "actions-order": {
             "label": "Botões de ação",
             "actions-labels": {
-              "mute": "Ativar/desativar som",
               "fullscreen": "Expandir live",
+              "mute": "Ativar/desativar som",
+              "captions": "Legendas",
               "chat": "Ativar/desativar chat",
               "reload": "Recarregar live",
               "remove-stream": "Remover live / Esconder Live",

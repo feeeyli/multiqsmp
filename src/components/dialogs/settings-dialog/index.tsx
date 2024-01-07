@@ -46,7 +46,7 @@ import {
 } from '@/components/ui/select';
 
 // Contexts Imports
-import { GoToSwapPoint } from '@/components/icons';
+import { CaptionsSquare, GoToSwapPoint } from '@/components/icons';
 import { Tooltip } from '@/components/ui/tooltip';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 import { useSettingsContext } from '@/contexts/settings-context';
@@ -67,14 +67,16 @@ const headerItemsNames = z.enum([
   'reload',
   'remove-stream',
   'swap-points',
+  'captions',
 ]);
 
 const headerItems: {
   value: z.infer<typeof headerItemsNames>;
   icon: React.ReactNode;
 }[] = [
-  { value: 'mute', icon: <Volume2 size="1rem" /> },
   { value: 'fullscreen', icon: <Expand size="1rem" /> },
+  { value: 'mute', icon: <Volume2 size="1rem" /> },
+  { value: 'captions', icon: <CaptionsSquare size="1rem" /> },
   { value: 'chat', icon: <MessageSquare size="1rem" /> },
   { value: 'reload', icon: <RefreshCcw size="1rem" /> },
   { value: 'remove-stream', icon: <X size="1rem" /> },

@@ -327,7 +327,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
       'reload',
       'swap-points',
     ] as typeof headerItems
-  ).filter((i) => ([...headerItems, 'captions'] || []).includes(i));
+  ).filter((i) => (headerItems || []).includes(i));
 
   const style = {
     '--items': headerItemsSorted.length + (alwaysShowHeader ? 0 : 1),
