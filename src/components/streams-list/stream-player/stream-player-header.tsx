@@ -29,6 +29,7 @@ import {
   RemoveSwapPoint,
 } from '@/components/icons';
 import { Button } from '@/components/ui/button';
+import { Tooltip } from '@/components/ui/tooltip';
 import { useSettingsContext } from '@/contexts/settings-context';
 import { useSwapStreams } from '@/contexts/swap-points-context';
 import { useSearchParamsState } from '@/utils/useSearchParamsState';
@@ -133,116 +134,119 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
 
   const headerActions: { [name: string]: ReactNode } = {
     mute: (
-      <Button
-        tabIndex={opened ? 0 : -1}
-        onClick={() => streamPlayerControls.muted.set((old) => !old)}
-        variant="stream-header"
-        size="stream-header"
-        key="mute"
-        title={t('mute')}
-      >
-        {streamPlayerControls.muted.value && (
-          <VolumeX size="1rem" className="text-foreground" />
-        )}
-        {!streamPlayerControls.muted.value && (
-          <Volume2 size="1rem" className="text-foreground" />
-        )}
-      </Button>
+      <Tooltip title={t('mute')}>
+        <Button
+          tabIndex={opened ? 0 : -1}
+          onClick={() => streamPlayerControls.muted.set((old) => !old)}
+          variant="stream-header"
+          size="stream-header"
+          key="mute"
+        >
+          {streamPlayerControls.muted.value && (
+            <VolumeX size="1rem" className="text-foreground" />
+          )}
+          {!streamPlayerControls.muted.value && (
+            <Volume2 size="1rem" className="text-foreground" />
+          )}
+        </Button>
+      </Tooltip>
     ),
     fullscreen: (
-      <Button
-        tabIndex={opened ? 0 : -1}
-        onClick={() => streamPlayerControls.fullScreen.set((old) => !old)}
-        variant="stream-header"
-        size="stream-header"
-        key="fullscreen"
-        title={t('fullscreen')}
-      >
-        {streamPlayerControls.fullScreen.value && (
-          <Shrink size="1rem" className="text-foreground" />
-        )}
-        {!streamPlayerControls.fullScreen.value && (
-          <Expand size="1rem" className="text-foreground" />
-        )}
-      </Button>
+      <Tooltip title={t('fullscreen')}>
+        <Button
+          tabIndex={opened ? 0 : -1}
+          onClick={() => streamPlayerControls.fullScreen.set((old) => !old)}
+          variant="stream-header"
+          size="stream-header"
+          key="fullscreen"
+        >
+          {streamPlayerControls.fullScreen.value && (
+            <Shrink size="1rem" className="text-foreground" />
+          )}
+          {!streamPlayerControls.fullScreen.value && (
+            <Expand size="1rem" className="text-foreground" />
+          )}
+        </Button>
+      </Tooltip>
     ),
     chat: (
-      <Button
-        tabIndex={opened ? 0 : -1}
-        onClick={() => handleToggleChat()}
-        variant="stream-header"
-        size="stream-header"
-        data-disabled={props.isYoutubeStream}
-        className="data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
-        key="chat"
-        title={t('chat')}
-      >
-        {isChatActive && (
-          <MessageSquare size="1rem" className="text-foreground" />
-        )}
-        {!isChatActive && (
-          <MessageSquareDashed size="1rem" className="text-foreground" />
-        )}
-      </Button>
+      <Tooltip title={t('chat')}>
+        <Button
+          tabIndex={opened ? 0 : -1}
+          onClick={() => handleToggleChat()}
+          variant="stream-header"
+          size="stream-header"
+          data-disabled={props.isYoutubeStream}
+          className="data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
+          key="chat"
+        >
+          {isChatActive && (
+            <MessageSquare size="1rem" className="text-foreground" />
+          )}
+          {!isChatActive && (
+            <MessageSquareDashed size="1rem" className="text-foreground" />
+          )}
+        </Button>
+      </Tooltip>
     ),
     captions: (
-      <Button
-        tabIndex={opened ? 0 : -1}
-        onClick={() => streamPlayerControls.captions.set((old) => !old)}
-        variant="stream-header"
-        size="stream-header"
-        key="captions"
-        title={t('captions')}
-      >
-        {streamPlayerControls.captions.value && (
-          <CaptionsSquare size="1rem" className="text-foreground" />
-        )}
-        {!streamPlayerControls.captions.value && (
-          <CaptionsSquareDashed size="1rem" className="text-foreground" />
-        )}
-      </Button>
+      <Tooltip title={t('captions')}>
+        <Button
+          tabIndex={opened ? 0 : -1}
+          onClick={() => streamPlayerControls.captions.set((old) => !old)}
+          variant="stream-header"
+          size="stream-header"
+          key="captions"
+        >
+          {streamPlayerControls.captions.value && (
+            <CaptionsSquare size="1rem" className="text-foreground" />
+          )}
+          {!streamPlayerControls.captions.value && (
+            <CaptionsSquareDashed size="1rem" className="text-foreground" />
+          )}
+        </Button>
+      </Tooltip>
     ),
     reload: (
-      <Button
-        onClick={() => {
-          if (refreshing) return;
-
-          streamPlayerControls.refresh.run();
-
-          setRefreshing(true);
-
-          setTimeout(() => {
-            setRefreshing(false);
-          }, 400);
-        }}
-        tabIndex={opened ? 0 : -1}
-        size="stream-header"
-        variant="stream-header"
-        key="reload"
-        title={t('reload')}
-      >
-        <RefreshCcw
-          data-refreshing={refreshing}
-          className="h-4 w-4 text-foreground data-[refreshing=true]:animate-wow"
-        />
-      </Button>
+      <Tooltip title={t('reload')}>
+        <Button
+          onClick={() => {
+            if (refreshing) return;
+            streamPlayerControls.refresh.run();
+            setRefreshing(true);
+            setTimeout(() => {
+              setRefreshing(false);
+            }, 400);
+          }}
+          tabIndex={opened ? 0 : -1}
+          size="stream-header"
+          variant="stream-header"
+          key="reload"
+        >
+          <RefreshCcw
+            data-refreshing={refreshing}
+            className="h-4 w-4 text-foreground data-[refreshing=true]:animate-wow"
+          />
+        </Button>
+      </Tooltip>
     ),
     'remove-stream': (
-      <Button
-        onClick={() => handleRemove()}
-        tabIndex={opened ? 0 : -1}
-        variant="stream-header"
-        size="stream-header"
-        key="remove-stream"
-        title={t('remove-stream')}
-      >
-        {props.groupName === undefined && (
-          <X size="1rem" className="text-foreground" />
-        )}
-        {props.groupName !== undefined && (
-          <EyeOff size="1rem" className="text-foreground" />
-        )}
-      </Button>
+      <Tooltip title={t('remove-stream')}>
+        <Button
+          onClick={() => handleRemove()}
+          tabIndex={opened ? 0 : -1}
+          variant="stream-header"
+          size="stream-header"
+          key="remove-stream"
+        >
+          {props.groupName === undefined && (
+            <X size="1rem" className="text-foreground" />
+          )}
+          {props.groupName !== undefined && (
+            <EyeOff size="1rem" className="text-foreground" />
+          )}
+        </Button>
+      </Tooltip>
     ),
     'swap-points': (
       <>
@@ -250,60 +254,64 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
           <>
             {swapPoints.value.slice(0, 4).map((_, i) => {
               return (
-                <Button
-                  tabIndex={opened ? 0 : -1}
-                  onClick={() => {
-                    if (index !== undefined) swap(i, index);
-                  }}
-                  variant="stream-header"
-                  size="stream-header"
+                <Tooltip
                   title={t('goto-swap-point').replace(
                     '((swap-point))',
                     String(i + 1),
                   )}
                   key={i}
                 >
-                  <GoToSwapPoint
-                    className="text-foreground"
-                    size="1rem"
-                    variant={i}
-                  />
-                </Button>
+                  <Button
+                    tabIndex={opened ? 0 : -1}
+                    onClick={() => {
+                      if (index !== undefined) swap(i, index);
+                    }}
+                    variant="stream-header"
+                    size="stream-header"
+                  >
+                    <GoToSwapPoint
+                      className="text-foreground"
+                      size="1rem"
+                      variant={i}
+                    />
+                  </Button>
+                </Tooltip>
               );
             })}
             {swapPoints.value.length < 4 && (
-              <Button
-                tabIndex={opened ? 0 : -1}
-                onClick={() => {
-                  swapPoints.set((old) => {
-                    if (index !== undefined && old.length < 4)
-                      return [...old, index];
-
-                    return old;
-                  });
-                }}
-                variant="stream-header"
-                size="stream-header"
-                title={t('add-swap-point')}
-              >
-                <AddSwapPoint className="text-foreground" size="1rem" />
-              </Button>
+              <Tooltip title={t('add-swap-point')}>
+                <Button
+                  tabIndex={opened ? 0 : -1}
+                  onClick={() => {
+                    swapPoints.set((old) => {
+                      if (index !== undefined && old.length < 4)
+                        return [...old, index];
+                      return old;
+                    });
+                  }}
+                  variant="stream-header"
+                  size="stream-header"
+                >
+                  <AddSwapPoint className="text-foreground" size="1rem" />
+                </Button>
+              </Tooltip>
             )}
           </>
         )}
         {swapPoints.value.includes(index) && (
-          <Button
-            tabIndex={opened ? 0 : -1}
-            onClick={() => {
-              if (index !== undefined)
-                swapPoints.set((old) => old.filter((sp) => sp !== index));
-            }}
-            variant="stream-header"
-            size="stream-header"
-            title={t('remove-swap-point')}
-          >
-            <RemoveSwapPoint className="text-foreground" size="1rem" />
-          </Button>
+          <Tooltip title={t('remove-swap-point')}>
+            <Button
+              tabIndex={opened ? 0 : -1}
+              onClick={() => {
+                if (index !== undefined)
+                  swapPoints.set((old) => old.filter((sp) => sp !== index));
+              }}
+              variant="stream-header"
+              size="stream-header"
+            >
+              <RemoveSwapPoint className="text-foreground" size="1rem" />
+            </Button>
+          </Tooltip>
         )}
       </>
     ),

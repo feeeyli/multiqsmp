@@ -22,6 +22,7 @@ import { SettingsDialog } from '@/components/dialogs/settings-dialog';
 import { WelcomeDialog } from '@/components/dialogs/welcome-dialog';
 import { ResetLayout } from '@/components/icons';
 import { Button } from '@/components/ui/button';
+import { Tooltip } from '@/components/ui/tooltip';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 import { useLayoutMemory } from '@/contexts/layout-memory-context';
 import { useSettingsContext } from '@/contexts/settings-context';
@@ -119,34 +120,36 @@ export default function Streams(props: StreamsPageProps) {
         <SettingsDialog purgatory={props.purgatory} />
         {/* <EventsDialog /> */}
         <FAQDialog />
-        <Button
-          className="mt-4 px-3 group-data-[dialogs-position=bottom]:mr-2.5 group-data-[dialogs-position=bottom]:mt-0"
-          size="sm"
-          title={t('button-titles.aside.reset-layout')}
-          onClick={() => {
-            setLayoutMemory((old) => {
-              const {
-                [getLayoutKey(searchParams, {
-                  movableChat: settings.streams.movableChat,
-                })]: _,
-                ...rest
-              } = old;
-              return rest;
-            });
-          }}
-        >
-          <ResetLayout size="1rem" className="block text-secondary" />
-        </Button>
-        <Button
-          className="px-3 md:data-[fullscreen=false]:sr-only"
-          data-fullscreen={fullscreen}
-          size="sm"
-          title={t('button-titles.aside.toggle-fullscreen')}
-          onClick={toggle}
-        >
-          {!fullscreen && <Maximize size="1rem" className="text-secondary" />}
-          {fullscreen && <Minimize size="1rem" className="text-secondary" />}
-        </Button>
+        <Tooltip title={t('button-titles.aside.reset-layout')}>
+          <Button
+            className="mt-4 px-3 group-data-[dialogs-position=bottom]:mr-2.5 group-data-[dialogs-position=bottom]:mt-0"
+            size="sm"
+            onClick={() => {
+              setLayoutMemory((old) => {
+                const {
+                  [getLayoutKey(searchParams, {
+                    movableChat: settings.streams.movableChat,
+                  })]: _,
+                  ...rest
+                } = old;
+                return rest;
+              });
+            }}
+          >
+            <ResetLayout size="1rem" className="block text-secondary" />
+          </Button>
+        </Tooltip>
+        <Tooltip title={t('button-titles.aside.toggle-fullscreen')}>
+          <Button
+            className="px-3 md:data-[fullscreen=false]:sr-only"
+            data-fullscreen={fullscreen}
+            size="sm"
+            onClick={toggle}
+          >
+            {!fullscreen && <Maximize size="1rem" className="text-secondary" />}
+            {fullscreen && <Minimize size="1rem" className="text-secondary" />}
+          </Button>
+        </Tooltip>
       </aside>
       <PanelGroup direction={isDesktop ? 'horizontal' : 'vertical'}>
         <Panel

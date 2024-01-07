@@ -19,6 +19,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { Tooltip } from '@/components/ui/tooltip';
 import { HelpCircle } from 'lucide-react';
 import Link from 'next/link';
 
@@ -32,11 +33,13 @@ export const FAQDialog = () => {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button className="px-3" size="sm" title={bt('aside.faq-dialog')}>
-          <HelpCircle size="1rem" className="block text-secondary" />
-        </Button>
-      </DialogTrigger>
+      <Tooltip title={bt('aside.faq-dialog')}>
+        <DialogTrigger asChild>
+          <Button className="px-3" size="sm">
+            <HelpCircle size="1rem" className="block text-secondary" />
+          </Button>
+        </DialogTrigger>
+      </Tooltip>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
           <DialogTitle>{t('title')}</DialogTitle>

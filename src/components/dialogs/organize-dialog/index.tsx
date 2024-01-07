@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { Tooltip } from '@/components/ui/tooltip';
 import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 import { DialogClose } from '@radix-ui/react-dialog';
 import { ArrowRight, ListOrdered } from 'lucide-react';
@@ -124,15 +125,13 @@ export const OrganizeDialog = () => {
         }
       }}
     >
-      <DialogTrigger asChild>
-        <Button
-          className="z-30 px-3"
-          size="sm"
-          title={bt('aside.organize-dialog')}
-        >
-          <ListOrdered size="1rem" className="block text-secondary" />
-        </Button>
-      </DialogTrigger>
+      <Tooltip title={bt('aside.organize-dialog')}>
+        <DialogTrigger asChild>
+          <Button className="z-30 px-3" size="sm">
+            <ListOrdered size="1rem" className="block text-secondary" />
+          </Button>
+        </DialogTrigger>
+      </Tooltip>
       <DialogContent className="max-w-3xl">
         <DialogHeader>
           <DialogTitle>{t('title')}</DialogTitle>

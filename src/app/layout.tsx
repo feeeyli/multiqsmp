@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 
 // Contexts Imports
 import { ThemeProvider } from '@/components/theme-provider';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import { SettingsProvider } from '@/contexts/settings-context';
 import Script from 'next/script';
 
@@ -68,7 +69,9 @@ export default function RootLayout({
           ]}
           enableSystem
         >
-          <SettingsProvider>{children}</SettingsProvider>
+          <SettingsProvider>
+            <TooltipProvider>{children}</TooltipProvider>
+          </SettingsProvider>
         </ThemeProvider>
       </body>
     </html>

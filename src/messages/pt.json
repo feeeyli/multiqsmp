@@ -229,6 +229,7 @@
     "stream-player-header": {
       "mute": "Ativar/desativar som",
       "fullscreen": "Expandir live",
+      "captions": "Legendas",
       "chat": "Ativar/desativar chat",
       "reload": "Recarregar live",
       "remove-stream": "Remover/esconder live",

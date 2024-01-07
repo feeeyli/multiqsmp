@@ -47,6 +47,7 @@ import {
 
 // Contexts Imports
 import { GoToSwapPoint } from '@/components/icons';
+import { Tooltip } from '@/components/ui/tooltip';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 import { useSettingsContext } from '@/contexts/settings-context';
 import { DialogClose } from '@radix-ui/react-dialog';
@@ -151,15 +152,16 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
         setIsOpen(open);
       }}
     >
-      <DialogTrigger asChild>
-        <Button
-          className="mt-4 px-3 group-data-[dialogs-position=bottom]:mr-2.5 group-data-[dialogs-position=bottom]:mt-0"
-          size="sm"
-          title={bt('aside.settings-dialog')}
-        >
-          <Settings size="1rem" className="block text-secondary" />
-        </Button>
-      </DialogTrigger>
+      <Tooltip title={bt('aside.settings-dialog')}>
+        <DialogTrigger asChild>
+          <Button
+            className="mt-4 px-3 group-data-[dialogs-position=bottom]:mr-2.5 group-data-[dialogs-position=bottom]:mt-0"
+            size="sm"
+          >
+            <Settings size="1rem" className="block text-secondary" />
+          </Button>
+        </DialogTrigger>
+      </Tooltip>
       <DialogContent className="flex max-h-[90dvh] max-w-2xl flex-col">
         <DialogHeader>
           <DialogTitle>{t('title')}</DialogTitle>

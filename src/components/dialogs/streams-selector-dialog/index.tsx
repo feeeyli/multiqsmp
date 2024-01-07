@@ -41,6 +41,7 @@ import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 import { FavoriteListsProvider } from './tabs/favorite-lists-context';
 
 // Scripts Imports
+import { Tooltip } from '@/components/ui/tooltip';
 import { useSettingsContext } from '@/contexts/settings-context';
 import { getDisplayName } from '@/utils/getDisplayName';
 import { SortStreamersProvider } from './tabs/streamers-tab/sort-streamers-context';
@@ -124,15 +125,13 @@ export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
         changedGroups.actions.updateList([]);
       }}
     >
-      <DialogTrigger asChild>
-        <Button
-          className="px-3"
-          size="sm"
-          title={bt('aside.streams-selector-dialog')}
-        >
-          <ArrowLeftRight size="1rem" className="block text-secondary" />
-        </Button>
-      </DialogTrigger>
+      <Tooltip title={bt('aside.streams-selector-dialog')}>
+        <DialogTrigger asChild>
+          <Button className="px-3" size="sm">
+            <ArrowLeftRight size="1rem" className="block text-secondary" />
+          </Button>
+        </DialogTrigger>
+      </Tooltip>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
           <DialogTitle>{t('title')}</DialogTitle>
