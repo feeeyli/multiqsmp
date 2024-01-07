@@ -11,10 +11,18 @@
     "streamer-search-label": "Buscar streamer",
     "group-search-label": "Buscar grupo",
     "select": {
+      "label": "Seleccionar",
       "all": "Todos",
       "none": "Ninguno",
       "online": "Todos en directo",
       "playing": "Todos jugando a QSMP"
+    },
+    "sort": {
+      "label": "Ordenar",
+      "name-lang": "Nombre e idioma",
+      "name": "Nombre",
+      "online-first": "Online primero",
+      "playing-first": "Jugando QSMP primero"
     }
   },
   "streams-list": {
@@ -123,6 +131,7 @@
             "actions-labels": {
               "mute": "Activar/desactivar sonido",
               "fullscreen": "Ampliar transmisión en vivo",
+              "captions": "Leyendas",
               "chat": "Activar/desactivar chat",
               "reload": "Recargar transmisión en vivo",
               "remove-stream": "Eliminar la transmisión en vivo / Ocultar la transmisión en vivo",
@@ -221,6 +230,7 @@
     "stream-player-header": {
       "mute": "Activar/desactivar sonido",
       "fullscreen": "Ampliar transmisión en vivo",
+      "captions": "Leyendas",
       "chat": "Activar/desactivar chat",
       "reload": "Recargar transmisión en vivo",
       "remove-stream": "Eliminar/ocultar la transmisión en vivo",
