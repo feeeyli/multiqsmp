@@ -36,7 +36,9 @@ export const Chat = (props: ChatProps) => {
     return (
       <>
         <div className="handle flex h-7 w-full cursor-move items-center justify-between gap-2 pl-3 text-sm group-data-[collapsed=true]:h-full group-data-[collapsed=true]:flex-col group-data-[collapsed=true]:px-1 group-data-[collapsed=true]:py-3">
-          {getDisplayName(props.chat)}
+          <span className="overflow-hidden text-ellipsis text-nowrap">
+            {getDisplayName(props.chat)}
+          </span>
           <Button
             onClick={() => handleRemoveChat(props.chat)}
             variant="ghost"

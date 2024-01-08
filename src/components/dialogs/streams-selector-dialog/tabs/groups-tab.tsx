@@ -5,37 +5,30 @@ import { useContext, useState } from 'react';
 // import { GROUPS } from '@/data/groups';
 
 // Contexts Imports
-import { StreamsSelectorDialogContext } from '../streams-selector-dialog-context';
-import { useFavoriteListsContext } from './favorite-lists-context';
 import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 import { CreateGroupDialogProvider } from '../../create-group-dialog/create-group-dialog-context';
+import { StreamsSelectorDialogContext } from '../streams-selector-dialog-context';
+import { useFavoriteListsContext } from './favorite-lists-context';
 
 // Components Imports
-import { TabsContent } from '@/components/ui/tabs';
-import { Group } from '../group';
-import { CreateGroupDialog } from '../../create-group-dialog';
 import { Separator } from '@/components/ui/separator';
+import { TabsContent } from '@/components/ui/tabs';
+import { CreateGroupDialog } from '../../create-group-dialog';
+import { Group } from '../group';
 
 // Scripts Imports
-import { sortGroups } from '@/utils/sort';
 import { GroupType, StreamerType } from '@/@types/data';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { search } from '@notionhq/client/build/src/api-endpoints';
+import { sortGroups } from '@/utils/sort';
 import { Label } from '@radix-ui/react-label';
-import {
-  MousePointerSquareDashed,
-  CheckSquare,
-  BoxSelect,
-  Radio,
-  Gamepad2,
-} from 'lucide-react';
+import { BoxSelect, CheckSquare, MousePointerSquareDashed } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 interface GroupsTabProps {
@@ -85,9 +78,9 @@ export const GroupsTab = ({ GROUPS, ...props }: GroupsTabProps) => {
   return (
     <TabsContent
       value="groups"
-      className="scrollbar relative flex max-h-80 flex-wrap justify-center gap-3 overflow-y-auto pb-3 data-[state=inactive]:hidden"
+      className="relative flex max-h-80 flex-col gap-3 pb-3 data-[state=inactive]:hidden"
     >
-      <header className="sticky top-0 z-20 flex w-full items-center gap-3 bg-background pb-4 pl-2 pr-4 pt-2">
+      <header className="flex w-full items-center gap-3 bg-background">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -131,54 +124,58 @@ export const GroupsTab = ({ GROUPS, ...props }: GroupsTabProps) => {
           />
         </div>
       </header>
-      <div className="flex w-full flex-wrap justify-center gap-4">
-        {favoriteGroups.map((group) => (
-          <Group
-            key={group.groupName}
-            group={group}
-            selected={selectedGroups.value.includes(group.simpleGroupName)}
-            favorite
-            custom={customGroups
-              .map((cg) => cg.simpleGroupName)
-              .includes(group.simpleGroupName)}
-            STREAMERS={props.STREAMERS}
-          />
-        ))}
-      </div>
-      {favoriteGroups.length > 0 && nonFavoriteGroups.length > 0 && (
-        <Separator />
-      )}
-      {nonFavoriteGroups.length > 0 && (
-        <>
-          <div className="flex w-full flex-wrap justify-center gap-4">
-            {nonFavoriteGroups.map((group) => (
-              <Group
-                key={group.groupName}
-                group={group}
-                selected={selectedGroups.value.includes(group.simpleGroupName)}
-                STREAMERS={props.STREAMERS}
-              />
-            ))}
-          </div>
-          <Separator />
-        </>
-      )}
-      <div className="flex w-full flex-wrap justify-center gap-4">
-        {nonFavoriteCustomGroups.map((group) => (
-          <Group
-            key={group.groupName}
-            group={group}
-            selected={selectedGroups.value.includes(group.simpleGroupName)}
-            custom
-            STREAMERS={props.STREAMERS}
-          />
-        ))}
-        <CreateGroupDialogProvider>
-          <CreateGroupDialog
-            purgatory={props.purgatory}
-            STREAMERS={props.STREAMERS}
-          />
-        </CreateGroupDialogProvider>
+      <div className="scrollbar h-full w-full overflow-auto pt-1">
+        <div className="flex w-full flex-wrap justify-center gap-4">
+          {favoriteGroups.map((group) => (
+            <Group
+              key={group.groupName}
+              group={group}
+              selected={selectedGroups.value.includes(group.simpleGroupName)}
+              favorite
+              custom={customGroups
+                .map((cg) => cg.simpleGroupName)
+                .includes(group.simpleGroupName)}
+              STREAMERS={props.STREAMERS}
+            />
+          ))}
+        </div>
+        {favoriteGroups.length > 0 && nonFavoriteGroups.length > 0 && (
+          <Separator className="my-3" />
+        )}
+        {nonFavoriteGroups.length > 0 && (
+          <>
+            <div className="flex w-full flex-wrap justify-center gap-4">
+              {nonFavoriteGroups.map((group) => (
+                <Group
+                  key={group.groupName}
+                  group={group}
+                  selected={selectedGroups.value.includes(
+                    group.simpleGroupName,
+                  )}
+                  STREAMERS={props.STREAMERS}
+                />
+              ))}
+            </div>
+            <Separator className="my-3" />
+          </>
+        )}
+        <div className="flex w-full flex-wrap justify-center gap-4">
+          {nonFavoriteCustomGroups.map((group) => (
+            <Group
+              key={group.groupName}
+              group={group}
+              selected={selectedGroups.value.includes(group.simpleGroupName)}
+              custom
+              STREAMERS={props.STREAMERS}
+            />
+          ))}
+          <CreateGroupDialogProvider>
+            <CreateGroupDialog
+              purgatory={props.purgatory}
+              STREAMERS={props.STREAMERS}
+            />
+          </CreateGroupDialogProvider>
+        </div>
       </div>
     </TabsContent>
   );

@@ -15,6 +15,7 @@ import { StreamPlayerControlsContext } from './stream-player-controls-context';
 // Components Imports
 import { ResizableHandle } from '@/components/ui/resizable';
 import { useSettingsContext } from '@/contexts/settings-context';
+import { Layout } from 'react-grid-layout';
 import { Panel, PanelGroup } from 'react-resizable-panels';
 import { StreamPlayerCaptions } from './stream-player-captions';
 import { StreamPlayerHeader } from './stream-player-header';
@@ -23,6 +24,7 @@ interface Props {
   channel: string;
   isMoving: boolean;
   groupName?: string;
+  layout: Layout[];
 }
 
 const DEBUG_MODE =
@@ -119,8 +121,19 @@ export const StreamPlayer = ({ channel, ...props }: Props) => {
             </Panel>
           )}
           {DEBUG_MODE && (
-            <Panel className="flex h-full w-full items-center justify-center border-t-2 border-border data-[is-resizing-captions=true]:pointer-events-none">
+            <Panel className="flex h-full w-full flex-col items-center justify-center border-t-2 border-border data-[is-resizing-captions=true]:pointer-events-none">
               {channel}
+              <span>
+                {(() => {
+                  const lay = props.layout.find(
+                    (l) => l.i === String(streamPlayerControls.index),
+                  );
+
+                  return `${lay?.w.toFixed(2) || '?'} x ${
+                    lay?.h.toFixed(2) || '?'
+                  }`;
+                })()}
+              </span>
             </Panel>
           )}
           {streamPlayerControls.captions.value && (

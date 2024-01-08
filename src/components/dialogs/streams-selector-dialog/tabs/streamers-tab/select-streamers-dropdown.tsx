@@ -44,7 +44,7 @@ export function SelectStreamersDropdown({
         <Button
           variant="outline"
           size="sm"
-          className="flex items-center gap-2 px-2.5"
+          className="block flex flex-grow items-center gap-2 px-2.5"
         >
           {t('select.label')}
           <MousePointerSquareDashed size="1rem" />

@@ -142,14 +142,16 @@ export const StreamersTab = ({
   return (
     <TabsContent
       value="streamers"
-      className="scrollbar relative flex max-h-80 flex-col gap-3 overflow-y-auto pb-3 data-[state=inactive]:hidden"
+      className="relative flex max-h-80 flex-col gap-3 pb-3 data-[state=inactive]:hidden"
     >
-      <header className="sticky top-0 z-20 flex w-full items-center gap-3 bg-background pb-4 pl-2 pr-4 pt-2">
-        <SelectStreamersDropdown
-          streamersWithHide={streamersWithHide}
-          onlineStreamers={onlineStreamers}
-        />
-        <SortStreamers />
+      <header className="flex w-full flex-col items-center gap-3 bg-background sm:flex-row">
+        <div className="flex w-full items-center gap-3 sm:w-auto">
+          <SelectStreamersDropdown
+            streamersWithHide={streamersWithHide}
+            onlineStreamers={onlineStreamers}
+          />
+          <SortStreamers />
+        </div>
         <div className="w-full">
           <Label className="sr-only" htmlFor="streamer-search">
             {t('streamer-search-label')}
@@ -163,66 +165,72 @@ export const StreamersTab = ({
           />
         </div>
       </header>
-      <div className="flex w-full flex-wrap justify-center gap-4">
-        {newParticipantsStreamers.length > 0 && (
-          <div className="flex w-full flex-col items-center gap-4">
-            <span className="font-bold text-primary">
-              {t(
-                newParticipantsStreamers.length === 1
-                  ? 'new-participant'
-                  : 'new-participants',
-              )}
-            </span>
-            <div className="flex flex-wrap gap-4">
-              {newParticipantsStreamers.map((streamer) => {
-                const stream = onlineStreamers.find(
-                  (online) =>
-                    online.twitchName.toLocaleLowerCase() ===
-                    streamer.twitchName.toLocaleLowerCase(),
-                );
-                return (
-                  <Streamer
-                    key={streamer.twitchName}
-                    streamer={streamer}
-                    selected={selectedStreamers.value.includes(
-                      streamer.twitchName,
-                    )}
-                    isOnline={!!stream}
-                    isPlayingQsmp={!!stream?.isPlayingQsmp}
-                    favorite={favoritesList.value.includes(streamer.twitchName)}
-                  />
-                );
-              })}
+      <div className="scrollbar h-full w-full overflow-auto pt-1">
+        <div className="flex w-full flex-wrap justify-center gap-4">
+          {newParticipantsStreamers.length > 0 && (
+            <div className="flex w-full flex-col items-center gap-4">
+              <span className="font-bold text-primary">
+                {t(
+                  newParticipantsStreamers.length === 1
+                    ? 'new-participant'
+                    : 'new-participants',
+                )}
+              </span>
+              <div className="flex flex-wrap gap-4">
+                {newParticipantsStreamers.map((streamer) => {
+                  const stream = onlineStreamers.find(
+                    (online) =>
+                      online.twitchName.toLocaleLowerCase() ===
+                      streamer.twitchName.toLocaleLowerCase(),
+                  );
+                  return (
+                    <Streamer
+                      key={streamer.twitchName}
+                      streamer={streamer}
+                      selected={selectedStreamers.value.includes(
+                        streamer.twitchName,
+                      )}
+                      isOnline={!!stream}
+                      isPlayingQsmp={!!stream?.isPlayingQsmp}
+                      favorite={favoritesList.value.includes(
+                        streamer.twitchName,
+                      )}
+                    />
+                  );
+                })}
+              </div>
+              <Separator className="my-3" />
             </div>
-            <Separator />
-          </div>
-        )}
-        {favoriteStreamers.map((streamer) => {
-          const stream = onlineStreamers.find(
-            (online) =>
-              online.twitchName.toLocaleLowerCase() ===
-              streamer.twitchName.toLocaleLowerCase(),
-          );
+          )}
+          {favoriteStreamers.map((streamer) => {
+            const stream = onlineStreamers.find(
+              (online) =>
+                online.twitchName.toLocaleLowerCase() ===
+                streamer.twitchName.toLocaleLowerCase(),
+            );
 
-          return (
-            <Streamer
-              key={streamer.twitchName}
-              streamer={streamer}
-              selected={selectedStreamers.value.includes(streamer.twitchName)}
-              isOnline={!!stream}
-              isPlayingQsmp={!!stream?.isPlayingQsmp}
-              favorite
-            />
-          );
-        })}
+            return (
+              <Streamer
+                key={streamer.twitchName}
+                streamer={streamer}
+                selected={selectedStreamers.value.includes(streamer.twitchName)}
+                isOnline={!!stream}
+                isPlayingQsmp={!!stream?.isPlayingQsmp}
+                favorite
+              />
+            );
+          })}
+        </div>
+        {favoriteStreamers.length > 0 && nonFavoriteStreamers.length > 0 && (
+          <Separator className="my-3" />
+        )}
+        {nonFavoriteStreamers.length > 0 && (
+          <StreamersList
+            streamers={nonFavoriteStreamers}
+            onlineStreamers={onlineStreamers}
+          />
+        )}
       </div>
-      {favoriteStreamers.length > 0 && nonFavoriteStreamers.length > 0 && (
-        <Separator />
-      )}
-      <StreamersList
-        streamers={nonFavoriteStreamers}
-        onlineStreamers={onlineStreamers}
-      />
     </TabsContent>
   );
 };

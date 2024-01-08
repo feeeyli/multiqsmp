@@ -23,7 +23,7 @@ export function SortStreamers() {
     useSortStreamers();
 
   return (
-    <div className="flex divide-x rounded-md border border-input">
+    <div className="flex h-9 flex-grow divide-x rounded-md border border-input">
       <Button
         variant="ghost"
         className="rounded-r-none px-2"
@@ -38,7 +38,7 @@ export function SortStreamers() {
           <Button
             variant="ghost"
             size="sm"
-            className="flex items-center gap-2 rounded-l-none px-2.5"
+            className="block flex-grow items-center gap-2 rounded-l-none px-2.5"
           >
             {t('sort.label')}
           </Button>

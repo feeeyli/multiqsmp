@@ -120,6 +120,8 @@ export const StreamsList = (props: StreamsListProps) => {
     isDesktop,
   );
 
+  const rowsPerScreenHeight = Math.floor(containerSize.height / 36);
+
   function getGridData(i: number) {
     const isInLastRow =
       Math.floor(i / cols) >=
@@ -133,9 +135,9 @@ export const StreamsList = (props: StreamsListProps) => {
       y: Math.floor(i / cols),
       x: (i % cols) * 10,
       w: 10,
-      h:
-        Math.ceil(Math.floor(containerSize.height / 36) / rows) -
-        (isInLastRow ? 1 : 0),
+      h: Math.ceil(containerSize.height / 36 / rows),
+      // Math.ceil(Math.floor(containerSize.height / 36) / rows) -
+      // (isInLastRow ? 1 : 0),
     };
 
     const layout = layoutMemory[getLayoutKey(searchParams, { movableChat })];
@@ -180,7 +182,12 @@ export const StreamsList = (props: StreamsListProps) => {
             <ReactGridLayout
               className="grid-layout max-h-full"
               cols={10 * cols}
-              rowHeight={32}
+              // rowHeight={{ 1: 30, 5: 28 }[rows] || 29}
+              rowHeight={
+                containerSize.height /
+                  (Math.ceil(containerSize.height / 36 / rows) * rows) -
+                4.1
+              }
               resizeHandles={['sw', 'se']}
               draggableHandle=".handle"
               onDragStart={movingHandles.start}
@@ -204,6 +211,7 @@ export const StreamsList = (props: StreamsListProps) => {
                         channel={channel.twitchName}
                         groupName={channel.groupName}
                         isMoving={isMoving}
+                        layout={layout}
                       />
                     </StreamPlayerControlsProvider>
                   )}
