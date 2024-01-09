@@ -5,7 +5,11 @@ export function getSkinHead(name: string) {
   //   return [SKIN_HEADS.mikethelink, SKIN_HEADS.pactw];
   // }
 
-  const n = name as keyof typeof SKIN_HEADS;
+  const SKIN_HEADS_LOWER: { [streamer: string]: string } = {};
 
-  return [SKIN_HEADS[n]];
+  Object.entries(SKIN_HEADS).forEach(([streamer, skin]) => {
+    SKIN_HEADS_LOWER[streamer.toLocaleLowerCase()] = skin;
+  });
+
+  return [SKIN_HEADS_LOWER[name.toLocaleLowerCase()]];
 }

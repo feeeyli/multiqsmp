@@ -1,20 +1,36 @@
 import { GroupType } from '@/@types/data';
-import { GROUPS, PURGATORY_GROUPS } from '@/data/groups';
-import { PURGATORY_STREAMERS, STREAMERS } from '@/data/streamers';
+import { GROUPS } from '@/data/groups';
+import { STREAMERS } from '@/data/streamers';
 import { getStreamersFromGroups } from '@/utils/getStreamersFromGroups';
-import { ReadonlyURLSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useReadLocalStorage } from 'usehooks-ts';
 import { OrganizeStateGroups, OrganizeStateStreamers } from '.';
 
-export function getDataFromQuery(
-  searchParams: ReadonlyURLSearchParams,
-  customGroups: {
-    groupName: string;
-    simpleGroupName: string;
-    members: string[];
-    avatars: string[];
-    twitchNames: string[];
-  }[],
-): [OrganizeStateStreamers[], OrganizeStateGroups[]] {
+export function useQueryData(): [
+  OrganizeStateStreamers[],
+  OrganizeStateGroups[],
+] {
+  const searchParams = useSearchParams();
+  const CG = useReadLocalStorage<
+    {
+      groupName: string;
+      simpleGroupName: string;
+      members: string[];
+      avatars: string[];
+      twitchNames: string[];
+    }[]
+  >('custom-groups');
+  const customGroups = CG
+    ? CG.map((g) => ({
+        display_name: g.groupName,
+        simple_name: g.simpleGroupName,
+        members: g.members.map((m, i) => ({
+          display_name: m,
+          twitch_name: g.avatars[i],
+        })),
+      }))
+    : [];
+
   const streamersOnQuery = searchParams.get('streamers')?.split('/') || [];
   const groupsOnQuery = searchParams.get('groups')?.split('/') || [];
   const chatsOnQuery = searchParams.get('chats')?.split('/') || [];
@@ -53,26 +69,20 @@ export function getDataFromQuery(
       [] as { name: string; members: string[] }[],
     );
 
-  const fullGroups = [
-    ...GROUPS,
-    ...PURGATORY_GROUPS,
-    ...(customGroups as GroupType[]),
-  ];
+  const fullGroups = [...GROUPS, ...(customGroups as GroupType[])];
 
   const groups: OrganizeStateGroups[] = groupsWithMembers.map((g) => {
-    const originalGroup = fullGroups.find(
-      (fg) => fg.simpleGroupName === g.name,
-    );
+    const originalGroup = fullGroups.find((fg) => fg.simple_name === g.name);
 
     return {
-      name: originalGroup?.groupName || g.name,
-      simpleName: originalGroup?.simpleGroupName || g.name,
+      display_name: originalGroup?.display_name || g.name,
+      simple_name: originalGroup?.simple_name || g.name,
       members:
-        originalGroup?.twitchNames.map((m, i) => ({
-          name: originalGroup.members[i],
-          twitchName: m,
-          isHidden: onlyGroupHides.includes(m),
-          chatOpened: chatsOnQuery.includes(m),
+        originalGroup?.members.map((m, i) => ({
+          display_name: m.display_name,
+          twitch_name: m.twitch_name,
+          is_hidden: onlyGroupHides.includes(m.twitch_name),
+          chat_opened: chatsOnQuery.includes(m.twitch_name),
         })) || [],
     };
   });
@@ -82,14 +92,12 @@ export function getDataFromQuery(
   //#region Streamers
 
   const streamers: OrganizeStateStreamers[] = streamersOnQuery.map((s) => {
-    const streamer = [...STREAMERS, ...PURGATORY_STREAMERS].find(
-      (ss) => ss.twitchName === s,
-    );
+    const streamer = [...STREAMERS].find((ss) => ss.twitch_name === s);
 
     return {
-      twitchName: s,
-      name: streamer?.displayName ? streamer.displayName : s,
-      chatOpened: chatsOnQuery.includes(s),
+      twitch_name: s,
+      display_name: streamer?.display_name || s,
+      chat_opened: chatsOnQuery.includes(s),
     };
   });
 

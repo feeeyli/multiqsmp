@@ -1,13 +1,13 @@
 // React Imports
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
 // Data Imports
 // import { GROUPS } from '@/data/groups';
 
 // Contexts Imports
-import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
+import { useCustomGroups } from '@/contexts/custom-groups-context';
 import { CreateGroupDialogProvider } from '../../create-group-dialog/create-group-dialog-context';
-import { StreamsSelectorDialogContext } from '../streams-selector-dialog-context';
+import { useStreamsSelector } from '../streams-selector-dialog-context';
 import { useFavoriteListsContext } from './favorite-lists-context';
 
 // Components Imports
@@ -17,7 +17,6 @@ import { CreateGroupDialog } from '../../create-group-dialog';
 import { Group } from '../group';
 
 // Scripts Imports
-import { GroupType, StreamerType } from '@/@types/data';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -26,54 +25,48 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
+import { ToggleGroup } from '@/components/ui/toggle-group';
+import { GROUPS } from '@/data/groups';
 import { sortGroups } from '@/utils/sort';
 import { Label } from '@radix-ui/react-label';
 import { BoxSelect, CheckSquare, MousePointerSquareDashed } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-interface GroupsTabProps {
-  GROUPS: GroupType[];
-  STREAMERS: StreamerType[];
-  purgatory: boolean;
-}
+interface GroupsTabProps {}
 
-export const GroupsTab = ({ GROUPS, ...props }: GroupsTabProps) => {
-  const { selectedGroups } = useContext(StreamsSelectorDialogContext);
+export const GroupsTab = (props: GroupsTabProps) => {
+  const { selectedGroups } = useStreamsSelector();
   const { groups: favoritesList } = useFavoriteListsContext();
-  const [customGroups] = useCustomGroupsContext();
+  const [customGroups] = useCustomGroups();
   const [search, setSearch] = useState('');
 
   const t = useTranslations('streamers-dialog');
 
-  const mergedGroups = sortGroups([
-    ...new Set([...GROUPS, ...customGroups]),
-  ]).filter(
+  const mergedGroups = sortGroups([...new Set([...GROUPS, ...customGroups])]);
+
+  const searchedGroups = mergedGroups.filter(
     (s) =>
-      s.simpleGroupName
-        .toLocaleLowerCase()
-        .includes(search.toLocaleLowerCase()) ||
-      s.groupName.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
+      s.simple_name.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+      s.display_name.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
   );
 
-  const favoriteGroups = mergedGroups.filter((item) =>
-    favoritesList.value.includes(item.simpleGroupName),
+  const favoriteGroups = searchedGroups.filter((item) =>
+    favoritesList.value.includes(item.simple_name),
   );
   const nonFavoriteGroups = GROUPS.filter(
     (s) =>
-      s.simpleGroupName
-        .toLocaleLowerCase()
-        .includes(search.toLocaleLowerCase()) ||
-      s.groupName.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
-  ).filter((item) => !favoritesList.value.includes(item.simpleGroupName));
+      s.simple_name.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+      s.display_name.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
+  ).filter((item) => !favoritesList.value.includes(item.simple_name));
   const nonFavoriteCustomGroups = customGroups
     .filter(
       (s) =>
-        s.simpleGroupName
+        s.simple_name
           .toLocaleLowerCase()
           .includes(search.toLocaleLowerCase()) ||
-        s.groupName.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
+        s.display_name.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
     )
-    .filter((item) => !favoritesList.value.includes(item.simpleGroupName));
+    .filter((item) => !favoritesList.value.includes(item.simple_name));
 
   return (
     <TabsContent
@@ -88,23 +81,21 @@ export const GroupsTab = ({ GROUPS, ...props }: GroupsTabProps) => {
               size="sm"
               className="flex items-center gap-2 px-2.5"
             >
-              Selecionar
+              {t('select.label')}
               <MousePointerSquareDashed size="1rem" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem
               onClick={() => {
-                selectedGroups.actions.updateList(
-                  mergedGroups.map((s) => s.simpleGroupName),
-                );
+                selectedGroups.set(searchedGroups);
               }}
             >
               <CheckSquare size="1rem" /> {t('select.all')}
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => {
-                selectedGroups.actions.updateList([]);
+                selectedGroups.set([]);
               }}
             >
               <BoxSelect size="1rem" /> {t('select.none')}
@@ -112,30 +103,42 @@ export const GroupsTab = ({ GROUPS, ...props }: GroupsTabProps) => {
           </DropdownMenuContent>
         </DropdownMenu>
         <div className="w-full">
-          <Label className="sr-only" htmlFor="streamer-search">
-            {t('streamer-search-label')}
+          <Label className="sr-only" htmlFor="group-search">
+            {t('group-search-label')}
           </Label>
           <Input
             type="text"
-            id="streamer-search"
-            placeholder={t('streamer-search-label')}
+            id="group-search"
+            placeholder={t('group-search-label')}
             onChange={(e) => setSearch(e.target.value)}
             value={search}
           />
         </div>
       </header>
-      <div className="scrollbar h-full w-full overflow-auto pt-1">
+      <ToggleGroup
+        className="scrollbar h-full w-full flex-col space-x-0 overflow-y-auto bg-transparent pt-1"
+        type="multiple"
+        orientation="vertical"
+        value={selectedGroups.value.map((s) => s.simple_name)}
+        onValueChange={(value) => {
+          selectedGroups.set(
+            value.map((grp) => {
+              const group = mergedGroups.find((s) => s.simple_name === grp)!;
+
+              return group;
+            }),
+          );
+        }}
+      >
         <div className="flex w-full flex-wrap justify-center gap-4">
           {favoriteGroups.map((group) => (
             <Group
-              key={group.groupName}
+              key={group.simple_name}
               group={group}
-              selected={selectedGroups.value.includes(group.simpleGroupName)}
               favorite
               custom={customGroups
-                .map((cg) => cg.simpleGroupName)
-                .includes(group.simpleGroupName)}
-              STREAMERS={props.STREAMERS}
+                .map((cg) => cg.simple_name)
+                .includes(group.simple_name)}
             />
           ))}
         </div>
@@ -146,14 +149,7 @@ export const GroupsTab = ({ GROUPS, ...props }: GroupsTabProps) => {
           <>
             <div className="flex w-full flex-wrap justify-center gap-4">
               {nonFavoriteGroups.map((group) => (
-                <Group
-                  key={group.groupName}
-                  group={group}
-                  selected={selectedGroups.value.includes(
-                    group.simpleGroupName,
-                  )}
-                  STREAMERS={props.STREAMERS}
-                />
+                <Group key={group.simple_name} group={group} />
               ))}
             </div>
             <Separator className="my-3" />
@@ -161,22 +157,13 @@ export const GroupsTab = ({ GROUPS, ...props }: GroupsTabProps) => {
         )}
         <div className="flex w-full flex-wrap justify-center gap-4">
           {nonFavoriteCustomGroups.map((group) => (
-            <Group
-              key={group.groupName}
-              group={group}
-              selected={selectedGroups.value.includes(group.simpleGroupName)}
-              custom
-              STREAMERS={props.STREAMERS}
-            />
+            <Group key={group.simple_name} group={group} custom />
           ))}
           <CreateGroupDialogProvider>
-            <CreateGroupDialog
-              purgatory={props.purgatory}
-              STREAMERS={props.STREAMERS}
-            />
+            <CreateGroupDialog />
           </CreateGroupDialogProvider>
         </div>
-      </div>
+      </ToggleGroup>
     </TabsContent>
   );
 };

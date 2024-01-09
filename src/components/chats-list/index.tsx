@@ -1,4 +1,4 @@
-import { useSearchParamsStates } from '@/utils/useSearchParamsState';
+import { useSearchParamsStates } from '@/hooks/useSearchParamsState';
 import { Chat } from './chat';
 
 interface ChatsListProps {

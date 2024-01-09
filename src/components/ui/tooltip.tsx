@@ -4,6 +4,7 @@ import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
+import { Slot } from '@radix-ui/react-slot';
 
 const TooltipProvider = TooltipPrimitive.Provider;
 
@@ -34,12 +35,13 @@ const Tooltip = ({
   children: React.ReactNode;
   title: string;
 }) => (
-  <TooltipRoot>
-    <TooltipTrigger asChild>{children}</TooltipTrigger>
-    <TooltipContent>
-      <p>{title}</p>
-    </TooltipContent>
-  </TooltipRoot>
+  <Slot title={title}>{children}</Slot>
+  // <TooltipRoot>
+  //   <TooltipTrigger asChild>{children}</TooltipTrigger>
+  //   <TooltipContent>
+  //     <p className="w-36 text-center">{title}</p>
+  //   </TooltipContent>
+  // </TooltipRoot>
 );
 
 export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger };

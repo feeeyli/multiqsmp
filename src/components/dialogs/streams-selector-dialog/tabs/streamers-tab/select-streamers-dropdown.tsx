@@ -1,3 +1,4 @@
+import { StreamerType } from '@/@types/data';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -5,7 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useSettingsContext } from '@/contexts/settings-context';
+import { useSettings } from '@/contexts/settings-context';
 import {
   BoxSelect,
   CheckSquare,
@@ -14,29 +15,22 @@ import {
   Radio,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useStreamsSelectorDialogContext } from '../../streams-selector-dialog-context';
-import { OnlineStreamerType } from './streamers-tab';
+import { useStreamsSelector } from '../../streams-selector-dialog-context';
 
 type SelectStreamersDropdownProps = {
-  streamersWithHide: {
-    twitchName: string;
-    displayName: string;
-    avatarUrl: string;
-  }[];
-  onlineStreamers: OnlineStreamerType[];
+  streamersWithHide: StreamerType[];
 };
 
 export function SelectStreamersDropdown({
   streamersWithHide,
-  onlineStreamers,
 }: SelectStreamersDropdownProps) {
   const t = useTranslations('streamers-dialog');
-  const { selectedStreamers } = useStreamsSelectorDialogContext();
+  const { selectedStreamers } = useStreamsSelector();
   const [
     {
       streamers: { outro },
     },
-  ] = useSettingsContext();
+  ] = useSettings();
 
   return (
     <DropdownMenu>
@@ -44,7 +38,7 @@ export function SelectStreamersDropdown({
         <Button
           variant="outline"
           size="sm"
-          className="block flex flex-grow items-center gap-2 px-2.5"
+          className="flex flex-grow items-center gap-2 px-2.5"
         >
           {t('select.label')}
           <MousePointerSquareDashed size="1rem" />
@@ -53,41 +47,22 @@ export function SelectStreamersDropdown({
       <DropdownMenuContent>
         <DropdownMenuItem
           onClick={() => {
-            selectedStreamers.actions.updateList(
-              streamersWithHide.map((s) => s.twitchName),
-            );
+            selectedStreamers.set(streamersWithHide);
           }}
         >
           <CheckSquare size="1rem" /> {t('select.all')}
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
-            selectedStreamers.actions.updateList([]);
+            selectedStreamers.set([]);
           }}
         >
           <BoxSelect size="1rem" /> {t('select.none')}
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
-            selectedStreamers.actions.updateList(
-              streamersWithHide
-                .filter((streamer) => {
-                  const stream = onlineStreamers.find(
-                    (online) =>
-                      online.twitchName.toLocaleLowerCase() ===
-                      streamer.twitchName.toLocaleLowerCase(),
-                  );
-
-                  if (
-                    !stream ||
-                    (outro.hideOffline && !stream) ||
-                    (outro.hideNotPlaying && !stream?.isPlayingQsmp && !!stream)
-                  )
-                    return false;
-
-                  return true;
-                })
-                .map((s) => s.twitchName),
+            selectedStreamers.set(
+              streamersWithHide.filter((streamer) => streamer.is_live),
             );
           }}
         >
@@ -95,25 +70,8 @@ export function SelectStreamersDropdown({
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
-            selectedStreamers.actions.updateList(
-              streamersWithHide
-                .filter((streamer) => {
-                  const stream = onlineStreamers.find(
-                    (online) =>
-                      online.twitchName.toLocaleLowerCase() ===
-                      streamer.twitchName.toLocaleLowerCase(),
-                  );
-
-                  if (
-                    !stream?.isPlayingQsmp ||
-                    (outro.hideOffline && !stream) ||
-                    (outro.hideNotPlaying && !stream?.isPlayingQsmp && !!stream)
-                  )
-                    return false;
-
-                  return true;
-                })
-                .map((s) => s.twitchName),
+            selectedStreamers.set(
+              streamersWithHide.filter((streamer) => streamer.is_playing_qsmp),
             );
           }}
         >

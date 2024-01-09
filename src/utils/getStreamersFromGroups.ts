@@ -14,7 +14,7 @@ export function getStreamersFromGroups(
     .map((gn) => {
       const name = gn.split('.')[0] || '';
 
-      const group = mergedGroups.find((g) => g.simpleGroupName === name);
+      const group = mergedGroups.find((g) => g.simple_name === name);
 
       if (!group) return '';
 
@@ -26,7 +26,7 @@ export function getStreamersFromGroups(
   }[];
 
   const groups = mergedGroups.filter((group) =>
-    groupsNames.includes(group.simpleGroupName),
+    groupsNames.includes(group.simple_name),
   );
 
   // const onlyTwitchNames = groups.map(group => {
@@ -53,21 +53,16 @@ export function getStreamersFromGroups(
 function getStreamersFromGroup(group: GroupType, nameOnQuery: string) {
   const options = nameOnQuery.split('.')[1];
 
-  if (!options)
-    return { groupName: group.simpleGroupName, members: group.twitchNames };
+  if (!options) return { groupName: group.simple_name, members: group.members };
 
-  const [order, ...exclusions] = options.split('-');
+  const exclusions = options.split('-');
 
-  const reorderedGroupMembers = order
-    ? order.split('').map((pos) => group.twitchNames[Number(pos) - 1])
-    : group.twitchNames;
-
-  const groupMembersWithExclusions: string[] = reorderedGroupMembers.filter(
-    (name) => !exclusions.includes(name),
-  );
+  const groupMembersWithExclusions: string[] = group.members
+    .filter((name) => !exclusions.includes(name.twitch_name))
+    .map((m) => m.twitch_name);
 
   return {
-    groupName: group.simpleGroupName,
+    groupName: group.simple_name,
     members: groupMembersWithExclusions.filter((item) => item),
   };
 }

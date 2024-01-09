@@ -28,7 +28,7 @@ export const StreamerAndChatListItem = (
         onClick={() =>
           setStreamerList((old) =>
             old.filter(
-              (streamer) => streamer.twitchName !== props.channel.twitchName,
+              (streamer) => streamer.twitch_name !== props.channel.twitch_name,
             ),
           )
         }
@@ -36,17 +36,21 @@ export const StreamerAndChatListItem = (
         <X size="1rem" />
       </Button>
       <div className="flex flex-1 items-center gap-2">
-        {getSkinHead(props.channel.twitchName).map((head) => (
+        {getSkinHead(props.channel.twitch_name).map((head) => (
           <Image
-            src={head}
+            src={
+              head
+                ? head
+                : 'https://placehold.co/300x300/281f37/f9fafb.png?text=o_O'
+            }
             key={head}
-            alt={`${t('profile-image-alt')} ${props.channel.name}`}
+            alt={`${t('profile-image-alt')} ${props.channel.display_name}`}
             width={128}
             height={128}
             className="h-6 w-6"
           />
         ))}
-        {props.channel.name}
+        {props.channel.display_name}
       </div>
       <Button
         size="sm"
@@ -55,19 +59,19 @@ export const StreamerAndChatListItem = (
         onClick={() =>
           setStreamerList((old) => {
             const streamerIndex = old.findIndex(
-              (s) => s.twitchName === props.channel.twitchName,
+              (s) => s.twitch_name === props.channel.twitch_name,
             );
 
-            old[streamerIndex].chatOpened = !old[streamerIndex].chatOpened;
+            old[streamerIndex].chat_opened = !old[streamerIndex].chat_opened;
 
             return old;
           })
         }
       >
-        {!props.channel.chatOpened && (
+        {!props.channel.chat_opened && (
           <MessageSquareDashed size="1rem" className="opacity-60" />
         )}
-        {props.channel.chatOpened && <MessageSquare size="1rem" />}
+        {props.channel.chat_opened && <MessageSquare size="1rem" />}
       </Button>
     </li>
   );

@@ -1,6 +1,6 @@
-import { useSettingsContext } from '@/contexts/settings-context';
-import { getDisplayName } from '@/utils/getDisplayName';
-import { useSearchParamsState } from '@/utils/useSearchParamsState';
+import { useSettings } from '@/contexts/settings-context';
+import { useSearchParamsState } from '@/hooks/useSearchParamsState';
+import { getStreamerDisplayName } from '@/utils/getDisplayName';
 import { FoldHorizontal, UnfoldHorizontal, X } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '../ui/button';
@@ -26,7 +26,7 @@ export const Chat = (props: ChatProps) => {
     {
       streams: { movableChat },
     },
-  ] = useSettingsContext();
+  ] = useSettings();
 
   function handleRemoveChat(chat: string) {
     setChats(chats.filter((c) => c !== chat).join('/'));
@@ -37,7 +37,7 @@ export const Chat = (props: ChatProps) => {
       <>
         <div className="handle flex h-7 w-full cursor-move items-center justify-between gap-2 pl-3 text-sm group-data-[collapsed=true]:h-full group-data-[collapsed=true]:flex-col group-data-[collapsed=true]:px-1 group-data-[collapsed=true]:py-3">
           <span className="overflow-hidden text-ellipsis text-nowrap">
-            {getDisplayName(props.chat)}
+            {getStreamerDisplayName(props.chat)}
           </span>
           <Button
             onClick={() => handleRemoveChat(props.chat)}

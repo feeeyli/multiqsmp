@@ -33,7 +33,7 @@ export function GroupListItem(props: GroupListItemProps) {
           onClick={() =>
             setGroupsList((old) =>
               old.filter(
-                (group) => group.simpleName !== props.group.simpleName,
+                (group) => group.simple_name !== props.group.simple_name,
               ),
             )
           }
@@ -41,7 +41,7 @@ export function GroupListItem(props: GroupListItemProps) {
           <X size="1rem" />
         </Button>
         <CollapsibleTrigger className="group flex w-full items-center justify-between py-2">
-          {props.group.name}
+          {props.group.display_name}
           <ChevronDown
             size="1rem"
             className="text-foreground transition-transform group-data-[state=open]:rotate-180"
@@ -56,9 +56,9 @@ export function GroupListItem(props: GroupListItemProps) {
         <ul className="scrollbar max-h-64 w-full overflow-y-auto sm:max-h-none">
           {props.group.members.map((member) => (
             <GroupMemberListItem
-              key={member.name}
+              key={member.twitch_name}
               member={member}
-              group={props.group.simpleName}
+              group={props.group.simple_name}
             />
           ))}
         </ul>

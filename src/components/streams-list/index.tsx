@@ -5,16 +5,16 @@ import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 
 // Context Imports
-import { useCustomGroupsContext } from '../../contexts/custom-groups-context';
+import { useCustomGroups } from '../../contexts/custom-groups-context';
 import { StreamPlayerControlsProvider } from './stream-player/stream-player-controls-context';
 
 // Scripts Imports
+import { useHasMounted } from '@/hooks/useHasMounted';
 import { getStreamersFromGroups } from '@/utils/getStreamersFromGroups';
-import { useHasMounted } from '@/utils/useHasMounted';
 
 // Components Imports
 import { useLayoutMemory } from '@/contexts/layout-memory-context';
-import { useSettingsContext } from '@/contexts/settings-context';
+import { useSettings } from '@/contexts/settings-context';
 import { SwapStreamsProvider } from '@/contexts/swap-points-context';
 import { getLayoutKey } from '@/utils/getLayoutKey';
 import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
@@ -34,7 +34,7 @@ export const StreamsList = (props: StreamsListProps) => {
   const isDesktop = !useMediaQuery('(max-width: 640px)');
   const searchParams = useSearchParams();
   const t = useTranslations('streams-list');
-  const [customGroups] = useCustomGroupsContext();
+  const [customGroups] = useCustomGroups();
   const hasMounted = useHasMounted();
   const ReactGridLayout = useMemo(() => WidthProvider(RGL), []);
   const [isMoving, setIsMoving] = useState(false);
@@ -43,7 +43,7 @@ export const StreamsList = (props: StreamsListProps) => {
     {
       streams: { movableChat },
     },
-  ] = useSettingsContext();
+  ] = useSettings();
 
   const movingHandles = {
     start() {

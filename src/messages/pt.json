@@ -8,7 +8,10 @@
     "no-selected-streamers-or-groups": "Nenhum streamer ou grupo selecionado.",
     "new-participant": "Novo participante!",
     "new-participants": "Novos participantes!",
-    "streamer-search-label": "Buscar por streamer",
+    "qsmp-streamer-search-label": "Buscar por streamer no QSMP",
+    "twitch-streamer-search-label": "Buscar por streamer na Twitch",
+    "loading-streamers": "Carregando streamers",
+    "search-streamers": "Começe a escrever para buscar streamers...",
     "group-search-label": "Buscar por grupo",
     "select": {
       "label": "Selecionar",

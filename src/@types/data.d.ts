@@ -1,9 +1,16 @@
-import { STREAMERS } from '../data/streamers';
+export type SimpleStreamerType = {
+  display_name: string;
+  twitch_name: string;
+  avatar_url: string;
+};
+
 export type StreamerType = {
-  twitchName: string;
-  displayName: string;
-  avatarUrl: string;
-  invitation?: number;
+  display_name: string;
+  twitch_name: string;
+  avatar_url: string;
+  is_live: boolean;
+  is_playing_qsmp?: boolean;
+  title?: string;
 };
 
 import { GROUPS } from '../data/groups';

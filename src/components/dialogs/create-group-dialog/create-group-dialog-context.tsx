@@ -4,7 +4,7 @@
 import React, { createContext, useContext } from 'react';
 
 // Scripts Imports
-import { ListReturnProps, useList } from '@/utils/useList';
+import { ListReturnProps, useList } from '@/hooks/useList';
 
 export const CreateGroupDialogContext = createContext<ListReturnProps<string>>([
   [],

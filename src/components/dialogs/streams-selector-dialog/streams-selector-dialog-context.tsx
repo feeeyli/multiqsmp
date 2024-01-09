@@ -1,50 +1,32 @@
 'use client';
 
 // React Imports
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 // Scripts Imports
-import { ListReturnProps, useList } from '@/utils/useList';
+import { GroupType, SimpleStreamerType } from '@/@types/data';
 
-interface ContextItemValue {
-  value: ListReturnProps<string>[0];
-  actions: ListReturnProps<string>[1];
+interface ContextItemValue<T> {
+  value: T[];
+  set: React.Dispatch<React.SetStateAction<T[]>>;
 }
 
 export const StreamsSelectorDialogContext = createContext<{
-  selectedStreamers: ContextItemValue;
-  selectedGroups: ContextItemValue;
-  changedGroups: ContextItemValue;
+  selectedStreamers: ContextItemValue<SimpleStreamerType>;
+  selectedGroups: ContextItemValue<GroupType>;
+  changedGroups: ContextItemValue<string>;
 }>({
   selectedStreamers: {
     value: [],
-    actions: {
-      addItem() {},
-      moveItem() {},
-      removeItem() {},
-      updateList() {},
-      toggleItem() {},
-    },
+    set: () => {},
   },
   selectedGroups: {
     value: [],
-    actions: {
-      addItem() {},
-      moveItem() {},
-      removeItem() {},
-      updateList() {},
-      toggleItem() {},
-    },
+    set: () => {},
   },
   changedGroups: {
     value: [],
-    actions: {
-      addItem() {},
-      moveItem() {},
-      removeItem() {},
-      updateList() {},
-      toggleItem() {},
-    },
+    set: () => {},
   },
 });
 
@@ -53,24 +35,24 @@ export const StreamsSelectorDialogProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const selectedStreamers = useList<string>([]);
-  const selectedGroups = useList<string>([]);
-  const changedGroups = useList<string>([]);
+  const selectedStreamers = useState<SimpleStreamerType[]>([]);
+  const selectedGroups = useState<GroupType[]>([]);
+  const changedGroups = useState<string[]>([]);
 
   return (
     <StreamsSelectorDialogContext.Provider
       value={{
         selectedStreamers: {
           value: selectedStreamers[0],
-          actions: selectedStreamers[1],
+          set: selectedStreamers[1],
         },
         selectedGroups: {
           value: selectedGroups[0],
-          actions: selectedGroups[1],
+          set: selectedGroups[1],
         },
         changedGroups: {
           value: changedGroups[0],
-          actions: changedGroups[1],
+          set: changedGroups[1],
         },
       }}
     >
@@ -79,5 +61,5 @@ export const StreamsSelectorDialogProvider = ({
   );
 };
 
-export const useStreamsSelectorDialogContext = () =>
+export const useStreamsSelector = () =>
   useContext(StreamsSelectorDialogContext);

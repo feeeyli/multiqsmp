@@ -49,7 +49,7 @@ import {
 import { CaptionsSquare, GoToSwapPoint } from '@/components/icons';
 import { Tooltip } from '@/components/ui/tooltip';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
-import { useSettingsContext } from '@/contexts/settings-context';
+import { useSettings } from '@/contexts/settings-context';
 import { DialogClose } from '@radix-ui/react-dialog';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { useState } from 'react';
@@ -133,7 +133,7 @@ type SettingsDialogProps = {
 export const SettingsDialog = (props: SettingsDialogProps) => {
   const t = useTranslations('settings-dialog');
   const bt = useTranslations('button-titles');
-  const [settings, setSettings] = useSettingsContext();
+  const [settings, setSettings] = useSettings();
   const form = useForm<SettingsType>({
     resolver: zodResolver(settingsFormSchema),
     defaultValues: settings,

@@ -1,22 +1,24 @@
 import { GroupType } from '@/@types/data';
 import { GROUPS as DEFAULT_GROUPS, PURGATORY_GROUPS } from '@/data/groups';
-import {
-  STREAMERS as DEFAULT_STREAMERS,
-  PURGATORY_STREAMERS,
-} from '@/data/streamers';
+import { STREAMERS } from '@/data/streamers';
 
 const GROUPS = [...DEFAULT_GROUPS, ...PURGATORY_GROUPS];
-const STREAMERS = [...DEFAULT_STREAMERS, ...PURGATORY_STREAMERS];
 
-export function getDisplayName(
+export function getGroupsDisplayName(
   twitchName: string,
   customGroups: GroupType[] = [],
 ) {
-  const streamerDisplayName = STREAMERS.find((s) => s.twitchName === twitchName)
-    ?.displayName;
   const groupDisplayName = [...GROUPS, ...customGroups].find(
-    (s) => s.simpleGroupName === twitchName.split('.')[0],
-  )?.groupName;
+    (s) => s.simple_name === twitchName.split('.')[0],
+  )?.display_name;
 
-  return streamerDisplayName || groupDisplayName || twitchName;
+  return groupDisplayName || twitchName;
+}
+
+export function getStreamerDisplayName(twitchName: string) {
+  const streamerDisplayName = STREAMERS.find(
+    (s) => s.twitch_name === twitchName,
+  )?.display_name;
+
+  return streamerDisplayName || twitchName;
 }

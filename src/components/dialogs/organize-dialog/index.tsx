@@ -10,32 +10,30 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Tooltip } from '@/components/ui/tooltip';
-import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 import { DialogClose } from '@radix-ui/react-dialog';
 import { ArrowRight, ListOrdered } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { SetStateAction, useState } from 'react';
-import { getDataFromQuery } from './getDataFromQuery';
 import { GroupListItem } from './list-item/group-list-item';
 import { StreamerAndChatListItem } from './list-item/streamer-and-chat-list-item';
 import { OrganizeDialogProvider } from './organize-context';
+import { useQueryData } from './useQueryData';
 
 export type OrganizeStateStreamers = {
-  name: string;
-  twitchName: string;
-  chatOpened: boolean;
+  display_name: string;
+  twitch_name: string;
+  chat_opened: boolean;
 };
 
 export type OrganizeStateGroups = {
-  name: string;
-  simpleName: string;
+  display_name: string;
+  simple_name: string;
   members: {
-    name: string;
-    twitchName: string;
-    isHidden: boolean;
-    chatOpened: boolean;
+    display_name: string;
+    twitch_name: string;
+    is_hidden: boolean;
+    chat_opened: boolean;
   }[];
 };
 
@@ -47,10 +45,8 @@ type OrganizeState = {
 export const OrganizeDialog = () => {
   const t = useTranslations('organize-dialog');
   const bt = useTranslations('button-titles');
-  const searchParams = useSearchParams();
-  const [customGroups] = useCustomGroupsContext();
 
-  const [streamers, groups] = getDataFromQuery(searchParams, customGroups);
+  const [streamers, groups] = useQueryData();
 
   const [organizeState, setOrganizeState] = useState<OrganizeState>({
     streamers,
@@ -72,7 +68,7 @@ export const OrganizeDialog = () => {
     const url = new URLSearchParams();
 
     const streamers = organizeState.streamers
-      .map((s) => s.twitchName)
+      .map((s) => s.twitch_name)
       .join('/');
 
     if (streamers) url.set('streamers', streamers);
@@ -80,11 +76,11 @@ export const OrganizeDialog = () => {
     const groups = organizeState.groups
       .map(
         (g) =>
-          `${g.simpleName}${
-            g.members.some((m) => m.isHidden) ? '.-' : ''
+          `${g.simple_name}${
+            g.members.some((m) => m.is_hidden) ? '.-' : ''
           }${g.members
-            .filter((m) => m.isHidden)
-            .map((m) => m.twitchName)
+            .filter((m) => m.is_hidden)
+            .map((m) => m.twitch_name)
             .join('-')}`,
       )
       .join('/');
@@ -96,16 +92,16 @@ export const OrganizeDialog = () => {
     organizeState.groups.forEach((group) =>
       allGroupsMembers.push(
         ...group.members
-          .filter((m) => m.chatOpened && !m.isHidden)
-          .map((m) => m.twitchName),
+          .filter((m) => m.chat_opened && !m.is_hidden)
+          .map((m) => m.twitch_name),
       ),
     );
 
     const chats = Array.from(
       new Set([
         ...organizeState.streamers
-          .filter((s) => s.chatOpened)
-          .map((s) => s.twitchName),
+          .filter((s) => s.chat_opened)
+          .map((s) => s.twitch_name),
         ...allGroupsMembers,
       ]),
     ).join('/');
@@ -156,7 +152,7 @@ export const OrganizeDialog = () => {
                   {organizeState.streamers.map((streamer) => (
                     <StreamerAndChatListItem
                       channel={streamer}
-                      key={streamer.twitchName}
+                      key={streamer.twitch_name}
                     />
                   ))}
                 </ul>
@@ -172,7 +168,7 @@ export const OrganizeDialog = () => {
                   {organizeState.groups.map((group, i) => (
                     <GroupListItem
                       group={group}
-                      key={group.simpleName}
+                      key={group.display_name}
                       first={i === 0}
                     />
                   ))}

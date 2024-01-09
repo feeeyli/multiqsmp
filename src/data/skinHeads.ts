@@ -72,6 +72,8 @@ export const SKIN_HEADS = {
     'https://s.namemc.com/2d/skin/face.png?id=bc613ffc443664bc&scale=32',
   fitmc: 'https://s.namemc.com/2d/skin/face.png?id=d7335abb103732a0&scale=32',
   Foolish: 'https://s.namemc.com/2d/skin/face.png?id=dc4afe37442f06a0&scale=32',
+  Foolish_Gamers:
+    'https://s.namemc.com/2d/skin/face.png?id=dc4afe37442f06a0&scale=32',
   ironmouse:
     'https://s.namemc.com/2d/skin/face.png?id=8a37e79888dcb5c7&scale=32',
   jaidenanimations:

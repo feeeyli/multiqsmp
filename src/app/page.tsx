@@ -2,13 +2,13 @@
 
 // Next Imports
 import { Button } from '@/components/ui/button';
-import { useSettingsContext } from '@/contexts/settings-context';
+import { useSettings } from '@/contexts/settings-context';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
 export default function Home() {
-  const [settings, setSettings] = useSettingsContext();
+  const [settings, setSettings] = useSettings();
 
   useEffect(() => {
     if (

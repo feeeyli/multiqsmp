@@ -1,38 +1,25 @@
 import { StreamerType } from '@/@types/data';
-import { Streamer } from '../../streamer';
-import { useStreamsSelectorDialogContext } from '../../streams-selector-dialog-context';
 import { useSortStreamers } from './sort-streamers-context';
-import { OnlineStreamerType } from './streamers-tab';
+import { Streamer } from './streamer';
 
 type StreamersListProps = {
   streamers: StreamerType[];
-  onlineStreamers: OnlineStreamerType[];
+  notDefaultStreamers: string[];
 };
 
 export function StreamersList(props: StreamersListProps) {
-  const { selectedStreamers } = useStreamsSelectorDialogContext();
   const { direction, onlineFirst, playingFirst, sortMethod } =
     useSortStreamers();
 
   function sortStreamers() {
-    let streamers = props.streamers.map((s) => {
-      const online = props.onlineStreamers.find(
-        (o) => o.twitchName === s.twitchName,
-      );
-
-      return {
-        ...s,
-        isOnline: !!online,
-        isPlayingQsmp: !!online?.isPlayingQsmp,
-      };
-    });
+    let streamers = [...props.streamers];
 
     const sortDir = [0, -1, 1];
 
     if (sortMethod.value === 'name')
       streamers = streamers.sort(
         (a, b) =>
-          a.displayName.localeCompare(b.displayName) *
+          a.display_name.localeCompare(b.display_name) *
           (direction.value === 'asc' ? 1 : -1),
       );
 
@@ -41,17 +28,17 @@ export function StreamersList(props: StreamersListProps) {
 
     if (onlineFirst.value)
       streamers = streamers.sort((x, y) =>
-        x.isOnline === y.isOnline
+        x.is_live === y.is_live
           ? sortDir[0]
-          : x.isOnline
+          : x.is_live
           ? sortDir[1]
           : sortDir[2],
       );
     if (playingFirst.value)
       streamers = streamers.sort((x, y) =>
-        x.isPlayingQsmp === y.isPlayingQsmp
+        x.is_playing_qsmp === y.is_playing_qsmp
           ? sortDir[0]
-          : x.isPlayingQsmp
+          : x.is_playing_qsmp
           ? sortDir[1]
           : sortDir[2],
       );
@@ -66,11 +53,12 @@ export function StreamersList(props: StreamersListProps) {
       {sortedStreamers.map((streamer) => {
         return (
           <Streamer
-            key={streamer.twitchName}
+            key={streamer.twitch_name}
             streamer={streamer}
-            selected={selectedStreamers.value.includes(streamer.twitchName)}
-            isOnline={streamer.isOnline}
-            isPlayingQsmp={streamer.isPlayingQsmp}
+            isDefault={
+              !props.notDefaultStreamers.includes(streamer.twitch_name)
+            }
+            type="qsmp"
           />
         );
       })}

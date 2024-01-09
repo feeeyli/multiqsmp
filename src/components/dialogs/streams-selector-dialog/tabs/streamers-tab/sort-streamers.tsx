@@ -23,9 +23,9 @@ export function SortStreamers() {
     useSortStreamers();
 
   return (
-    <div className="flex h-9 flex-grow divide-x rounded-md border border-input">
+    <div className="flex flex-grow">
       <Button
-        variant="ghost"
+        variant="outline"
         className="rounded-r-none px-2"
         size="sm"
         onClick={() => direction.set((old) => (old === 'asc' ? 'des' : 'asc'))}
@@ -36,9 +36,9 @@ export function SortStreamers() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="ghost"
+            variant="outline"
             size="sm"
-            className="block flex-grow items-center gap-2 rounded-l-none px-2.5"
+            className="block flex-grow items-center gap-2 rounded-l-none border-l-0 px-2.5"
           >
             {t('sort.label')}
           </Button>

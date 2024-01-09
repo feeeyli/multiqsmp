@@ -1,6 +1,6 @@
 'use client';
 
-import { useSettingsContext } from '@/contexts/settings-context';
+import { useSettings } from '@/contexts/settings-context';
 // React Imports
 import React, { createContext, useState } from 'react';
 
@@ -53,7 +53,7 @@ export const StreamPlayerControlsProvider = ({
     {
       streams: { startMuted },
     },
-  ] = useSettingsContext();
+  ] = useSettings();
   const [muted, setMuted] = useState(startMuted);
   const [fullScreen, setFullScreen] = useState(false);
   const [captions, setCaptions] = useState(false);

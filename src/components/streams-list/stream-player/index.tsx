@@ -14,7 +14,7 @@ import { StreamPlayerControlsContext } from './stream-player-controls-context';
 
 // Components Imports
 import { ResizableHandle } from '@/components/ui/resizable';
-import { useSettingsContext } from '@/contexts/settings-context';
+import { useSettings } from '@/contexts/settings-context';
 import { Layout } from 'react-grid-layout';
 import { Panel, PanelGroup } from 'react-resizable-panels';
 import { StreamPlayerCaptions } from './stream-player-captions';
@@ -40,7 +40,7 @@ export const StreamPlayer = ({ channel, ...props }: Props) => {
     {
       streams: { useHandleAsHeader: useHandleAsHeaderSet },
     },
-  ] = useSettingsContext();
+  ] = useSettings();
 
   const playerStyleVariants = cva(
     'inset-0 flex-grow overflow-hidden w-full flex flex-col',

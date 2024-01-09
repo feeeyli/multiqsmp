@@ -30,9 +30,9 @@ import {
 } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Tooltip } from '@/components/ui/tooltip';
-import { useSettingsContext } from '@/contexts/settings-context';
+import { useSettings } from '@/contexts/settings-context';
 import { useSwapStreams } from '@/contexts/swap-points-context';
-import { useSearchParamsState } from '@/utils/useSearchParamsState';
+import { useSearchParamsState } from '@/hooks/useSearchParamsState';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
@@ -56,7 +56,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
         useHandleAsHeader: useHandleAsHeaderSet,
       },
     },
-  ] = useSettingsContext();
+  ] = useSettings();
 
   const [chats, setChats] = useSearchParamsState('chats', '');
   const [streams, setStreams] = useSearchParamsState('streamers', '');

@@ -5,7 +5,7 @@ export function getStreamersFromGroup(
   groups: string[],
   MERGED_GROUPS: typeof GROUPS,
 ) {
-  const acceptedGroups = MERGED_GROUPS.map((group) => group.simpleGroupName);
+  const acceptedGroups = MERGED_GROUPS.map((group) => group.simple_name);
 
   const filteredGroups = groups.filter((group) =>
     acceptedGroups.includes(group.toLowerCase()),
@@ -15,8 +15,8 @@ export function getStreamersFromGroup(
 
   filteredGroups.forEach((group) => {
     const names = MERGED_GROUPS.find(
-      (g) => g.simpleGroupName === group.toLowerCase(),
-    )?.twitchNames;
+      (g) => g.simple_name === group.toLowerCase(),
+    )?.members.map((m) => m.twitch_name);
 
     if (!names) return;
 
@@ -34,19 +34,19 @@ export function parseChannels(
 
   const groups = channelsAndGroups.filter((channelOrGroup) =>
     MERGED_GROUPS.find(
-      (group) => group.simpleGroupName === channelOrGroup.toLowerCase(),
+      (group) => group.simple_name === channelOrGroup.toLowerCase(),
     ),
   );
 
   const channels = channelsAndGroups.filter((channelOrGroup) =>
     STREAMERS.find(
       (group) =>
-        group.twitchName.toLowerCase() === channelOrGroup.toLowerCase(),
+        group.twitch_name.toLowerCase() === channelOrGroup.toLowerCase(),
     ),
   );
 
   const acceptedChannels = STREAMERS.map((streamer) =>
-    streamer.twitchName.toLowerCase(),
+    streamer.twitch_name.toLowerCase(),
   );
 
   const filteredChannels = channels.filter((channel) =>

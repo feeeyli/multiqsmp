@@ -1,8 +1,6 @@
+import { useCustomGroups } from '@/contexts/custom-groups-context';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { getStreamersFromGroups } from './getStreamersFromGroups';
-import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
-import { useEffect } from 'react';
-import { useLocalStorage } from 'usehooks-ts';
+import { getStreamersFromGroups } from '../utils/getStreamersFromGroups';
 
 const cleanEmpty = (obj: { [x: string]: string }) =>
   Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != ''));
@@ -39,7 +37,7 @@ export function useSearchParamsState(
 
 export function useSearchParamsStates() {
   const searchParams = useSearchParams();
-  const [customGroups] = useCustomGroupsContext();
+  const [customGroups] = useCustomGroups();
 
   const streamersOnQuery = searchParams.get('streamers')?.split('/') || [];
   const groupsOnQuery = searchParams.get('groups')?.split('/') || [];

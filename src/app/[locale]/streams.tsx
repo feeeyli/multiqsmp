@@ -4,7 +4,6 @@
 import { useSearchParams } from 'next/navigation';
 
 // Libs Imports
-import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import { useMediaQuery } from 'usehooks-ts';
 
 // Components Import
@@ -13,7 +12,6 @@ import { StreamsSelectorDialog } from '@/components/dialogs/streams-selector-dia
 
 // Contexts Import
 import { StreamsSelectorDialogProvider } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
-import { StreamsList } from '@/components/streams-list';
 
 // Script Imports
 import { ChatsList } from '@/components/chats-list';
@@ -21,18 +19,20 @@ import { FAQDialog } from '@/components/dialogs/faq-dialog';
 import { SettingsDialog } from '@/components/dialogs/settings-dialog';
 import { WelcomeDialog } from '@/components/dialogs/welcome-dialog';
 import { ResetLayout } from '@/components/icons';
+import { StreamsList } from '@/components/streams-list';
 import { Button } from '@/components/ui/button';
 import { Tooltip } from '@/components/ui/tooltip';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 import { useLayoutMemory } from '@/contexts/layout-memory-context';
-import { useSettingsContext } from '@/contexts/settings-context';
+import { useSettings } from '@/contexts/settings-context';
+import { useFullscreen } from '@/hooks/useFullscreen';
+import { useKonamiCode } from '@/hooks/useKonamiCode';
+import { useSearchParamsStates } from '@/hooks/useSearchParamsState';
 import { getLayoutKey } from '@/utils/getLayoutKey';
-import { useFullscreen } from '@/utils/useFullscreen';
-import { useKonamiCode } from '@/utils/useKonamiCode';
-import { useSearchParamsStates } from '@/utils/useSearchParamsState';
 import { Maximize, Minimize } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
+import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 
 interface StreamsPageProps {
   purgatory: boolean;
@@ -43,7 +43,7 @@ export default function Streams(props: StreamsPageProps) {
   const isDesktop = !useMediaQuery('(max-width: 640px)');
   const { streams, chats } = useSearchParamsStates();
   const [resizing, setResizing] = useState(false);
-  const [settings] = useSettingsContext();
+  const [settings] = useSettings();
   const t = useTranslations();
   const [_, setEasterEggs] = useEasterEggsContext();
   const searchParams = useSearchParams();

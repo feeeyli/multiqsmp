@@ -2,14 +2,11 @@
 import { useState } from 'react';
 
 // Types Imports
-import { GroupType, StreamerType } from '@/@types/data';
+import { GroupType } from '@/@types/data';
 
 // Datas Imports
 import { GROUPS } from '@/data/groups';
-import {
-  STREAMERS as DEFAULT_STREAMERS,
-  PURGATORY_STREAMERS,
-} from '@/data/streamers';
+import { STREAMERS } from '@/data/streamers';
 
 // Libs Imports
 import { useTranslations } from 'next-intl';
@@ -34,58 +31,54 @@ import { StreamerItem } from '../create-group-dialog/streamer-item';
 import { Pencil, Save } from 'lucide-react';
 
 // Contexts Imports
-import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
+import { useCustomGroups } from '@/contexts/custom-groups-context';
 
 // Scripts Imports
-import { getDisplayName } from '@/utils/getDisplayName';
-import { getAvatarsList } from '@/utils/getAvatarsList';
+import {
+  getGroupsDisplayName,
+  getStreamerDisplayName,
+} from '@/utils/getDisplayName';
 import { DeleteGroupDialog } from '../delete-group-dialog';
 import { useFavoriteListsContext } from '../streams-selector-dialog/tabs/favorite-lists-context';
 
 interface EditGroupDialog {
   group: GroupType;
-  STREAMERS: StreamerType[];
 }
 
-export const EditGroupDialog = ({
-  STREAMERS: STREAMERS_LIST,
-  ...props
-}: EditGroupDialog) => {
+export const EditGroupDialog = (props: EditGroupDialog) => {
   const t = useTranslations('edit-group-dialog');
-  const [customGroups, setCustomGroups] = useCustomGroupsContext();
+  const [customGroups, setCustomGroups] = useCustomGroups();
   const { groups: favoriteGroups } = useFavoriteListsContext();
   const [selectedGroupStreamers, setSelectedGroupStreamers] = useState(
-    props.group.twitchNames,
+    props.group.members.map((m) => m.twitch_name),
   );
   const [search, setSearch] = useState('');
-  const [groupName, setGroupName] = useState(props.group.groupName);
+  const [groupName, setGroupName] = useState(props.group.display_name);
 
   const mergedGroups = [...new Set([...GROUPS, ...customGroups])];
 
-  const avatars = getAvatarsList(selectedGroupStreamers);
-
   const isGroupNameUnique = mergedGroups
-    .map((cg) => cg.simpleGroupName)
-    .filter((cg) => cg !== props.group.simpleGroupName)
+    .map((cg) => cg.simple_name)
+    .filter((cg) => cg !== props.group.simple_name)
     .includes(groupName.toLocaleLowerCase().replaceAll(' ', '-'));
 
-  const STREAMERS_FROM_GROUP = [
-    ...new Set([...DEFAULT_STREAMERS, ...PURGATORY_STREAMERS]),
-  ].filter(
-    (s) =>
-      props.group.twitchNames.includes(s.twitchName) &&
-      !STREAMERS_LIST.find((st) => st.twitchName === s.twitchName),
+  const STREAMERS_IN_GROUP = STREAMERS.filter((s) =>
+    props.group.members.some((m) => m.twitch_name == s.twitch_name),
   );
 
-  const STREAMERS = [...new Set([...STREAMERS_FROM_GROUP, ...STREAMERS_LIST])];
+  const REORDERED_STREAMERS = [
+    ...new Set([...STREAMERS_IN_GROUP, ...STREAMERS]),
+  ];
 
   return (
     <Dialog
       onOpenChange={(open) => {
         if (!open) {
           setSearch('');
-          setGroupName(props.group.groupName);
-          setSelectedGroupStreamers(props.group.twitchNames);
+          setGroupName(props.group.display_name);
+          setSelectedGroupStreamers(
+            props.group.members.map((m) => m.twitch_name),
+          );
         }
       }}
     >
@@ -138,15 +131,15 @@ export const EditGroupDialog = ({
               onValueChange={setSelectedGroupStreamers}
               defaultValue={selectedGroupStreamers}
             >
-              {STREAMERS.filter((streamer) =>
-                streamer.displayName
+              {REORDERED_STREAMERS.filter((streamer) =>
+                streamer.display_name
                   .toLocaleLowerCase()
                   .includes(search.toLocaleLowerCase()),
               ).map((streamer, index) => (
                 <StreamerItem
                   streamer={streamer}
                   index={index}
-                  key={streamer.twitchName}
+                  key={streamer.twitch_name}
                 />
               ))}
             </ToggleGroup.Root>
@@ -156,9 +149,11 @@ export const EditGroupDialog = ({
                 {selectedGroupStreamers.length === 0 &&
                   t('no-selected-streamers')}
               </span>{' '}
-              {selectedGroupStreamers.map((s) => getDisplayName(s)).length >
-                0 &&
-                selectedGroupStreamers.map((s) => getDisplayName(s)).join(', ')}
+              {selectedGroupStreamers.map((s) => getGroupsDisplayName(s))
+                .length > 0 &&
+                selectedGroupStreamers
+                  .map((s) => getGroupsDisplayName(s))
+                  .join(', ')}
             </p>
           </section>
         </div>
@@ -171,7 +166,7 @@ export const EditGroupDialog = ({
               onClick={() => {
                 setCustomGroups((old) => {
                   const groupId = old.findIndex(
-                    (g) => g.simpleGroupName === props.group.simpleGroupName,
+                    (g) => g.simpleGroupName === props.group.simple_name,
                   );
 
                   let editedCustomGroups = [...old];
@@ -181,23 +176,20 @@ export const EditGroupDialog = ({
                     simpleGroupName: groupName
                       .toLocaleLowerCase()
                       .replaceAll(' ', '-'),
-                    members: selectedGroupStreamers.map((s) =>
-                      getDisplayName(s),
-                    ),
-                    avatars:
-                      avatars.includes('peqitw') && avatars.includes('pactw')
-                        ? avatars.filter((a) => a !== 'peqitw')
-                        : avatars,
+                    avatars: selectedGroupStreamers,
                     twitchNames: selectedGroupStreamers,
+                    members: selectedGroupStreamers.map((s) =>
+                      getStreamerDisplayName(s),
+                    ),
                   };
 
                   return editedCustomGroups;
                 });
 
-                if (favoriteGroups.value.includes(props.group.simpleGroupName))
+                if (favoriteGroups.value.includes(props.group.simple_name))
                   favoriteGroups.set((old) => {
                     let newFavoriteGroups = old.filter(
-                      (fg) => fg !== props.group.simpleGroupName,
+                      (fg) => fg !== props.group.simple_name,
                     );
 
                     newFavoriteGroups.push(

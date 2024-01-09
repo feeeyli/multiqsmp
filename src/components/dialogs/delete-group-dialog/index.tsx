@@ -22,8 +22,7 @@ import {
 import { Button } from '@/components/ui/button';
 
 // Contexts Imports
-import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
-import { group } from 'console';
+import { useCustomGroups } from '@/contexts/custom-groups-context';
 
 interface DeleteGroupDialogProps {
   group: GroupType;
@@ -31,7 +30,7 @@ interface DeleteGroupDialogProps {
 
 export const DeleteGroupDialog = (props: DeleteGroupDialogProps) => {
   const t = useTranslations('delete-group-dialog');
-  const [, setCustomGroups] = useCustomGroupsContext();
+  const [, setCustomGroups] = useCustomGroups();
 
   return (
     <AlertDialog>
@@ -48,7 +47,7 @@ export const DeleteGroupDialog = (props: DeleteGroupDialogProps) => {
         <AlertDialogHeader>
           <AlertDialogTitle>{t('title')}</AlertDialogTitle>
           <AlertDialogDescription>
-            {t('description').replace('((group))', props.group.groupName)}
+            {t('description').replace('((group))', props.group.display_name)}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -57,7 +56,7 @@ export const DeleteGroupDialog = (props: DeleteGroupDialogProps) => {
             onClick={() => {
               setCustomGroups((old) =>
                 old.filter(
-                  (cg) => cg.simpleGroupName !== props.group.simpleGroupName,
+                  (cg) => cg.simpleGroupName !== props.group.simple_name,
                 ),
               );
             }}

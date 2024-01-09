@@ -1,5 +1,4 @@
 // React Imports
-import { useContext } from 'react';
 
 // Next Imports
 import Image from 'next/image';
@@ -8,37 +7,34 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 // Types Imports
-import { GroupType, StreamerType } from '@/@types/data';
+import { GroupType } from '@/@types/data';
 
 // Icons Imports
 import { Heart } from 'lucide-react';
 
 // Components Imports
-import { Toggle } from '@/components/ui/toggle';
-import { DeleteGroupDialog } from '../delete-group-dialog';
 import { Button } from '@/components/ui/button';
 
 // Contexts Import
-import { useStreamsSelectorDialogContext } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
+import { useStreamsSelector } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
 import { useFavoriteListsContext } from './tabs/favorite-lists-context';
 
 // Scripts Imports
-import { getSkinHead } from '@/utils/getSkinHead';
-import { EditGroupDialog } from '../edit-group-dialog';
+import { ToggleGroupItem } from '@/components/ui/toggle-group';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
-import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
+import { getSkinHead } from '@/utils/getSkinHead';
+import { cva } from 'class-variance-authority';
+import { EditGroupDialog } from '../edit-group-dialog';
 
 interface GroupProps {
   group: GroupType;
-  selected: boolean;
   favorite?: boolean;
   custom?: boolean;
-  STREAMERS: StreamerType[];
 }
 
 const groupVariant = cva(
-  'group flex h-auto max-w-[6.25rem] flex-col items-center gap-2 p-2 sm:max-w-[8.25rem]',
+  'group flex h-auto max-w-[6.25rem] flex-col items-center gap-2 p-2 sm:max-w-[8.25rem] text-foreground',
   {
     variants: {
       variant: {
@@ -81,18 +77,18 @@ const teams: {
 };
 
 export const Group = (props: GroupProps) => {
-  const { selectedGroups, changedGroups } = useStreamsSelectorDialogContext();
+  const { selectedGroups, changedGroups } = useStreamsSelector();
   const { groups: favoritesList } = useFavoriteListsContext();
 
   const t = useTranslations('streamers-dialog');
   const [{ cucurucho }] = useEasterEggsContext();
 
   const cols =
-    props.group.avatars.length === 1
+    props.group.members.length === 1
       ? 1
-      : [2, 3, 4].includes(props.group.avatars.length)
+      : [2, 3, 4].includes(props.group.members.length)
       ? 2
-      : [5, 6, 8, 9].includes(props.group.avatars.length)
+      : [5, 6, 8, 9].includes(props.group.members.length)
       ? 3
       : 4;
 
@@ -104,12 +100,12 @@ export const Group = (props: GroupProps) => {
         variant="favorite"
         data-favorite={!!props.favorite}
         onClick={() => {
-          if (favoritesList.value.includes(props.group.simpleGroupName)) {
+          if (favoritesList.value.includes(props.group.simple_name)) {
             favoritesList.set((old) =>
-              old.filter((s) => s !== props.group.simpleGroupName),
+              old.filter((s) => s !== props.group.simple_name),
             );
           } else {
-            favoritesList.set((old) => [...old, props.group.simpleGroupName]);
+            favoritesList.set((old) => [...old, props.group.simple_name]);
           }
         }}
       >
@@ -120,23 +116,23 @@ export const Group = (props: GroupProps) => {
       </Button>
       {props.custom && (
         <>
-          <EditGroupDialog group={props.group} STREAMERS={props.STREAMERS} />
+          <EditGroupDialog group={props.group} />
         </>
       )}
-      <Toggle
-        pressed={props.selected}
-        onPressedChange={() => {
-          console.log('> changed', props.group.simpleGroupName);
-
-          if (selectedGroups.value.includes(props.group.simpleGroupName)) {
-            changedGroups.actions.updateList((old) =>
-              old.filter((g) => g !== props.group.simpleGroupName),
+      <ToggleGroupItem
+        value={props.group.simple_name}
+        onClick={() => {
+          if (
+            selectedGroups.value.some(
+              (grp) => grp.simple_name === props.group.simple_name,
+            )
+          ) {
+            changedGroups.set((old) =>
+              old.filter((g) => g !== props.group.simple_name),
             );
           } else {
-            changedGroups.actions.addItem(props.group.simpleGroupName, -1);
+            changedGroups.set((old) => [...old, props.group.simple_name]);
           }
-
-          selectedGroups.actions.toggleItem(props.group.simpleGroupName, -1);
         }}
         asChild
       >
@@ -144,24 +140,15 @@ export const Group = (props: GroupProps) => {
           variant="outline"
           className={cn(
             groupVariant({
-              variant: props.group.simpleGroupName as
-                | 'default'
-                | 'axolotl'
-                | 'squirrel'
-                | 'goose'
-                | 'crow'
-                | 'capybara'
-                | 'panda'
-                | 'crab'
-                | 'raccoon',
+              variant: 'default',
             }),
           )}
         >
           <div className="flex h-20 w-20 items-center overflow-hidden rounded-xl sm:h-28 sm:w-28">
             <div className="flex max-h-24 w-full flex-wrap justify-center sm:max-h-32">
-              {props.group.avatars.map((avatar) => (
+              {props.group.members.map((avatar) => (
                 <picture
-                  key={avatar}
+                  key={avatar.twitch_name}
                   style={{
                     width: `${100 / cols}%`,
                   }}
@@ -170,21 +157,23 @@ export const Group = (props: GroupProps) => {
                     src={
                       cucurucho
                         ? 'https://i.imgur.com/c1Y9KUp.png'
-                        : getSkinHead(avatar)[0]
+                        : getSkinHead(avatar.twitch_name)[0]
                     }
-                    alt={`${t('profile-image-alt')} ${avatar}`}
+                    alt={`${t('profile-image-alt')} ${avatar.display_name}`}
                     width={128}
                     height={128}
-                    style={{ imageRendering: cucurucho ? 'pixelated' : 'auto' }}
+                    style={{
+                      imageRendering: cucurucho ? 'pixelated' : 'auto',
+                    }}
                     className="pointer-events-none aspect-square"
                   />
                 </picture>
               ))}
             </div>
           </div>
-          <span>{props.group.groupName}</span>
+          <span className="text-wrap">{props.group.display_name}</span>
         </Button>
-      </Toggle>
+      </ToggleGroupItem>
     </div>
   );
 };

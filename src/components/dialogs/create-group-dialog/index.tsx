@@ -2,14 +2,10 @@
 import { useState } from 'react';
 
 // Types Imports
-import { GroupType, StreamerType } from '@/@types/data';
 
 // Datas Imports
-import { GROUPS as DEFAULT_GROUPS, PURGATORY_GROUPS } from '@/data/groups';
-import {
-  STREAMERS as DEFAULT_STREAMERS,
-  PURGATORY_STREAMERS,
-} from '@/data/streamers';
+import { GROUPS } from '@/data/groups';
+import { STREAMERS } from '@/data/streamers';
 
 // Libs Imports
 import { useTranslations } from 'next-intl';
@@ -24,48 +20,36 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { StreamerItem } from './streamer-item';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { DialogClose } from '@radix-ui/react-dialog';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
+import { StreamerItem } from './streamer-item';
 
 // Icons Imports
 import { Plus } from 'lucide-react';
 
 // Contexts Imports
+import { useCustomGroups } from '@/contexts/custom-groups-context';
 import { useCreateGroupDialogContext } from './create-group-dialog-context';
-import { useCustomGroupsContext } from '@/contexts/custom-groups-context';
 
 // Scripts Imports
-import { getDisplayName } from '@/utils/getDisplayName';
-import { getAvatarsList } from '@/utils/getAvatarsList';
-import { useSettingsContext } from '@/contexts/settings-context';
+import {
+  getGroupsDisplayName,
+  getStreamerDisplayName,
+} from '@/utils/getDisplayName';
 
-type CreateGroupDialogProps = {
-  purgatory: boolean;
-  STREAMERS: StreamerType[];
-};
+type CreateGroupDialogProps = {};
 
-export const CreateGroupDialog = ({STREAMERS, ...props}: CreateGroupDialogProps) => {
+export const CreateGroupDialog = (props: CreateGroupDialogProps) => {
   const t = useTranslations('create-group-dialog');
   const [selectedGroupStreamers, { updateList: setSelectedGroupStreamers }] =
     useCreateGroupDialogContext();
   const [search, setSearch] = useState('');
   const [groupName, setGroupName] = useState('');
-  const [customGroups, setCustomGroups] = useCustomGroupsContext();
-  const [{ streamers: { outro: { showOpposite } } }] = useSettingsContext()
-
-  const GROUPS = [...DEFAULT_GROUPS, ...PURGATORY_GROUPS];
+  const [customGroups, setCustomGroups] = useCustomGroups();
 
   const mergedGroups = [...new Set([...GROUPS, ...customGroups])];
-
-  const avatars = getAvatarsList(selectedGroupStreamers);
-
-  const filteredAvatars =
-    avatars.includes('peqitw') && avatars.includes('pactw')
-      ? avatars.filter((a) => a !== 'peqitw')
-      : avatars;
 
   return (
     <Dialog
@@ -108,7 +92,7 @@ export const CreateGroupDialog = ({STREAMERS, ...props}: CreateGroupDialogProps)
               value={groupName}
             />
             {mergedGroups
-              .map((cg) => cg.simpleGroupName)
+              .map((cg) => cg.simple_name)
               .includes(groupName.toLocaleLowerCase().replaceAll(' ', '-')) && (
               <span className="text-xs text-red-500">{t('name-error')}</span>
             )}
@@ -133,14 +117,14 @@ export const CreateGroupDialog = ({STREAMERS, ...props}: CreateGroupDialogProps)
               onValueChange={setSelectedGroupStreamers}
             >
               {STREAMERS.filter((streamer) =>
-                streamer.displayName
+                streamer.display_name
                   .toLocaleLowerCase()
                   .includes(search.toLocaleLowerCase()),
               ).map((streamer, index) => (
                 <StreamerItem
                   streamer={streamer}
                   index={index}
-                  key={streamer.twitchName}
+                  key={streamer.twitch_name}
                 />
               ))}
             </ToggleGroup.Root>
@@ -150,9 +134,11 @@ export const CreateGroupDialog = ({STREAMERS, ...props}: CreateGroupDialogProps)
                 {selectedGroupStreamers.length === 0 &&
                   t('no-selected-streamers')}
               </span>{' '}
-              {selectedGroupStreamers.map((s) => getDisplayName(s)).length >
-                0 &&
-                selectedGroupStreamers.map((s) => getDisplayName(s)).join(', ')}
+              {selectedGroupStreamers.map((s) => getGroupsDisplayName(s))
+                .length > 0 &&
+                selectedGroupStreamers
+                  .map((s) => getGroupsDisplayName(s))
+                  .join(', ')}
             </p>
           </section>
         </div>
@@ -169,20 +155,17 @@ export const CreateGroupDialog = ({STREAMERS, ...props}: CreateGroupDialogProps)
                     simpleGroupName: groupName
                       .toLocaleLowerCase()
                       .replaceAll(' ', '-'),
-                    members: selectedGroupStreamers.map((s) =>
-                      getDisplayName(s),
-                    ),
-                    avatars:
-                      avatars.includes('peqitw') && avatars.includes('pactw')
-                        ? avatars.filter((a) => a !== 'peqitw')
-                        : avatars,
                     twitchNames: selectedGroupStreamers,
+                    avatars: selectedGroupStreamers,
+                    members: selectedGroupStreamers.map((s) =>
+                      getStreamerDisplayName(s),
+                    ),
                   },
                 ])
               }
               disabled={
                 mergedGroups
-                  .map((cg) => cg.simpleGroupName)
+                  .map((cg) => cg.simple_name)
                   .includes(
                     groupName.toLocaleLowerCase().replaceAll(' ', '-'),
                   ) ||

@@ -6,6 +6,12 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'static-cdn.jtvnw.net',
         port: '',
+        pathname: '/user-default-pictures-uv/*',
+      },
+      {
+        protocol: 'https',
+        hostname: 'static-cdn.jtvnw.net',
+        port: '',
         pathname: '/jtv_user_pictures/*',
       },
       {
@@ -31,6 +37,12 @@ const nextConfig = {
         hostname: 's.namemc.com',
         port: '',
         pathname: '/i/*.png',
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        port: '',
+        pathname: '/**/*',
       },
     ],
   },
