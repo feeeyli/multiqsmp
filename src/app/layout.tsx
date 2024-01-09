@@ -52,7 +52,11 @@ export default function RootLayout({
           name="twitter:image"
           content="https://multiqsmp.vercel.app/api/og"
         />
-
+	<meta
+          name="twitter:site"
+          content="@feeeyli"
+        />
+	      
         <Script
           async
           src={`https://www.googletagmanager.com/gtag/js? 
