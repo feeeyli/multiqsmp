@@ -41,8 +41,6 @@ export default function RootLayout({
         />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="multiqsmp.vercel.app" />
-        <meta property="twitter:url" content="https://multiqsmp.vercel.app" />
         <meta name="twitter:title" content="MultiQSMP" />
         <meta
           name="twitter:description"
