@@ -10,12 +10,12 @@ import { StreamPlayerControlsProvider } from './stream-player/stream-player-cont
 
 // Scripts Imports
 import { useHasMounted } from '@/hooks/useHasMounted';
-import { getStreamersFromGroups } from '@/utils/getStreamersFromGroups';
 
 // Components Imports
 import { useLayoutMemory } from '@/contexts/layout-memory-context';
 import { useSettings } from '@/contexts/settings-context';
 import { SwapStreamsProvider } from '@/contexts/swap-points-context';
+import { useQueryData } from '@/hooks/useQueryData';
 import { getLayoutKey } from '@/utils/getLayoutKey';
 import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
 import { ArrowLeftRight } from 'lucide-react';
@@ -24,6 +24,12 @@ import RGL, { Layout, WidthProvider } from 'react-grid-layout';
 import { useElementSize, useMediaQuery } from 'usehooks-ts';
 import { Chat } from '../chats-list/chat';
 import { StreamPlayer } from './stream-player';
+
+type Streams = {
+  twitch_name: string;
+  group_name?: string;
+  is_chat: boolean;
+}[];
 
 interface StreamsListProps {
   resizing: boolean;
@@ -44,6 +50,7 @@ export const StreamsList = (props: StreamsListProps) => {
       streams: { movableChat },
     },
   ] = useSettings();
+  const [streamersOnQuery, groupsOnQuery] = useQueryData();
 
   const movingHandles = {
     start() {
@@ -62,56 +69,67 @@ export const StreamsList = (props: StreamsListProps) => {
     },
   };
 
-  // const on
-
   const [containerRef, containerSize] = useElementSize();
 
-  const streamersOnQuery = searchParams.get('streamers')?.split('/') || [];
-  const groupsOnQuery = searchParams.get('groups')?.split('/') || [];
+  // const streamersOnQuery = searchParams.get('streamers')?.split('/') || [];
+  // const groupsOnQuery = searchParams.get('groups')?.split('/') || [];
   const chatsOnQuery = searchParams.get('chats')?.split('/') || [];
 
-  const streamersFromGroups = getStreamersFromGroups(
-    groupsOnQuery,
-    customGroups,
-  );
+  // const streamersFromGroups = getStreamersFromGroups(
+  //   groupsOnQuery,
+  //   customGroups,
+  // );
 
-  const mergedStreams = [
-    ...new Set([
-      ...streamersFromGroups.map((s) => ({
-        twitchName: s.twitchName,
-        groupName: s.groupName,
-        isChat: false,
-      })),
-      ...streamersOnQuery.map((s) => ({
-        twitchName: s,
-        groupName: undefined,
-        isChat: false,
-      })),
-    ]),
-  ];
+  // const mergedStreams = [
+  //   ...new Set([
+  //     ...streamersFromGroups.map((s) => ({
+  //       twitchName: s.twitch_name,
+  //       groupName: s.group_name,
+  //       isChat: false,
+  //     })),
+  //     ...streamersOnQuery.map((s) => ({
+  //       twitchName: s,
+  //       groupName: undefined,
+  //       isChat: false,
+  //     })),
+  //   ]),
+  // ];
+
+  const mergedStreams: Streams = Array.from([
+    ...groupsOnQuery
+      .map((group) =>
+        group.members.map((member) => ({
+          twitch_name: member.twitch_name,
+          group_name: group.simple_name,
+          is_chat: false,
+        })),
+      )
+      .flat(),
+    ...streamersOnQuery.map((s) => ({
+      twitch_name: s.twitch_name,
+      group_name: undefined,
+      is_chat: false,
+    })),
+  ]);
 
   const mergedStreamsWithoutDuplicates = Array.from(
-    new Set(mergedStreams.map((item) => item.twitchName)),
-  ).map((twitchName) => {
+    new Set(mergedStreams.map((item) => item.twitch_name)),
+  ).map((twitch_name) => {
     const itemWithGroupName = mergedStreams.find(
-      (item) => item.twitchName === twitchName && item.groupName,
+      (item) => item.twitch_name === twitch_name && item.group_name,
     );
     return (
       itemWithGroupName ||
-      mergedStreams.find((item) => item.twitchName === twitchName)
+      mergedStreams.find((item) => item.twitch_name === twitch_name)
     );
-  }) as typeof mergedStreams;
+  }) as Streams;
 
-  const listWithChat: {
-    twitchName: string;
-    groupName?: string;
-    isChat: boolean;
-  }[] = [
+  const listWithChat: Streams = [
     ...mergedStreamsWithoutDuplicates,
     ...(movableChat ? chatsOnQuery : []).map((c) => ({
-      twitchName: c,
-      groupName: undefined,
-      isChat: true,
+      twitch_name: c,
+      group_name: undefined,
+      is_chat: true,
     })),
   ];
 
@@ -205,18 +223,18 @@ export const StreamsList = (props: StreamsListProps) => {
                   key={i}
                   className="grid-layout-item flex select-none flex-col rounded-sm bg-muted"
                 >
-                  {!channel.isChat && (
+                  {!channel.is_chat && (
                     <StreamPlayerControlsProvider index={i}>
                       <StreamPlayer
-                        channel={channel.twitchName}
-                        groupName={channel.groupName}
+                        channel={channel.twitch_name}
+                        groupName={channel.group_name}
                         isMoving={isMoving}
                         layout={layout}
                       />
                     </StreamPlayerControlsProvider>
                   )}
-                  {channel.isChat && (
-                    <Chat chat={channel.twitchName} isMoving={isMoving} />
+                  {channel.is_chat && (
+                    <Chat chat={channel.twitch_name} isMoving={isMoving} />
                   )}
                 </div>
               ))}

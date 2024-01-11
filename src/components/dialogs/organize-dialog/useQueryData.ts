@@ -55,13 +55,13 @@ export function useQueryData(): [
     streamersFromGroups.reduce(
       (acc, curr) => {
         const existingGroup = acc.find(
-          (group) => group.name === curr.groupName,
+          (group) => group.name === curr.group_name,
         );
 
         if (existingGroup) {
-          existingGroup.members.push(curr.twitchName);
+          existingGroup.members.push(curr.twitch_name);
         } else {
-          acc.push({ name: curr.groupName, members: [curr.twitchName] });
+          acc.push({ name: curr.group_name, members: [curr.twitch_name] });
         }
 
         return acc;

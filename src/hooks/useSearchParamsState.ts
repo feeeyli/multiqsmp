@@ -45,7 +45,7 @@ export function useSearchParamsStates() {
   const streamersFromGroups = getStreamersFromGroups(
     groupsOnQuery,
     customGroups,
-  ).map((g) => g.twitchName);
+  ).map((g) => g.twitch_name);
 
   const actualStreams = [
     ...new Set([...streamersOnQuery, ...streamersFromGroups]),
