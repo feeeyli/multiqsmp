@@ -98,11 +98,13 @@ export const StreamsList = (props: StreamsListProps) => {
   const mergedStreams: Streams = Array.from([
     ...groupsOnQuery
       .map((group) =>
-        group.members.map((member) => ({
-          twitch_name: member.twitch_name,
-          group_name: group.simple_name,
-          is_chat: false,
-        })),
+        group.members
+          .filter((member) => !member.is_hidden)
+          .map((member) => ({
+            twitch_name: member.twitch_name,
+            group_name: group.simple_name,
+            is_chat: false,
+          })),
       )
       .flat(),
     ...streamersOnQuery.map((s) => ({

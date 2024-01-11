@@ -5,7 +5,19 @@ import { getStreamersFromGroups } from '@/utils/getStreamersFromGroups';
 import { useSearchParams } from 'next/navigation';
 import { useReadLocalStorage } from 'usehooks-ts';
 
-export function useQueryData(): [SimpleStreamerType[], GroupType[]] {
+export function useQueryData(): [
+  SimpleStreamerType[],
+  {
+    display_name: string;
+    simple_name: string;
+    members: {
+      display_name: string;
+      twitch_name: string;
+      is_hidden: boolean;
+      chat_opened: boolean;
+    }[];
+  }[],
+] {
   const searchParams = useSearchParams();
   const CG = useReadLocalStorage<
     {
@@ -67,7 +79,7 @@ export function useQueryData(): [SimpleStreamerType[], GroupType[]] {
 
   const fullGroups = [...GROUPS, ...(customGroups as GroupType[])];
 
-  const groups: GroupType[] = groupsWithMembers.map((g) => {
+  const groups = groupsWithMembers.map((g) => {
     const originalGroup = fullGroups.find((fg) => fg.simple_name === g.name);
 
     return {
