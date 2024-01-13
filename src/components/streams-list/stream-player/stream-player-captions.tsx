@@ -144,7 +144,7 @@ export function StreamPlayerCaptions({ streamer }: StreamPlayerCaptionsProps) {
     const wordList = shuffle([
       'Mussum Ipsum, cacilds vidis litro abertis',
       'Mauris nec dolor in eros commodo tempor',
-      'Aenean aliquam molestie leo, vitae iaculis nisl',
+      'Aenean aliquam molestie leo, vitae iacuis nisl',
       'Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Pellentesque nec nulla ligula',
       'Donec gravida turpis a vulputate ultricies',
       'Delegadis gente finis, bibendum egestas augue arcu ut est',
