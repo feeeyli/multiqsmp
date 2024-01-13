@@ -29,7 +29,8 @@ const socket = io('https://qsmp.dev', {
   secure: true,
   rejectUnauthorized: false,
   query: {
-    token: '3bcd013e-d849-481c-8d01-7daa04e48c77',
+    token:
+      'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE0OSwidXNlcm5hbWUiOiJRU01QVFYiLCJyb2xlIjoidXNlciIsImlhdCI6MTcwNDY2NTc3NX0.nI6nJd3ey-8OSfiwFrz0j9kyyq_KBTKtrChNRoI08hMypVAdTqr5wOiwhl4PWw7z9tz3XhFTBUv7NPV513_mSILZ4QmCufUjenxTPdcZ9TdSpuY2B6E3Bpm1Bn9q5lBANGFIhVz0la851ehBwi245-xn1Rd8XpgS7LQXdeLoBMqKmmyaZa3_LjU_KdkLUsD4HU8Nj4pONWZBwGFdEzc5QGCj9Juv9N9dF3I9GwiXt6IqPQVZ6GJDzkn32Vm9UMyV8-26uRgrn-GvbuqIBdle1F-Dtha3NFVnN4Lm-VYtCAYci5fNhvuiyr_nE2QS5unfhJZqg4J1iSgBFsE3xoJkPA',
   },
 });
 
