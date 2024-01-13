@@ -1,11 +1,11 @@
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
-  DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { DialogOverlay, DialogPortal } from '@radix-ui/react-dialog';
 import {
   ArrowLeftRight,
@@ -14,9 +14,7 @@ import {
   Settings,
   X,
 } from 'lucide-react';
-import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { useTranslations } from 'next-intl';
-import Markdown from 'react-markdown';
 import { useLocalStorage } from 'usehooks-ts';
 
 export const WelcomeDialog = () => {
@@ -25,8 +23,6 @@ export const WelcomeDialog = () => {
     'not-first-view',
     false,
   );
-
-  // if (notFirstView) return null;
 
   return (
     <Dialog
@@ -106,9 +102,6 @@ export const WelcomeDialog = () => {
           </DialogPrimitive.Close>
         </DialogPrimitive.Content>
       </DialogPortal>
-      {/* <DialogContent className="max-w-lg">
-        
-      </DialogContent> */}
     </Dialog>
   );
 };

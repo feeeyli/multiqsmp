@@ -39,7 +39,7 @@ export const SwapStreamsProvider = ({
     [url: string]: number[];
   }>('swap-points-memory', {});
 
-  const [_, setLayoutMemory] = useLayoutMemory();
+  const [, setLayoutMemory] = useLayoutMemory();
 
   const [swapPoints, setSwapPoints] = useState<number[]>(
     swapPointsMemory[getLayoutKey(searchParams)] || [],

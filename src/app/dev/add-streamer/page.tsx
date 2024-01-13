@@ -31,7 +31,7 @@ const formSchema = z.object({
 });
 
 export default function AddStreamer() {
-  const [_, copy] = useCopyToClipboard();
+  const [, copy] = useCopyToClipboard();
   const [added, setAdded] = useState<z.infer<typeof formSchema>[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

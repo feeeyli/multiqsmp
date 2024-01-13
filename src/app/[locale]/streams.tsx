@@ -45,9 +45,9 @@ export default function Streams(props: StreamsPageProps) {
   const [resizing, setResizing] = useState(false);
   const [settings] = useSettings();
   const t = useTranslations();
-  const [_, setEasterEggs] = useEasterEggsContext();
+  const [, setEasterEggs] = useEasterEggsContext();
   const searchParams = useSearchParams();
-  const [__, setLayoutMemory] = useLayoutMemory();
+  const [, setLayoutMemory] = useLayoutMemory();
   const { toggle, fullscreen } = useFullscreen();
 
   useKonamiCode(() => {
@@ -129,6 +129,7 @@ export default function Streams(props: StreamsPageProps) {
                 const {
                   [getLayoutKey(searchParams, {
                     movableChat: settings.streams.movableChat,
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   })]: _,
                   ...rest
                 } = old;

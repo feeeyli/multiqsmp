@@ -42,11 +42,12 @@ const INITIAL_VALUE: SettingsType = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function extend(target: any, ...args: any[]) {
-  for (var i = 1; i < arguments.length; ++i) {
-    var from = arguments[i];
+  for (let i = 0; i < args.length; ++i) {
+    const from = args[i];
     if (typeof from !== 'object') continue;
-    for (var j in from) {
+    for (const j in from) {
       if (from.hasOwnProperty(j)) {
         target[j] =
           typeof from[j] === 'object' && !Array.isArray(from[j])
@@ -73,7 +74,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
   );
 
   useEffect(() => {
-    let themed = { ...settings };
+    const themed = { ...settings };
 
     if (settings.appearance.theme === 'purgatory' && !memory.setPurgatory) {
       themed.appearance.theme = 'dark';
@@ -84,6 +85,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
     }
 
     setSettings(extend({}, INITIAL_VALUE, themed));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { setTheme } = useTheme();

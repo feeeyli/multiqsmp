@@ -169,7 +169,7 @@ export const EditGroupDialog = (props: EditGroupDialog) => {
                     (g) => g.simpleGroupName === props.group.simple_name,
                   );
 
-                  let editedCustomGroups = [...old];
+                  const editedCustomGroups = [...old];
 
                   editedCustomGroups[groupId] = {
                     groupName,
@@ -188,7 +188,7 @@ export const EditGroupDialog = (props: EditGroupDialog) => {
 
                 if (favoriteGroups.value.includes(props.group.simple_name))
                   favoriteGroups.set((old) => {
-                    let newFavoriteGroups = old.filter(
+                    const newFavoriteGroups = old.filter(
                       (fg) => fg !== props.group.simple_name,
                     );
 

@@ -10,7 +10,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { useTranslations } from 'next-intl';
-import { MouseEventHandler, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { SettingsType } from '..';
 

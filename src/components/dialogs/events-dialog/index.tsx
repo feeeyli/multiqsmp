@@ -2,6 +2,8 @@
 import { useTranslations } from 'next-intl';
 
 // Components Imports
+import { EventResponse } from '@/@types/globals';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -9,13 +11,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Calendar } from 'lucide-react';
-import { EventResponse } from '@/@types/globals';
-import { Fragment, useEffect, useState } from 'react';
-import { Event } from './event';
 import { Separator } from '@/components/ui/separator';
+import { Calendar } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import Countdown from 'react-countdown';
+import { Event } from './event';
 
 export function EventsDialog() {
   const t = useTranslations('events-dialog');

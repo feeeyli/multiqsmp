@@ -15,7 +15,7 @@ export const GroupMemberListItem = (props: GroupMemberListItemProps) => {
   const t = useTranslations('organize-dialog');
 
   const {
-    groupsList: [_, setGroupsList],
+    groupsList: [, setGroupsList],
     streamersList: [streamersList],
   } = useOrganize();
 
@@ -50,9 +50,11 @@ export const GroupMemberListItem = (props: GroupMemberListItemProps) => {
       <div className="flex flex-1 items-center gap-2 group-data-[hidden=true]:line-through">
         {getSkinHead(props.member.twitch_name).map((head) => (
           <Image
-            src={head
-              ? head
-              : 'https://placehold.co/300x300/281f37/f9fafb.png?text=o_O'}
+            src={
+              head
+                ? head
+                : 'https://placehold.co/300x300/281f37/f9fafb.png?text=o_O'
+            }
             key={head}
             alt={`${t('profile-image-alt')} ${props.member.twitch_name}`}
             width={128}

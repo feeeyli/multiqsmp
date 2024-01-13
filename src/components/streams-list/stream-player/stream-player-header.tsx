@@ -38,7 +38,6 @@ import { useTranslations } from 'next-intl';
 
 interface StreamPlayerHeaderProps {
   channel: string;
-  isYoutubeStream: boolean;
   groupName?: string;
 }
 
@@ -98,40 +97,6 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
     }
   }
 
-  function handleMove(dir: 'up' | 'down') {
-    let newActivesStreams = streams === '' ? [] : streams.split('/');
-
-    const index = newActivesStreams.findIndex((s) => s === props.channel);
-
-    if (
-      (index <= 0 && dir === 'down') ||
-      (index >= newActivesStreams.length - 1 && dir === 'up')
-    )
-      return;
-
-    if (dir === 'down') {
-      const itemOnIndex = newActivesStreams[index];
-
-      const itemBefore = newActivesStreams[index - 1];
-
-      newActivesStreams[index] = itemBefore;
-
-      newActivesStreams[index - 1] = itemOnIndex;
-    }
-
-    if (dir === 'up') {
-      const itemOnIndex = newActivesStreams[index];
-
-      const itemAfter = newActivesStreams[index + 1];
-
-      newActivesStreams[index] = itemAfter;
-
-      newActivesStreams[index + 1] = itemOnIndex;
-    }
-
-    setStreams(newActivesStreams.join('/'));
-  }
-
   const headerActions: { [name: string]: ReactNode } = {
     mute: (
       <Tooltip title={t('mute')}>
@@ -176,7 +141,6 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
           onClick={() => handleToggleChat()}
           variant="stream-header"
           size="stream-header"
-          data-disabled={props.isYoutubeStream}
           className="data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
           key="chat"
         >

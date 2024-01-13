@@ -16,7 +16,7 @@ export const StreamerAndChatListItem = (
   const t = useTranslations('organize-dialog');
 
   const {
-    streamersList: [_, setStreamerList],
+    streamersList: [, setStreamerList],
   } = useOrganize();
 
   return (

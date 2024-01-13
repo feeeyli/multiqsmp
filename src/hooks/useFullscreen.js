@@ -91,6 +91,7 @@ export function useFullscreen() {
       });
     }
     return void 0;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return { ref, toggle, fullscreen };
 }

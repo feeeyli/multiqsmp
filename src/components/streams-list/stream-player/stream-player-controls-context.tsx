@@ -80,8 +80,6 @@ export const StreamPlayerControlsProvider = ({
     },
   };
 
-  type t = typeof streamPlayerControls;
-
   return (
     <StreamPlayerControlsContext.Provider
       value={{ ...streamPlayerControls, index }}

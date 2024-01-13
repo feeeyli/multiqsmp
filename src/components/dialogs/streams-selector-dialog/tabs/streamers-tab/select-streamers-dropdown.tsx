@@ -6,7 +6,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useSettings } from '@/contexts/settings-context';
 import {
   BoxSelect,
   CheckSquare,
@@ -26,11 +25,6 @@ export function SelectStreamersDropdown({
 }: SelectStreamersDropdownProps) {
   const t = useTranslations('streamers-dialog');
   const { selectedStreamers } = useStreamsSelector();
-  const [
-    {
-      streamers: { outro },
-    },
-  ] = useSettings();
 
   return (
     <DropdownMenu>

@@ -30,9 +30,7 @@ import { StreamersList } from './streamers-list';
 
 export type OnlineStreamerType = { twitchName: string; isPlayingQsmp: boolean };
 
-interface StreamersTabProps {}
-
-export const StreamersTab = (props: StreamersTabProps) => {
+export const StreamersTab = () => {
   const t = useTranslations('streamers-dialog');
   const [
     {
@@ -75,6 +73,7 @@ export const StreamersTab = (props: StreamersTabProps) => {
 
       setStreamers(data);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const newParticipants =

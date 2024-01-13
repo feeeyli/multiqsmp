@@ -32,9 +32,7 @@ import { Label } from '@radix-ui/react-label';
 import { BoxSelect, CheckSquare, MousePointerSquareDashed } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-interface GroupsTabProps {}
-
-export const GroupsTab = (props: GroupsTabProps) => {
+export const GroupsTab = () => {
   const { selectedGroups } = useStreamsSelector();
   const { groups: favoritesList } = useFavoriteListsContext();
   const [customGroups] = useCustomGroups();

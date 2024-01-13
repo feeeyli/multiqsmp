@@ -66,16 +66,6 @@ const groupVariant = cva(
   },
 );
 
-const teams: {
-  'Green Team': 'green';
-  'Red Team': 'red';
-  'Blue Team': 'blue';
-} = {
-  'Green Team': 'green',
-  'Red Team': 'red',
-  'Blue Team': 'blue',
-};
-
 export const Group = (props: GroupProps) => {
   const { selectedGroups, changedGroups } = useStreamsSelector();
   const { groups: favoritesList } = useFavoriteListsContext();

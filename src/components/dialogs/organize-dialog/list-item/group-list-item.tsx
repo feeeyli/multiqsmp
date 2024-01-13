@@ -17,7 +17,7 @@ type GroupListItemProps = {
 
 export function GroupListItem(props: GroupListItemProps) {
   const {
-    groupsList: [_, setGroupsList],
+    groupsList: [, setGroupsList],
   } = useOrganize();
 
   return (

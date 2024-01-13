@@ -38,11 +38,7 @@ import { useQueryData } from '@/hooks/useQueryData';
 import { GroupsTab } from './tabs/groups-tab';
 import { SortStreamersProvider } from './tabs/streamers-tab/sort-streamers-context';
 
-interface StreamsSelectorDialogProps {
-  purgatory: boolean;
-}
-
-export const StreamsSelectorDialog = (props: StreamsSelectorDialogProps) => {
+export const StreamsSelectorDialog = () => {
   const t = useTranslations('streamers-dialog');
   const bt = useTranslations('button-titles');
   const { selectedStreamers, selectedGroups, changedGroups } =

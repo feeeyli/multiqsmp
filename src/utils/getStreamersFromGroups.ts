@@ -25,14 +25,6 @@ export function getStreamersFromGroups(
     members: string[];
   }[];
 
-  const groups = mergedGroups.filter((group) =>
-    groupsNames.includes(group.simple_name),
-  );
-
-  // const onlyTwitchNames = groups.map(group => {
-  //   const toReturn = new Set(group.twitch_names)
-  // })
-
   const streamersFromGroups: {
     group_name: string;
     twitch_name: string;

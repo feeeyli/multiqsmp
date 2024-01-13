@@ -11,7 +11,7 @@ export function getStreamersFromGroup(
     acceptedGroups.includes(group.toLowerCase()),
   );
 
-  let twitchNames: string[] = [];
+  const twitchNames: string[] = [];
 
   filteredGroups.forEach((group) => {
     const names = MERGED_GROUPS.find(

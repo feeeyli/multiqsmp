@@ -8,8 +8,6 @@ import { Slot } from '@radix-ui/react-slot';
 
 const TooltipProvider = TooltipPrimitive.Provider;
 
-const TooltipRoot = TooltipPrimitive.Root;
-
 const TooltipTrigger = TooltipPrimitive.Trigger;
 
 const TooltipContent = React.forwardRef<

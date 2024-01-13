@@ -10,7 +10,7 @@ export async function GET() {
     database_id: databaseId,
   });
 
-  let result = (response.results as NotionEventsResponse).map((item) => ({
+  const result = (response.results as NotionEventsResponse).map((item) => ({
     name: item.properties.Name.title[0].plain_text,
     start: item.properties.Date.date.start,
     end: item.properties.Date.date.end,

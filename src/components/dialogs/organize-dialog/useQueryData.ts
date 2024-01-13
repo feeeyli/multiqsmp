@@ -78,7 +78,7 @@ export function useQueryData(): [
       display_name: originalGroup?.display_name || g.name,
       simple_name: originalGroup?.simple_name || g.name,
       members:
-        originalGroup?.members.map((m, i) => ({
+        originalGroup?.members.map((m) => ({
           display_name: m.display_name,
           twitch_name: m.twitch_name,
           is_hidden: onlyGroupHides.includes(m.twitch_name),

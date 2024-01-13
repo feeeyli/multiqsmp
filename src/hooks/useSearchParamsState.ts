@@ -3,7 +3,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { getStreamersFromGroups } from '../utils/getStreamersFromGroups';
 
 const cleanEmpty = (obj: { [x: string]: string }) =>
-  Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != ''));
+  Object.fromEntries(Object.entries(obj).filter(([, v]) => v != ''));
 
 export function useSearchParamsState(
   searchParamName: string,

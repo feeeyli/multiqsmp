@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 
 // Context Imports
-import { useCustomGroups } from '../../contexts/custom-groups-context';
 import { StreamPlayerControlsProvider } from './stream-player/stream-player-controls-context';
 
 // Scripts Imports
@@ -33,14 +32,12 @@ type Streams = {
 
 interface StreamsListProps {
   resizing: boolean;
-  purgatory: boolean;
 }
 
 export const StreamsList = (props: StreamsListProps) => {
   const isDesktop = !useMediaQuery('(max-width: 640px)');
   const searchParams = useSearchParams();
   const t = useTranslations('streams-list');
-  const [customGroups] = useCustomGroups();
   const hasMounted = useHasMounted();
   const ReactGridLayout = useMemo(() => WidthProvider(RGL), []);
   const [isMoving, setIsMoving] = useState(false);
@@ -71,29 +68,7 @@ export const StreamsList = (props: StreamsListProps) => {
 
   const [containerRef, containerSize] = useElementSize();
 
-  // const streamersOnQuery = searchParams.get('streamers')?.split('/') || [];
-  // const groupsOnQuery = searchParams.get('groups')?.split('/') || [];
   const chatsOnQuery = searchParams.get('chats')?.split('/') || [];
-
-  // const streamersFromGroups = getStreamersFromGroups(
-  //   groupsOnQuery,
-  //   customGroups,
-  // );
-
-  // const mergedStreams = [
-  //   ...new Set([
-  //     ...streamersFromGroups.map((s) => ({
-  //       twitchName: s.twitch_name,
-  //       groupName: s.group_name,
-  //       isChat: false,
-  //     })),
-  //     ...streamersOnQuery.map((s) => ({
-  //       twitchName: s,
-  //       groupName: undefined,
-  //       isChat: false,
-  //     })),
-  //   ]),
-  // ];
 
   const mergedStreams: Streams = Array.from([
     ...groupsOnQuery
@@ -140,24 +115,12 @@ export const StreamsList = (props: StreamsListProps) => {
     isDesktop,
   );
 
-  const rowsPerScreenHeight = Math.floor(containerSize.height / 36);
-
   function getGridData(i: number) {
-    const isInLastRow =
-      Math.floor(i / cols) >=
-        (rows === 5
-          ? 3
-          : rows === 9
-          ? 5
-          : Math.floor((listWithChat.length - 1) / cols)) && rows !== 1;
-
     const def = {
       y: Math.floor(i / cols),
       x: (i % cols) * 10,
       w: 10,
       h: Math.ceil(containerSize.height / 36 / rows),
-      // Math.ceil(Math.floor(containerSize.height / 36) / rows) -
-      // (isInLastRow ? 1 : 0),
     };
 
     const layout = layoutMemory[getLayoutKey(searchParams, { movableChat })];

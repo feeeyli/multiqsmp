@@ -39,9 +39,7 @@ import {
   getStreamerDisplayName,
 } from '@/utils/getDisplayName';
 
-type CreateGroupDialogProps = {};
-
-export const CreateGroupDialog = (props: CreateGroupDialogProps) => {
+export const CreateGroupDialog = () => {
   const t = useTranslations('create-group-dialog');
   const [selectedGroupStreamers, { updateList: setSelectedGroupStreamers }] =
     useCreateGroupDialogContext();

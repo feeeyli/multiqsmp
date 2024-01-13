@@ -61,9 +61,6 @@ export const OrganizeDialog = () => {
     setOrganizeState((old) => ({ ...old, [list]: newValue }));
   }
 
-  const loaded =
-    organizeState.streamers.length > 0 && organizeState.groups.length > 0;
-
   function getWatchUrl() {
     const url = new URLSearchParams();
 
