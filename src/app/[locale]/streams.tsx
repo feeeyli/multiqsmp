@@ -34,12 +34,7 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 
-interface StreamsPageProps {
-  purgatory: boolean;
-  locale: string;
-}
-
-export default function Streams(props: StreamsPageProps) {
+export default function Streams() {
   const isDesktop = !useMediaQuery('(max-width: 640px)');
   const { streams, chats } = useSearchParamsStates();
   const [resizing, setResizing] = useState(false);
@@ -53,10 +48,6 @@ export default function Streams(props: StreamsPageProps) {
   useKonamiCode(() => {
     setEasterEggs((old) => ({ ...old, active: true }));
   });
-
-  if (props.purgatory) {
-    document.body.classList.add('purgatory');
-  }
 
   return (
     <main
@@ -114,10 +105,10 @@ export default function Streams(props: StreamsPageProps) {
           "
       >
         <StreamsSelectorDialogProvider>
-          <StreamsSelectorDialog purgatory={props.purgatory} />
+          <StreamsSelectorDialog />
         </StreamsSelectorDialogProvider>
         <OrganizeDialog />
-        <SettingsDialog purgatory={props.purgatory} />
+        <SettingsDialog />
         {/* <EventsDialog /> */}
         <FAQDialog />
         <Tooltip title={t('button-titles.aside.reset-layout')}>
@@ -159,7 +150,7 @@ export default function Streams(props: StreamsPageProps) {
           data-resizing={resizing}
           className="data-[resizing=true]:pointer-events-none"
         >
-          <StreamsList resizing={resizing} purgatory={props.purgatory} />
+          <StreamsList resizing={resizing} />
         </Panel>
         {chats.length > 0 &&
           streams.length > 0 &&

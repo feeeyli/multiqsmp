@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { Button } from '../ui/button';
 
 interface ChatProps {
-  chats?: string[];
   isMoving?: boolean;
   chat: string;
 }

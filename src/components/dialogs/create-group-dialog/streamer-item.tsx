@@ -15,7 +15,6 @@ import { Button } from '@/components/ui/button';
 
 interface StreamerItemProps {
   streamer: SimpleStreamerType;
-  index: number;
 }
 
 export const StreamerItem = (props: StreamerItemProps) => {

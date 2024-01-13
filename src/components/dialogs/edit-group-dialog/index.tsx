@@ -135,12 +135,8 @@ export const EditGroupDialog = (props: EditGroupDialog) => {
                 streamer.display_name
                   .toLocaleLowerCase()
                   .includes(search.toLocaleLowerCase()),
-              ).map((streamer, index) => (
-                <StreamerItem
-                  streamer={streamer}
-                  index={index}
-                  key={streamer.twitch_name}
-                />
+              ).map((streamer) => (
+                <StreamerItem streamer={streamer} key={streamer.twitch_name} />
               ))}
             </ToggleGroup.Root>
             <p className="text-sm">

@@ -126,11 +126,7 @@ const settingsFormSchema = z.object({
 
 export type SettingsType = z.infer<typeof settingsFormSchema>;
 
-type SettingsDialogProps = {
-  purgatory: boolean;
-};
-
-export const SettingsDialog = (props: SettingsDialogProps) => {
+export const SettingsDialog = () => {
   const t = useTranslations('settings-dialog');
   const bt = useTranslations('button-titles');
   const [settings, setSettings] = useSettings();
@@ -451,7 +447,7 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
                       </Button>
                     )}
                   />
-                  <FormField
+                  {/* <FormField
                     control={form.control}
                     name="streamers.outro.showOpposite"
                     render={({ field }) => (
@@ -479,7 +475,7 @@ export const SettingsDialog = (props: SettingsDialogProps) => {
                         </label>
                       </Button>
                     )}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>

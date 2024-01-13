@@ -74,13 +74,7 @@ export const StreamPlayer = ({ channel, ...props }: Props) => {
       >
         {useHandleAsHeader && (
           <>
-            <StreamPlayerHeader
-              channel={channel}
-              isYoutubeStream={`https://player.twitch.tv/${channel}`.includes(
-                'youtube',
-              )}
-              groupName={props.groupName}
-            />
+            <StreamPlayerHeader channel={channel} groupName={props.groupName} />
             <div className="handle h-7 flex-grow"></div>
           </>
         )}
@@ -92,13 +86,7 @@ export const StreamPlayer = ({ channel, ...props }: Props) => {
         })}
       >
         {!useHandleAsHeader && (
-          <StreamPlayerHeader
-            channel={channel}
-            isYoutubeStream={`https://player.twitch.tv/${channel}`.includes(
-              'youtube',
-            )}
-            groupName={props.groupName}
-          />
+          <StreamPlayerHeader channel={channel} groupName={props.groupName} />
         )}
         <PanelGroup direction="vertical" disablePointerEventsDuringResize>
           {!DEBUG_MODE && (
