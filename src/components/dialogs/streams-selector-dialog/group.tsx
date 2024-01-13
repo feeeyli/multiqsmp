@@ -101,7 +101,7 @@ export const Group = (props: GroupProps) => {
       >
         <Heart
           size="1rem"
-          className="group-data-[favorite=true]:fill-rose-400"
+          className="group-data-[favorite=true]:fill-secondary"
         />
       </Button>
       {props.custom && (

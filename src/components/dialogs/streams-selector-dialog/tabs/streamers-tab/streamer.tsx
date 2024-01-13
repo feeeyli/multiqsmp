@@ -90,7 +90,7 @@ export const Streamer = ({ isDefault = true, ...props }: StreamerProps) => {
             >
               <Heart
                 size="1rem"
-                className="group-data-[favorite=true]:fill-rose-400"
+                className="group-data-[favorite=true]:fill-secondary"
               />
             </Button>
           )}

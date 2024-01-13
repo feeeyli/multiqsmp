@@ -132,11 +132,13 @@ export function StreamPlayerCaptions({ streamer }: StreamPlayerCaptionsProps) {
 
   const index = useRef(0);
 
+  const fake_translations = false;
+
   useEffect(() => {
     // lorem ipsum words
     // const wordList = sentences
 
-    if (streamer.includes('quackity')) return;
+    if (streamer.includes('quackity') || !fake_translations) return;
 
     const wordList = shuffle([
       'Mussum Ipsum, cacilds vidis litro abertis',
@@ -179,7 +181,7 @@ export function StreamPlayerCaptions({ streamer }: StreamPlayerCaptionsProps) {
     return () => {
       clearTimeout(id);
     };
-  }, [addTranscription, translations.text, streamer]);
+  }, [addTranscription, translations.text, streamer, fake_translations]);
 
   if (streamer.includes('quackity')) {
     socket.emit('joinLanguageRoom', streamer + '/pt');
@@ -200,6 +202,20 @@ export function StreamPlayerCaptions({ streamer }: StreamPlayerCaptionsProps) {
       maxSize={31.25}
     >
       <p className="flex h-full flex-col justify-end overflow-hidden text-xs leading-5">
+        {translations.text.length === 0 && (
+          <>
+            <span className="block text-muted-foreground">
+              {streamer.includes('quackity')
+                ? 'Aguardando streamer...'
+                : 'Esse streamer não possui traduções do QSMP.TV.'}
+            </span>
+            {streamer.includes('quackity') && (
+              <span className="block text-muted-foreground">
+                Powered by Quackity Studios
+              </span>
+            )}
+          </>
+        )}
         {translations.text.slice(-6).map((text, i) => (
           <span key={text.split(' ')[0] + i} className="block">
             {text}
