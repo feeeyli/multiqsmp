@@ -217,9 +217,11 @@ export const Streamer = ({ isDefault = true, ...props }: StreamerProps) => {
                 style={{ imageRendering: cucurucho ? 'pixelated' : 'auto' }}
                 className="h-20 w-20 rounded-md group-data-[online=false]:grayscale sm:h-28 sm:w-28"
               />
-              {isDefault && (
-                <div className="absolute bottom-1 right-1 flex flex-wrap items-center justify-center border-2 border-border">
-                  {getSkinHead(props.streamer.twitch_name).map((avatar) => (
+              <div className="absolute bottom-1 right-1 flex flex-wrap items-center justify-center border-2 border-border">
+                {getSkinHead(props.streamer.twitch_name).map((avatar) => {
+                  if (!avatar) return null;
+
+                  return (
                     <picture key={avatar} className="h-5 w-5 sm:h-7 sm:w-7">
                       <Image
                         src={
@@ -236,9 +238,9 @@ export const Streamer = ({ isDefault = true, ...props }: StreamerProps) => {
                         className="pointer-events-none aspect-square group-data-[online=false]:grayscale"
                       />
                     </picture>
-                  ))}
-                </div>
-              )}
+                  );
+                })}
+              </div>
             </div>
           )}
           <div className="w-full overflow-x-hidden text-ellipsis group-data-[online=false]:text-muted-foreground">

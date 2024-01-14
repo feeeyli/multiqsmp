@@ -43,14 +43,10 @@ export default function RootLayout({
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="MultiQSMP" />
-        <meta name="twitter:site" content="@feeeyli" />
+        <meta name="twitter:site" content="feeeyli" />
         <meta
           name="twitter:description"
           content="A website to watch all QSMP streamers at the same time."
-        />
-        <meta
-          name="twitter:image"
-          content="https://multiqsmp.vercel.app/api/og"
         />
 
         <Script
