@@ -176,8 +176,8 @@ export default function Streams() {
             </>
           )}
       </PanelGroup>
-      <WelcomeDialog />
       <ChangelogsDialog />
+      <WelcomeDialog />
     </main>
   );
 }
