@@ -10,8 +10,8 @@
     "new-participants": "Novos participantes!",
     "qsmp-streamer-search-label": "Buscar por streamer no QSMP",
     "twitch-streamer-search-label": "Buscar por streamer na Twitch",
-    "loading-streamers": "Carregando streamers",
-    "search-streamers": "Começe a escrever para buscar streamers...",
+    "loading-streamers": "Buscando informações",
+    "search-streamers": "Comece a escrever para buscar streamers...",
     "group-search-label": "Buscar por grupo",
     "select": {
       "label": "Selecionar",
@@ -241,5 +241,8 @@
       "remove-swap-point": "Remover Ponto de troca",
       "goto-swap-point": "Ir para o Ponto de troca ((swap-point))"
     }
+  },
+  "changelogs-dialog": {
+    "title": "Novidades da atualização"
   }
 }

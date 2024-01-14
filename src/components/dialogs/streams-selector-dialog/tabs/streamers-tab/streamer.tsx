@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 import { StreamerType } from '@/@types/data';
 
 /// Icons Imports
-import { Heart, Info } from 'lucide-react';
+import { Heart, Info, Pin } from 'lucide-react';
 
 // Components Imports
 import { Button } from '@/components/ui/button';
@@ -21,6 +21,7 @@ import { cn } from '@/lib/utils';
 import { getSkinHead } from '@/utils/getSkinHead';
 import { cva } from 'class-variance-authority';
 import { useFavoriteListsContext } from '../favorite-lists-context';
+import { usePinnedStreamers } from '../pinned-streamers-context';
 
 type StreamerTypeProps =
   | {
@@ -65,6 +66,7 @@ export const Streamer = ({ isDefault = true, ...props }: StreamerProps) => {
 
   const { streamers: favoritesList } = useFavoriteListsContext();
   const [{ cucurucho }] = useEasterEggsContext();
+  const [pinnedStreamers, setPinnedStreamers] = usePinnedStreamers();
 
   return (
     <div className="relative">
@@ -102,6 +104,40 @@ export const Streamer = ({ isDefault = true, ...props }: StreamerProps) => {
               </span>
             )}
         </>
+      )}
+      {(!isDefault || props.type === 'search') && (
+        <Button
+          size="favorite"
+          variant="favorite"
+          data-favorite={pinnedStreamers.some(
+            (ps) => ps.twitch_name === props.streamer.twitch_name,
+          )}
+          onClick={() => {
+            if (
+              pinnedStreamers.some(
+                (ps) => ps.twitch_name === props.streamer.twitch_name,
+              )
+            ) {
+              setPinnedStreamers((old) =>
+                old.filter((s) => s.twitch_name !== props.streamer.twitch_name),
+              );
+            } else {
+              setPinnedStreamers((old) => [
+                ...old,
+                {
+                  display_name: props.streamer.display_name,
+                  twitch_name: props.streamer.twitch_name,
+                  avatar_url: props.streamer.avatar_url,
+                },
+              ]);
+            }
+          }}
+        >
+          <Pin
+            size="1rem"
+            className="group-data-[favorite=true]:fill-secondary"
+          />
+        </Button>
       )}
       <ToggleGroupItem
         value={props.streamer.twitch_name}

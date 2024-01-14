@@ -8,7 +8,10 @@
     "no-selected-streamers-or-groups": "No streamer or group selected.",
     "new-participant": "New participant!",
     "new-participants": "New participants!",
-    "streamer-search-label": "Search for streamer",
+    "qsmp-streamer-search-label": "Search by QSMP streamers",
+    "twitch-streamer-search-label": "Search by Twitch streamers",
+    "loading-streamers": "Looking for information",
+    "search-streamers": "Start writing to search for streamers...",
     "group-search-label": "Search for group",
     "select": {
       "label": "Select",
@@ -238,5 +241,8 @@
       "remove-swap-point": "Remove Swap point",
       "goto-swap-point": "Go to Swap point ((swap-point))"
     }
+  },
+  "changelogs-dialog": {
+    "title": "New in the update"
   }
 }

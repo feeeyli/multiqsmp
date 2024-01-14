@@ -285,7 +285,6 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
     [
       'fullscreen',
       'mute',
-      'captions',
       'chat',
       'remove-stream',
       'reload',

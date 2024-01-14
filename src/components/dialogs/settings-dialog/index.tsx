@@ -73,10 +73,11 @@ const headerItemsNames = z.enum([
 const headerItems: {
   value: z.infer<typeof headerItemsNames>;
   icon: React.ReactNode;
+  hidden?: boolean;
 }[] = [
   { value: 'fullscreen', icon: <Expand size="1rem" /> },
   { value: 'mute', icon: <Volume2 size="1rem" /> },
-  { value: 'captions', icon: <CaptionsSquare size="1rem" /> },
+  { value: 'captions', icon: <CaptionsSquare size="1rem" />, hidden: true },
   { value: 'chat', icon: <MessageSquare size="1rem" /> },
   { value: 'reload', icon: <RefreshCcw size="1rem" /> },
   { value: 'remove-stream', icon: <X size="1rem" /> },
@@ -553,6 +554,8 @@ export const SettingsDialog = () => {
                       className="flex flex-col gap-2"
                     >
                       {headerItems.map((item) => {
+                        if (item.hidden) return null;
+
                         return (
                           <FormItem
                             key={item.value}

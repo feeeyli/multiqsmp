@@ -394,6 +394,14 @@
   }
 }
 
+.changelog-markdown h1 {
+  @apply text-lg font-semibold leading-none tracking-tight;
+}
+
+.changelog-markdown p {
+  @apply mt-2 text-sm text-muted-foreground;
+}
+
 .react-grid-layout {
   position: relative;
   transition: height 200ms ease;

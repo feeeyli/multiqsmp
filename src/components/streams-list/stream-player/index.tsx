@@ -13,11 +13,8 @@ import { StreamPlayerControlsContext } from './stream-player-controls-context';
 // Scripts Imports
 
 // Components Imports
-import { ResizableHandle } from '@/components/ui/resizable';
 import { useSettings } from '@/contexts/settings-context';
 import { Layout } from 'react-grid-layout';
-import { Panel, PanelGroup } from 'react-resizable-panels';
-import { StreamPlayerCaptions } from './stream-player-captions';
 import { StreamPlayerHeader } from './stream-player-header';
 
 interface Props {
@@ -88,49 +85,41 @@ export const StreamPlayer = ({ channel, ...props }: Props) => {
         {!useHandleAsHeader && (
           <StreamPlayerHeader channel={channel} groupName={props.groupName} />
         )}
-        <PanelGroup direction="vertical" disablePointerEventsDuringResize>
-          {!DEBUG_MODE && (
-            <Panel className="flex h-full w-full items-center justify-center data-[is-resizing-captions=true]:pointer-events-none">
-              <ReactPlayer
-                className="!h-full !w-full"
-                url={`https://player.twitch.tv/${channel}`}
-                config={{
-                  twitch: {
-                    options: {
-                      theme: 'dark',
-                    },
+        {!DEBUG_MODE && (
+          <div className="flex h-full w-full items-center justify-center">
+            <ReactPlayer
+              className="!h-full !w-full"
+              url={`https://player.twitch.tv/${channel}`}
+              config={{
+                twitch: {
+                  options: {
+                    theme: 'dark',
                   },
-                }}
-                muted={streamPlayerControls.muted.value}
-                playing
-                controls
-                key={streamPlayerControls.refresh.key}
-              />
-            </Panel>
-          )}
-          {DEBUG_MODE && (
-            <Panel className="flex h-full w-full flex-col items-center justify-center border-t-2 border-border data-[is-resizing-captions=true]:pointer-events-none">
-              {channel}
-              <span>
-                {(() => {
-                  const lay = props.layout.find(
-                    (l) => l.i === String(streamPlayerControls.index),
-                  );
+                },
+              }}
+              muted={streamPlayerControls.muted.value}
+              playing
+              controls
+              key={streamPlayerControls.refresh.key}
+            />
+          </div>
+        )}
+        {DEBUG_MODE && (
+          <div className="flex h-full w-full flex-col items-center justify-center border-t-2 border-border">
+            {channel}
+            <span>
+              {(() => {
+                const lay = props.layout.find(
+                  (l) => l.i === String(streamPlayerControls.index),
+                );
 
-                  return `${lay?.w.toFixed(2) || '?'} x ${
-                    lay?.h.toFixed(2) || '?'
-                  }`;
-                })()}
-              </span>
-            </Panel>
-          )}
-          {streamPlayerControls.captions.value && (
-            <>
-              <ResizableHandle withHandle />
-              <StreamPlayerCaptions streamer={channel} />
-            </>
-          )}
-        </PanelGroup>
+                return `${lay?.w.toFixed(2) || '?'} x ${
+                  lay?.h.toFixed(2) || '?'
+                }`;
+              })()}
+            </span>
+          </div>
+        )}
       </div>
     </>
   );

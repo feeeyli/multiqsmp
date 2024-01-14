@@ -36,6 +36,7 @@ import { FavoriteListsProvider } from './tabs/favorite-lists-context';
 import { Tooltip } from '@/components/ui/tooltip';
 import { useQueryData } from '@/hooks/useQueryData';
 import { GroupsTab } from './tabs/groups-tab';
+import { PinnedStreamersProvider } from './tabs/pinned-streamers-context';
 import { SortStreamersProvider } from './tabs/streamers-tab/sort-streamers-context';
 
 export const StreamsSelectorDialog = () => {
@@ -117,10 +118,12 @@ export const StreamsSelectorDialog = () => {
             </TabsTrigger>
           </TabsList>
           <FavoriteListsProvider>
-            <SortStreamersProvider>
-              <StreamersTab />
-            </SortStreamersProvider>
-            <GroupsTab />
+            <PinnedStreamersProvider>
+              <SortStreamersProvider>
+                <StreamersTab />
+              </SortStreamersProvider>
+              <GroupsTab />
+            </PinnedStreamersProvider>
           </FavoriteListsProvider>
         </Tabs>
         <DialogFooter className="flex flex-col gap-2 sm:flex-col">

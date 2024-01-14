@@ -15,6 +15,7 @@ import { StreamsSelectorDialogProvider } from '@/components/dialogs/streams-sele
 
 // Script Imports
 import { ChatsList } from '@/components/chats-list';
+import { ChangelogsDialog } from '@/components/dialogs/changelogs-dialog';
 import { FAQDialog } from '@/components/dialogs/faq-dialog';
 import { SettingsDialog } from '@/components/dialogs/settings-dialog';
 import { WelcomeDialog } from '@/components/dialogs/welcome-dialog';
@@ -176,6 +177,7 @@ export default function Streams() {
           )}
       </PanelGroup>
       <WelcomeDialog />
+      <ChangelogsDialog />
     </main>
   );
 }
