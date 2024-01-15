@@ -1,17 +1,28 @@
 import { StreamerType } from '@/@types/data';
+import { useTranslations } from 'next-intl';
 import { useSortStreamers } from './sort-streamers-context';
 import { Streamer } from './streamer';
 
 type StreamersListProps = {
-  streamers: StreamerType[];
-  notDefaultStreamers: string[];
+  streamers: (StreamerType & { favorite?: boolean })[];
+  title?: string;
+  notSort?: boolean;
 };
 
-export function StreamersList(props: StreamersListProps) {
+export function StreamersList({
+  notSort = false,
+  ...props
+}: StreamersListProps) {
   const { direction, onlineFirst, playingFirst, sortMethod } =
     useSortStreamers();
+  const t = useTranslations('streamers-dialog');
 
   function sortStreamers() {
+    if (notSort)
+      return props.streamers.sort((a, b) =>
+        a.display_name.localeCompare(b.display_name),
+      );
+
     let streamers = [...props.streamers];
 
     const sortDir = [0, -1, 1];
@@ -48,6 +59,27 @@ export function StreamersList(props: StreamersListProps) {
 
   const sortedStreamers = sortStreamers();
 
+  if (props.title)
+    return (
+      <div className="flex w-full flex-col items-center gap-4">
+        <h2 className="font-bold text-primary">
+          {t(props.title, { count: sortedStreamers.length })}
+        </h2>
+        <div className="flex flex-wrap gap-4">
+          {sortedStreamers.map((streamer) => {
+            return (
+              <Streamer
+                key={streamer.twitch_name}
+                streamer={streamer}
+                favorite={streamer.favorite}
+                type="qsmp"
+              />
+            );
+          })}
+        </div>
+      </div>
+    );
+
   return (
     <div className="flex w-full flex-wrap justify-center gap-4">
       {sortedStreamers.map((streamer) => {
@@ -55,9 +87,7 @@ export function StreamersList(props: StreamersListProps) {
           <Streamer
             key={streamer.twitch_name}
             streamer={streamer}
-            isDefault={
-              !props.notDefaultStreamers.includes(streamer.twitch_name)
-            }
+            favorite={streamer.favorite}
             type="qsmp"
           />
         );

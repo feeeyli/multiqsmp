@@ -20,7 +20,7 @@ import { ToggleGroup } from '@/components/ui/toggle-group';
 import { useSettings } from '@/contexts/settings-context';
 import { STREAMERS as DATA_STREAMERS } from '@/data/streamers';
 import { useQueryData } from '@/hooks/useQueryData';
-import { sortStreamers } from '@/utils/sort';
+import { useSepareStreamers } from '@/hooks/useSepareStreamers';
 import { Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { usePinnedStreamers } from '../pinned-streamers-context';
@@ -47,7 +47,16 @@ export const StreamersTab = () => {
   const [streamersOnQuery] = useQueryData();
   const [pinnedStreamers] = usePinnedStreamers();
   const [STREAMERS, setStreamers] = useState<StreamerType[]>(
-    [...pinnedStreamers, ...streamersOnQuery, ...DATA_STREAMERS].map((s) => ({
+    [
+      ...pinnedStreamers,
+      ...streamersOnQuery.filter(
+        (streamer) =>
+          ![...DATA_STREAMERS, ...pinnedStreamers].some(
+            (str) => str.twitch_name === streamer.twitch_name,
+          ),
+      ),
+      ...DATA_STREAMERS,
+    ].map((s) => ({
       ...s,
       is_live: true,
       is_playing_qsmp: true,
@@ -58,6 +67,7 @@ export const StreamersTab = () => {
   ).map((s) => s.twitch_name);
   const [searchMode, setSearchMode] = useState<'qsmp' | 'twitch'>('qsmp');
   const [gettingData, setGettingData] = useState(false);
+  const [separe, renderStreamers] = useSepareStreamers();
 
   useEffect(() => {
     (async () => {
@@ -89,13 +99,6 @@ export const StreamersTab = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchMode]);
 
-  const newParticipants =
-    process.env.NEXT_PUBLIC_NEW_PARTICIPANTS?.split('/') || [];
-
-  const newParticipantsStreamers = STREAMERS.filter((item) =>
-    newParticipants.includes(item.twitch_name),
-  );
-
   const streamersWithHide = STREAMERS.filter((streamer) => {
     if (
       selectedStreamers.value.some(
@@ -121,19 +124,6 @@ export const StreamersTab = () => {
       streamer.twitch_name.includes(query)
     );
   });
-
-  const favoriteStreamers = sortStreamers(
-    streamersWithHide.filter(
-      (item) =>
-        favoritesList.value.includes(item.twitch_name) &&
-        !newParticipants.includes(item.twitch_name),
-    ),
-  );
-  const nonFavoriteStreamers = streamersWithHide.filter(
-    (item) =>
-      !favoritesList.value.includes(item.twitch_name) &&
-      !newParticipants.includes(item.twitch_name),
-  );
 
   function handleTwitchSearch(query: string) {
     if (query.trim() === '') {
@@ -226,7 +216,41 @@ export const StreamersTab = () => {
           selectedStreamers.set(mappedValue);
         }}
       >
-        {searchMode === 'qsmp' && (
+        {searchMode === 'qsmp' &&
+          renderStreamers(
+            separe(streamersWithHide),
+            <Separator className="my-3" />,
+            (streamers, type) => {
+              if (streamers.length === 0) return null;
+
+              if (type === 'new')
+                return (
+                  <StreamersList
+                    streamers={streamers.map((s) => ({
+                      favorite: favoritesList.value.includes(s.twitch_name),
+                      ...s,
+                    }))}
+                    notSort
+                    title="new-participants"
+                  />
+                );
+
+              if (type === 'favorite')
+                return (
+                  <StreamersList
+                    streamers={streamers.map((s) => ({
+                      favorite: true,
+                      ...s,
+                    }))}
+                    notSort
+                  />
+                );
+              if (type === 'non-default' || type === 'default') {
+                return <StreamersList streamers={streamers} />;
+              }
+            },
+          )}
+        {/* {searchMode === 'qsmp' && (
           <>
             <div className="flex w-full flex-wrap justify-center gap-4">
               {newParticipantsStreamers.length > 0 && (
@@ -284,7 +308,7 @@ export const StreamersTab = () => {
               />
             )}
           </>
-        )}
+        )} */}
         {searchMode === 'twitch' && (
           <>
             {searchedStreamers.length > 0 && (

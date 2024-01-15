@@ -35,7 +35,6 @@ type StreamerTypeProps =
 
 type StreamerProps = {
   streamer: StreamerType;
-  isDefault?: boolean;
 } & StreamerTypeProps;
 
 const groupVariant = cva(
@@ -57,7 +56,7 @@ const groupVariant = cva(
   },
 );
 
-export const Streamer = ({ isDefault = true, ...props }: StreamerProps) => {
+export const Streamer = (props: StreamerProps) => {
   const t = useTranslations('streamers-dialog');
   const [
     {
@@ -68,6 +67,9 @@ export const Streamer = ({ isDefault = true, ...props }: StreamerProps) => {
   const { streamers: favoritesList } = useFavoriteListsContext();
   const [{ cucurucho }] = useEasterEggsContext();
   const [pinnedStreamers, setPinnedStreamers] = usePinnedStreamers();
+  const isDefault = STREAMERS.map((s) => s.twitch_name).includes(
+    props.streamer.twitch_name,
+  );
 
   return (
     <div className="relative">
