@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { SKIN_HEADS } from '@/data/skinHeads';
-import { PURGATORY_STREAMERS, STREAMERS } from '@/data/streamers';
+import { STREAMERS } from '@/data/streamers';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Files, Minus, RotateCcw, Shapes } from 'lucide-react';
 import { useState } from 'react';
@@ -152,9 +152,6 @@ export default function AddStreamer() {
                         null,
                         2,
                       ),
-                    ).replace(
-                      '((PS))',
-                      JSON.stringify(PURGATORY_STREAMERS, null, 2),
                     ),
                   );
                 }}

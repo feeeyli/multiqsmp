@@ -2,6 +2,7 @@ export type SimpleStreamerType = {
   display_name: string;
   twitch_name: string;
   avatar_url: string;
+  invitation?: number;
 };
 
 export type StreamerType = {
@@ -13,5 +14,11 @@ export type StreamerType = {
   title?: string;
 };
 
-import { GROUPS } from '../data/groups';
-export type GroupType = (typeof GROUPS)[0];
+export type GroupType = {
+  display_name: string;
+  simple_name: string;
+  members: {
+    display_name: string;
+    twitch_name: string;
+  }[];
+};

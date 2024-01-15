@@ -1,0 +1,65 @@
+@layer themes {
+  :root > body.frogg,
+  .light > body.frogg {
+    --background: 146 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+
+    --primary: 146 54% 78%;
+    --primary-foreground: 134 20% 98%;
+
+    --secondary: 146 14.3% 95.9%;
+    --secondary-foreground: 134 39.3% 11%;
+
+    --muted-foreground: 134 8.9% 46.1%;
+
+    --destructive: 0 84.2% 60.2%;
+
+    --border: 146 13% 91%;
+    --radius: 0.5rem;
+
+    --card: var(--background);
+    --popover: var(--background);
+
+    --card-foreground: var(--foreground);
+    --popover-foreground: var(--foreground);
+
+    --ring: var(--primary);
+    --destructive-foreground: var(--primary-foreground);
+
+    --muted: var(--secondary);
+    --accent: var(--secondary);
+    --accent-foreground: var(--secondary-foreground);
+
+    --input: var(--border);
+  }
+
+  .dark > body.frogg {
+    --background: 146 15% 12%;
+    --foreground: 134 20% 98%;
+
+    --primary: 146 54% 78%;
+
+    --secondary: 146 27.9% 16.9%;
+
+    --muted-foreground: 134 10.6% 64.9%;
+
+    --destructive: 0 62.8% 30.6%;
+
+    --card: var(--background);
+    --popover: var(--background);
+
+    --card-foreground: var(--foreground);
+    --popover-foreground: var(--foreground);
+    --primary-foreground: var(--foreground);
+    --secondary-foreground: var(--foreground);
+    --accent-foreground: var(--foreground);
+    --destructive-foreground: var(--foreground);
+
+    --ring: var(--primary);
+
+    --muted: var(--secondary);
+    --accent: var(--secondary);
+    --border: var(--secondary);
+    --input: var(--secondary);
+  }
+}

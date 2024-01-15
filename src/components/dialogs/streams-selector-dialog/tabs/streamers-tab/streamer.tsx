@@ -17,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import { ToggleGroupItem } from '@/components/ui/toggle-group';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 import { useSettings } from '@/contexts/settings-context';
+import { STREAMERS } from '@/data/streamers';
 import { cn } from '@/lib/utils';
 import { getSkinHead } from '@/utils/getSkinHead';
 import { cva } from 'class-variance-authority';
@@ -243,13 +244,21 @@ export const Streamer = ({ isDefault = true, ...props }: StreamerProps) => {
               </div>
             </div>
           )}
-          <div className="w-full overflow-x-hidden text-ellipsis group-data-[online=false]:text-muted-foreground">
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 group-data-[online=false]:text-muted-foreground">
             {props.streamer.display_name}
-            {/* {props.streamer.invitation && (
-              <span className="text-xs leading-3 opacity-70">
-                P{String(props.streamer.invitation).padStart(2, '0')}
-              </span>
-            )} */}
+            {(() => {
+              const invitation = STREAMERS.find(
+                (s) => s.twitch_name === props.streamer.twitch_name,
+              )?.invitation;
+
+              if (typeof invitation === 'undefined') return null;
+
+              return (
+                <span className="text-xs leading-3 opacity-70">
+                  P{String(invitation).padStart(2, '0')}
+                </span>
+              );
+            })()}
           </div>
         </Button>
       </ToggleGroupItem>

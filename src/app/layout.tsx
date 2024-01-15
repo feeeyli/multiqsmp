@@ -1,26 +1,40 @@
+'use client';
+
 import './globals.css';
 
 // Next Imports
-import type { Metadata } from 'next';
 
 // Contexts Imports
 import { ThemeProvider } from '@/components/theme-provider';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { AppVariantProvider } from '@/contexts/app-variant-context';
 import { SettingsProvider } from '@/contexts/settings-context';
+import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
 import Script from 'next/script';
 
 const GA_ID = 'G-P0V7XD4TFG';
 
-export const metadata: Metadata = {
-  title: 'MultiQSMP',
-  description: 'A website to watch all QSMP streamers at the same time.',
-};
+// export const metadata: Metadata = {
+//   title: 'MultiQSMP',
+//   description: 'A website to watch all QSMP streamers at the same time.',
+// };
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
+  const getAppVariant = () => {
+    if (/^\/purgatory/g.test(pathname)) return 'purgatory';
+
+    return process.env.NEXT_PUBLIC_APP_VARIANT ?? 'qsmp';
+  };
+
+  const variant = getAppVariant();
+
   return (
     <html suppressHydrationWarning>
       <head>
@@ -47,6 +61,12 @@ export default function RootLayout({
         <meta
           name="twitter:description"
           content="A website to watch all QSMP streamers at the same time."
+        />
+
+        <link
+          rel="shortcut icon"
+          href={`favicon-${variant}.ico`}
+          type="image/x-icon"
         />
 
         <Script
@@ -79,23 +99,21 @@ export default function RootLayout({
           content="ca-pub-7629305009580924"
         ></meta>
       </head>
-      <body className="min-h-dvh w-full">
+      <body
+        className={cn('min-h-dvh w-full', variant === 'qsmp' ? '' : variant)}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          themes={[
-            'dark',
-            'light',
-            'gray-dark',
-            'gray-light',
-            'regret',
-            'code',
-            'purgatory',
-          ]}
+          themes={['dark', 'light']}
           enableSystem
         >
           <SettingsProvider>
-            <TooltipProvider>{children}</TooltipProvider>
+            <TooltipProvider>
+              <AppVariantProvider variant={variant}>
+                {children}
+              </AppVariantProvider>
+            </TooltipProvider>
           </SettingsProvider>
         </ThemeProvider>
       </body>

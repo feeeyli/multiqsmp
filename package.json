@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev-purgatory": "next dev -p 6060",
+    "dev-frogg": "next dev -p 4000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

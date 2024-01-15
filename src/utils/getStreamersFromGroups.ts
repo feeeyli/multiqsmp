@@ -1,14 +1,12 @@
 // Data Imports
 import { GroupType } from '@/@types/data';
-import { GROUPS, PURGATORY_GROUPS } from '@/data/groups';
+import { GROUPS } from '@/data/groups';
 
 export function getStreamersFromGroups(
   groupsNames: string[],
   customGroups: GroupType[],
 ) {
-  const mergedGroups = [
-    ...new Set([...GROUPS, ...PURGATORY_GROUPS, ...customGroups]),
-  ];
+  const mergedGroups = [...new Set([...GROUPS, ...customGroups])];
 
   const groupsWithOptionsDone = groupsNames
     .map((gn) => {

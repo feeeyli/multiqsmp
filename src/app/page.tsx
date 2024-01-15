@@ -3,9 +3,22 @@
 // Next Imports
 import { Button } from '@/components/ui/button';
 import { useSettings } from '@/contexts/settings-context';
+import { getAppVariant } from '@/utils/getAppVariant';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
+
+const textVariants = {
+  qsmp: ['MultiQSMP', 'Bem-vindo', 'Bienvenido', 'Welcome', 'Bienvenu'],
+  frogg: ['MultiFrogg', 'Bem-vindo', 'Bienvenido', 'Welcome', 'Bienvenu'],
+  purgatory: [
+    'MultiQSMP Purgatory',
+    'Bem-vindo, pecador',
+    'Bienvenido, pecador',
+    'Welcome, sinner',
+    'Bienvenue, pécheur',
+  ],
+};
 
 export default function Home() {
   const [settings, setSettings] = useSettings();
@@ -42,15 +55,23 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const t = textVariants[getAppVariant()];
+
+  const getHref = (locale: string) => {
+    if (getAppVariant() !== 'purgatory') return locale;
+
+    return getAppVariant() + locale;
+  };
+
   return (
     <div className="flex min-h-dvh flex-col items-center py-24">
       <header className="text-center">
-        <h1 className="mb-2 text-3xl font-bold">MultiQSMP</h1>
+        <h1 className="mb-2 text-3xl font-bold">{t[0]}</h1>
         <div className="grid grid-cols-2 justify-items-center gap-4 gap-y-1">
-          <span className="text-primary">Bem-vindo</span>
-          <span className="text-primary">Bienvenido</span>
-          <span className="text-primary">Welcome</span>
-          <span className="text-primary">Bienvenu</span>
+          <span className="text-primary">{t[1]}</span>
+          <span className="text-primary">{t[2]}</span>
+          <span className="text-primary">{t[3]}</span>
+          <span className="text-primary">{t[4]}</span>
         </div>
       </header>
       <main className="mt-8 flex flex-1 flex-col items-center gap-14">
@@ -60,7 +81,7 @@ export default function Home() {
             asChild
             className="flex h-fit flex-col items-center p-4"
           >
-            <Link href="/pt">
+            <Link href={getHref('/pt')}>
               <Image
                 src="/br.svg"
                 alt="Bandeira do Brasil"
@@ -76,7 +97,7 @@ export default function Home() {
             asChild
             className="flex h-fit flex-col items-center p-4"
           >
-            <Link href="/es" className="bg-transparent text-center">
+            <Link href={getHref('/es')} className="bg-transparent text-center">
               <div className="relative">
                 <Image
                   src="/mx.svg"
@@ -101,7 +122,7 @@ export default function Home() {
             asChild
             className="flex h-fit flex-col items-center p-4"
           >
-            <Link href="/en" className="bg-transparent text-center">
+            <Link href={getHref('/en')} className="bg-transparent text-center">
               <Image
                 src="/us.svg"
                 alt="Bandeira dos Estados Unidos"
@@ -117,7 +138,7 @@ export default function Home() {
             asChild
             className="flex h-fit flex-col items-center p-4"
           >
-            <Link href="/fr" className="bg-transparent text-center">
+            <Link href={getHref('/fr')} className="bg-transparent text-center">
               <Image
                 src="/fr.svg"
                 alt="Bandeira da França"

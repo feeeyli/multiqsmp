@@ -1,5 +1,5 @@
 import { StreamerType } from '@/@types/data';
-import { STREAMERS } from '@/data/streamers';
+import { QSMP_STREAMERS } from '@/data/streamers/qsmp';
 
 type TwitchResponse = {
   data: {
@@ -37,47 +37,47 @@ type UserTwitchResponse = {
   }[];
 };
 
-async function getDefaultStreamers() {
-  const userLogins = STREAMERS.map(
-    (streamer) => `user_login=${streamer.twitch_name}`,
-  ).join('&');
+// async function getDefaultStreamers() {
+//   const userLogins = STREAMERS.map(
+//     (streamer) => `user_login=${streamer.twitch_name}`,
+//   ).join('&');
 
-  const streamsRes = await fetch(
-    `https://api.twitch.tv/helix/streams?${userLogins}`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TWITCH_SECRET}`,
-        'Client-Id': process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID!,
-      },
-      next: { revalidate: 60 },
-    },
-  );
+//   const streamsRes = await fetch(
+//     `https://api.twitch.tv/helix/streams?${userLogins}`,
+//     {
+//       headers: {
+//         Authorization: `Bearer ${process.env.NEXT_PUBLIC_TWITCH_SECRET}`,
+//         'Client-Id': process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID!,
+//       },
+//       next: { revalidate: 60 },
+//     },
+//   );
 
-  const { data } = (await streamsRes.json()) as TwitchResponse;
+//   const { data } = (await streamsRes.json()) as TwitchResponse;
 
-  return STREAMERS.map((streamer) => {
-    const stream = data.find((s) => s.user_login === streamer.twitch_name);
+//   return STREAMERS.map((streamer) => {
+//     const stream = data.find((s) => s.user_login === streamer.twitch_name);
 
-    const offline = {
-      display_name: streamer.display_name,
-      twitch_name: streamer.twitch_name,
-      avatar_url: streamer.avatar_url,
-      is_live: false,
-    };
+//     const offline = {
+//       display_name: streamer.display_name,
+//       twitch_name: streamer.twitch_name,
+//       avatar_url: streamer.avatar_url,
+//       is_live: false,
+//     };
 
-    if (typeof stream === 'undefined') return offline;
+//     if (typeof stream === 'undefined') return offline;
 
-    return {
-      ...offline,
-      is_live: true,
-      is_playing_qsmp:
-        /(qsmp)|(minecraft)/i.test(stream.tags.join(',') || '') ||
-        stream.game_name === 'Minecraft',
-      title: stream.title,
-      language: stream.language,
-    };
-  });
-}
+//     return {
+//       ...offline,
+//       is_live: true,
+//       is_playing_qsmp:
+//         /(qsmp)|(minecraft)/i.test(stream.tags.join(',') || '') ||
+//         stream.game_name === 'Minecraft',
+//       title: stream.title,
+//       language: stream.language,
+//     };
+//   });
+// }
 
 async function getQueryStreamers(query: string) {
   const userLogins = query
@@ -129,7 +129,9 @@ async function getQueryStreamers(query: string) {
     return {
       ...offline,
       is_live: true,
-      is_playing_qsmp: STREAMERS.some((s) => s.twitch_name === streamer.login)
+      is_playing_qsmp: QSMP_STREAMERS.some(
+        (s) => s.twitch_name === streamer.login,
+      )
         ? /(qsmp)|(minecraft)/i.test(stream.tags.join(',') || '') ||
           stream.game_name === 'Minecraft'
         : undefined,
@@ -149,9 +151,11 @@ export async function GET(request: Request) {
 
   const getStreamers = query
     ? async () => await getQueryStreamers(query)
-    : getDefaultStreamers;
+    : () => undefined;
 
-  const parsedStreamers: StreamerType[] = await getStreamers();
+  const parsedStreamers: StreamerType[] | undefined = await getStreamers();
+
+  if (typeof parsedStreamers === 'undefined') return Response.error();
 
   return Response.json(parsedStreamers);
 }
