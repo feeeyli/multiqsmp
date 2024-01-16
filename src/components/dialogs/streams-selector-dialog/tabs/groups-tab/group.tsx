@@ -189,7 +189,10 @@ export const Group = (props: GroupProps) => {
                         style={{
                           imageRendering: cucurucho ? 'pixelated' : 'auto',
                         }}
-                        className="pointer-events-none aspect-square"
+                        data-hidden={props.group.hidedMembers.some(
+                          (hm) => hm.twitch_name === avatar.twitch_name,
+                        )}
+                        className="pointer-events-none aspect-square data-[hidden=true]:opacity-60 data-[hidden=true]:grayscale"
                       />
                     </picture>
                   ))}
