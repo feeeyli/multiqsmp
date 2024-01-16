@@ -219,7 +219,7 @@ export const StreamersTab = () => {
         {searchMode === 'qsmp' &&
           renderStreamers(
             separe(streamersWithHide),
-            <Separator className="my-3" />,
+            (i) => <Separator className="my-3" key={i} />,
             (streamers, type) => {
               if (streamers.length === 0) return null;
 
@@ -230,6 +230,7 @@ export const StreamersTab = () => {
                       favorite: favoritesList.value.includes(s.twitch_name),
                       ...s,
                     }))}
+                    key="new-participants"
                     notSort
                     title="new-participants"
                   />
@@ -242,11 +243,17 @@ export const StreamersTab = () => {
                       favorite: true,
                       ...s,
                     }))}
+                    key="favorite-streamers"
                     notSort
                   />
                 );
               if (type === 'non-default' || type === 'default') {
-                return <StreamersList streamers={streamers} />;
+                return (
+                  <StreamersList
+                    streamers={streamers}
+                    key={type + '-streamers'}
+                  />
+                );
               }
             },
           )}

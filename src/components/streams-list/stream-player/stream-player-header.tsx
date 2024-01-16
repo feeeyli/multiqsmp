@@ -99,13 +99,12 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
 
   const headerActions: { [name: string]: ReactNode } = {
     mute: (
-      <Tooltip title={t('mute')}>
+      <Tooltip title={t('mute')} key="mute">
         <Button
           tabIndex={opened ? 0 : -1}
           onClick={() => streamPlayerControls.muted.set((old) => !old)}
           variant="stream-header"
           size="stream-header"
-          key="mute"
         >
           {streamPlayerControls.muted.value && (
             <VolumeX size="1rem" className="text-foreground" />
@@ -117,13 +116,12 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
       </Tooltip>
     ),
     fullscreen: (
-      <Tooltip title={t('fullscreen')}>
+      <Tooltip title={t('fullscreen')} key="fullscreen">
         <Button
           tabIndex={opened ? 0 : -1}
           onClick={() => streamPlayerControls.fullScreen.set((old) => !old)}
           variant="stream-header"
           size="stream-header"
-          key="fullscreen"
         >
           {streamPlayerControls.fullScreen.value && (
             <Shrink size="1rem" className="text-foreground" />
@@ -135,14 +133,13 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
       </Tooltip>
     ),
     chat: (
-      <Tooltip title={t('chat')}>
+      <Tooltip title={t('chat')} key="chat">
         <Button
           tabIndex={opened ? 0 : -1}
           onClick={() => handleToggleChat()}
           variant="stream-header"
           size="stream-header"
           className="data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
-          key="chat"
         >
           {isChatActive && (
             <MessageSquare size="1rem" className="text-foreground" />
@@ -154,13 +151,12 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
       </Tooltip>
     ),
     captions: (
-      <Tooltip title={t('captions')}>
+      <Tooltip title={t('captions')} key="captions">
         <Button
           tabIndex={opened ? 0 : -1}
           onClick={() => streamPlayerControls.captions.set((old) => !old)}
           variant="stream-header"
           size="stream-header"
-          key="captions"
         >
           {streamPlayerControls.captions.value && (
             <CaptionsSquare size="1rem" className="text-foreground" />
@@ -172,7 +168,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
       </Tooltip>
     ),
     reload: (
-      <Tooltip title={t('reload')}>
+      <Tooltip title={t('reload')} key="reload">
         <Button
           onClick={() => {
             if (refreshing) return;
@@ -185,7 +181,6 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
           tabIndex={opened ? 0 : -1}
           size="stream-header"
           variant="stream-header"
-          key="reload"
         >
           <RefreshCcw
             data-refreshing={refreshing}
@@ -195,13 +190,12 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
       </Tooltip>
     ),
     'remove-stream': (
-      <Tooltip title={t('remove-stream')}>
+      <Tooltip title={t('remove-stream')} key="remove-stream">
         <Button
           onClick={() => handleRemove()}
           tabIndex={opened ? 0 : -1}
           variant="stream-header"
           size="stream-header"
-          key="remove-stream"
         >
           {props.groupName === undefined && (
             <X size="1rem" className="text-foreground" />
@@ -243,7 +237,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
               );
             })}
             {swapPoints.value.length < 4 && (
-              <Tooltip title={t('add-swap-point')}>
+              <Tooltip title={t('add-swap-point')} key="add-swap-point">
                 <Button
                   tabIndex={opened ? 0 : -1}
                   onClick={() => {
@@ -263,7 +257,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
           </>
         )}
         {swapPoints.value.includes(index) && (
-          <Tooltip title={t('remove-swap-point')}>
+          <Tooltip title={t('remove-swap-point')} key="remove-swap-point">
             <Button
               tabIndex={opened ? 0 : -1}
               onClick={() => {

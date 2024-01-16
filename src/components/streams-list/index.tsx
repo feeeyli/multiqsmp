@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 
 // Context Imports
-import { StreamPlayerControlsProvider } from './stream-player/stream-player-controls-context';
 
 // Scripts Imports
 import { useHasMounted } from '@/hooks/useHasMounted';
@@ -18,11 +17,21 @@ import { useQueryData } from '@/hooks/useQueryData';
 import { getLayoutKey } from '@/utils/getLayoutKey';
 import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
 import { ArrowLeftRight } from 'lucide-react';
+import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import RGL, { Layout, WidthProvider } from 'react-grid-layout';
 import { useElementSize, useMediaQuery } from 'usehooks-ts';
 import { Chat } from '../chats-list/chat';
+import { Button } from '../ui/button';
 import { StreamPlayer } from './stream-player';
+import { StreamPlayerControlsProvider } from './stream-player/stream-player-controls-context';
+
+const DEBUG_MODE =
+  typeof localStorage === 'undefined'
+    ? false
+    : localStorage.getItem('DEBUG_MODE') === 'true'
+    ? true
+    : false;
 
 type Streams = {
   twitch_name: string;
@@ -156,6 +165,23 @@ export const StreamsList = (props: StreamsListProps) => {
       className="streams-list-scrollbar relative h-full flex-1 overflow-auto data-[resizing=true]:pointer-events-none data-[has-chat-open=false]:mr-3"
       ref={containerRef}
     >
+      {DEBUG_MODE && (
+        <div className="absolute right-1 top-2 z-50 flex flex-col gap-3 rounded-md bg-slate-950/50 p-4">
+          <h1 className="text-xl font-bold">DEBUG</h1>
+          <span className="max-w-72 text-balance">
+            {listWithChat.map((i) => i.twitch_name).join(', ')}
+          </span>
+          <pre className="text-xs">{JSON.stringify(layout, null, 2)}</pre>
+          <div>
+            <Button size="sm" variant="link" asChild>
+              <Link href="/pt">Re</Link>
+            </Button>
+            <Button size="sm" variant="link" asChild>
+              <Link href="/pt?streamers=scottonauta">Set</Link>
+            </Button>
+          </div>
+        </div>
+      )}
       {listWithChat.length > 0 && (
         <SwapStreamsProvider
           layout={{ value: layout, set: setLayout }}
@@ -165,7 +191,6 @@ export const StreamsList = (props: StreamsListProps) => {
             <ReactGridLayout
               className="grid-layout max-h-full"
               cols={10 * cols}
-              // rowHeight={{ 1: 30, 5: 28 }[rows] || 29}
               rowHeight={
                 containerSize.height /
                   (Math.ceil(containerSize.height / 36 / rows) * rows) -
@@ -178,6 +203,8 @@ export const StreamsList = (props: StreamsListProps) => {
               onResizeStart={movingHandles.start}
               onResizeStop={movingHandles.stop}
               onLayoutChange={(lay) => {
+                if (lay.some((i) => i.h === 1 && i.w === 1)) return;
+
                 setLayout(lay);
               }}
               layout={layout}

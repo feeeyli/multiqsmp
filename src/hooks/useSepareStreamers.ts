@@ -15,7 +15,7 @@ export function useSepareStreamers(): [
       name: string;
       streamers: StreamerType[];
     }[],
-    separator: ReactNode,
+    separator: (index: number) => ReactNode,
     arrayRender: (streamers: StreamerType[], name: ArrayNames) => ReactNode,
   ) => (ReactNode | StreamerType[])[],
 ] {
@@ -54,7 +54,7 @@ export function useSepareStreamers(): [
       name: string;
       streamers: StreamerType[];
     }[],
-    separator: ReactNode,
+    separator: (index: number) => ReactNode,
     arrayRender: (streamers: StreamerType[], name: ArrayNames) => ReactNode,
   ) {
     const hasSeparator = (next: StreamerType[], ...before: StreamerType[][]) =>
@@ -70,7 +70,7 @@ export function useSepareStreamers(): [
         array.streamers,
         ...itensBefore.map((item) => item.streamers),
       )
-        ? [separator, arrayRender(array.streamers, array.name as ArrayNames)]
+        ? [separator(i), arrayRender(array.streamers, array.name as ArrayNames)]
         : [arrayRender(array.streamers, array.name as ArrayNames)];
     });
 
