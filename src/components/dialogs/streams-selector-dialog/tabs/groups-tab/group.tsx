@@ -259,7 +259,7 @@ export const Group = (props: GroupProps) => {
               });
             }}
           >
-            Selecionar
+            {t('hide-members')}
           </ContextMenuItem>
         </ContextMenuContent>
       </ContextMenu>
