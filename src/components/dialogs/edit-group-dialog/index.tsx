@@ -87,7 +87,7 @@ export const EditGroupDialog = (props: EditGroupDialog) => {
           size="sm"
           className="absolute -right-1 -top-1 z-10 h-auto p-1.5"
         >
-          <Pencil size="1rem" />
+          <Pencil size="1rem" className='text-secondary'/>
         </Button>
       </DialogTrigger>
       <DialogContent>

@@ -35,6 +35,7 @@ import { FavoriteListsProvider } from './tabs/favorite-lists-context';
 // Scripts Imports
 import { Tooltip } from '@/components/ui/tooltip';
 import { useQueryData } from '@/hooks/useQueryData';
+import { formatSelectedGroupsDisplay } from '@/utils/formatSelectedGroupsDisplay';
 import { GroupsTab } from './tabs/groups-tab';
 import { PinnedStreamersProvider } from './tabs/pinned-streamers-context';
 import { SortStreamersProvider } from './tabs/streamers-tab/sort-streamers-context';
@@ -54,7 +55,6 @@ export const StreamsSelectorDialog = () => {
     const newChats = chats.filter((chat) =>
       selectedStreamers.value.some((s) => s.twitch_name === chat),
     );
-    const groupsOnQuery = searchParams.get('groups')?.split('/') || [];
 
     if (selectedStreamers.value.length > 0)
       newUrl.set(
@@ -64,18 +64,24 @@ export const StreamsSelectorDialog = () => {
     if (selectedGroups.value.length > 0)
       newUrl.set(
         'groups',
-        [
-          ...groupsOnQuery.filter(
+        selectedGroups.value
+          // .filter((g) => changedGroups.value.includes(g.simple_name))
+          .map(
             (g) =>
-              !changedGroups.value.includes(g.split('.')[0]) &&
-              selectedGroups.value.some(
-                (grp) => grp.simple_name === g.split('.')[0],
-              ),
-          ),
-          ...selectedGroups.value
-            .filter((g) => changedGroups.value.includes(g.simple_name))
-            .map((g) => g.simple_name),
-        ].join('/'),
+              `${g.simple_name}${
+                g.members.some((m) =>
+                  g.hidedMembers.some((hm) => hm.twitch_name === m.twitch_name),
+                )
+                  ? '.-'
+                  : ''
+              }${g.members
+                .filter((m) =>
+                  g.hidedMembers.some((hm) => hm.twitch_name === m.twitch_name),
+                )
+                .map((m) => m.twitch_name)
+                .join('-')}`,
+          )
+          .join('/'),
       );
     if (selectedStreamers.value.length > 0 && newChats.length > 0)
       newUrl.set('chats', newChats.join('/'));
@@ -87,7 +93,12 @@ export const StreamsSelectorDialog = () => {
     <Dialog
       onOpenChange={() => {
         selectedStreamers.set(streamsOnQuery);
-        selectedGroups.set(groupsOnQuery);
+        selectedGroups.set(
+          groupsOnQuery.map((g) => ({
+            ...g,
+            hidedMembers: g.members.filter((m) => m.is_hidden),
+          })),
+        );
         changedGroups.set([]);
       }}
     >
@@ -139,8 +150,11 @@ export const StreamsSelectorDialog = () => {
             {[...selectedStreamers.value, ...selectedGroups.value].map(
               (s) => s.display_name,
             ).length > 0 &&
-              [...selectedStreamers.value, ...selectedGroups.value]
-                .map((s) => s.display_name)
+              [
+                selectedStreamers.value.map((s) => s.display_name),
+                formatSelectedGroupsDisplay(selectedGroups.value),
+              ]
+                .flat()
                 .join(', ')}
           </p>
           <div className="flex w-full flex-row-reverse items-center">

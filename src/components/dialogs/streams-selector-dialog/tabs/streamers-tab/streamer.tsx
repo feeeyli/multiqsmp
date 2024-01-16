@@ -220,12 +220,16 @@ export const Streamer = (props: StreamerProps) => {
                 style={{ imageRendering: cucurucho ? 'pixelated' : 'auto' }}
                 className="h-20 w-20 rounded-md group-data-[online=false]:grayscale sm:h-28 sm:w-28"
               />
-              <div className="absolute bottom-1 right-1 flex flex-wrap items-center justify-center border-2 border-border">
-                {getSkinHead(props.streamer.twitch_name).map((avatar) => {
-                  if (!avatar) return null;
 
-                  return (
-                    <picture key={avatar} className="h-5 w-5 sm:h-7 sm:w-7">
+              {getSkinHead(props.streamer.twitch_name).map((avatar) => {
+                if (!avatar) return null;
+
+                return (
+                  <div
+                    key={avatar}
+                    className="absolute bottom-1 right-1 flex flex-wrap items-center justify-center border-2 border-border"
+                  >
+                    <picture className="h-5 w-5 sm:h-7 sm:w-7">
                       <Image
                         src={
                           cucurucho ? 'https://i.imgur.com/c1Y9KUp.png' : avatar
@@ -241,9 +245,9 @@ export const Streamer = (props: StreamerProps) => {
                         className="pointer-events-none aspect-square group-data-[online=false]:grayscale"
                       />
                     </picture>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
             </div>
           )}
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 group-data-[online=false]:text-muted-foreground">

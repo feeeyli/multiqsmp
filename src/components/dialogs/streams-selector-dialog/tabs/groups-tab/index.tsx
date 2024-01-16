@@ -6,15 +6,15 @@ import { useState } from 'react';
 
 // Contexts Imports
 import { useCustomGroups } from '@/contexts/custom-groups-context';
-import { CreateGroupDialogProvider } from '../../create-group-dialog/create-group-dialog-context';
-import { useStreamsSelector } from '../streams-selector-dialog-context';
-import { useFavoriteListsContext } from './favorite-lists-context';
+import { CreateGroupDialogProvider } from '../../../create-group-dialog/create-group-dialog-context';
+import { useStreamsSelector } from '../../streams-selector-dialog-context';
+import { useFavoriteListsContext } from '../favorite-lists-context';
 
 // Components Imports
 import { Separator } from '@/components/ui/separator';
 import { TabsContent } from '@/components/ui/tabs';
-import { CreateGroupDialog } from '../../create-group-dialog';
-import { Group } from '../group';
+import { CreateGroupDialog } from '../../../create-group-dialog';
+import { Group } from './group';
 
 // Scripts Imports
 import { Button } from '@/components/ui/button';
@@ -86,7 +86,9 @@ export const GroupsTab = () => {
           <DropdownMenuContent>
             <DropdownMenuItem
               onClick={() => {
-                selectedGroups.set(searchedGroups);
+                selectedGroups.set(
+                  searchedGroups.map((g) => ({ ...g, hidedMembers: [] })),
+                );
               }}
             >
               <CheckSquare size="1rem" /> {t('select.all')}
@@ -119,20 +121,29 @@ export const GroupsTab = () => {
         orientation="vertical"
         value={selectedGroups.value.map((s) => s.simple_name)}
         onValueChange={(value) => {
-          selectedGroups.set(
-            value.map((grp) => {
+          selectedGroups.set((old) => {
+            return value.map((grp) => {
               const group = mergedGroups.find((s) => s.simple_name === grp)!;
 
-              return group;
-            }),
-          );
+              const hidedMembers = old.find((s) => s.simple_name === grp)
+                ?.hidedMembers;
+
+              return { ...group, hidedMembers: hidedMembers ?? [] };
+            });
+          });
         }}
       >
         <div className="flex w-full flex-wrap justify-center gap-4">
           {favoriteGroups.map((group) => (
             <Group
               key={group.simple_name}
-              group={group}
+              group={{
+                ...group,
+                hidedMembers:
+                  selectedGroups.value.find(
+                    (g) => g.simple_name === group.simple_name,
+                  )?.hidedMembers ?? [],
+              }}
               favorite
               custom={customGroups
                 .map((cg) => cg.simple_name)
@@ -147,7 +158,16 @@ export const GroupsTab = () => {
           <>
             <div className="flex w-full flex-wrap justify-center gap-4">
               {nonFavoriteGroups.map((group) => (
-                <Group key={group.simple_name} group={group} />
+                <Group
+                  key={group.simple_name}
+                  group={{
+                    ...group,
+                    hidedMembers:
+                      selectedGroups.value.find(
+                        (g) => g.simple_name === group.simple_name,
+                      )?.hidedMembers ?? [],
+                  }}
+                />
               ))}
             </div>
             <Separator className="my-3" />
@@ -155,7 +175,17 @@ export const GroupsTab = () => {
         )}
         <div className="flex w-full flex-wrap justify-center gap-4">
           {nonFavoriteCustomGroups.map((group) => (
-            <Group key={group.simple_name} group={group} custom />
+            <Group
+              key={group.simple_name}
+              group={{
+                ...group,
+                hidedMembers:
+                  selectedGroups.value.find(
+                    (g) => g.simple_name === group.simple_name,
+                  )?.hidedMembers ?? [],
+              }}
+              custom
+            />
           ))}
           <CreateGroupDialogProvider>
             <CreateGroupDialog />

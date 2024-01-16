@@ -55,6 +55,7 @@ export default function Streams() {
       data-has-chats={chats.length > 0}
       data-hide-dialog={settings.appearance.hideDialog}
       data-dialogs-position={settings.appearance.dialogTriggersPosition}
+      data-fullscreen={fullscreen}
       className="
           group
           relative
@@ -63,6 +64,7 @@ export default function Streams() {
           max-h-dvh
           w-full
           overflow-hidden
+          data-[fullscreen=true]:!p-0
           data-[dialogs-position=bottom]:pb-8
           data-[dialogs-position=left]:pl-8
           data-[dialogs-position=right]:pr-8
@@ -105,33 +107,37 @@ export default function Streams() {
             [&>button]:data-[dialogs-position=right]:rounded-r-none
           "
       >
-        <StreamsSelectorDialogProvider>
-          <StreamsSelectorDialog />
-        </StreamsSelectorDialogProvider>
-        <OrganizeDialog />
-        <SettingsDialog />
-        {/* <EventsDialog /> */}
-        <FAQDialog />
-        <Tooltip title={t('button-titles.aside.reset-layout')}>
-          <Button
-            className="mt-4 px-3 group-data-[dialogs-position=bottom]:mr-2.5 group-data-[dialogs-position=bottom]:mt-0"
-            size="sm"
-            onClick={() => {
-              setLayoutMemory((old) => {
-                const {
-                  [getLayoutKey(searchParams, {
-                    movableChat: settings.streams.movableChat,
-                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                  })]: _,
-                  ...rest
-                } = old;
-                return rest;
-              });
-            }}
-          >
-            <ResetLayout size="1rem" className="block text-secondary" />
-          </Button>
-        </Tooltip>
+        {!fullscreen && (
+          <>
+            <StreamsSelectorDialogProvider>
+              <StreamsSelectorDialog />
+            </StreamsSelectorDialogProvider>
+            <OrganizeDialog />
+            <SettingsDialog />
+            {/* <EventsDialog /> */}
+            <FAQDialog />
+            <Tooltip title={t('button-titles.aside.reset-layout')}>
+              <Button
+                className="mt-4 px-3 group-data-[dialogs-position=bottom]:mr-2.5 group-data-[dialogs-position=bottom]:mt-0"
+                size="sm"
+                onClick={() => {
+                  setLayoutMemory((old) => {
+                    const {
+                      [getLayoutKey(searchParams, {
+                        movableChat: settings.streams.movableChat,
+                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                      })]: _,
+                      ...rest
+                    } = old;
+                    return rest;
+                  });
+                }}
+              >
+                <ResetLayout size="1rem" className="block text-secondary" />
+              </Button>
+            </Tooltip>
+          </>
+        )}
         <Tooltip title={t('button-titles.aside.toggle-fullscreen')}>
           <Button
             className="px-3 md:data-[fullscreen=false]:sr-only"

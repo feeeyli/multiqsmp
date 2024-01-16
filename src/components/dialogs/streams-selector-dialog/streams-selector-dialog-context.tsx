@@ -13,7 +13,14 @@ interface ContextItemValue<T> {
 
 export const StreamsSelectorDialogContext = createContext<{
   selectedStreamers: ContextItemValue<SimpleStreamerType>;
-  selectedGroups: ContextItemValue<GroupType>;
+  selectedGroups: ContextItemValue<
+    GroupType & {
+      hidedMembers: {
+        display_name: string;
+        twitch_name: string;
+      }[];
+    }
+  >;
   changedGroups: ContextItemValue<string>;
 }>({
   selectedStreamers: {
@@ -36,7 +43,14 @@ export const StreamsSelectorDialogProvider = ({
   children: React.ReactNode;
 }) => {
   const selectedStreamers = useState<SimpleStreamerType[]>([]);
-  const selectedGroups = useState<GroupType[]>([]);
+  const selectedGroups = useState<
+    (GroupType & {
+      hidedMembers: {
+        display_name: string;
+        twitch_name: string;
+      }[];
+    })[]
+  >([]);
   const changedGroups = useState<string[]>([]);
 
   return (
