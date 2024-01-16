@@ -118,6 +118,7 @@ export const StreamPlayer = ({ channel, ...props }: Props) => {
                 }`;
               })()}
             </span>
+            <span>i: {streamPlayerControls.index}</span>
           </div>
         )}
       </div>

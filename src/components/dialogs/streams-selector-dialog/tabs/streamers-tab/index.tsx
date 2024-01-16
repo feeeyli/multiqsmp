@@ -1,20 +1,12 @@
-// React Imports
 import { useEffect, useState } from 'react';
 
-// Types Imports
-
-// Data Imports
-
-// Components Imports
 import { Separator } from '@/components/ui/separator';
 import { TabsContent } from '@/components/ui/tabs';
 import { Streamer } from './streamer';
 
-// Contexts Import
 import { useStreamsSelector } from '@/components/dialogs/streams-selector-dialog/streams-selector-dialog-context';
 import { useFavoriteListsContext } from '../favorite-lists-context';
 
-// Scripts Imports
 import { StreamerType } from '@/@types/data';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { useSettings } from '@/contexts/settings-context';
@@ -22,6 +14,7 @@ import { STREAMERS as DATA_STREAMERS } from '@/data/streamers';
 import { useQueryData } from '@/hooks/useQueryData';
 import { useSepareStreamers } from '@/hooks/useSepareStreamers';
 import { Loader2 } from 'lucide-react';
+import { matchSorter } from 'match-sorter';
 import { useTranslations } from 'next-intl';
 import { usePinnedStreamers } from '../pinned-streamers-context';
 import { SearchBar } from './search-bar';
@@ -99,31 +92,28 @@ export const StreamersTab = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchMode]);
 
-  const streamersWithHide = STREAMERS.filter((streamer) => {
-    if (
-      selectedStreamers.value.some(
-        (selected) => selected.twitch_name === streamer.twitch_name,
+  const streamersWithHide = matchSorter(
+    STREAMERS.filter((streamer) => {
+      if (
+        selectedStreamers.value.some(
+          (selected) => selected.twitch_name === streamer.twitch_name,
+        )
       )
-    )
+        return true;
+
+      if (
+        (outro.hideOffline && !streamer.is_live) ||
+        (outro.hideNotPlaying &&
+          !streamer.is_playing_qsmp &&
+          !notDefaultStreamers.includes(streamer.twitch_name))
+      )
+        return false;
+
       return true;
-
-    if (
-      (outro.hideOffline && !streamer.is_live) ||
-      (outro.hideNotPlaying &&
-        !streamer.is_playing_qsmp &&
-        !notDefaultStreamers.includes(streamer.twitch_name))
-    )
-      return false;
-
-    return true;
-  }).filter((streamer) => {
-    const query = search.toLocaleLowerCase();
-
-    return (
-      streamer.display_name.includes(query) ||
-      streamer.twitch_name.includes(query)
-    );
-  });
+    }),
+    search,
+    { keys: ['twitch_name', 'display_name'], baseSort: () => 0 },
+  );
 
   function handleTwitchSearch(query: string) {
     if (query.trim() === '') {
@@ -257,65 +247,6 @@ export const StreamersTab = () => {
               }
             },
           )}
-        {/* {searchMode === 'qsmp' && (
-          <>
-            <div className="flex w-full flex-wrap justify-center gap-4">
-              {newParticipantsStreamers.length > 0 && (
-                <div className="flex w-full flex-col items-center gap-4">
-                  <span className="font-bold text-primary">
-                    {t(
-                      newParticipantsStreamers.length === 1
-                        ? 'new-participant'
-                        : 'new-participants',
-                    )}
-                  </span>
-                  <div className="flex flex-wrap gap-4">
-                    {newParticipantsStreamers.map((streamer) => (
-                      <Streamer
-                        key={streamer.twitch_name}
-                        streamer={streamer}
-                        favorite={favoritesList.value.includes(
-                          streamer.twitch_name,
-                        )}
-                        type="qsmp"
-                      />
-                    ))}
-                  </div>
-                  <Separator className="my-3" />
-                </div>
-              )}
-              {favoriteStreamers.map((streamer) => (
-                <Streamer
-                  key={streamer.twitch_name}
-                  streamer={streamer}
-                  favorite
-                  type="qsmp"
-                />
-              ))}
-            </div>
-            {favoriteStreamers.length > 0 && notDefaultStreamers.length > 0 && (
-              <Separator className="my-3" />
-            )}
-            {notDefaultStreamers.length > 0 && (
-              <StreamersList
-                streamers={nonFavoriteStreamers.filter((s) =>
-                  notDefaultStreamers.includes(s.twitch_name),
-                )}
-                notDefaultStreamers={notDefaultStreamers}
-              />
-            )}
-            {(notDefaultStreamers.length > 0 || favoriteStreamers.length > 0) &&
-              nonFavoriteStreamers.length > 0 && <Separator className="my-3" />}
-            {nonFavoriteStreamers.length > 0 && (
-              <StreamersList
-                streamers={nonFavoriteStreamers.filter(
-                  (s) => !notDefaultStreamers.includes(s.twitch_name),
-                )}
-                notDefaultStreamers={notDefaultStreamers}
-              />
-            )}
-          </>
-        )} */}
         {searchMode === 'twitch' && (
           <>
             {searchedStreamers.length > 0 && (

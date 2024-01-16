@@ -17,7 +17,6 @@ import { useQueryData } from '@/hooks/useQueryData';
 import { getLayoutKey } from '@/utils/getLayoutKey';
 import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
 import { ArrowLeftRight } from 'lucide-react';
-import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import RGL, { Layout, WidthProvider } from 'react-grid-layout';
 import { useElementSize, useMediaQuery } from 'usehooks-ts';
@@ -171,15 +170,38 @@ export const StreamsList = (props: StreamsListProps) => {
           <span className="max-w-72 text-balance">
             {listWithChat.map((i) => i.twitch_name).join(', ')}
           </span>
-          <pre className="text-xs">{JSON.stringify(layout, null, 2)}</pre>
-          <div>
+          <textarea
+            className="w-full resize-y p-1.5 font-mono text-xs"
+            id="new-layout-textarea"
+          ></textarea>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() =>
+              setLayout(
+                JSON.parse(
+                  (
+                    document.querySelector(
+                      '#new-layout-textarea',
+                    ) as HTMLTextAreaElement
+                  ).value,
+                ),
+              )
+            }
+          >
+            Update Layout
+          </Button>
+          <pre className="scrollbar max-h-[512px] overflow-auto text-xs">
+            {JSON.stringify(layout, null, 2)}
+          </pre>
+          {/* <div>
             <Button size="sm" variant="link" asChild>
               <Link href="/pt">Re</Link>
             </Button>
             <Button size="sm" variant="link" asChild>
               <Link href="/pt?streamers=scottonauta">Set</Link>
             </Button>
-          </div>
+          </div> */}
         </div>
       )}
       {listWithChat.length > 0 && (
