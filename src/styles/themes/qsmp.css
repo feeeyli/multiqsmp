@@ -1,20 +1,22 @@
 @layer themes {
   :root,
   .light {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
+    --theme-hue: 262;
 
-    --primary: 262 54% 78%;
+    --background: 0 0% 100%;
+    --foreground: calc(var(--theme-hue) - 38) 71.4% 4.1%;
+
+    --primary: var(--theme-hue) 54% 78%;
     --primary-foreground: 210 20% 98%;
 
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
+    --secondary: calc(var(--theme-hue) - 42) 14.3% 95.9%;
+    --secondary-foreground: calc(var(--theme-hue) - 41) 39.3% 11%;
 
-    --muted-foreground: 220 8.9% 46.1%;
+    --muted-foreground: calc(var(--theme-hue) - 42) 8.9% 46.1%;
 
     --destructive: 0 84.2% 60.2%;
 
-    --border: 220 13% 91%;
+    --border: calc(var(--theme-hue) - 42) 13% 91%;
     --radius: 0.5rem;
 
     --card: var(--background);
@@ -34,14 +36,16 @@
   }
 
   .dark {
-    --background: 266 15% 12%;
-    --foreground: 210 20% 98%;
+    --theme-hue: 262;
 
-    --primary: 262 54% 78%;
+    --background: calc(var(--theme-hue) + 4) 15% 12%;
+    --foreground: calc(var(--theme-hue) - 52) 20% 98%;
 
-    --secondary: 262 27.9% 16.9%;
+    --primary: var(--theme-hue) 54% 78%;
 
-    --muted-foreground: 217.9 10.6% 64.9%;
+    --secondary: var(--theme-hue) 27.9% 16.9%;
+
+    --muted-foreground: calc(var(--theme-hue) - 44) 10.6% 64.9%;
 
     --destructive: 0 62.8% 30.6%;
 

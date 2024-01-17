@@ -22,6 +22,11 @@ import RGL, { Layout, WidthProvider } from 'react-grid-layout';
 import { useElementSize, useMediaQuery } from 'usehooks-ts';
 import { Chat } from '../chats-list/chat';
 import { Button } from '../ui/button';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '../ui/collapsible';
 import { StreamPlayer } from './stream-player';
 import { StreamPlayerControlsProvider } from './stream-player/stream-player-controls-context';
 
@@ -161,48 +166,55 @@ export const StreamsList = (props: StreamsListProps) => {
     <div
       data-resizing={props.resizing}
       data-has-chat-open={!!searchParams.get('chats')}
-      className="streams-list-scrollbar relative h-full flex-1 overflow-auto data-[resizing=true]:pointer-events-none data-[has-chat-open=false]:mr-3"
+      className="streams-list-scrollbar relative h-full flex-1 overflow-auto data-[resizing=true]:pointer-events-none"
       ref={containerRef}
     >
       {DEBUG_MODE && (
-        <div className="absolute right-1 top-2 z-50 flex flex-col gap-3 rounded-md bg-slate-950/50 p-4">
-          <h1 className="text-xl font-bold">DEBUG</h1>
-          <span className="max-w-72 text-balance">
-            {listWithChat.map((i) => i.twitch_name).join(', ')}
-          </span>
-          <textarea
-            className="w-full resize-y p-1.5 font-mono text-xs"
-            id="new-layout-textarea"
-          ></textarea>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() =>
-              setLayout(
-                JSON.parse(
-                  (
-                    document.querySelector(
-                      '#new-layout-textarea',
-                    ) as HTMLTextAreaElement
-                  ).value,
-                ),
-              )
-            }
-          >
-            Update Layout
-          </Button>
-          <pre className="scrollbar max-h-[512px] overflow-auto text-xs">
-            {JSON.stringify(layout, null, 2)}
-          </pre>
-          {/* <div>
-            <Button size="sm" variant="link" asChild>
-              <Link href="/pt">Re</Link>
+        <Collapsible
+          defaultOpen
+          className="absolute right-1 top-2 z-50 flex flex-col gap-3 rounded-md bg-slate-950/50 p-4"
+        >
+          <CollapsibleTrigger className="text-xl font-bold">
+            DEBUG
+          </CollapsibleTrigger>
+          <CollapsibleContent className="max-w-72">
+            <span className="text-balance">
+              {listWithChat.map((i) => i.twitch_name).join(', ')}
+            </span>
+            <textarea
+              className="w-full resize-y p-1.5 font-mono text-xs"
+              id="new-layout-textarea"
+            ></textarea>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() =>
+                setLayout(
+                  JSON.parse(
+                    (
+                      document.querySelector(
+                        '#new-layout-textarea',
+                      ) as HTMLTextAreaElement
+                    ).value,
+                  ),
+                )
+              }
+            >
+              Update Layout
             </Button>
-            <Button size="sm" variant="link" asChild>
-              <Link href="/pt?streamers=scottonauta">Set</Link>
-            </Button>
-          </div> */}
-        </div>
+            <pre className="scrollbar max-h-[512px] overflow-auto text-xs">
+              {JSON.stringify(layout, null, 2)}
+            </pre>
+            {/* <div>
+              <Button size="sm" variant="link" asChild>
+                <Link href="/pt">Re</Link>
+              </Button>
+              <Button size="sm" variant="link" asChild>
+                <Link href="/pt?streamers=scottonauta">Set</Link>
+              </Button>
+            </div> */}
+          </CollapsibleContent>
+        </Collapsible>
       )}
       {listWithChat.length > 0 && (
         <SwapStreamsProvider
