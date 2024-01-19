@@ -1,65 +1,69 @@
-@layer themes {
-  :root > body.frogg,
-  .light > body.frogg {
-    --background: 146 0% 100%;
-    --foreground: 224 71.4% 4.1%;
+:root > body.frogg,
+.light > body.frogg {
+  --theme-hue: 146;
 
-    --primary: 146 54% 78%;
-    --primary-foreground: 134 20% 98%;
+  --background: 0 0% 100%;
+  --foreground: calc(var(--theme-hue) - 38) 71.4% 4.1%;
 
-    --secondary: 146 14.3% 95.9%;
-    --secondary-foreground: 134 39.3% 11%;
+  --primary: var(--theme-hue) 54% 78%;
+  --primary-foreground: 210 20% 98%;
 
-    --muted-foreground: 134 8.9% 46.1%;
+  --secondary: calc(var(--theme-hue) - 42) 14.3% 95.9%;
+  --secondary-foreground: calc(var(--theme-hue) - 41) 39.3% 11%;
 
-    --destructive: 0 84.2% 60.2%;
+  --muted-foreground: calc(var(--theme-hue) - 42) 8.9% 46.1%;
 
-    --border: 146 13% 91%;
-    --radius: 0.5rem;
+  --destructive: 0 84.2% 60.2%;
 
-    --card: var(--background);
-    --popover: var(--background);
+  --border: calc(var(--theme-hue) - 42) 13% 91%;
+  --radius: 0.5rem;
 
-    --card-foreground: var(--foreground);
-    --popover-foreground: var(--foreground);
+  --card: var(--background);
+  --popover: var(--background);
 
-    --ring: var(--primary);
-    --destructive-foreground: var(--primary-foreground);
+  --card-foreground: var(--foreground);
+  --popover-foreground: var(--foreground);
 
-    --muted: var(--secondary);
-    --accent: var(--secondary);
-    --accent-foreground: var(--secondary-foreground);
+  --ring: var(--primary);
+  --destructive-foreground: var(--primary-foreground);
 
-    --input: var(--border);
-  }
+  --muted: var(--secondary);
+  --accent: var(--secondary);
+  --accent-foreground: var(--secondary-foreground);
 
-  .dark > body.frogg {
-    --background: 146 15% 12%;
-    --foreground: 134 20% 98%;
+  --input: var(--border);
+  --un-default-border-color: hsl(var(--border));
+}
 
-    --primary: 146 54% 78%;
+.dark > body.frogg {
+  --theme-hue: 146;
 
-    --secondary: 146 27.9% 16.9%;
+  --background: calc(var(--theme-hue) + 4) 15% 12%;
+  --foreground: calc(var(--theme-hue) - 52) 20% 98%;
 
-    --muted-foreground: 134 10.6% 64.9%;
+  --primary: var(--theme-hue) 54% 78%;
 
-    --destructive: 0 62.8% 30.6%;
+  --secondary: var(--theme-hue) 27.9% 16.9%;
 
-    --card: var(--background);
-    --popover: var(--background);
+  --muted-foreground: calc(var(--theme-hue) - 44) 10.6% 64.9%;
 
-    --card-foreground: var(--foreground);
-    --popover-foreground: var(--foreground);
-    --primary-foreground: var(--foreground);
-    --secondary-foreground: var(--foreground);
-    --accent-foreground: var(--foreground);
-    --destructive-foreground: var(--foreground);
+  --destructive: 0 62.8% 30.6%;
 
-    --ring: var(--primary);
+  --card: var(--background);
+  --popover: var(--background);
 
-    --muted: var(--secondary);
-    --accent: var(--secondary);
-    --border: var(--secondary);
-    --input: var(--secondary);
-  }
+  --card-foreground: var(--foreground);
+  --popover-foreground: var(--foreground);
+  --primary-foreground: var(--foreground);
+  --secondary-foreground: var(--foreground);
+  --accent-foreground: var(--foreground);
+  --destructive-foreground: var(--foreground);
+
+  --ring: var(--primary);
+
+  --muted: var(--secondary);
+  --accent: var(--secondary);
+  --border: var(--secondary);
+  --input: var(--secondary);
+  --un-default-border-color: hsl(var(--border));
 }
