@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import { useTranslations } from 'next-intl';
 
 import { GroupType } from '@/@types/data';
@@ -179,7 +177,7 @@ export const Group = (props: GroupProps) => {
                         width: `${100 / cols}%`,
                       }}
                     >
-                      <Image
+                      <img
                         src={
                           cucurucho
                             ? 'https://i.imgur.com/c1Y9KUp.png'

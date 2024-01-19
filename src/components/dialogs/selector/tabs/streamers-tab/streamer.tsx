@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 // Next Imports
 import Image from 'next/image';
 
@@ -160,7 +161,7 @@ export const Streamer = (props: StreamerProps) => {
           title={props.streamer.display_name}
         >
           {streamersAvatar === 'twitch' && (
-            <Image
+            <img
               src={
                 cucurucho
                   ? 'https://static-cdn.jtvnw.net/jtv_user_pictures/90d53586-b538-4588-a03d-a67e9997dd9d-profile_image-300x300.png'
@@ -184,7 +185,7 @@ export const Streamer = (props: StreamerProps) => {
                     }%`,
                   }}
                 >
-                  <Image
+                  <img
                     src={
                       cucurucho
                         ? 'https://i.imgur.com/c1Y9KUp.png'
@@ -208,7 +209,7 @@ export const Streamer = (props: StreamerProps) => {
           )}
           {streamersAvatar === 'both' && (
             <div className="relative">
-              <Image
+              <img
                 src={
                   cucurucho
                     ? 'https://i.imgur.com/c1Y9KUp.png'

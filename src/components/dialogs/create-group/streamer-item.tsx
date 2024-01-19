@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 // Next Imports
-import Image from 'next/image';
 
 // Libs Imports
 import { useTranslations } from 'next-intl';
@@ -27,7 +27,7 @@ export const StreamerItem = (props: StreamerItemProps) => {
       className="flex h-auto min-w-[40%] flex-1 items-center justify-start gap-4 border-2 bg-secondary/50 p-2 data-[state=on]:border-primary/50 data-[state=on]:bg-secondary/50"
     >
       <Button variant="secondary">
-        <Image
+        <img
           src={props.streamer.avatar_url}
           alt={`${t('profile-image-alt')} ${props.streamer.display_name}`}
           width={96}
