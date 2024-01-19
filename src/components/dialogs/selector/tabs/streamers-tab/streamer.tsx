@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 // Next Imports
-import Image from 'next/image';
 
 // Libs Imports
 import { useTranslations } from 'next-intl';
@@ -231,7 +230,7 @@ export const Streamer = (props: StreamerProps) => {
                     className="absolute bottom-1 right-1 flex flex-wrap items-center justify-center border-2 border-border"
                   >
                     <picture className="h-5 w-5 sm:h-7 sm:w-7">
-                      <Image
+                      <img
                         src={
                           cucurucho ? 'https://i.imgur.com/c1Y9KUp.png' : avatar
                         }
