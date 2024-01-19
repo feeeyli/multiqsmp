@@ -10,6 +10,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { AppVariantProvider } from '@/contexts/app-variant-context';
 import { SettingsProvider } from '@/contexts/settings-context';
 import { cn } from '@/lib/utils';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
 
@@ -19,6 +20,14 @@ const GA_ID = 'G-P0V7XD4TFG';
 //   title: 'MultiQSMP',
 //   description: 'A website to watch all QSMP streamers at the same time.',
 // };
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export default function RootLayout({
   children,
@@ -103,20 +112,22 @@ export default function RootLayout({
       <body
         className={cn('min-h-dvh w-full', variant === 'qsmp' ? '' : variant)}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          themes={['dark', 'light']}
-          enableSystem
-        >
-          <SettingsProvider>
-            <TooltipProvider>
-              <AppVariantProvider variant={variant}>
-                {children}
-              </AppVariantProvider>
-            </TooltipProvider>
-          </SettingsProvider>
-        </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            themes={['dark', 'light']}
+            enableSystem
+          >
+            <SettingsProvider>
+              <TooltipProvider>
+                <AppVariantProvider variant={variant}>
+                  {children}
+                </AppVariantProvider>
+              </TooltipProvider>
+            </SettingsProvider>
+          </ThemeProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );

@@ -9,7 +9,7 @@
     "new-participants": "{count, plural, =1 {Novo participante} other {Novos participantes}}!",
     "qsmp-streamer-search-label": "Buscar por streamer no QSMP",
     "twitch-streamer-search-label": "Buscar por streamer na Twitch",
-    "loading-streamers": "Buscando informações",
+    "loading-streamers": "Buscando {type, select, qsmp {informações} other {streamers}}",
     "search-streamers": "Comece a escrever para buscar streamers...",
     "group-search-label": "Buscar por grupo",
     "hide-members": "Selecionar",

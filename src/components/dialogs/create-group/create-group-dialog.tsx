@@ -31,21 +31,24 @@ import { Plus } from 'lucide-react';
 
 // Contexts Imports
 import { useCustomGroups } from '@/contexts/custom-groups-context';
-import { useCreateGroupDialogContext } from './create-group-dialog-context';
 
 // Scripts Imports
-import {
-  getGroupsDisplayName,
-  getStreamerDisplayName,
-} from '@/utils/getDisplayName';
+import { SimpleStreamerType } from '@/@types/data';
+import { matchSorter } from 'match-sorter';
+import { usePinnedStreamers } from '../selector/tabs/pinned-streamers-context';
 
 export const CreateGroupDialog = () => {
   const t = useTranslations('create-group-dialog');
-  const [selectedGroupStreamers, { updateList: setSelectedGroupStreamers }] =
-    useCreateGroupDialogContext();
+  const [selectedGroupStreamers, setSelectedGroupStreamers] = useState<
+    SimpleStreamerType[]
+  >([]);
   const [search, setSearch] = useState('');
   const [groupName, setGroupName] = useState('');
   const [customGroups, setCustomGroups] = useCustomGroups();
+  const [PinnedStreamers] = usePinnedStreamers();
+
+  const Streamers: SimpleStreamerType[] =
+    PinnedStreamers.concat(STREAMERS).flat();
 
   const mergedGroups = [...new Set([...GROUPS, ...customGroups])];
 
@@ -111,14 +114,20 @@ export const CreateGroupDialog = () => {
             </div>
             <ToggleGroup.Root
               type="multiple"
-              className="scrollbar flex max-h-96 flex-wrap gap-2 overflow-y-auto p-1 pr-2"
-              onValueChange={setSelectedGroupStreamers}
+              className="scrollbar flex max-h-96 flex-wrap gap-2 overflow-y-auto"
+              onValueChange={(value) => {
+                const mapped = value.map(
+                  (streamer) =>
+                    Streamers.find((str) => str.twitch_name === streamer)!,
+                );
+
+                setSelectedGroupStreamers(mapped);
+              }}
             >
-              {STREAMERS.filter((streamer) =>
-                streamer.display_name
-                  .toLocaleLowerCase()
-                  .includes(search.toLocaleLowerCase()),
-              ).map((streamer) => (
+              {matchSorter(Streamers, search, {
+                keys: ['twitch_name', 'display_name'],
+                baseSort: () => 0,
+              }).map((streamer) => (
                 <StreamerItem streamer={streamer} key={streamer.twitch_name} />
               ))}
             </ToggleGroup.Root>
@@ -128,11 +137,8 @@ export const CreateGroupDialog = () => {
                 {selectedGroupStreamers.length === 0 &&
                   t('no-selected-streamers')}
               </span>{' '}
-              {selectedGroupStreamers.map((s) => getGroupsDisplayName(s))
-                .length > 0 &&
-                selectedGroupStreamers
-                  .map((s) => getGroupsDisplayName(s))
-                  .join(', ')}
+              {selectedGroupStreamers.map((s) => s.display_name).length > 0 &&
+                selectedGroupStreamers.map((s) => s.display_name).join(', ')}
             </p>
           </section>
         </div>
@@ -149,10 +155,14 @@ export const CreateGroupDialog = () => {
                     simpleGroupName: groupName
                       .toLocaleLowerCase()
                       .replaceAll(' ', '-'),
-                    twitchNames: selectedGroupStreamers,
-                    avatars: selectedGroupStreamers,
-                    members: selectedGroupStreamers.map((s) =>
-                      getStreamerDisplayName(s),
+                    twitchNames: selectedGroupStreamers.map(
+                      (str) => str.twitch_name,
+                    ),
+                    avatars: selectedGroupStreamers.map(
+                      (str) => str.twitch_name,
+                    ),
+                    members: selectedGroupStreamers.map(
+                      (str) => str.display_name,
                     ),
                   },
                 ])

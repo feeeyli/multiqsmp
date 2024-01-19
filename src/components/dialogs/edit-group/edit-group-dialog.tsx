@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 // Types Imports
-import { GroupType } from '@/@types/data';
+import { GroupType, SimpleStreamerType } from '@/@types/data';
 
 // Datas Imports
 import { GROUPS } from '@/data/groups';
@@ -40,6 +40,7 @@ import {
 } from '@/utils/getDisplayName';
 import { DeleteGroupDialog } from '../delete-group/delete-group-dialog';
 import { useFavoriteListsContext } from '../selector/tabs/favorite-lists-context';
+import { usePinnedStreamers } from '../selector/tabs/pinned-streamers-context';
 
 interface EditGroupDialog {
   group: GroupType;
@@ -54,6 +55,10 @@ export const EditGroupDialog = (props: EditGroupDialog) => {
   );
   const [search, setSearch] = useState('');
   const [groupName, setGroupName] = useState(props.group.display_name);
+  const [PinnedStreamers] = usePinnedStreamers();
+
+  const Streamers: SimpleStreamerType[] =
+    PinnedStreamers.concat(STREAMERS).flat();
 
   const mergedGroups = [...new Set([...GROUPS, ...customGroups])];
 
@@ -62,7 +67,7 @@ export const EditGroupDialog = (props: EditGroupDialog) => {
     .filter((cg) => cg !== props.group.simple_name)
     .includes(groupName.toLocaleLowerCase().replaceAll(' ', '-'));
 
-  const STREAMERS_IN_GROUP = STREAMERS.filter((s) =>
+  const STREAMERS_IN_GROUP = Streamers.filter((s) =>
     props.group.members.some((m) => m.twitch_name == s.twitch_name),
   );
 

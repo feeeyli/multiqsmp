@@ -4,33 +4,22 @@ import { Label } from '@/components/ui/label';
 import { motion } from 'framer-motion';
 import { Globe2, Twitch, XCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { useDebounce } from 'usehooks-ts';
+import { ChangeEvent, ElementRef, useRef } from 'react';
 
 type SearchBar = {
-  handleTwitchSearch: (query: string) => void;
-  handleDefaultSearch: (query: string) => void;
-  onSearchModeChange: Dispatch<SetStateAction<'qsmp' | 'twitch'>>;
+  toggleSearchMode: () => void;
   searchMode: 'qsmp' | 'twitch';
+  setSearch: (e: ChangeEvent<HTMLInputElement> | string) => void;
+  search: string;
 };
 
 export function SearchBar(props: SearchBar) {
   const t = useTranslations('streamers-dialog');
-  const [search, setSearch] = useState('');
-  const debouncedValue = useDebounce<string>(
-    props.searchMode === 'twitch' ? search : '',
-    500,
-  );
+  const inputRef = useRef<ElementRef<'input'>>(null);
 
-  useEffect(() => {
-    if (props.searchMode === 'twitch') props.handleTwitchSearch(debouncedValue);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedValue, props.searchMode]);
-
-  useEffect(() => {
-    if (props.searchMode === 'qsmp') props.handleDefaultSearch(search);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, props.searchMode]);
+  function clearInput() {
+    props.setSearch('');
+  }
 
   return (
     <div className="flex w-full items-center gap-3">
@@ -43,13 +32,14 @@ export function SearchBar(props: SearchBar) {
           id="streamer-search"
           className="rounded-r-none border-r-0"
           placeholder={t(props.searchMode + '-streamer-search-label')}
-          onChange={(e) => setSearch(e.target.value)}
-          value={search}
+          onChange={props.setSearch}
+          value={props.search}
+          ref={inputRef}
         />
         <Button
           variant="outline"
           className="rounded-l-none border-l-0 px-3 text-muted-foreground"
-          onClick={() => setSearch('')}
+          onClick={() => clearInput()}
         >
           <XCircle size="1rem" />
         </Button>
@@ -58,10 +48,8 @@ export function SearchBar(props: SearchBar) {
         variant="outline"
         className="items-start p-0"
         onClick={() => {
-          props.onSearchModeChange((old) =>
-            old === 'qsmp' ? 'twitch' : 'qsmp',
-          );
-          setSearch('');
+          props.toggleSearchMode();
+          clearInput();
         }}
       >
         <div className="relative h-10 w-10 overflow-y-hidden">

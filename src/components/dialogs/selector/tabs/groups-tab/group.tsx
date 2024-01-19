@@ -27,6 +27,7 @@ import { getSkinHead } from '@/utils/getSkinHead';
 import { cva } from 'class-variance-authority';
 import { useEffect, useState } from 'react';
 import { EditGroupDialog } from '../../../edit-group/edit-group-dialog';
+import { usePinnedStreamers } from '../pinned-streamers-context';
 
 interface GroupProps {
   group: GroupType &
@@ -76,6 +77,7 @@ const groupVariant = cva(
 export const Group = (props: GroupProps) => {
   const { selectedGroups, changedGroups } = useStreamsSelector();
   const { groups: favoritesList } = useFavoriteListsContext();
+  const [pinnedStreamers] = usePinnedStreamers();
 
   const t = useTranslations('streamers-dialog');
   const [{ cucurucho }] = useEasterEggsContext();
@@ -182,6 +184,10 @@ export const Group = (props: GroupProps) => {
                           cucurucho
                             ? 'https://i.imgur.com/c1Y9KUp.png'
                             : getSkinHead(avatar.twitch_name)[0]
+                            ? getSkinHead(avatar.twitch_name)[0]
+                            : pinnedStreamers.find(
+                                (str) => str.twitch_name === avatar.twitch_name,
+                              )!.avatar_url
                         }
                         alt={`${t('profile-image-alt')} ${avatar.display_name}`}
                         width={128}
