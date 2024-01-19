@@ -142,7 +142,7 @@ const FROGG = {
   tiba041: 'https://s.namemc.com/2d/skin/face.png?id=033d4ea3b84874b3&scale=32',
   kellerzons:
     'https://s.namemc.com/2d/skin/face.png?id=e5e8bbaf0b451bde&scale=32',
-  oakinoo: 'https://s.namemc.com/2d/skin/face.png?id=2f7bbbfec8be9668&scale=32',
+  oakinoo: 'https://s.namemc.com/2d/skin/face.png?id=b8366f02ea718c3c&scale=32',
   ameizim: 'https://s.namemc.com/2d/skin/face.png?id=41695555a6490e1a&scale=32',
   bastet: 'https://s.namemc.com/2d/skin/face.png?id=69b67bb41ed22260&scale=32',
   carrasquera:
