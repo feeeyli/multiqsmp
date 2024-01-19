@@ -62,7 +62,7 @@ export default function RootLayout({
         />
         <meta
           property="og:image"
-          content="https://multiqsmp.vercel.app/api/og"
+          content={'https://multiqsmp.vercel.app/api/og/' + variant}
         />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -102,7 +102,7 @@ export default function RootLayout({
         />
         <meta
           property="og:image"
-          content="https://multiqsmp-beta.vercel.app/api/og"
+          content={'https://multiqsmp-beta.vercel.app/api/og/' + variant}
         />
         <meta
           name="google-adsense-account"

@@ -6,11 +6,17 @@ export const runtime = 'edge';
 
 export async function GET() {
   const poppins400 = await fetch(
-    new URL('../../../../public/poppins/Poppins-Regular.ttf', import.meta.url),
+    new URL(
+      '../../../../../public/poppins/Poppins-Regular.ttf',
+      import.meta.url,
+    ),
   ).then((res) => res.arrayBuffer());
 
   const poppins600 = await fetch(
-    new URL('../../../../public/poppins/Poppins-SemiBold.ttf', import.meta.url),
+    new URL(
+      '../../../../../public/poppins/Poppins-SemiBold.ttf',
+      import.meta.url,
+    ),
   ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
@@ -27,28 +33,28 @@ export async function GET() {
           fontFamily: '"Poppins"',
         }}
       >
-        <div tw="bg-[#1e1a23] flex w-full flex-1 items-center justify-center">
+        <div tw="bg-[#1a231e] flex w-full flex-1 items-center justify-center">
           <div tw="flex flex-col items-center">
             <h1
-              tw="mb-2 text-[#f9fafb] text-[160px]"
+              tw="mb-2 text-[#f9fbf9] text-[160px]"
               style={{ fontWeight: 700 }}
             >
-              MultiQSMP
+              MultiFrogg
             </h1>
             <div tw="flex">
               <div tw="flex flex-col items-center mr-[80px]">
-                <h2 tw="text-[#bfa9e5] text-[60px]" style={{ fontWeight: 400 }}>
+                <h2 tw="text-[#a9e5c3] text-[60px]" style={{ fontWeight: 400 }}>
                   Bem-vindo
                 </h2>
-                <h2 tw="text-[#bfa9e5] text-[60px]" style={{ fontWeight: 400 }}>
+                <h2 tw="text-[#a9e5c3] text-[60px]" style={{ fontWeight: 400 }}>
                   Welcome
                 </h2>
               </div>
               <div tw="flex flex-col items-center">
-                <h2 tw="text-[#bfa9e5] text-[60px]" style={{ fontWeight: 400 }}>
+                <h2 tw="text-[#a9e5c3] text-[60px]" style={{ fontWeight: 400 }}>
                   Bienvenido
                 </h2>
-                <h2 tw="text-[#bfa9e5] text-[60px]" style={{ fontWeight: 400 }}>
+                <h2 tw="text-[#a9e5c3] text-[60px]" style={{ fontWeight: 400 }}>
                   Bienvenu
                 </h2>
               </div>
