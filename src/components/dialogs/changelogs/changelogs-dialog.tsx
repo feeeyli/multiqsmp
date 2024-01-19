@@ -20,15 +20,28 @@ export const ChangelogsDialog = () => {
     'changelogs-view',
     [],
   );
-  const Changelog = Changelogs[locale][ACTUAL_VERSION].split('---');
+
+  const Versions = Object.keys(Changelogs[locale]);
+  const versionIndex = Versions.findIndex((cl) => cl === ACTUAL_VERSION) + 1;
+
+  const ChangelogsNotViewed = Versions.slice(
+    versionIndex - 3 < 0 ? 0 : versionIndex - 3,
+    versionIndex,
+  ).filter(
+    (v) => !changelogsView.includes(v),
+  ) as (keyof typeof Changelogs.pt)[];
+
+  const Changelog = ChangelogsNotViewed.map((v) => Changelogs[locale][v])
+    .join('\n \n  ---\n  \n')
+    .split('---');
   const [page, setPage] = useState(0);
 
   return (
     <Dialog
-      defaultOpen={!changelogsView.includes(ACTUAL_VERSION)}
-      open={changelogsView.includes(ACTUAL_VERSION) ? false : undefined}
+      defaultOpen={ChangelogsNotViewed.length > 0}
+      open={ChangelogsNotViewed.length === 0 ? false : undefined}
       onOpenChange={(open) => {
-        if (!open) setChangelogsView((old) => [...old, ACTUAL_VERSION]);
+        if (!open) setChangelogsView((old) => [...old, ...ChangelogsNotViewed]);
       }}
     >
       <DialogPortal>

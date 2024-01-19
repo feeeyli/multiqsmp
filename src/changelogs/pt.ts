@@ -34,8 +34,7 @@ export const PTChangelogs = {
   
   Os streamers que você buscar podem ser fixados, sendo mostrados logo acima dos streamers padrões do QSMP. Além disso streamers, de fora do QSMP, colocados diretamente na URL, agora também são mostrados na seleção, com a possibilidade fixa-los.
   
-  ![Busca de streamers](/changelogs/3.0/streamers-search.png "Busca de streamers")
-  `,
+  ![Busca de streamers](/changelogs/3.0/streamers-search.png "Busca de streamers")`,
   '3.1': `# Esconder membros de grupos
   Ao clicar com botão direito em um grupo mo menu de seleção um menu aparecerá, nele você pode esconder membros do grupo antes de escolher. Ao esconder os membros que quiser clique no botão "Selecionar" para confirmar ou clique fora do menu para cancelar.
   
