@@ -9,7 +9,7 @@ import { useSearchParams } from 'next/navigation';
 // Datas Imports
 
 // Libs Imports
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/hooks/useTranslations';
 
 // Icons Imports
 import { ArrowLeftRight, ArrowRight } from 'lucide-react';

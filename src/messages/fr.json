@@ -9,7 +9,7 @@
     "new-participants": "{count, plural, =1 {Nouveau participant} other {Nouveaux participants}} !",
     "qsmp-streamer-search-label": "Recherche par streamers QSMP",
     "twitch-streamer-search-label": "Search by Twitch streamers",
-    "loading-streamers": "Recherche d'informations",
+    "loading-streamers": "Recherche d'{type, select, qsmp {informations} other {streamers}}",
     "search-streamers": "Commencer à écrire pour rechercher des streamers...",
     "group-search-label": "Groupe de recherche",
     "hide-members": "Sélectionner",
@@ -22,7 +22,7 @@
     },
     "sort": {
       "label": "Trier",
-      "name-lang": "Nom et langue",
+      "name-lang": "Défaut",
       "name": "Nom",
       "online-first": "Online en premier",
       "playing-first": "Jouer au QSMP en premier"

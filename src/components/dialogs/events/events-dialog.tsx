@@ -1,5 +1,5 @@
 // Libs Imports
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/hooks/useTranslations';
 
 // Components Imports
 import { EventResponse } from '@/@types/globals';

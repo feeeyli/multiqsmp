@@ -1,7 +1,7 @@
 'use client';
 
 // Libs Imports
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/hooks/useTranslations';
 import Markdown from 'react-markdown';
 
 // Components Imports

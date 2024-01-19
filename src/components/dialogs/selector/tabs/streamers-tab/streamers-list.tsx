@@ -1,5 +1,5 @@
 import { StreamerType } from '@/@types/data';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/hooks/useTranslations';
 import { useSortStreamers } from './sort-streamers-context';
 import { Streamer } from './streamer';
 

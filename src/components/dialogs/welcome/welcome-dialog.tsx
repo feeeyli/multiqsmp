@@ -5,6 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { useTranslations } from '@/hooks/useTranslations';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { DialogOverlay, DialogPortal } from '@radix-ui/react-dialog';
 import {
@@ -14,7 +15,6 @@ import {
   Settings,
   X,
 } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { useLocalStorage } from 'usehooks-ts';
 
 export const WelcomeDialog = () => {

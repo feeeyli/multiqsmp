@@ -27,10 +27,10 @@ import {
 import { Input } from '@/components/ui/input';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { GROUPS } from '@/data/groups';
+import { useTranslations } from '@/hooks/useTranslations';
 import { sortGroups } from '@/utils/sort';
 import { Label } from '@radix-ui/react-label';
 import { BoxSelect, CheckSquare, MousePointerSquareDashed } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 
 export const GroupsTab = () => {
   const { selectedGroups } = useStreamsSelector();

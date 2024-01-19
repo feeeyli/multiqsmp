@@ -6,6 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useTranslations } from '@/hooks/useTranslations';
 import {
   BoxSelect,
   CheckSquare,
@@ -13,7 +14,6 @@ import {
   MousePointerSquareDashed,
   Radio,
 } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { useStreamsSelector } from '../../selector-dialog-context';
 
 type SelectStreamersDropdownProps = {

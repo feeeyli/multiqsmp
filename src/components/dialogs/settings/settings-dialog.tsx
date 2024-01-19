@@ -1,8 +1,8 @@
 'use client';
 
 // Libs Imports
+import { useTranslations } from '@/hooks/useTranslations';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 

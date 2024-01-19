@@ -1,7 +1,7 @@
 import { useSettings } from '@/contexts/settings-context';
 import { useFullscreen } from '@/hooks/useFullscreen';
+import { useTranslations } from '@/hooks/useTranslations';
 import { Maximize, Minimize } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { Button } from '../../ui/button';
 import { Tooltip } from '../../ui/tooltip';
 import { FAQDialog } from '../faq/faq-dialog';

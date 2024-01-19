@@ -9,7 +9,7 @@
     "new-participants": "{count, plural, =1 {New participant} other {New participants}}!",
     "qsmp-streamer-search-label": "Search by QSMP streamers",
     "twitch-streamer-search-label": "Search by Twitch streamers",
-    "loading-streamers": "Looking for information",
+    "loading-streamers": "Looking for {type, select, qsmp {information} other {streamers}}",
     "search-streamers": "Start writing to search for streamers...",
     "group-search-label": "Search for group",
     "hide-members": "Select",
@@ -22,7 +22,7 @@
     },
     "sort": {
       "label": "Sort",
-      "name-lang": "Name and language",
+      "name-lang": "Default",
       "name": "Name",
       "online-first": "Online first",
       "playing-first": "Playing QSMP first"

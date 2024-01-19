@@ -11,10 +11,10 @@ import { useLayout } from '@/contexts/layout-memory-context';
 import { useSettings } from '@/contexts/settings-context';
 import { useLayoutPresets } from '@/hooks/useLayoutPresets';
 import { useStreamsList } from '@/hooks/useStreamsRenderList';
+import { useTranslations } from '@/hooks/useTranslations';
 import { getLayoutKey } from '@/utils/getLayoutKey';
 import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
 import { LayoutPanelLeft } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { useMediaQuery, useWindowSize } from 'usehooks-ts';
 

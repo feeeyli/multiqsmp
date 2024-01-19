@@ -9,7 +9,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/hooks/useTranslations';
 import { ReactNode } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { SettingsType } from '../settings-dialog';

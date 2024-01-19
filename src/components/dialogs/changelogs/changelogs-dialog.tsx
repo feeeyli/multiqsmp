@@ -2,10 +2,11 @@
 import { Changelogs } from '@/changelogs';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { useTranslations } from '@/hooks/useTranslations';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { DialogOverlay, DialogPortal } from '@radix-ui/react-dialog';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 import Markdown from 'react-markdown';

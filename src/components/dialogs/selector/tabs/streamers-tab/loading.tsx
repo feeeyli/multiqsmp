@@ -1,5 +1,5 @@
+import { useTranslations } from '@/hooks/useTranslations';
 import { Loader2 } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 
 export function Loading({ searchMode }: { searchMode: 'qsmp' | 'twitch' }) {
   const t = useTranslations('streamers-dialog');

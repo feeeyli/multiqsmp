@@ -33,8 +33,8 @@ import { Tooltip } from '@/components/ui/tooltip';
 import { useSettings } from '@/contexts/settings-context';
 import { useSwapStreams } from '@/contexts/swap-points-context';
 import { useSearchParamsState } from '@/hooks/useSearchParamsState';
+import { useTranslations } from '@/hooks/useTranslations';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
 
 interface StreamPlayerHeaderProps {
   channel: string;

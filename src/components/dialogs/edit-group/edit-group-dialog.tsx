@@ -9,7 +9,7 @@ import { GROUPS } from '@/data/groups';
 import { STREAMERS } from '@/data/streamers';
 
 // Libs Imports
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/hooks/useTranslations';
 
 // Components Imports
 import { Button } from '@/components/ui/button';

@@ -8,7 +8,7 @@ import { useFavoriteListsContext } from '../favorite-lists-context';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { useStreamersSearch } from '@/hooks/selector-dialog/useStreamersSearch';
 import { useSepareStreamers } from '@/hooks/useSepareStreamers';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/hooks/useTranslations';
 import { Loading } from './loading';
 import { SearchBar } from './search-bar';
 import { SelectStreamersDropdown } from './select-streamers-dropdown';

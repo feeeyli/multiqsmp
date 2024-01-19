@@ -10,9 +10,9 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Tooltip } from '@/components/ui/tooltip';
+import { useTranslations } from '@/hooks/useTranslations';
 import { DialogClose } from '@radix-ui/react-dialog';
 import { ArrowRight, ListOrdered } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { SetStateAction, useState } from 'react';
 import { GroupListItem } from './list-item/group-list-item';

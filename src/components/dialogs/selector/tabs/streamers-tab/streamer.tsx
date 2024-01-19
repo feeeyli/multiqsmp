@@ -2,7 +2,7 @@
 // Next Imports
 
 // Libs Imports
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/hooks/useTranslations';
 
 // Types Imports
 import { StreamerType } from '@/@types/data';

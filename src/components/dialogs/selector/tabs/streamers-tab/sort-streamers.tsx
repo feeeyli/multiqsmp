@@ -8,13 +8,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useTranslations } from '@/hooks/useTranslations';
 import {
   ArrowDownWideNarrow,
   ArrowUpWideNarrow,
   CaseUpper,
   Languages,
 } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { useSortStreamers } from './sort-streamers-context';
 
 export function SortStreamers() {

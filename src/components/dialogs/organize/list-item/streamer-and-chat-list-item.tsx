@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
+import { useTranslations } from '@/hooks/useTranslations';
 import { getSkinHead } from '@/utils/getSkinHead';
 import { MessageSquare, MessageSquareDashed, X } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useOrganize } from '../organize-context';
 import { OrganizeStateStreamers } from '../organize-dialog';
