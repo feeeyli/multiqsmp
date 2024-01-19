@@ -24,6 +24,12 @@ export const FROGG_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/8ebe8da4-c266-4809-92bb-605331a29627-profile_image-300x300.png',
   },
   {
+    display_name: 'oakinoo',
+    twitch_name: 'oakinoo',
+    avatar_url:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/441d9598-0dc8-4dc9-bad0-e5b03e017ffb-profile_image-300x300.png',
+  },
+  {
     display_name: 'Ameizim',
     twitch_name: 'ameizim',
     avatar_url:
