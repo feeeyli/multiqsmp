@@ -3,10 +3,11 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 // Libs Imports
-import { NextIntlClientProvider } from 'next-intl';
 import { CustomGroupsProvider } from '@/contexts/custom-groups-context';
 import { EasterEggsProvider } from '@/contexts/easter-eggs-context';
-import { LayoutMemoryProvider } from '@/contexts/layout-memory-context';
+import { LayoutProvider } from '@/contexts/layout-memory-context';
+import { SwapStreamsProvider } from '@/contexts/swap-points-context';
+import { NextIntlClientProvider } from 'next-intl';
 
 // Components Imports
 export const metadata: Metadata = {
@@ -41,9 +42,11 @@ export default async function RootLayout({
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <CustomGroupsProvider>
-        <LayoutMemoryProvider>
-          <EasterEggsProvider>{children}</EasterEggsProvider>
-        </LayoutMemoryProvider>
+        <LayoutProvider>
+          <SwapStreamsProvider>
+            <EasterEggsProvider>{children}</EasterEggsProvider>
+          </SwapStreamsProvider>
+        </LayoutProvider>
       </CustomGroupsProvider>
     </NextIntlClientProvider>
   );

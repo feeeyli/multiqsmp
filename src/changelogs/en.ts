@@ -35,4 +35,26 @@ export const ENChangelogs = {
   The streamers you search for can be pinned, being shown just above the standard QSMP streamers. In addition, streamers from outside the QSMP, placed directly in the URL, are now also shown in the selection, with the possibility of pinning them.
   
   ![Search by streamers](/changelogs/3.0/streamers-search.png "Search by streamers")`,
+  '3.1': `# Hide Group Members
+  When right-clicking on a group in the seletor dialog, a menu will appear where you can hide group members before making your selection. After hiding the members you want, click the "Select" button to confirm, or click outside the menu to cancel.
+  
+  On touch screens, simply hold down the group you want, and the menu will appear.
+  
+  ![Hide Group Members](/changelogs/3.1/groups.gif "Hide Group Members")
+  
+  ---
+  
+  # Pre-defined Layouts
+  Click the Layouts button on the side to open a menu where you'll have 4 options:
+  
+  - Reset
+  - 1 focus
+  - 2 focuses
+  - 4 focuses
+  
+  "Reset" will clear any modifications made to the layout.
+  
+  The focus buttons will modify the layout to a predefined arrangement and add swap points to the focuses.
+  
+  ![Pre-defined Layouts](/changelogs/3.1/layout-presets.png "Pre-defined Layouts")`,
 };

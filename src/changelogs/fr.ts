@@ -36,4 +36,26 @@ export const FRChangelogs = {
   
   ![Recherche par streamers](/changelogs/3.0/streamers-search.png "Recherche par streamers")
 `,
+  '3.1': `# Masquer les membres de groupes
+  En faisant un clic droit sur un groupe dans le menu de sélection, un menu apparaîtra où vous pourrez masquer les membres du groupe avant de faire votre sélection. Après avoir masqué les membres que vous souhaitez, cliquez sur le bouton "Sélectionner" pour confirmer ou cliquez en dehors du menu pour annuler.
+  
+  Sur les écrans tactiles, maintenez simplement le doigt sur le groupe que vous souhaitez, et le menu apparaîtra.
+  
+  ![Masquer les membres de groupes](/changelogs/3.1/groups.gif "Masquer les membres de groupes")
+  
+  ---
+  
+  # Mises en page prédéfinies
+  Cliquez sur le bouton Mises en page sur le côté pour ouvrir un menu où vous aurez 4 options :
+  
+  - Réinitialiser
+  - 1 focus
+  - 2 focuses
+  - 4 focuses
+  
+  "Réinitialiser" effacera toute modification apportée à la mise en page.
+  
+  Les boutons de focus modifieront la mise en page pour une disposition prédéfinie et ajouteront des points d'échange aux focuses.
+  
+  ![Mises en page prédéfinies](/changelogs/3.1/layout-presets.png "Mises en page prédéfinies")`,
 };

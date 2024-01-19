@@ -12,7 +12,7 @@ import React, {
 import { useLocalStorage } from 'usehooks-ts';
 
 // Types Imports
-import { SettingsType } from '@/components/dialogs/settings-dialog';
+import { SettingsType } from '@/components/dialogs/settings/settings-dialog';
 import { useTheme } from 'next-themes';
 
 const INITIAL_VALUE: SettingsType = {

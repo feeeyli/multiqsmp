@@ -1,9 +1,9 @@
 'use client';
 
-import { ChatsList } from '@/components/chats-list';
-import { ChangelogsDialog } from '@/components/dialogs/changelogs-dialog';
-import { DialogsAside } from '@/components/dialogs/dialogs-aside';
-import { WelcomeDialog } from '@/components/dialogs/welcome-dialog';
+import { ChatsList } from '@/components/chats/chats-list';
+import { DialogsAside } from '@/components/dialogs/aside/dialogs-aside';
+import { ChangelogsDialog } from '@/components/dialogs/changelogs/changelogs-dialog';
+import { WelcomeDialog } from '@/components/dialogs/welcome/welcome-dialog';
 import { StreamsList } from '@/components/streams-list';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
 import { useSettings } from '@/contexts/settings-context';

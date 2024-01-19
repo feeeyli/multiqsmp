@@ -227,7 +227,11 @@
       "organize-dialog": "Organizer",
       "settings-dialog": "Settings",
       "faq-dialog": "FAQ",
+      "layout": "Layout",
       "reset-layout": "Reset layout",
+      "1-focus": "1 focus",
+      "2-focus": "2 focuses",
+      "4-focus": "4 focuses",
       "toggle-fullscreen": "Fullscreen"
     },
     "stream-player-header": {

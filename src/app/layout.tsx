@@ -38,6 +38,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <head>
+        <title>MultiQSMP</title>
         <meta
           name="description"
           content="A website to watch all QSMP streamers at the same time."

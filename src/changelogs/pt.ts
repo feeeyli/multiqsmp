@@ -36,4 +36,26 @@ export const PTChangelogs = {
   
   ![Busca de streamers](/changelogs/3.0/streamers-search.png "Busca de streamers")
   `,
+  '3.1': `# Esconder membros de grupos
+  Ao clicar com botão direito em um grupo mo menu de seleção um menu aparecerá, nele você pode esconder membros do grupo antes de escolher. Ao esconder os membros que quiser clique no botão "Selecionar" para confirmar ou clique fora do menu para cancelar.
+  
+  Em telas de toque apenas segure no grupo que quiser e o menu aparecerá.
+  
+  ![Esconder membros de grupos](/changelogs/3.1/groups.gif "Esconder membros de grupos")
+  
+  ---
+  
+  # Layouts pré-definidos
+  Clique no botão de Layouts na lateral pra abrir um menu onde você terá 4 opções:
+  
+  - Resetar
+  - 1 foco
+  - 2 focos
+  - 4 focos
+  
+  "Resetar" irá limpar qualquer modificação feita no layout.
+  
+  Os botões de foco irão modificar o layout pra uma disposição pré definida e adicionar pontos de trocas nos focos.
+  
+  ![Layouts pré-definidos](/changelogs/3.1/layout-presets.png "Layouts pré-definidos")`,
 };

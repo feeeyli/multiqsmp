@@ -35,4 +35,26 @@ export const ESChangelogs = {
   Los streamers que buscas se pueden fijar, mostrándose justo encima de los streamers estándar de QSMP. Además, los streamers de fuera de QSMP, colocados directamente en la URL, ahora también se muestran en la selección, con la posibilidad de fijarlos.
   
   ![Búsqueda por streamers](/changelogs/3.0/streamers-search.png "Búsqueda por streamers")`,
+  '3.1': `# Ocultar miembros de grupos
+  Al hacer clic derecho en un grupo en el menú de selección, aparecerá un menú donde puedes ocultar los miembros del grupo antes de hacer tu selección. Después de ocultar a los miembros que desees, haz clic en el botón "Seleccionar" para confirmar o haz clic fuera del menú para cancelar.
+  
+  En pantallas táctiles, simplemente mantén presionado el grupo que desees y aparecerá el menú.
+  
+  ![Ocultar miembros de grupos](/changelogs/3.1/groups.gif "Ocultar miembros de grupos")
+  
+  ---
+  
+  # Diseños predefinidos
+  Haz clic en el botón de Diseños en el lateral para abrir un menú donde tendrás 4 opciones:
+  
+  - Restablecer
+  - 1 enfoque
+  - 2 enfoques
+  - 4 enfoques
+  
+  "Restablecer" eliminará cualquier modificación realizada en el diseño.
+  
+  Los botones de enfoque modificarán el diseño a una disposición predefinida y agregarán puntos de intercambio en los enfoques.
+  
+  ![Diseños predefinidos](/changelogs/3.1/layout-presets.png "Diseños predefinidos")`,
 };
