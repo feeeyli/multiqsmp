@@ -1,4 +1,4 @@
-type AppVariants = 'qsmp' | 'frogg' | 'purgatory';
+export type AppVariants = 'qsmp' | 'frogg' | 'purgatory';
 
 export const getAppVariant = () => {
   if (typeof window !== 'undefined') {

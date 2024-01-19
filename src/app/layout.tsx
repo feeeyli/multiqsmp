@@ -10,6 +10,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { AppVariantProvider } from '@/contexts/app-variant-context';
 import { SettingsProvider } from '@/contexts/settings-context';
 import { cn } from '@/lib/utils';
+import { AppVariants } from '@/utils/getAppVariant';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
@@ -29,6 +30,12 @@ const queryClient = new QueryClient({
   },
 });
 
+const titleVariants = {
+  qsmp: 'MultiQSMP',
+  frogg: 'MultiFrogg',
+  purgatory: 'MultiQSMP Purgatory',
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -39,7 +46,7 @@ export default function RootLayout({
   const getAppVariant = () => {
     if (/^\/purgatory/g.test(pathname)) return 'purgatory';
 
-    return process.env.NEXT_PUBLIC_APP_VARIANT ?? 'qsmp';
+    return (process.env.NEXT_PUBLIC_APP_VARIANT as AppVariants) ?? 'qsmp';
   };
 
   const variant = getAppVariant();
@@ -47,7 +54,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <head>
-        <title>MultiQSMP</title>
+        <title>{titleVariants[variant]}</title>
         <meta
           name="description"
           content="A website to watch all QSMP streamers at the same time."
