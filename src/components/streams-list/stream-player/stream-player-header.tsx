@@ -217,7 +217,7 @@ export const StreamPlayerHeader = (props: StreamPlayerHeaderProps) => {
                     '((swap-point))',
                     String(i + 1),
                   )}
-                  key={i}
+                  key={'swap-point-' + i}
                 >
                   <Button
                     tabIndex={opened ? 0 : -1}

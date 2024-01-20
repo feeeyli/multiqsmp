@@ -140,8 +140,8 @@ export const SettingsDialog = () => {
     useEasterEggsContext();
 
   function onSubmit(values: SettingsType) {
-    form.reset(values);
     setSettings(values);
+    form.reset(values);
     setIsOpen(false);
   }
 

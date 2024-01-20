@@ -81,7 +81,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
       window.location.reload();
     }
 
-    setSettings(extend({}, INITIAL_VALUE, themed));
+    // setSettings(extend({}, INITIAL_VALUE, themed));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
