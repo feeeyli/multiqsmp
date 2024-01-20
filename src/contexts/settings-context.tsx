@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { SettingsType } from '@/components/dialogs/settings/settings-dialog';
