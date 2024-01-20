@@ -1,5 +1,5 @@
 import { StreamerType } from '@/@types/data';
-import { QSMP_STREAMERS } from '@/data/streamers/qsmp';
+import { STREAMERS } from '@/data/streamers';
 
 type TwitchResponse = {
   data: {
@@ -129,11 +129,10 @@ async function getQueryStreamers(query: string) {
     return {
       ...offline,
       is_live: true,
-      is_playing_qsmp: QSMP_STREAMERS.some(
-        (s) => s.twitch_name === streamer.login,
-      )
-        ? /(qsmp)|(minecraft)/i.test(stream.tags.join(',') || '') ||
-          stream.game_name === 'Minecraft'
+      is_playing_qsmp: STREAMERS.some((s) => s.twitch_name === streamer.login)
+        ? /(qsmp)|(minecraft)|(frogg smp)/i.test(
+            stream.tags.concat(stream.title).join(',') || '',
+          ) || stream.game_name === 'Minecraft'
         : undefined,
       title: stream.title,
       language: stream.language,
