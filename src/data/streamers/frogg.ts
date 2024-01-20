@@ -84,6 +84,12 @@ export const FROGG_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/edf27e31-5fdd-461d-836f-aea763eaca07-profile_image-300x300.png',
   },
   {
+    display_name: 'LJoga',
+    twitch_name: 'ljoga',
+    avatar_url:
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/5d465f44-69bf-4b06-b49f-b20944fe0bcf-profile_image-300x300.png',
+  },
+  {
     display_name: 'mynluvsx',
     twitch_name: 'mynluvsx',
     avatar_url:
