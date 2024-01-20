@@ -161,7 +161,7 @@ export default function Home() {
           >
             Feyli
           </Link>
-          , para toda comunidade do QSMP!
+          , para toda comunidade do QSMP e da Frogg!
         </p>
       </footer>
     </div>
