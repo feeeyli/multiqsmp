@@ -50,7 +50,7 @@ export const StreamersTab = () => {
         <Loading searchMode={searchMode} />
       )}
       <ToggleGroup
-        className="scrollbar h-full w-full flex-col space-x-0 overflow-y-auto bg-transparent pt-1"
+        className="h-full w-full flex-col space-x-0 overflow-y-auto bg-transparent pt-1 scrollbar"
         type="multiple"
         orientation="vertical"
         value={selectedStreamers.value.map((s) => s.twitch_name)}

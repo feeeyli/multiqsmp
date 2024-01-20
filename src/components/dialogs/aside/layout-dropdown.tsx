@@ -14,9 +14,9 @@ import { useStreamsList } from '@/hooks/useStreamsRenderList';
 import { useTranslations } from '@/hooks/useTranslations';
 import { getLayoutKey } from '@/utils/getLayoutKey';
 import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
+import { useMediaQuery, useViewportSize } from '@mantine/hooks';
 import { LayoutPanelLeft } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
-import { useMediaQuery, useWindowSize } from 'usehooks-ts';
 
 export function LayoutDropdown() {
   const isDesktop = !useMediaQuery('(max-width: 640px)');
@@ -24,7 +24,7 @@ export function LayoutDropdown() {
   const t = useTranslations();
   const searchParams = useSearchParams();
   const listWithChat = useStreamsList();
-  const { height } = useWindowSize();
+  const { height } = useViewportSize();
   const {
     layoutMemory: [, setLayoutMemory],
   } = useLayout();

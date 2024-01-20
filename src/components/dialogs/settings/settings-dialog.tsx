@@ -140,6 +140,7 @@ export const SettingsDialog = () => {
     useEasterEggsContext();
 
   function onSubmit(values: SettingsType) {
+    form.reset(values);
     setSettings(values);
     setIsOpen(false);
   }
@@ -166,7 +167,7 @@ export const SettingsDialog = () => {
           <DialogTitle>{t('title')}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
-          <form className="scrollbar space-y-4 overflow-y-auto pl-2 pr-4">
+          <form className="space-y-4 overflow-y-auto pl-2 pr-4 scrollbar">
             <div>
               <ChangeLanguage lang="pt" form={form} />
               <ChangeLanguage lang="en" form={form} />
@@ -564,7 +565,7 @@ export const SettingsDialog = () => {
                             <FormControl>
                               <ToggleGroup.Item
                                 value={item.value}
-                                className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-input bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground"
+                                className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-input bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors data-[state=on]:bg-accent data-[state=on]:text-accent-foreground hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                               >
                                 {item.value !== 'remove-stream' && (
                                   <>

@@ -24,7 +24,7 @@ import { cn } from '@/lib/utils';
 import { getSkinHead } from '@/utils/getSkinHead';
 import { cva } from 'class-variance-authority';
 import { useEffect, useState } from 'react';
-import { EditGroupDialog } from '../../../edit-group/edit-group-dialog';
+import { EditGroupDialog } from '../../../custom-groups/edit-group/edit-group-dialog';
 import { usePinnedStreamers } from '../pinned-streamers-context';
 
 interface GroupProps {

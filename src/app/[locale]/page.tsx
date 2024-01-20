@@ -2,7 +2,6 @@
 
 import { ChatsList } from '@/components/chats/chats-list';
 import { DialogsAside } from '@/components/dialogs/aside/dialogs-aside';
-import { ChangelogsDialog } from '@/components/dialogs/changelogs/changelogs-dialog';
 import { WelcomeDialog } from '@/components/dialogs/welcome/welcome-dialog';
 import { StreamsList } from '@/components/streams-list';
 import { useEasterEggsContext } from '@/contexts/easter-eggs-context';
@@ -10,10 +9,10 @@ import { useSettings } from '@/contexts/settings-context';
 import { useFullscreen } from '@/hooks/useFullscreen';
 import { useKonamiCode } from '@/hooks/useKonamiCode';
 import { useSearchParamsStates } from '@/hooks/useSearchParamsState';
+import { useMediaQuery } from '@mantine/hooks';
 import { cva } from 'class-variance-authority';
 import { useState } from 'react';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
-import { useMediaQuery } from 'usehooks-ts';
 
 const mainVariants = cva(
   'group relative flex h-dvh max-h-screen w-full overflow-hidden',
@@ -43,7 +42,6 @@ export default function Streams() {
   return (
     <main
       data-has-chats={chats.length > 0}
-      data-hide-dialog={settings.appearance.hideDialog}
       data-dialogs-position={settings.appearance.dialogTriggersPosition}
       className={mainVariants({
         'dialogs-position':
@@ -85,7 +83,7 @@ export default function Streams() {
             </>
           )}
       </PanelGroup>
-      <ChangelogsDialog />
+      {/* <ChangelogsDialog /> */}
       <WelcomeDialog />
     </main>
   );

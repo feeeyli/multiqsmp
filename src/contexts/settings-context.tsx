@@ -1,6 +1,8 @@
 'use client';
 
-// React Imports
+import { SettingsType } from '@/components/dialogs/settings/settings-dialog';
+import { useLocalStorage } from '@mantine/hooks';
+import { useTheme } from 'next-themes';
 import React, {
   Dispatch,
   SetStateAction,
@@ -9,11 +11,6 @@ import React, {
   useContext,
   useEffect,
 } from 'react';
-import { useLocalStorage } from 'usehooks-ts';
-
-// Types Imports
-import { SettingsType } from '@/components/dialogs/settings/settings-dialog';
-import { useTheme } from 'next-themes';
 
 const INITIAL_VALUE: SettingsType = {
   appearance: {
@@ -64,14 +61,14 @@ export const SettingsContext = createContext<
 >([INITIAL_VALUE, () => {}]);
 
 export function SettingsProvider({ children }: { children: React.ReactNode }) {
-  const [settings, setSettings] = useLocalStorage<SettingsType>(
-    'settings',
-    INITIAL_VALUE,
-  );
-  const [memory, setMemory] = useLocalStorage<{ setPurgatory: boolean }>(
-    'memory',
-    { setPurgatory: false },
-  );
+  const [settings, setSettings] = useLocalStorage<SettingsType>({
+    key: 'settings',
+    defaultValue: INITIAL_VALUE,
+  });
+  const [memory, setMemory] = useLocalStorage<{ setPurgatory: boolean }>({
+    key: 'memory',
+    defaultValue: { setPurgatory: false },
+  });
 
   useEffect(() => {
     const themed = { ...settings };

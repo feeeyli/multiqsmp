@@ -1,3 +1,5 @@
+/* cSpell:disable */
+
 export const PURGATORY_STREAMERS = [
   {
     display_name: 'Quackity',

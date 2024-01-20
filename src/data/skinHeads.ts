@@ -1,3 +1,5 @@
+/* cSpell:disable */
+
 const QSMP = {
   qsmp: 'https://s.namemc.com/i/0e8e0237bb86c1f5.png',
   BadBoyHalo:

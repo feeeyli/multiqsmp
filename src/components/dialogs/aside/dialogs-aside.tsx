@@ -20,7 +20,7 @@ export function DialogsAside() {
     <aside
       data-dialogs-position={settings.appearance.dialogTriggersPosition}
       data-horizontal={settings.appearance.dialogTriggersPosition === 'bottom'}
-      data-hide-dialog={settings.appearance.hideDialog}
+      data-hide-dialog={settings.appearance.hideDialog || false}
       className="
         group
         absolute

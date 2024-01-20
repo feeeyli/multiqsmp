@@ -13,10 +13,7 @@ export function useStreamersSearch() {
     setSearchMode((old) => (old === 'qsmp' ? 'twitch' : 'qsmp'));
 
   const [search, updateSearch] = useState('');
-  const debouncedValue = useDebounce<string>(
-    searchMode === 'twitch' ? search : '',
-    500,
-  ).trim();
+  const trimmedSearch = useDebounce(search, 500).trim();
 
   const setSearch = (e: ChangeEvent<HTMLInputElement> | string) => {
     if (typeof e === 'string') return updateSearch(e);
@@ -27,14 +24,14 @@ export function useStreamersSearch() {
   const { data: TwitchSearchStreamers, isLoading: isLoadingTwitchSearch } =
     useQuery({
       queryKey: ['streamer-search'].concat(
-        debouncedValue !== '' ? debouncedValue : [],
+        trimmedSearch !== '' ? trimmedSearch : [],
       ),
       queryFn: async () => {
-        if (debouncedValue === '') return [];
+        if (trimmedSearch === '') return [];
 
         const { data } = await axios.get<StreamerType[]>('/api/search', {
           params: {
-            query: debouncedValue.toLocaleLowerCase(),
+            query: trimmedSearch.toLocaleLowerCase(),
           },
         });
         return data;

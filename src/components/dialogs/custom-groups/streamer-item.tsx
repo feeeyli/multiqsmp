@@ -1,17 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-// Next Imports
-
-// Libs Imports
-import { useTranslations } from '@/hooks/useTranslations';
-
-// Types Imports
 import { SimpleStreamerType } from '@/@types/data';
-
-// Components Imports
-import * as ToggleGroup from '@radix-ui/react-toggle-group';
-
-// Contexts Imports
 import { Button } from '@/components/ui/button';
+import { useTranslations } from '@/hooks/useTranslations';
+import * as ToggleGroup from '@radix-ui/react-toggle-group';
 
 interface StreamerItemProps {
   streamer: SimpleStreamerType;

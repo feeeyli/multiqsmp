@@ -1,3 +1,5 @@
+/* cSpell:disable */
+
 export const QSMP_GROUPS = [
   {
     display_name: 'English speakers',

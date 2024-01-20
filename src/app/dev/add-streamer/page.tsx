@@ -13,10 +13,10 @@ import { Input } from '@/components/ui/input';
 import { SKIN_HEADS } from '@/data/skinHeads';
 import { STREAMERS } from '@/data/streamers';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useClipboard } from '@mantine/hooks';
 import { Files, Minus, RotateCcw, Shapes } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useCopyToClipboard } from 'usehooks-ts';
 import * as z from 'zod';
 
 const STREAMERS_TEMPLATE = `export const PURGATORY_STREAMERS = ((PS));
@@ -31,7 +31,7 @@ const formSchema = z.object({
 });
 
 export default function AddStreamer() {
-  const [, copy] = useCopyToClipboard();
+  const { copy } = useClipboard();
   const [added, setAdded] = useState<z.infer<typeof formSchema>[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

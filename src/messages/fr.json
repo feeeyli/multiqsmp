@@ -224,8 +224,8 @@
   "button-titles": {
     "aside": {
       "streams-selector-dialog": "Sélecteur de streamer",
-      "dialogue d'organisation": "Organizer",
-      "boîte de dialogue des paramètres": "Paramètres",
+      "organize-dialog": "Organizer",
+      "settings-dialog": "Paramètres",
       "faq-dialog": "FAQ",
       "layout": "Disposition",
       "reset-layout": "Réinitialiser la disposition",

@@ -1,16 +1,4 @@
-// React Imports
-import { useState } from 'react';
-
-// Types Imports
-
-// Datas Imports
-import { GROUPS } from '@/data/groups';
-import { STREAMERS } from '@/data/streamers';
-
-// Libs Imports
-import { useTranslations } from '@/hooks/useTranslations';
-
-// Components Imports
+import { SimpleStreamerType } from '@/@types/data';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -22,26 +10,23 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useCustomGroups } from '@/contexts/custom-groups-context';
+import { GROUPS } from '@/data/groups';
+import { STREAMERS } from '@/data/streamers';
+import { useTranslations } from '@/hooks/useTranslations';
 import { DialogClose } from '@radix-ui/react-dialog';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
-import { StreamerItem } from './streamer-item';
-
-// Icons Imports
 import { Plus } from 'lucide-react';
-
-// Contexts Imports
-import { useCustomGroups } from '@/contexts/custom-groups-context';
-
-// Scripts Imports
-import { SimpleStreamerType } from '@/@types/data';
 import { matchSorter } from 'match-sorter';
-import { usePinnedStreamers } from '../selector/tabs/pinned-streamers-context';
+import { useState } from 'react';
+import { usePinnedStreamers } from '../../selector/tabs/pinned-streamers-context';
+import { StreamerItem } from '../streamer-item';
 
 export const CreateGroupDialog = () => {
   const t = useTranslations('create-group-dialog');
-  const [selectedGroupStreamers, setSelectedGroupStreamers] = useState<
-    SimpleStreamerType[]
-  >([]);
+  const [selectedMembers, setSelectedMembers] = useState<SimpleStreamerType[]>(
+    [],
+  );
   const [search, setSearch] = useState('');
   const [groupName, setGroupName] = useState('');
   const [customGroups, setCustomGroups] = useCustomGroups();
@@ -58,7 +43,7 @@ export const CreateGroupDialog = () => {
         if (!open) {
           setSearch('');
           setGroupName('');
-          setSelectedGroupStreamers([]);
+          setSelectedMembers([]);
         }
       }}
     >
@@ -121,7 +106,7 @@ export const CreateGroupDialog = () => {
                     Streamers.find((str) => str.twitch_name === streamer)!,
                 );
 
-                setSelectedGroupStreamers(mapped);
+                setSelectedMembers(mapped);
               }}
             >
               {matchSorter(Streamers, search, {
@@ -133,12 +118,11 @@ export const CreateGroupDialog = () => {
             </ToggleGroup.Root>
             <p className="text-sm">
               <span className="text-muted-foreground">
-                {selectedGroupStreamers.length > 0 && t('selected-streamers')}
-                {selectedGroupStreamers.length === 0 &&
-                  t('no-selected-streamers')}
+                {selectedMembers.length > 0 && t('selected-streamers')}
+                {selectedMembers.length === 0 && t('no-selected-streamers')}
               </span>{' '}
-              {selectedGroupStreamers.map((s) => s.display_name).length > 0 &&
-                selectedGroupStreamers.map((s) => s.display_name).join(', ')}
+              {selectedMembers.map((s) => s.display_name).length > 0 &&
+                selectedMembers.map((s) => s.display_name).join(', ')}
             </p>
           </section>
         </div>
@@ -155,15 +139,9 @@ export const CreateGroupDialog = () => {
                     simpleGroupName: groupName
                       .toLocaleLowerCase()
                       .replaceAll(' ', '-'),
-                    twitchNames: selectedGroupStreamers.map(
-                      (str) => str.twitch_name,
-                    ),
-                    avatars: selectedGroupStreamers.map(
-                      (str) => str.twitch_name,
-                    ),
-                    members: selectedGroupStreamers.map(
-                      (str) => str.display_name,
-                    ),
+                    twitchNames: selectedMembers.map((str) => str.twitch_name),
+                    avatars: selectedMembers.map((str) => str.twitch_name),
+                    members: selectedMembers.map((str) => str.display_name),
                   },
                 ])
               }
@@ -174,7 +152,7 @@ export const CreateGroupDialog = () => {
                     groupName.toLocaleLowerCase().replaceAll(' ', '-'),
                   ) ||
                 groupName.trim() === '' ||
-                selectedGroupStreamers.length === 0
+                selectedMembers.length === 0
               }
             >
               {t('submit')}

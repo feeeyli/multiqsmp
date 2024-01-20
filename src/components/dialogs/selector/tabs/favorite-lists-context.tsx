@@ -1,10 +1,12 @@
 'use client';
 
-// React Imports
-import React, { Dispatch, SetStateAction, createContext, useContext } from 'react';
+import React, {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useContext,
+} from 'react';
 import { useLocalStorage } from 'usehooks-ts';
-
-// Scripts Imports
 
 interface ContextItemValue {
   value: string[];

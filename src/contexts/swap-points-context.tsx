@@ -50,10 +50,14 @@ export const SwapStreamsProvider = ({
   useEffect(() => {
     setSwapPointsMemory((old) => {
       if (
-        swapPoints.length === 0 &&
-        old[getLayoutKey(searchParams, { movableChat })].length === 0
-      )
-        return old;
+        typeof old[getLayoutKey(searchParams, { movableChat })] !== 'undefined'
+      ) {
+        if (
+          swapPoints.length === 0 &&
+          old[getLayoutKey(searchParams, { movableChat })].length === 0
+        )
+          return old;
+      }
 
       return {
         ...old,

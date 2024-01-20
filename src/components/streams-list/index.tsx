@@ -1,22 +1,15 @@
 'use client';
 
-// Libs Imports
-import { useTranslations } from '@/hooks/useTranslations';
-import { useSearchParams } from 'next/navigation';
-
-// Context Imports
-
-// Scripts Imports
-import { useHasMounted } from '@/hooks/useHasMounted';
-
-// Components Imports
 import { useLayout } from '@/contexts/layout-memory-context';
 import { useSettings } from '@/contexts/settings-context';
+import { useHasMounted } from '@/hooks/useHasMounted';
 import { useLayoutPresets } from '@/hooks/useLayoutPresets';
 import { useStreamsList } from '@/hooks/useStreamsRenderList';
+import { useTranslations } from '@/hooks/useTranslations';
 import { getLayoutKey } from '@/utils/getLayoutKey';
 import { getStreamsGridSize } from '@/utils/getStreamsGridSize';
 import { ArrowLeftRight } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import RGL, { Layout, WidthProvider } from 'react-grid-layout';
 import { useElementSize, useMediaQuery } from 'usehooks-ts';
@@ -192,7 +185,7 @@ export const StreamsList = (props: StreamsListProps) => {
       )}
       {listWithChat.length > 0 && (
         <ReactGridLayout
-          className="grid-layout scrollbar max-h-full"
+          className="grid-layout max-h-full scrollbar"
           cols={10 * cols}
           rowHeight={
             containerSize.height /

@@ -3,6 +3,7 @@ import { Changelogs } from '@/changelogs';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useTranslations } from '@/hooks/useTranslations';
+import { useLocalStorage } from '@mantine/hooks';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { DialogOverlay, DialogPortal } from '@radix-ui/react-dialog';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
@@ -10,17 +11,16 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 import Markdown from 'react-markdown';
-import { useLocalStorage } from 'usehooks-ts';
 
 const ACTUAL_VERSION = '3.1';
 
 export const ChangelogsDialog = () => {
   const t = useTranslations('changelogs-dialog');
   const locale = useLocale() as keyof typeof Changelogs;
-  const [changelogsView, setChangelogsView] = useLocalStorage<string[]>(
-    'changelogs-view',
-    [],
-  );
+  const [changelogsView, setChangelogsView] = useLocalStorage<string[]>({
+    key: 'changelogs-view',
+    defaultValue: [],
+  });
 
   const Versions = Object.keys(Changelogs[locale]);
   const versionIndex = Versions.findIndex((cl) => cl === ACTUAL_VERSION) + 1;

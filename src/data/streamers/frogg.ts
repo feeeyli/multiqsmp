@@ -1,3 +1,5 @@
+/* cSpell:disable */
+
 export const FROGG_STREAMERS = [
   {
     display_name: 'scottonauta',

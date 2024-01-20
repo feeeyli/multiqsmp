@@ -25,7 +25,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { DialogClose } from '@radix-ui/react-dialog';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
-import { StreamerItem } from '../create-group/streamer-item';
+import { StreamerItem } from '../streamer-item';
 
 // Icons Imports
 import { Pencil, Save } from 'lucide-react';
@@ -38,9 +38,9 @@ import {
   getGroupsDisplayName,
   getStreamerDisplayName,
 } from '@/utils/getDisplayName';
+import { useFavoriteListsContext } from '../../selector/tabs/favorite-lists-context';
+import { usePinnedStreamers } from '../../selector/tabs/pinned-streamers-context';
 import { DeleteGroupDialog } from '../delete-group/delete-group-dialog';
-import { useFavoriteListsContext } from '../selector/tabs/favorite-lists-context';
-import { usePinnedStreamers } from '../selector/tabs/pinned-streamers-context';
 
 interface EditGroupDialog {
   group: GroupType;

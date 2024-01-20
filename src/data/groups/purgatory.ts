@@ -1,3 +1,5 @@
+/* cSpell:disable */
+
 export const PURGATORY_GROUPS = [
   {
     display_name: 'Axolotl',

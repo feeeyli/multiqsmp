@@ -6,14 +6,13 @@ import { useState } from 'react';
 
 // Contexts Imports
 import { useCustomGroups } from '@/contexts/custom-groups-context';
-import { CreateGroupDialogProvider } from '../../../create-group/create-group-dialog-context';
 import { useStreamsSelector } from '../../selector-dialog-context';
 import { useFavoriteListsContext } from '../favorite-lists-context';
 
 // Components Imports
 import { Separator } from '@/components/ui/separator';
 import { TabsContent } from '@/components/ui/tabs';
-import { CreateGroupDialog } from '../../../create-group/create-group-dialog';
+import { CreateGroupDialog } from '../../../custom-groups/create-group/create-group-dialog';
 import { Group } from './group';
 
 // Scripts Imports
@@ -187,9 +186,7 @@ export const GroupsTab = () => {
               custom
             />
           ))}
-          <CreateGroupDialogProvider>
-            <CreateGroupDialog />
-          </CreateGroupDialogProvider>
+          <CreateGroupDialog />
         </div>
       </ToggleGroup>
     </TabsContent>
