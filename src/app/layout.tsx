@@ -36,6 +36,12 @@ const titleVariants = {
   purgatory: 'MultiQSMP Purgatory',
 };
 
+const descriptionVariants = {
+  qsmp: 'A website to watch all QSMP streamers at the same time.',
+  frogg: 'A website to watch all Frogg SMP streamers at the same time.',
+  purgatory: 'A website to watch all QSMP Purgatory streamers at the same time.',
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -57,15 +63,15 @@ export default function RootLayout({
         <title>{titleVariants[variant]}</title>
         <meta
           name="description"
-          content="A website to watch all QSMP streamers at the same time."
+          content={descriptionVariants[variant]}
         />
 
-        <meta property="og:url" content="https://multiqsmp.vercel.app" />
+        <meta property="og:url" content={`https://multi${variant}.vercel.app`} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="MultiQSMP" />
+        <meta property="og:title" content={titleVariants[variant]} />
         <meta
           property="og:description"
-          content="A website to watch all QSMP streamers at the same time."
+          content={descriptionVariants[variant]}
         />
         <meta
           property="og:image"
@@ -73,11 +79,11 @@ export default function RootLayout({
         />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="MultiQSMP" />
+        <meta name="twitter:title" content={titleVariants[variant]} />
         <meta name="twitter:site" content="feeeyli" />
         <meta
           name="twitter:description"
-          content="A website to watch all QSMP streamers at the same time."
+          content={descriptionVariants[variant]}
         />
 
         <link
