@@ -22,3 +22,20 @@ export type GroupType = {
     twitch_name: string;
   }[];
 };
+
+export type EventType = {
+  name: string;
+  time: Date;
+  announcements: EventAnnouncement[];
+};
+
+export type EventAnnouncement = {
+  text: string;
+  pictures: string[];
+  link: string;
+  publisher: {
+    picture: string;
+    name: string;
+    username: string;
+  };
+};

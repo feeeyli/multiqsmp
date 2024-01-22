@@ -212,6 +212,10 @@
       "title": "Organizer",
       "content": "Here you can organize the order of your streamers and chats."
     },
+    "events": {
+      "title": "Events",
+      "content": "Open this menu to keep up with all upcoming QSMP events."
+    },
     "settings": {
       "title": "Settings",
       "content": "Here you can change the theme, change the buttons in the live menus, choose who appears in the selection menu or even change the way you watch the lives. I recommend poking around in the settings when you can."

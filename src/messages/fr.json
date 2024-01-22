@@ -212,6 +212,10 @@
       "title": "Organizer",
       "content": "Ici, vous pouvez organiser l'ordre de vos streamers et chats."
     },
+    "events": {
+      "title": "Événements",
+      "content": "Ouvrez ce menu pour vous tenir au courant de tous les événements à venir du QSMP."
+    },
     "settings": {
       "title": "Paramètres",
       "content": "Ici, vous pouvez modifier le thème, changer les boutons dans les menus en direct, choisir qui apparaît dans le menu de sélection ou même changer la façon dont vous regardez les lives. Je vous recommande de jeter un coup d'œil dans les paramètres lorsque vous le pouvez."

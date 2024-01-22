@@ -4,6 +4,7 @@ import { useTranslations } from '@/hooks/useTranslations';
 import { Maximize, Minimize } from 'lucide-react';
 import { Button } from '../../ui/button';
 import { Tooltip } from '../../ui/tooltip';
+import { EventsDialog } from '../events/events-dialog';
 import { FAQDialog } from '../faq/faq-dialog';
 import { OrganizeDialog } from '../organize/organize-dialog';
 import { StreamsSelectorDialog } from '../selector/selector-dialog';
@@ -55,8 +56,8 @@ export function DialogsAside() {
             <StreamsSelectorDialog />
           </StreamsSelectorDialogProvider>
           <OrganizeDialog />
+          <EventsDialog />
           <SettingsDialog />
-          {/* <EventsDialog /> */}
           <FAQDialog />
           <LayoutDropdown />
         </>

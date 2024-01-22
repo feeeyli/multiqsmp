@@ -80,3 +80,34 @@
 .changelog-markdown li p {
   @apply inline;
 }
+
+:is([data-theme='dark'], .dark) :where(.react-tweet-theme) {
+  --tweet-bg-color: hsl(var(--background)) !important;
+  --tweet-bg-color-hover: hsl(var(--background) / 0.8) !important;
+  --tweet-border: 1px solid hsl(var(--border)) !important;
+  --tweet-color-blue-secondary: hsl(var(--primary)) !important;
+}
+
+.tweet-container_article__zSIw5 * {
+  @apply text-sm;
+}
+
+.react-tweet-theme {
+  @apply !my-0 !h-[21rem] !w-72 !rounded-md;
+}
+
+.tweet-container_article__zSIw5 {
+  @apply h-full w-full overflow-y-auto scrollbar;
+}
+
+.tweet-actions_actions__ygAyD,
+.tweet-replies_replies__T_4sB,
+.tweet-header_twitterIcon__KURvy,
+.tweet-header_authorFollow__2KNFA,
+.tweet-info_infoLink__KNfyc {
+  @apply !hidden;
+}
+
+.css-1dbjc4n.r-13awgt0.r-12vffkv {
+  @apply bg-background;
+}

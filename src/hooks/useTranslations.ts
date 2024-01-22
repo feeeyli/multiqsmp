@@ -8,7 +8,8 @@ export function useTranslations(namespace?: string) {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function translate(...rest: any) {
-    if (variant === 'qsmp') return t.apply(null, rest);
+    if (variant === 'qsmp')
+      return t.apply(null, rest);
 
     return t
       .apply(null, rest)
