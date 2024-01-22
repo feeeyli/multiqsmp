@@ -30,6 +30,14 @@ export const FROGG_EVENTS: EventType[] = [
           'https://pbs.twimg.com/media/GEVjSbBW4AAw1fW?format=jpg&name=large',
         ],
       },
+      {
+        publisher: FroggTV(),
+        text: 'OU SERIA TIBA O CULPADO POR TODOS OS CRIMES EM QUE FOI ACUSADO PERANTE O TRIBUNAL? \n\nfaltam 3 dias\nDia **25** de Janeiro, **20:00 BRT** *#FSMP* *#FROGG*',
+        link: 'https://twitter.com/FroggersTV/status/1749459813484904842',
+        pictures: [
+          'https://pbs.twimg.com/media/GEdUYzEWEAAK4Yy?format=jpg&name=large',
+        ],
+      },
     ],
   },
 ];
