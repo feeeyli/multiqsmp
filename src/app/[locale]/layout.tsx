@@ -1,5 +1,4 @@
 // Next Imports
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 // Libs Imports
@@ -8,12 +7,6 @@ import { EasterEggsProvider } from '@/contexts/easter-eggs-context';
 import { LayoutProvider } from '@/contexts/layout-memory-context';
 import { SwapStreamsProvider } from '@/contexts/swap-points-context';
 import { NextIntlClientProvider } from 'next-intl';
-
-// Components Imports
-export const metadata: Metadata = {
-  title: 'MultiQSMP',
-  description: 'A website to watch all QSMP streamers at the same time.',
-};
 
 export function generateStaticParams() {
   return [
