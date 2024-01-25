@@ -38,6 +38,14 @@ export const FROGG_EVENTS: EventType[] = [
           'https://pbs.twimg.com/media/GEdUYzEWEAAK4Yy?format=jpg&name=large',
         ],
       },
+      {
+        publisher: FroggTV(),
+        text: 'CHEGOU O GRANDE DIA.\nPreparem seus trajes e façam suas pipocas, o grande culpado será definido em algumas horas.\n\n**Hoje 20:00 BRT** *#FSMP* *#FROGG*',
+        link: 'https://twitter.com/FroggersTV/status/1750533991503986732',
+        pictures: [
+          'https://pbs.twimg.com/media/GEqm3ZHWkAE_h9J?format=jpg&name=large',
+        ],
+      },
     ],
   },
 ];
