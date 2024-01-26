@@ -48,4 +48,18 @@ export const FROGG_EVENTS: EventType[] = [
       },
     ],
   },
+  {
+    name: 'Episódio de Praia',
+    time: new Date('2024-01-28T20:00:00-03:00'),
+    announcements: [
+      {
+        publisher: FroggTV(),
+        text: "Aqueles que não estão PRESOS tem motivos para comemorar.\n\nOs trajes de banho estão prontos? Todos com seus protetores solares? O episódio de Praia do #FSMP está chegando.\n\n**Domingo 28/01 - 20:00 BRT** *#FSMP* *#FROGG*",
+        link: 'https://twitter.com/FroggersTV/status/1750965607992889790',
+        pictures: [
+          'https://pbs.twimg.com/media/GEytsFPXsAABnI2?format=jpg&name=large',
+        ],
+      }
+    ],
+  },
 ];
