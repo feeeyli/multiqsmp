@@ -56,6 +56,12 @@ export const FROGG_STREAMERS = [
       'https://static-cdn.jtvnw.net/jtv_user_pictures/b2784187-3ee7-4c31-8161-59ac6fddda42-profile_image-300x300.png',
   },
   {
+    display_name: 'fehdubs',
+    twitch_name: 'fehdubs',
+    avatar_url: 
+      'https://static-cdn.jtvnw.net/jtv_user_pictures/f2614f03-9849-478f-8110-ab9adf8a8531-profile_image-300x300.png',
+  },
+  {
     display_name: 'ImRafly',
     twitch_name: 'imrafly',
     avatar_url:
