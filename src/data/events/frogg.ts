@@ -62,4 +62,18 @@ export const FROGG_EVENTS: EventType[] = [
       }
     ],
   },
+  {
+    name: 'A Fuga',
+    time: new Date('2024-01-28T20:00:00-03:00'),
+    announcements: [
+      {
+        publisher: FroggTV(),
+        text: "Parece que alguns desafortunados não poderão estar presentes na praia festejando.\n\nAcompanhem simultaneamente o Segundo Evento do dia. Boa sorte aos fugitivos, eles irão precisar.\n\n**Domingo 28/01 - 20:00 BRT** *#FSMP* *#FROGG*",
+        link: 'https://twitter.com/FroggersTV/status/1751621153385537640',
+        pictures: [
+          'https://pbs.twimg.com/media/GE57ewYXQAAfoZH?format=jpg&name=large',
+        ],
+      }
+    ],
+  }
 ];
