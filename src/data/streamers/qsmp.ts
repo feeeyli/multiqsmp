@@ -229,4 +229,9 @@ export const QSMP_STREAMERS = [
     avatar_url:
       'https://static-cdn.jtvnw.net/jtv_user_pictures/9e12862d-a8d0-4df2-81aa-e2241022dc98-profile_image-300x300.jpg',
   },
+  {
+    display_name: "악어",
+    twitch_name: "jdm2088",
+    avatar_url: "https://static-cdn.jtvnw.net/jtv_user_pictures/jdm2088-profile_image-c46fd83bd8115db2-300x300.png",
+  }
 ];
